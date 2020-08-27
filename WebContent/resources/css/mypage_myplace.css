@@ -1,0 +1,70 @@
+#imgFile,#emptyPlace{
+    width: 100%;
+    height: 200px;
+}
+#mypage_nav{
+    float: left;
+    width: 10%;
+    margin-left: 10%;
+    border: none;
+    padding: 10px;
+    background: rgba(230, 230, 230, 0.171);
+}
+#mypage_nav>ul{
+    text-align: right;
+    list-style-type: none;
+    border-bottom: lightgray dotted;
+}
+
+#mypage_nav>#mypage_nav_main>li{
+    margin-bottom: 10px;
+}
+
+#mypage_nav>#mypage_nav_main>li>a{
+    font-size: 18pt;
+    font-weight: bold;
+    color: black;
+}
+#mypage_nav>#mypage_nav_sub>li>a{
+    font-size: 11pt;
+    color: black;
+}
+#mypage_nav>#mypage_nav_sub>li{
+    padding-left: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+/* 여기까지 네비 */
+#myplace{
+    margin-left: 35%; 
+    width: 730px;
+    margin-bottom: 10px;
+}
+#placeList{
+    border: 1px solid lightgray;
+}
+#showbox{
+    margin-left: 35%; 
+    border: 1px solid lightgray;
+    padding: 10px;
+    width: 660px;
+    margin-bottom: 10px;
+}
+.placeImg{
+    width: 150px;
+    height: 150px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+.recode{
+    float: right;
+    padding: 7px 15px 15px 15px;
+    font-size: 14px;
+    text-align: right;
+}
+
+.recode li {
+    color: black;
+    line-height: 1.2em;
+}

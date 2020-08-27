@@ -1,0 +1,360 @@
+
+#H_main{
+    width: 100%;
+}
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+/*상단이미지*/
+#main-image{
+    margin-top: 100px;
+    height: 350px;
+    background:url('https://images.mypetlife.co.kr/map/content/uploads/2019/05/06230522/lemon-1024x680.png') no-repeat;
+    background-size: cover;
+}
+#main-text{
+    text-align: left;
+    width: fit-content;
+    padding: 20px;
+    position: relative;
+    left: 130px;
+    top: 100px;
+    color: white;
+    margin-bottom: 20px;
+}
+#main-text>h1{
+    font-size: xx-large;
+    -webkit-text-stroke-width: medium;
+    margin-bottom: 10px;
+    width: 80%;
+}
+#main-text>p{
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+.review_btn>a{
+    width: 100px;
+    height: 23px;
+    border-radius: 8px;
+    padding-top: 2px;
+    font-size: medium;
+    background: #ffb600;
+    color: white;
+    text-align: center;
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 90px;
+    margin-left: 150px;
+}
+.like_btn{
+    width: 80px;
+    height: 23px;
+    border-radius: 8px;
+    padding-top: 2px;
+    font-size: medium;
+    background: #ffb600;
+    color: white;
+    text-align: center;
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 90px;
+    margin-left: 10px;
+}
+.like_btn>button{
+    background: none;
+    border: none;
+    color: white;
+}
+#like_btn:hover{
+    background: none !important;
+    border: none !important;
+    color: white !important;
+}
+.cafe-cont{
+    padding: 30px 0;
+}
+.cafe-cont .left{
+    float: left;
+    width: 970px;
+}
+.cafe-cont .right{
+    float: right;
+    width: 300px;
+}
+/*카페이미지*/
+.cafe-image{
+    height: 730px;
+    margin-top: 100px;
+}
+.cafe-image .big{
+    width: 90%;
+    height: 500px;
+    margin: 0 auto;
+}
+.cafe-image .big>img{
+    width: 100%;
+    height: 100%;
+}
+.cafe-image .small-box{
+    width: 80%;
+    margin-top: 40px;
+    margin-left: 16%;
+    font-size: 0;
+}
+.cafe-image .small-box .img_box{
+    width: calc((100% - 60px)/4);
+    display: inline-block;
+    margin-left: 20px;
+    height: 200px;
+}
+.cafe-image .small-box .img_box:first-child{
+    margin-left: 0;
+}
+.cafe-image .small-box .img_box>img{
+    width: 100%;
+    height: 100%;
+}
+/*카페인포*/
+.cafe-info{
+    height: 300px;
+}
+.cafe-info .with_info{
+    height: 50%;
+    padding-bottom: 20px;
+}
+.cafe-info .with_info .content{
+    height: 75%;
+    font-size: 14px;
+    padding: 20px;
+    /* border: 3px inset #ffb600; */
+    border: 2px dashed #ffb600;
+}
+.cafe-info .with_info .title{
+    width: 100%;
+    height: 30%;
+}
+.cafe-info .with_info .title>img{
+    width: 20px;
+    margin: 10px;
+}
+.cafe-info .with_info .title>h3{
+    display: inline-block;
+    font-size: 20px;
+    -webkit-text-stroke-width: thin;
+    position: relative;
+    bottom: 13px;
+}
+.cafe-info .location_info{
+    height: 50%;
+    padding-bottom: 20px;
+}
+.cafe-info .location_info .title{
+    width: calc(30%);
+    width: 100%;
+    height: 30%;
+}
+.cafe-info .location_info .title>img{
+    width: 20px;
+    margin: 10px;
+}
+.cafe-info .location_info .title>h3{
+    display: inline-block;
+    font-size: 20px;
+    -webkit-text-stroke-width: thin;
+    position: relative;
+    bottom: 13px;
+}
+.cafe-info .location_info .content{
+    height: 75%;
+    font-size: 14px;
+    padding: 20px;
+    /* border: 3px inset #ffb600; */
+    border: 2px dashed #ffb600;
+}
+/*리뷰창*/
+.review{
+    height: 200px;
+}
+.review .title{
+    width: 100%;
+    height: 20%;
+}
+.review .title>img{
+    width: 20px;
+    margin: 10px;
+}
+.review .title>h3{
+    display: inline-block;
+    font-size: 20px;
+    -webkit-text-stroke-width: thin;
+    position: relative;
+    bottom: 13px;
+}
+.review .write_btn{
+    display: inline-block;
+    float: right;
+    margin: 15px;
+}
+.review .list_btn{
+    display: inline-block;
+    float: right;
+    margin: 15px;
+}
+.review .title .write_btn>a,.list_btn>a{
+    width: 100%;
+    height: 17px;
+    float: right;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 1px;
+    font-size: small;
+    background: #ffb600;
+    color: black;
+}
+.review .content{
+    height: 75%;
+    font-size: 14px;
+    padding: 20px;
+    border: 2px dashed #ffb600;
+}
+.review .content .list>li{
+    padding: 5px;
+}
+/*요청사항*/
+.attention{
+    height: 200px;
+    margin-top: 4px;
+}
+.attention .title{
+    width: 100%;
+    height: 20%;
+}
+.attention .title>img{
+    width: 20px;
+    margin: 10px;
+}
+.attention .title>h3{
+    display: inline-block;
+    font-size: 20px;
+    -webkit-text-stroke-width: thin;
+    position: relative;
+    bottom: 13px;
+}
+.attention .content{
+    height: 75%;
+    font-size: 14px;
+    padding: 20px;
+    border: 2px dashed #ffb600;
+}
+.attention .content>p{
+    padding: 3px;
+}
+/**위치 및 연락처**/
+.location{
+    height: 700px;
+}
+.location .lo_title{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+}
+.location .lo_title>img{
+    width: 20px;
+    margin: 10px;
+    float: left;
+}
+.location .lo_title>h3{
+    font-size: 20px;
+    font-weight: 600;
+    width: fit-content;
+    float: left;
+    padding: 10px;
+}
+.lo_cont>p{
+    padding: 10px;
+    font-size: 14px;
+}
+/*지도*/
+#map{
+    width:100%;
+    height:60%;
+    margin: 10px 0;
+}
+/*위치내용*/
+.location .lo_cont{
+    padding: 10px;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.call_cont .call>img{
+    width: 20px;
+    margin: 10px;
+    float: left;
+}
+.call_cont .call>h3{
+    font-size: 20px;
+    font-weight: 600;
+    width: fit-content;
+    float: left;
+    padding: 10px;
+}
+.call_cont .call .no>p{
+    font-size: 14px;
+    width: 100%;
+    display: block;
+    float: left;
+    padding: 15px;
+    margin: 10px;
+}
+/*영업시간*/
+.time{
+    height: 500px;
+}
+.time .t_title{
+    display: inline-block;
+    width: 100%;
+}
+.time .t_title>img{
+    width: 20px;
+    margin: 10px;
+    float: left;
+}
+.time .t_title>h3{
+    font-size: 20px;
+    font-weight: 600;
+    width: fit-content;
+    float: left;
+    padding: 10px;
+}
+.time .t_title>p{
+    float: right;
+    margin-top: 13px;
+    font-size: 16px;
+    margin-right: 70px;
+    color: white;
+    background: #ffb600;
+}
+.time .t_cont {
+    margin: 10px;
+}
+.time .t_cont>ul>li{
+    margin-left: 10px;
+    padding: 10px;
+    display: block;
+    width: 100%;
+    font-size: 14px;
+}
+.time .t_cont>p{
+    margin: 10px;
+    padding: 10px;
+    display: block;
+    width: 100%;
+    font-size: 14px;
+}

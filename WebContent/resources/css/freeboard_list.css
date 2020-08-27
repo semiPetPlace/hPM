@@ -1,0 +1,97 @@
+.post{
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 100px;
+
+}
+.post_border{
+    margin-top: 30px;
+}
+#board-img{
+    padding-bottom: 50px;
+    position: relative;
+    display: block;
+    margin: auto;
+}
+
+.label_position{
+    font-size: 15px;
+    position: relative;
+    bottom: 17px;
+    margin: 5px;
+}
+
+.postName{
+    font-size: 25px;
+    color: black;
+}
+.postContent{
+    height: 100px;
+    background-color: ghostwhite;
+    margin-top: 20px;
+    margin-bottom: 20px;  
+    width: 100%;
+}
+
+.postImg_border{
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+.postImg{
+    width: 1330px;
+    height: 300px;
+    
+}
+.postInfo{
+    font-size: 15px;
+    border-bottom: 1px solid gainsboro;
+    margin-bottom: 50px;
+}
+.postInfo_Img{
+    border-radius: 100px;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+}
+
+.write-date{
+    font-size: 13px;
+    color: gray;
+    top: 2px;
+}
+
+
+#num{
+    text-align: center;
+    font-size: 15px;
+}
+
+#post_num{
+    width: 300px;
+    display: block;
+    margin: auto;
+
+}
+#num>li{
+    margin-right: 10px;
+    border : 1px solid ghostwhite;
+    float: left;
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+    border-radius: 4px;
+
+}
+li>input{
+    width: 100%;
+    height: 100%;
+    background-color: ghostwhite;
+    border: 1px solid gainsboro;
+    color: cornflowerblue;
+
+}
+

@@ -1,0 +1,68 @@
+#main{
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 100px;
+}
+
+
+#post-name {
+    width: 100%;
+}
+
+.review_mid{
+    margin-bottom: 100px;
+}
+
+.review_mid>h1{
+    border-bottom: 1px solid black;
+    font-size: 30px;
+    padding-bottom: 20px;
+}
+
+.review_mid>ul{
+    list-style-type:"- ";
+    padding-top: 20px;
+}
+
+.explanation>li{
+    margin-bottom: 3px;
+}
+
+.review_content{
+    margin-bottom: 100px;
+}
+
+.review_content>h4{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#write_menu{
+    height: 30px;
+    background: ghostwhite;
+    text-align: center;
+    color: gray;
+}
+
+#write{
+    background: gainsboro;
+    height: 500px;
+    margin-bottom: 10px;
+}
+
+.review_content>input{
+    float: right;
+}
+
+.btn{
+    background-color: #ffb600;
+    color: black;
+    font-size: 15px;
+    width: 100px;
+    height: 30px;
+    border-radius: 8px;
+    float:right;
+    border: none;
+    margin-top: 10px;
+    margin-left: 5px;
+}

@@ -1,0 +1,94 @@
+/* 최상단 이미지 */
+.topImg{
+    text-align: center;
+    margin-top: 100px;
+}
+
+.mtmImg{
+    padding-bottom: 50px;
+    position: relative;
+    display: block;
+    margin: auto;
+}
+
+#img_Write{
+    padding  : 200px;
+    font-size: 30px;
+}
+
+.about{
+    width: 90%;
+    margin-left: 5%;
+}
+/* 연락처 정보 */
+.aboutinfo{
+    margin-top: 30px;
+    text-align: center;
+    height: 250px;
+    width: 100%;
+    min-width: 1700px;
+}
+.info{
+    width: 550px;
+    line-height: 25px;
+    text-align: center;
+    margin: auto;
+    display: block;
+}
+
+.info h2{
+    font-weight: bolder;
+}
+
+
+.info>ul{
+    list-style: none;
+    margin-top: 10px;
+    font-size: 1.3rem;
+    padding-left: 0px;
+}
+
+/* 1:1문의하기 */
+#sendback{
+    background-color: ghostwhite;
+    text-align: center;
+    margin: 0px;
+    width: 1700px;
+    padding-bottom: 30px;
+}
+#send{
+    margin-left: 700px;
+    width: 300px;
+
+}
+#send>h1{
+    padding-top: 30px;
+    margin-bottom: 30px;
+    
+}
+.send{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 300px;
+}
+
+
+#msg{
+    resize: none;
+    height: 130px;
+}
+
+.sendlabel{
+    float: left;
+    margin-bottom: 0px;
+}
+#writebtn{
+    background-color: #ffb600;
+    color: black;
+    font-size: 15px;
+    width: 300px;
+    height: 30px;
+    border-radius: 8px;
+    border: 0px solid;
+    margin-top: 10px;
+}

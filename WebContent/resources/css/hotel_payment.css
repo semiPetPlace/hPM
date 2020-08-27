@@ -1,0 +1,341 @@
+.main{
+    height: max-content;
+    width: 100%;
+    height: 1900px;
+    min-width: 1800px;
+}
+.mainimg{
+    width: 80%;
+    height:200px;
+    padding-top:20px;
+    margin-left: 150px;
+    margin-bottom: 30px;
+    border-bottom: 15px solid orange;
+    
+}
+.mainimg h1{
+    font-size: 30px;
+    line-height: 9;
+}
+.normaltext{
+    font-size: 14px;
+    width: 100%;
+    margin-bottom: 10px;
+    line-height: initial;
+}
+.boldtext{
+    font: bold 14px black;
+    margin-bottom: 10px;
+    line-height: initial;
+}
+/* 왼쪽 정보창 */
+.left-block{
+    width: 300px;
+    height: 1200px;
+    float: left;
+    margin-left: 150px;    
+}
+.left-block>div {
+    /* border: 1px solid orange; */
+    margin-bottom: 20px;
+    border-radius: 5px;
+
+}
+.left-block .boldtext,.normaltext{
+    padding-left: 15px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    width: fit-content;
+    display: inline-table;
+}
+.checkinout{
+    height: 100px;
+}
+.checkin,.checkout{
+    width: 50%;
+    height: 100px;
+    float: left;
+    margin-top: 5px;
+}
+.left-block #myreservation{
+    width: 100%;
+    height: 300px;
+
+}
+.left-block .price{
+    width: 100%;
+    height: 350px;
+}
+.price p{
+    float:left;
+    width: 65%;
+}
+.price .left{
+    width: fit-content;
+    float: right;
+    padding: 0;;
+}
+.left-block #refund{
+    width: 100%;
+    height: 80px;
+}
+.left-block #include{
+    width: 100%;
+    height: 100px;
+}
+#include p{
+    width: 100%;
+    color: green;
+}
+.left-block #infoimportant{
+    width: 100%;
+    height: 250px;
+}
+.left-block .title{
+    background: rgb(255, 248, 230);
+    width: 100%;
+    height: 40px;
+    border: none;
+    /* border-radius: 5px; */
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+}
+/* 왼쪽 정보창 */
+
+/* 메인 결제 블럭 */
+
+.main-block{
+    float: left;
+    width: 1100px;
+    height: 1550px;
+    padding-left: 40px;
+}
+.main-block #hotel-info{
+    width: 100%;
+    height: 300px;
+}
+.main-block #hotel-info>div{
+    float: left;
+    overflow: hidden;
+}
+.main-block #hotel-info #hotelimg{
+    width: 350px;
+    height: 100%;
+}
+#hotelimg img{
+    width: 100%;
+}
+.main-block #hotel-info #hoteltext{
+    width: 710px;
+    height: 100%;
+    padding: 20px;
+}
+#hoteltext div{
+    margin-bottom: 10px;
+}
+#hoteltext>div,span{
+    float: left;
+}
+.hotelname{
+    font-size: 30px;
+    width: 100%;
+}
+.grade{
+    width: 100%;
+    height: 30px;
+}
+.facility{
+    font-size: 13px;
+    border: 1px solid black;
+    width: fit-content;
+    height: 25px;
+    padding: 2px;
+    padding-top: 5px;
+    float: left;
+    margin-left: 5px;
+}
+.address{
+    font-size: 14px;
+}
+
+.main-block #textblock{
+    width: 100%;
+    height: 50px;
+    font-size: 25px;
+    padding-top: 20px;
+    margin-bottom: 15px;
+    padding-left: 10px;
+}
+.main-block #client-input{
+    width: 100%;
+    height: 800px;
+    background: rgb(255 248 230);
+    border-radius: 10px;
+    padding: 30px;
+}
+.travltype label{
+    font-size: 14px;
+    margin-top: 12px;
+    margin-right: 30px;
+}
+.travltype span{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: -2px;
+}
+.forwho label{
+    font-size: 14px;
+    margin-top: 12px;
+    margin-right: 30px;
+}
+.forwho span{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: -2px;
+}
+.name{
+    width: 100%;
+    height: 120px;
+    padding-top: 30px;
+    font-weight: bold;;
+}
+.firstname{
+    float: left;
+    margin-right: 30px;
+    margin-left: 5px;
+}
+.name p{
+    font-size: 14px;
+}
+.name input{
+    margin-top: 5px;
+    width: 160px;
+    height: 35px;
+    margin-left: -5px;
+    border-radius: 5px;
+    border: 0.5px solid gray;
+}
+
+.email p{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+.email input{
+    height: 35px;
+    width: 230px;
+    border-radius: 5px;
+    border: 0.5px solid gray;
+    margin-bottom: 30px;
+}
+.sub-block{
+    width: 70%;
+    height: 300px;
+    background: rgb(255, 236, 187);
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 20px;
+}
+#roomtype{
+    font-size: 20px;
+    font-weight: bold;
+    width: 70%;
+    margin-bottom: 16px;
+}
+#price{
+    font-size: 18px;
+    width: 25%;
+    float: left;
+    text-align: right;
+    margin-bottom: 20px;
+}
+#day{
+    width: 5%;
+    height: 30px;
+    float: right;
+    margin-top: 5px;
+    padding-left: 5px;
+    margin-bottom: 10px;
+}
+.headcount,.clientname{
+    font-size: 14px;
+    font-weight: bold;
+    width: 200px;
+    margin-bottom: 20px;
+}
+.clientname p{
+    margin-bottom: 10px;
+}
+.facility-box{
+    width: 100%;
+    height: 25px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.facility-box div{
+    border-radius: 3px;
+    background: rgb(210, 219, 237);
+    color: rgb(53, 108, 136);
+    border: none;
+    margin: 0;
+    margin-right: 5px;
+}
+.facility img{ 
+    width: 17px;
+    height: auto;
+    color: blue;
+
+}
+.facility span{
+    font-size: 13px;
+    float: right;
+    margin-top: 2px;
+}
+.inputbox{
+    /* background: rgb(255, 248, 230); */
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    
+}
+.main-block #question{
+    height: 350px;
+    width: 100%;
+    background: rgb(255, 248, 230);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.inlinetext{
+    float: left;
+    width: fit-content;
+    margin-top: 1px;
+    margin-left: 5px;
+}
+#checkintime{
+    margin-left: 10px;
+}
+.main-block #btn-block input{
+    height: 45px;
+    width: 140px;
+    float: right;
+    margin-top: 20px;
+    background: orange;
+    
+}
+.main-block #btn-block p{
+    width: 100%;
+    height: 40px;
+    float: right;
+    text-align: right;
+    margin-top: 10px;
+}
+.main-block #btn-block input{
+    color: white;
+    font-size: 17px;
+    box-shadow: 0 1px 13px rgba(0,0,0,0.25);
+    border: none;
+    border-radius: 5px;
+}
+/* 메인 결제 블럭 */

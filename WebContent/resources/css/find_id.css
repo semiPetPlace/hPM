@@ -1,0 +1,30 @@
+/*아이디 · 비밀번호 찾기 이미지*/
+.find{
+    margin: auto;
+    text-align: center;
+}
+
+.idFind{
+    margin-left: 600px;
+    margin-top: 100px;
+    border: 1px solid black;
+    width: 20%;
+
+}
+.pwdFind{
+    margin-left: 600px;
+    margin-top: 100px;
+    margin-bottom: 200px;
+    width: 20%;
+    border: 1px solid black;
+}
+#find_form1{
+    padding: 20px;
+}
+#find_form2{
+    padding: 20px;
+}
+
+.main-wrapper{
+    width: 100%;
+}

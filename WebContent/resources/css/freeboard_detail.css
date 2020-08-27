@@ -1,0 +1,112 @@
+    /* 최상위 메인틀 */
+    #reviewContent{
+        margin-top: 100px;
+        width: 70%;
+        margin-left: 15%;
+
+    }
+    
+    #review_top{
+        margin-bottom: 30px;
+    }
+
+    #review_top>h3{
+        margin-bottom: 20px;
+        font-size: 23px;
+        border-bottom: 1px solid black;
+        padding-bottom: 15px;
+    }
+
+    #miniImg{
+        border-radius: 100px;
+        width: 25px;
+        height: 25px;
+        margin-bottom: 2px;
+    }
+
+    .writer{
+        margin: 5px;
+        padding-top: 10px;
+        font-size: 15px;
+        position: relative;
+        bottom: 10px;
+    }
+    
+    #list_btn{
+        margin-bottom: 50px;
+    }
+
+    #contentImg{
+        text-align: center;
+        height: 300px;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    #reviewContent>h3{
+        margin-right: 380px;
+    }
+
+    #reviwecontent{
+        height: 600px;
+        text-align: left;
+        background-color: ghostwhite;
+        margin-bottom: 10px;
+    }
+
+    #review>label{
+        font-size: 25px;
+        border-bottom: 1px solid black;
+        width: 100%;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+    }
+
+    #content{
+        background: ghostwhite;
+        height: 50px;
+    }
+
+    #name{
+        margin-bottom: 8px;
+    }
+
+    .comentbtn{
+        border-width: 30px;
+        margin-left: 10px;
+        margin-top: 5px;
+        float: right;
+        background-color: #ffb600;
+        border-radius: 8px;
+        border: 2px solid #ffb600;
+        font-size: 15px;
+    }
+
+    #writeReview{
+        margin-top: 30px;
+        margin-bottom: 50px;
+        padding-bottom: 100px;
+    }
+
+    #writeReview>textarea{
+        width: 100%;
+        height: 100px;
+        resize: none;
+    }
+
+    #writeReview>h3 {
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+
+    #writebtn{
+        background-color: #ffb600;
+        color: black;
+        font-size: 15px;
+        width: 100px;
+        height: 30px;
+        border-radius: 8px;
+        float:right;
+        border: 0px solid;
+        margin-top: 10px;
+    }

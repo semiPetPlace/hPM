@@ -1,0 +1,89 @@
+.titleblock{
+    width: 100%;
+    height: 150px;
+    text-align: center;
+}
+.maincontent{
+    width: 1200px;
+    height: 600px;
+    margin: auto;
+    margin-bottom: 200px;
+    padding: 20px;
+    background: rgb(255, 246, 230);
+
+}
+.reservationcheck{
+    width: 100%;
+    height: 300px;
+}
+
+.hotelimg{
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
+    float: left;
+}
+.hotelimg>img{
+    width: 400px;
+    
+}
+.details{
+    width:760px;
+    height: 300px;
+    float: left;
+}
+.details-category{
+    width:100px;
+    height: 100%;
+    float: left;
+    margin-left: 50px;
+    padding-top: 20px;
+}
+.details-data{
+    width: 300px;
+    height: 100%;
+    float: left;
+    padding-top: 20px;
+}
+.details span{
+    font-size: 15px;
+    font-weight: bold;
+    float: left;
+    line-height: 30px;
+    width: 100px;
+}
+
+.details p {
+    font-size: 14px;
+    line-height: 30px;  
+    /* float: left; */
+    margin-left: 20px;
+    
+}
+.btn-block{
+    width: 260px;
+    height: 100%;;
+    float: left;
+    padding: 20px;
+}
+.btn-block div{
+    width: 150px;
+    height: 30px;
+    background: orange;
+    text-align: center;
+    float: right;
+    box-shadow: 1px 1px 1px gray;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 30px;
+    
+}
+
+.moredetails{
+    width: 100%;
+    height: 250px;
+    /* border: 1px solid black; */
+}
+
+
+    

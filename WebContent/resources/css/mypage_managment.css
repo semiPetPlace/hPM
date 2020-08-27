@@ -1,0 +1,193 @@
+#imgFile,#emptyPlace{
+    width: 100%;
+    height: 200px;
+}
+#mypage_nav{
+    float: left;
+    width: 10%;
+    margin-left: 10%;
+    border: none;
+    padding: 10px;
+    background: rgba(230, 230, 230, 0.171);
+}
+#mypage_nav>ul{
+    text-align: right;
+    list-style-type: none;
+    border-bottom: lightgray dotted;
+}
+
+#mypage_nav>#mypage_nav_main>li{
+    margin-bottom: 10px;
+}
+
+#mypage_nav>#mypage_nav_main>li>a{
+    font-size: 18pt;
+    font-weight: bold;
+    color: black;
+}
+#mypage_nav>#mypage_nav_sub>li>a{
+    font-size: 11pt;
+    color: black;
+}
+#mypage_nav>#mypage_nav_sub>li{
+    padding-left: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+/* ----------------여기까지 네비------------ */
+#hotelImg>img{
+    margin-right: 200px;
+    width: 300px;
+    height:300px;
+    padding: 20px;
+    
+}
+
+.revervation_info{
+    width: 60%;
+}
+.Reservation_recode{
+    float: right;
+    width: 350px;
+    font-size: 15px;
+    padding: 10px;
+}
+.Reservation_recode>label{
+    
+}
+.userInfo{
+    float: right;
+}
+table{
+    margin-left: 30%;
+    border: 1px inset;
+}
+#Pimg{
+    margin-left: 5px
+}
+#Dimg{
+    margin-left: 75px;
+}
+#PNum{
+    margin-left: 90px;
+}
+#DNum{
+    margin-left: 60px;
+    
+}
+#TotalPay{
+    margin-left: 120px;
+}
+#tax{
+    margin-left: 110px;
+}
+
+
+#CancellationPolicy{
+    margin-top: 100px;
+    margin-left: 25%;
+    padding: 10px;
+    border: 1px solid #efefef;
+    width: 60%;
+}
+
+#ReservationNum,#checkOut,#hotelNum,#guestName,#reservationiTotalP,#paymentInfo,
+#totalPayment{
+    border-bottom: 4px solid white;
+}
+.Reservation_recode>div{
+    margin-bottom: 5px;
+}
+
+#cancelTitle{
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+#cancelNoticeText>ul>li{
+    list-style-type: disc;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    
+}
+
+.tooltipContainer{
+    width: 80%;
+    margin: auto;
+    height: 30px;
+    display: flex;
+    
+}
+.tooltip{
+    display: flex;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    display: contents;
+}
+.tooltipBox{
+    width: 33.3%;
+    padding: 10px;
+    text-align: right;
+    position: relative;
+}
+.tooltipBox>p{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.timeLine-container{
+    width: 80%;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.timeLinePointer{
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 4px;
+    background: #fff;
+    margin-left: 70%;
+}
+
+.noticeContainer{
+    display: flex;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.reserbox{
+    width: 33.3%;
+    height: 30px;
+    padding: 10px;
+    position: relative;
+    padding: 5px;
+    
+}
+.timeLimit{
+    width: 33.3%;
+    padding: 10px;
+    text-align: right;
+    position: relative;
+    font-weight: 500;
+}
+.noticeText{
+    width: 33.3%;
+    padding: 10px;
+    position: relative;
+}
+
+#Rbox1{
+    background: #80dae8;
+}
+#Rbox2{
+    background: #ffcf3e;
+}
+#Rbox3{
+    background: #fd9696;
+}
+

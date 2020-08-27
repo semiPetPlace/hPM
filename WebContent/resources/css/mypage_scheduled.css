@@ -1,0 +1,102 @@
+#imgFile,#emptyPlace{
+    width: 100%;
+    height: 200px;
+}
+#mypage_nav{
+    float: left;
+    width: 10%;
+    margin-left: 10%;
+    border: none;
+    padding: 10px;
+    background: rgba(230, 230, 230, 0.171);
+}
+#mypage_nav>ul{
+    text-align: right;
+    list-style-type: none;
+    border-bottom: lightgray dotted;
+}
+
+#mypage_nav>#mypage_nav_main>li{
+    margin-bottom: 10px;
+}
+
+#mypage_nav>#mypage_nav_main>li>a{
+    font-size: 18pt;
+    font-weight: bold;
+    color: black;
+}
+#mypage_nav>#mypage_nav_sub>li>a{
+    font-size: 11pt;
+    color: black;
+}
+#mypage_nav>#mypage_nav_sub>li{
+    padding-left: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+/* 여기까지 네비 */
+
+
+#showbox{
+    margin-left: 35%; 
+    padding: 10px;
+    width: 660px;
+    margin-bottom: 10px;
+}
+
+table{
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px solid lightgray;
+    padding: 5%;
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+#innerNav{
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+#innerNav>a{
+    color: black;
+    font-size: 15pt;
+    font-weight: bold;
+    margin-right: 3%;
+    margin-bottom: 20px;
+}
+
+
+#showList>ul{
+    list-style-type: none;
+    text-align: right;
+    margin-right: 10px;
+}
+#showList>ul>li{
+    margin-bottom: 10px;
+}
+#showRecode>ul{
+    list-style-type: none;
+    text-align: left;
+    margin-left: 10px;
+    font-weight: 400;
+}
+#showRecode>ul>li{
+    margin-bottom: 10px;
+}
+
+#showImg>img{
+    width: 200px;
+    height: 200px;
+    margin-left: 200px;
+    padding: 10px;
+}
+
+#viewDetail>a{
+    color: black;
+    margin-right: 15px;
+}
+#viewDetail{
+    margin: 5px;
+}

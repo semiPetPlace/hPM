@@ -1,0 +1,171 @@
+
+.wrapper2{
+    width: 1300px;
+    margin-left: 15%;
+
+}
+
+#main-wrapper{
+    height: 100%;
+    text-align:center;
+    padding-top:20px;
+}
+
+#H_main{
+    width: 100%;
+    height: fit-content;
+   
+}
+
+#main-image{
+    max-height: 680px;
+    margin-top: 50px;
+    margin-bottom: -40px;
+}
+
+/* 검색창 */
+#search-box{
+    /* width: 70%; */
+    height:100px;
+    margin-left: 15%;
+    min-width: fit-content;
+    margin-left: 15px;
+}
+/* -------------------메인이미지슬라이드--------------------- */
+
+.slide-block{
+  width: 100%;
+  height: 600px;
+  margin-bottom: 20px;
+}
+/* -------------------메인이미지슬라이드 끝--------------------- */
+/* 검색 버튼 */
+.button-5{
+    width:100px;
+    height:30px;
+    border:2px solid #f9c550;
+    float:right;
+    text-align:center;
+    cursor:pointer;
+    position:relative;
+    box-sizing: border-box;
+    overflow:hidden;
+    margin: 0px 90px 40px -300px;
+    border-radius: 15px;
+}
+  
+.button-5 a{
+    font-family:arial;
+    font-size:14px;
+    color:#f9c550;
+    text-decoration:none;
+    line-height:30px;
+    transition:all .3s ease;
+    z-index:2;
+    position:relative;
+}
+
+.eff-5{
+    width:100px;
+    height:30px;
+    left:-140px;
+    top:-20px;
+    background:#f9c550;
+    position:absolute;
+    transition:all .5s ease;
+    z-index:1;
+    border-bottom-right-radius: 15px;
+}
+
+.button-5:hover .eff-5{
+    left:0;top:0;
+}
+
+.button-5:hover a{
+    color:#fff;
+}
+
+
+/* 검색창 select태그 */
+select{
+    -moz-appearance: none; /* Firefox */  
+    -webkit-appearance: none; /* Safari and Chrome */  
+    appearance: none; 
+    text-align: center;
+    padding: 5px 20px 0px 0px;
+    border: 1px solid #c1c1c1;
+    border-radius: 3px;
+    margin-left: 140px;
+
+    font-size: 1.4rem;
+    width: 200px;
+    text-align: center;
+    margin-left: 0px;
+    border: none;
+}
+
+/* 위탁호텔/동반호텔/카페 리스트 */
+#con_hotelList, #hotelList, #cafeList, #restaurantList{
+    width: 100%;
+    height: 450px;
+}
+
+#placelist{
+    width: 100%;
+    height: 60px;
+    background: #ffb600;
+}
+
+.listname{
+    float: left;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+
+.con_hotelList-list, .hotelList-list, .cafeList-list, .restaurantList-list{
+    width: fit-content;
+    height: 350px;
+    border: 1px solid lightgray;
+    margin: 30px 45px 10px 25px;
+}
+
+.con_hotelList-list>img, .hotelList-list>img, .cafeList-list>img, .restaurantList-list>img{
+    width: 258px;
+    height: 60%; 
+    max-height: 60%; 
+    overflow: hidden;
+}
+
+.con_hotelList-list, .hotelList-list, .cafeList-list, .restaurantList-list > h4 {
+    color: black;
+}
+
+.infoText{
+    text-align: left;
+    margin-left:10px;
+    margin-right:10px;
+    margin-bottom: 0;
+    height: 25%;
+    font-size: 1.1rem;
+    color: black;
+}
+
+.price{
+    float: right;
+    margin-right: 10px;
+    font-size: 1.3rem;
+    color: black;
+}
+
+/* 구독 신청 정보란 */
+#subscribe{
+    width: 100%;
+    height: 200px;
+    background-color: #ffb600;
+    display: block;
+}
+
+
+/* ----------------------------기타 기본태그------------------------------- */
+

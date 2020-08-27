@@ -1,0 +1,131 @@
+/* 전체 메인 클래스 */
+.main {
+    width: 70%;
+    margin: 15%;
+    margin-top: 100px;
+    border-radius: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.inMain{
+    width: 50%;
+    margin-left: 15%;
+    margin-top: 100px;
+    min-width: 960px;
+}
+
+/* 상단 글씨 */
+#content_top{
+/* margin-left: 70px; */
+/* margin-bottom: 40px; */
+min-width: 600px;
+}
+
+.content_top_img {
+    margin-bottom: 25px;
+}
+
+.content_top_img>img {
+    margin: auto;
+    display: block;
+}
+
+#top_p{
+    font-size: 20px;
+    line-height: 30px; 
+}
+/* 중앙 div  */
+#content_body{
+    min-width: 660px;
+    padding: 20px;
+    padding-top: 40px;
+    background: #fff3dd;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+/* 중앙 input class */
+.input_size{
+    width: 210px;
+    height: 36px;
+}
+/* 중앙 label 사이즈 */
+.label_size{
+    width: 110px;
+}
+/* 문의유형 div */
+.kinds{
+    margin-bottom : 10px;
+}
+
+/* 이메일 div */
+.email{
+    margin-bottom: 10px;
+}
+
+/* 제목 div */
+.title{
+    margin-bottom: 10px;
+}
+/* 내용 div */
+.contnet{
+    height: 200px;
+    margin-bottom: 0px;
+    display: flex;
+    margin-bottom: 50px;
+}
+#content_lb{
+    width: 113px;
+}
+#content_ta{
+  width: 700px;
+  height: 200px;
+  resize: none;
+}
+/* 문의사항  */
+.contnet_bottem{
+    /* margin-left: 113px; */
+    line-height: 20px; 
+    margin-bottom: 20px;
+}
+
+.a_info{
+    margin-bottom: 10px;
+}
+.a_info>dt{
+    font-size: 12px;
+    font-weight: bold;
+}
+.a_info>dd>p{
+    margin-left: 10px;
+}
+.a_info2{
+    margin-bottom: 20px;
+}
+.a_info2>dt{
+    font-size: 12px;
+    font-weight: bold;
+}
+.a_info2>dd{
+    margin-left: 10px;
+}
+.a_info3{
+    border-bottom: 1px solid gainsboro;   
+   }
+/* 버튼 */
+.bottem_btn{
+    text-align: center;
+}
+
+#ag_lb{
+    margin-left: 5px;
+   position: relative;
+   bottom: 2px;
+   margin-bottom: 10px;
+}
+.btn{
+    border-radius: 8px;
+    width: 125px;
+    height: 40px;
+    background: #ffb600;
+}

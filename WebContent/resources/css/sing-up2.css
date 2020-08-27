@@ -1,0 +1,66 @@
+.sing-up2 {
+    border: 1px dashed black;
+    /* height: 700px; */
+    width: 60%;
+    text-align: left;
+    margin: auto;
+    padding-top: 100px;
+    margin-bottom: 100px;
+    padding-left: 100px;
+    padding-bottom: 100px;
+}
+.glores-A-join>div{
+    margin-bottom: 10px;
+}
+.glores-A-join>label{
+    margin-bottom: 5px;
+}
+.glores-A-join{
+    margin-bottom: 100px;
+}
+
+/*이용약관 제목*/
+.glores-A-join-wrap .title{
+    margin: 50px 0;
+}
+.title>img{
+    margin-left: 35%;
+}
+
+/*폰트사이즈*/
+.glores-A-join-wrap span{
+    font-size: 18px;
+    /* font-weight: 400; */
+}
+
+/*버튼*/
+.footBtwrap>li>button{
+    display: block;
+    width: 100px;
+    height: 40%;
+    font-size: 18px;
+    text-align: center;
+}
+.footBtwrap>li{
+    margin-top: 50px; 
+}
+.footBtwrap .fpmgBt1{
+    background-color: rgb(197, 196, 196);
+    border: 0;
+    outline: 0;
+    float: left;
+    margin-left: 220px;
+}
+.footBtwrap .fpmgBt2{
+    background-color: #ffb600;
+    border: 0;
+    outline: 0;
+    margin-right: 330px;
+    float: right;
+}
+
+.glores-A-join>button{
+    background-color: #ffb600;
+    border: 0;
+    outline: 0;
+}

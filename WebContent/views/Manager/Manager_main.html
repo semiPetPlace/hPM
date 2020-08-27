@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 메인 화면</title>
+    <link rel="stylesheet" href="../../resources/css/Manager-DefaultCSS.css">
+</head>
+<body>
+    <header>
+        <div id="main-nav" class="clearfix">
+            <div class="m-logo">
+                <a href="#" class="m-logo-link"><img src="../../resources/images/logo.png" alt="로고"></a>
+            </div>
+        <div class="m-menu-nav">
+            <div class="list">
+                <ul>
+                    <li><a href="">관리자 메인</a></li>
+                    <li><a href="../Manager/Manager_Reservation.html">예약·결제 관리</a></li>
+                    <li><a href="">게시판 관리</a></li>
+                    <li><a href="">업체 관리</a></li>
+                    <li><a href="">회원 관리</a></li>
+                    <li><a href="">매출 관리</a></li>
+                    <li><a href="">통계 관리</a></li>
+                </ul>
+            </div>
+            <div class="login-area">
+                <label class="login-name">관리자 님의 방문을 환영합니다.</label>
+				<div class="logoutBtn" onclick="logout()">로그아웃</div> 
+            </div>
+        </div>
+    </div>
+</header>
+
+<main id="main">
+    <div id="main-wrapper">
+        <div class="main-content">
+            <div class="sub-menu">
+                <div class="sub-list">
+                    <p>관리자 화면</p>
+                    <ul>
+                        <li><a href="">· 메인 화면</a></li>
+                        <li><a href="">· 메인 화면</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content">
+                <div class="statistics">
+                    <div class="visitor_trend">
+                        <div class="visitor_name">
+                            <label class="t1">VISITOR</label>
+                            <label class="t2">방문자 추이</label>
+                            <label class="t3">(단위 : 명)</label>
+                        </div>
+                        <div class="more_details">
+                            <a href="">> 더보기</a>
+                        </div>
+                    </div>
+                    <div class="sales_trend">
+                        <div class="sales_name">
+                            <label class="t1">SALES</label>
+                            <label class="t2">매출 분석</label>
+                            <label class="t3">(단위 : 천원)</label>
+                        </div>
+                        <div class="more_details">
+                            <a href="">> 더보기</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="current_situation">
+                    <div class="situation_box">
+                        <table>
+                            <tr>
+                                <td><label class="sb_lb">신규 예약</label></td>
+                                <td><label class="sb_rv_new">5건</label></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sb_lb">입금 대기</label></td>
+                                <td><label class="sb_dp_wait">5건</label></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sb_lb">입금 완료</label></td>
+                                <td><label class="sb_dp_com">5건</label></td>
+                            </tr>
+                        </table>
+                            
+                        </div>
+
+                    </div>
+                </div>
+                <div class="empty">
+                    <br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer id="footer">
+    <div id="foot">
+        <p style="color: rgb(131, 131, 131);">Copyright © 1998-2020 KH Information Educational Institute All Right Reserved</p>
+    </div>
+</footer>
+</body>
+</html>
