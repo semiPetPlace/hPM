@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, com.kh.semiProject.Hotel.model.vo.*" %>
+<% Hotel h = new Hotel(); %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,10 +9,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>hotel_detail</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../resources/css/mainpage.css">
-        <link rel="stylesheet" href="../../resources/css/hotel_detail.css">
+        <link rel="stylesheet" href="/semi/resources/css/mainpage.css">
+        <link rel="stylesheet" href="/semi/resources/css/hotel_detail.css">
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src ="../../resources/js/script.js"></script>
+        <script src ="/semi/resources/js/script.js"></script>
     </head>
     <body>
         <%@ include file = "../common/header.jsp" %>
@@ -28,10 +30,10 @@
                         <div class="box80">
 
                             <div class="hotelimg">
-                                <img src="../../resources/images/hotel2.jpg" alt="">
+                                <img src="/semi/resources/images/hotel2.jpg" alt="">
                             </div>
                             <div class="pay-box">
-                                <span id="h-name">마이펫호텔</span>
+                                <span id="h-name"><%= h.gethName() %></span>
                                 <p id="price-before">&#8361;226,900</p>
                                 <p id="price-after">&#8361;83,200</p><br><br><br>
                                 <p id="stars">5성급</p>
@@ -46,23 +48,23 @@
                             </div>
                             <div class="facility-block">
                                 <div class="facility-box">
-                                    <div class="icon-box"><img src="../../resources/images/icons/subway-icon.png" alt=""></div>
+                                    <div class="icon-box"><img src="/semi/resources/images/icons/subway-icon.png" alt=""></div>
                                     <p>대중교통 (300m 거리)</p>
                                 </div>
                                 <div class="facility-box">
-                                    <div class="icon-box"><img src="../../resources/images/icons/airport-icon.png" alt=""></div>
+                                    <div class="icon-box"><img src="/semi/resources/images/icons/airport-icon.png" alt=""></div>
                                     <p>공항 이동 교통편 서비스</p>
                                 </div>
                                 <div class="facility-box">
-                                    <div class="icon-box"><img src="../../resources/images/icons/centerofcity-icon.png" alt=""></div>
+                                    <div class="icon-box"><img src="/semi/resources/images/icons/centerofcity-icon.png" alt=""></div>
                                     <p>서울의 중심지에 위치</p>
                                 </div>
                                 <div class="facility-box">
-                                    <div class="icon-box"><img src="../../resources/images/icons/wifi-icon.png" alt=""></div>
+                                    <div class="icon-box"><img src="/semi/resources/images/icons/wifi-icon.png" alt=""></div>
                                     <p>무료 Wi-Fi(모든객실)</p>
                                 </div>
                                 <div class="facility-box">
-                                    <div class="icon-box"><img src="../../resources/images/icons/hotbath-icon.png" alt=""></div>
+                                    <div class="icon-box"><img src="/semi/resources/images/icons/hotbath-icon.png" alt=""></div>
                                     <p>온수 욕조</p>
                                 </div>
         
@@ -150,7 +152,7 @@
                             <div class="basicoption">
 
                                 <div class="hotelimgS">
-                                    <img src="../../resources/images/hotel3.jpg" alt="">
+                                    <img src="/semi/resources/images/hotel3.jpg" alt="">
                                     <a class="font-16" href="">객실 사진 및 상세 구성 보기</a>
                                 </div>
                                 <hr>
@@ -259,7 +261,7 @@
                             <div class="basicoption">
 
                                 <div class="hotelimgS">
-                                    <img src="../../resources/images/hotel4.jpg" alt="">
+                                    <img src="/semi/resources/images/hotel4.jpg" alt="">
                                     <a class="font-16" href="">객실 사진 및 상세 구성 보기</a>
                                 </div>
                                 <hr>

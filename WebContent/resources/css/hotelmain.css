@@ -106,9 +106,9 @@ a:hover{
     height: 3650px;
 }
 #left-filter{
-    margin-left: 140px;
-    width: 180px;
-    height: 800px;
+    margin-left: 120px;
+    width: 200px;
+    height: 100%;
     float: left;
     border: 1px solid orange;
     border-radius: 5px;

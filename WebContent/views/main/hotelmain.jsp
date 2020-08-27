@@ -9,10 +9,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>hotelmain</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../resources/css/mainpage.css">
-        <link rel="stylesheet" href="../../resources/css/hotelmain.css">
+        <link rel="stylesheet" href="/semi/resources/css/mainpage.css">
+        <link rel="stylesheet" href="/semi/resources/css/hotelmain.css">
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src ="../../resources/js/script.js"></script>
+        <script src ="/semi/resources/js/script.js"></script>
         
         
     </head>
@@ -319,14 +319,14 @@ a:hover{
                         <div class="count-hotel">
                                 <p style="float: right;">검색된 숙소 120개</p>
                         </div>
-                        <table>
+                        <table id="hlist">
                         	<% for(Hotel h : hlist){ %>
                             <tr>
                                 <td>
                                     <div class="hotel-info-list">
                                         <div class="hotelimg"><img src="<%=h.gethImg() %>" alt=""></div>
                                         <div class="hotelinfo">
-                                            <strong> <a href="../../views/hotel/hotel_detail.jsp" ><%= h.gethName() %></a></strong>
+                                            <strong>><%= h.gethName() %></strong>
                                             <span>  평점 <label><%= h.gethScore() %></label></span> 
                                             <hr>
                                             <p><%= h.gethAddress() %></p><br>
@@ -352,5 +352,12 @@ a:hover{
          <!------------------------ 메인 끝------------------------->
 
          <%@ include file = "../common/footer.jsp" %>
+         
+         <script>
+         	$('#hlist td').click(function(){
+    			location.href="<%=request.getContextPath()%>/hotelDetail.ys?hno=h_no;
+
+         	})
+         </script>
     </body>
 </html>

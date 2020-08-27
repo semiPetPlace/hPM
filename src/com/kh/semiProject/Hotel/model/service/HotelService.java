@@ -21,4 +21,13 @@ public class HotelService {
 		return hlist;
 	}
 
+	public Hotel selectHotel() {
+		Connection con = getConnection();
+		
+		Hotel hd = hDao.selectHotel(con);
+		
+		close(con);
+		return hd;
+	}
+
 }

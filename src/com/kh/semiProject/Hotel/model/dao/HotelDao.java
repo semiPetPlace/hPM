@@ -1,5 +1,7 @@
 package com.kh.semiProject.Hotel.model.dao;
 
+import static common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,8 +12,6 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.semiProject.Hotel.model.vo.Hotel;
-
-import static common.JDBCTemplate.*;
 public class HotelDao {
 	private Properties prop;
 
@@ -31,7 +31,7 @@ public class HotelDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		
-		String sql = "SELECT H_NO,H_NAME,H_PRICE,H_GRADE,H_SCORE,H_IMG,H_ADDRESS,H_PROMOTION FROM HOTEL";
+		String sql = prop.getProperty("selectList");
 		
 		try {
 			stmt = con.createStatement();
@@ -59,6 +59,40 @@ public class HotelDao {
 			close(stmt);
 		}
 		return hlist;
+	}
+
+	public Hotel selectHotel(Connection con) {
+		Hotel hd = new Hotel();
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectHotel");
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()) {
+				
+				hd.sethNo(rset.getInt("h_no"));
+				hd.sethName(rset.getString("h_Name"));
+				hd.sethTel(rset.getString("h_tel"));
+				hd.sethPrice(rset.getInt("h_Price"));
+				hd.sethGrade(rset.getInt("h_Grade"));
+				hd.sethScore(rset.getInt("h_Score"));
+				hd.sethImg(rset.getString("h_Img"));
+				hd.sethAddress(rset.getString("h_Address"));
+				hd.sethPromotion(rset.getString("h_Promotion"));
+				hd.sethRequests(rset.getString("h_requests"));
+				
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		return hd;
 	}
 
 }
