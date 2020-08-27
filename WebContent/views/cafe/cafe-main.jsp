@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.semiProject.cafe.model.vo.*, java.util.*"%>
+<% 
+	Cafe c = (Cafe)request.getAttribute("cafe");
+	ArrayList<Cafe> list = (ArrayList<Cafe>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+ %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -39,7 +49,7 @@
                     <option value="대형견">대형견</option> 
                 </select>
                 <input type="text" placeholder="동반 카페명"></input>
-                <button type="button" class="btn_search">검색</button>
+                <button onclick="search_cafe();" class="btn_search">검색</button>
             </div>
             <!-- 검색창 부분 끝 -->
 
@@ -47,110 +57,48 @@
             <div id="cafeList" >
                 <table>
                     <tr>
+                    <% for(Cafe cm : list){ %>
                         <td>
+                        <input type="hidden" value="<%= c.getCno() %>"/>
                             <div class="cafeList-list">
-                                <a href="../../views/cafe/cafe-detailpage.jsp">
+                                <a href="../../views/cafe/cafe_detailpage.jsp">
                                     <img src="../../resources/images/cafe1.jpg" alt="cafe">
                                 </a>
-                                <h4 style="margin-bottom: 0;">cafe name</h4>
-                                <p class="infoText">information of hotel </p>
-                                <p class="price">별점★★★★★</p>
+                                <h4 style="margin-bottom: 0;"><%= c.getCname() %></h4>
+                                <p class="infoText">information of hotel</p>
+                                <p class="score">★ 평점 <%= c.getCscore() %></p>
                             </div>
-                        </td>    
-                        <td>
-                            <div class="cafeList-list">
-                                <a href="../../views/restaurant/restaurant_detailpage.jsp">
-                                    <img src="../../resources/images/cafe1.jpg" alt="cafe">
-                                </a>
-                                <h4 style="margin-bottom: 0;">cafe name</h4>
-                                <p class="infoText">information of hotel </p>
-                                <p class="price">별점★★★★★</p>
-                            </div>
-                        </td>    
-                        <td>
-                            <div class="cafeList-list">
-                                <a href="../../views/restaurant/restaurant_detailpage.jsp">
-                                    <img src="../../resources/images/cafe1.jpg" alt="cafe">
-                                </a>
-                                <h4 style="margin-bottom: 0;">cafe name</h4>
-                                <p class="infoText">information of hotel </p>
-                                <p class="price">별점★★★★★</p>
-                            </div>
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="cafeList-list">
-                                <a href="../../views/restaurant/restaurant_detailpage.jsp">
-                                    <img src="../../resources/images/cafe1.jpg" alt="cafe">
-                                </a>
-                                <h4 style="margin-bottom: 0;">cafe name</h4>
-                                <p class="infoText">information of hotel </p>
-                                <p class="price">별점★★★★★</p>
-                            </div>
-                        </td>    
-                        <td>
-                            <div class="cafeList-list">
-                                <a href="../../views/restaurant/restaurant_detailpage.jsp">
-                                    <img src="../../resources/images/cafe1.jpg" alt="cafe">
-                                </a>
-                                <h4 style="margin-bottom: 0;">cafe name</h4>
-                                <p class="infoText">information of hotel </p>
-                                <p class="price">별점★★★★★</p>
-                            </div>
-                        </td>    
-                        <td>
-                            <div class="cafeList-list">
-                                <a href="../../views/restaurant/restaurant_detailpage.jsp">
-                                    <img src="../../resources/images/cafe1.jpg" alt="cafe">
-                                </a>
-                                <h4 style="margin-bottom: 0;">cafe name</h4>
-                                <p class="infoText">information of hotel </p>
-                                <p class="price">별점★★★★★</p>
-                            </div>
-                        </td>    
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="cafeList-list">
-                                <a href="../../views/restaurant/restaurant_detailpage.jsp">
-                                    <img src="../../resources/images/cafe1.jpg" alt="cafe">
-                                </a>
-                                <h4 style="margin-bottom: 0;">cafe name</h4>
-                                <p class="infoText">information of hotel </p>
-                                <p class="price">별점★★★★★</p>
-                            </div>
-                        </td>    
-                        <td>
-                            <div class="cafeList-list">
-                                <a href="../../views/restaurant/restaurant_detailpage.jsp">
-                                    <img src="../../resources/images/cafe1.jpg" alt="cafe">
-                                </a>
-                                <h4 style="margin-bottom: 0;">cafe name</h4>
-                                <p class="infoText">information of hotel </p>
-                                <p class="price">별점★★★★★</p>
-                            </div>
-                        </td>    
-                        <td>
-                            <div class="cafeList-list">
-                                <a href="../../views/restaurant/restaurant_detailpage.jsp">
-                                    <img src="../../resources/images/cafe1.jpg" alt="cafe">
-                                </a>
-                                <h4 style="margin-bottom: 0;">cafe name</h4>
-                                <p class="infoText">information of hotel </p>
-                                <p class="price">별점★★★★★</p>
-                            </div>
-                        </td>    
-                    </tr>
-                   
+                        </td>
+                        <% } %>
+                  	 <tr>
                 </table>
             </div>
             <!-- 카페/레스토랑 리스트 끝 -->
             <!--페이징-->
             <div class="list_number">
-                <div>
-                    <p><div class="list_n_menu"><span class="disabled"><  이전</span><span class="current">1</span><a href="#?page=2">2</a><a href="#?page=3">3</a><a href="#?page=4">4</a><a href="#?page=5">5</a><a href="#?page=6">6</a><a href="#?page=7">7</a>...<a href="#?page=199">199</a><a href="#?page=200">200</a><a href="#?page=2">다음  ></a></div></p>
-                </div>
+			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
+			<%  if(currentPage <= 1){  %>
+			<button disabled><</button>
+			<%  }else{ %>
+			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage - 1 %>'"><</button>
+			<%  } %>
+			
+			<% for(int p = startPage; p <= endPage; p++){
+					if(p == currentPage){	
+			%>
+				<button disabled><%= p %></button>
+			<%      }else{ %>
+				<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
+			<%      } %>
+			<% } %>
+				
+			<%  if(currentPage >= maxPage){  %>
+			<button disabled>></button>
+			<%  }else{ %>
+			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage + 1 %>'">></button>
+			<%  } %>
+			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">>></button>
+			
             </div>
             <!--페이징 끝-->
         </div>
