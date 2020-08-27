@@ -45,6 +45,7 @@ public class HotelServlet extends HttpServlet {
 		}else {
 			page = "views/main/main.jsp";
 			System.out.println("되겠냐?");
+			
 		}
 		request.getRequestDispatcher(page).forward(request, response);
 		
