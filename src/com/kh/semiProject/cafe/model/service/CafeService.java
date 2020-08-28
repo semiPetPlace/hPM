@@ -1,6 +1,7 @@
 package com.kh.semiProject.cafe.model.service;
 
-import static com.kh.semiProject.common.JDBCTemplate.*;
+
+import static com.kh.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
