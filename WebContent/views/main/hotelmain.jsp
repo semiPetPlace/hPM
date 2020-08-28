@@ -1,3 +1,4 @@
+<%@page import="oracle.net.aso.h"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, com.kh.semiProject.Hotel.model.vo.*" %>
@@ -25,7 +26,7 @@
         <main id="H_main">
             <!-- 메인 이미지 -->
             <div id="main-img-box">
-                <img src="../../resources/images/icons/hotel-main.png" alt="">
+                <img src="/semi/resources/images/icons/hotel-main.png" alt="">
             </div>
             <!-- 메인 이미지 끝 -->
             <!-- 검색창 부분 -->
@@ -102,18 +103,20 @@
                         <table id="hlist">
                            <% for(Hotel h : hlist){ %>
                             <tr>
-                                <td>
-                                    <div class="hotel-info-list">
-                                        <div class="hotelimg"><img src="<%=h.gethImg() %>" alt=""></div>
-                                        <div class="hotelinfo">
-                                            <strong>><%= h.gethName() %></strong>
-                                            <span>  평점 <label><%= h.gethScore() %></label></span> 
-                                            <hr>
-                                            <p><%= h.gethAddress() %></p><br>
-                                            <p><%= h.gethPromotion() %></p>
-                                        </div>
-                                        <div class="price"><%= h.gethPrice() %></div>
-                                    </div>
+                                <td> 
+                                	<a href="<%=request.getContextPath() %>/hotelDetail.ys?h_no=<%= h.gethNo() %> ">
+	                                    <div>
+	                                        <div class="hotelimg"><img src="<%=h.gethImg() %>" alt=""></div>
+	                                        <div class="hotelinfo">
+	                                            <strong><%= h.gethName() %></strong>
+	                                            <span>  평점 <label><%= h.gethScore() %></label></span> 
+	                                            <hr>
+	                                            <p><%= h.gethAddress() %></p><br>
+	                                            <p><%= h.gethPromotion() %></p>
+	                                        </div>
+	                                        <div class="price"><%= h.gethPrice() %></div>
+	                                    </div>
+                                    </a>
                                 </td>
                             </tr>
                              <%} %>
@@ -133,10 +136,5 @@
 
          <%@ include file = "../common/footer.jsp" %>
          
-         <script>
-            $('#hlist td').click(function(){
-             location.href="<%=request.getContextPath()%>/hotelDetail.ys?hno=h_no;
-            })
-         </script>
     </body>
 </html>

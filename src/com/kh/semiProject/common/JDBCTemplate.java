@@ -1,4 +1,4 @@
-package common;
+package com.kh.semiProject.common;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

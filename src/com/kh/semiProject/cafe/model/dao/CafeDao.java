@@ -1,6 +1,6 @@
 package com.kh.semiProject.cafe.model.dao;
 
-import static common.JDBCTemplate.*;
+import static com.kh.semiProject.common.JDBCTemplate.*;
 
 import java.io.FileReader;
 import java.io.IOException;
