@@ -1,12 +1,12 @@
 package com.kh.semiProject.cafe.model.service;
 
+import static com.kh.common.JDBCTemplate.*;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.semiProject.cafe.model.dao.CafeDao;
 import com.kh.semiProject.cafe.model.vo.Cafe;
-
-import static common.JDBCTemplate.*;
 
 public class CafeService {
 	

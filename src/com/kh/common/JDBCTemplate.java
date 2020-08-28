@@ -1,4 +1,4 @@
-package common;
+package com.kh.common;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
