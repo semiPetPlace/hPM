@@ -23,7 +23,7 @@
     </head>
     <body>
         <%@include file ="views/common/header.jsp" %>
-
+		<H1>tests</H1>
 <!-- 여기에 메인 컨텐츠 넣으면 됩니다. -->
 
     <main id="H_main">
