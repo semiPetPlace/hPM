@@ -41,7 +41,7 @@ public class cafeListServlet extends HttpServlet {
 		int currentPage;
 		int limit;
 		
-		currentPage= 1;
+		currentPage = 1;
 		limit = 10;
 
 		if(request.getParameter("currentPage") != null) {

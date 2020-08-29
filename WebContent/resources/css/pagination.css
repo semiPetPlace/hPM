@@ -1,0 +1,8 @@
+.list_number button {
+	border: 1px solid #DDDDDD;
+	background: none;
+	width: 25px;
+	height: 30px;
+	box-sizing: content-box;
+}
+

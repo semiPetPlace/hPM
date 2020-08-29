@@ -1,15 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.semiProject.cafe.model.vo.*, java.util.*"%>
 <% 
-	Cafe c = (Cafe)request.getAttribute("cafe");
 	ArrayList<Cafe> list = (ArrayList<Cafe>)request.getAttribute("list");
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	int listCount = pi.getListCount();
-	int currentPage = pi.getCurrentPage();
-	int maxPage = pi.getMaxPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
  %>
+ 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -17,10 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>개편한 세상</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../resources/css/mainpage.css">
-    <link rel="stylesheet" href="../../resources/css/cafe-main.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/mainpage.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/cafe-main.css">
     <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src ="../../resources/js/script.js"></script>
+    <script src ="<%= request.getContextPath() %>/resources/js/script.js"></script>
 </head>
 <body>
     	<%@ include file = "../common/header.jsp" %>
@@ -28,7 +22,7 @@
     <main id="H_main">
         <div id="main-wrapper">
             <div id="main-image">
-                <img src="../../resources/images/icons/cafe.png" alt="main-backgroung" width="20%;" style="max-height: initial;">
+                <img src="<%= request.getContextPath() %>/resources/images/icons/cafe.png" alt="main-background" width="20%;" style="max-height: initial;">
             </div>
 
             <!-- 검색창 부분 -->
@@ -54,19 +48,19 @@
             <!-- 검색창 부분 끝 -->
 
             <!-- 카페/레스토랑 리스트 -->
-            <div id="cafeList" >
+            <div id="cafeList">
                 <table>
                     <tr>
                     <% for(Cafe cm : list){ %>
                         <td>
-                        <input type="hidden" value="<%= c.getCno() %>"/>
+                        <input type="hidden" value="<%= cm.getCno() %>"/>
                             <div class="cafeList-list">
-                                <a href="../../views/cafe/cafe_detailpage.jsp">
-                                    <img src="../../resources/images/cafe1.jpg" alt="cafe">
-                                </a>
-                                <h4 style="margin-bottom: 0;"><%= c.getCname() %></h4>
-                                <p class="infoText">information of hotel</p>
-                                <p class="score">★ 평점 <%= c.getCscore() %></p>
+                            <a id="cfdetailpage">
+                                <img src="<%= request.getContextPath() %>/resources/images/cafe1.jpg" alt="cafe">
+							</a>
+                                <h4 style="margin-bottom: 0;"><%= cm.getCname() %></h4>
+                                <p class="infoText"><%= cm.getCpromotion() %></p>
+                                <p class="score">★ 평점 <%= cm.getCscore() %></p>
                             </div>
                         </td>
                         <% } %>
@@ -74,33 +68,45 @@
                 </table>
             </div>
             <!-- 카페/레스토랑 리스트 끝 -->
-            <!--페이징-->
-            <div class="list_number">
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'"><<</button>
-			<%  if(currentPage <= 1){  %>
-			<button disabled><</button>
-			<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage - 1 %>'"><</button>
-			<%  } %>
-			
-			<% for(int p = startPage; p <= endPage; p++){
-					if(p == currentPage){	
-			%>
-				<button disabled><%= p %></button>
-			<%      }else{ %>
-				<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
-			<%      } %>
-			<% } %>
+			<%@ include file ="../common/pagination.jsp" %>
+			<script>
+			// 페이징 처리 시작
+				// location.href 주소 안의 /servlet.link? 주소만 바꿔서 사용
+				<% int p = startPage; %>
 				
-			<%  if(currentPage >= maxPage){  %>
-			<button disabled>></button>
-			<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage + 1 %>'">></button>
-			<%  } %>
-			<button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">>></button>
+				$('#stp').click(function(){
+					location.href='<%= request.getContextPath() %>/cList.ch?currentPage=1';
+				});
+				$('#bkp').click(function(){
+					location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= currentPage - 1 %>';
+				});
+				$('#chp').click(function(){
+					location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= p %>';
+				});
+				$('#nxp').click(function(){
+					location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= currentPage + 1 %>';
+				});
+				$('#mxp').click(function(){
+					location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= maxPage %>';
+				});	
+			// 페이징 처리 끝
 			
-            </div>
-            <!--페이징 끝-->
+            
+			// 상세 페이지로 이동 시작
+    		$(function() {
+    						 
+    			 $(".cafeList-list").mouseenter(function(){
+    				 $(this).parent().css({"cursor":"pointer"});
+    			 }).click(function(){
+    				 var cno = $(this).parent().find("input").val();
+     				$('#cfdetailpage').attr("href",'/semi/cView.ch?cno=' + cno).click();
+     				<%-- location.href="<%= request.getContextPath() %>/cView.ch?cno=" + cno; --%>
+    			 });
+    		});
+			// 상세 페이지로 이동 끝
+			
+			
+			</script>
         </div>
             <!-- TOP -->
             <div style="height: 20px; margin-right: 2%;"><a href="#header" id="top">▲ TOP</a></div>

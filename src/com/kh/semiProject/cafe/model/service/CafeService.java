@@ -33,4 +33,15 @@ public class CafeService {
 
 	}
 
+	public Cafe selectOne(int cno) {
+		
+		Connection con = getConnection();
+		Cafe c = cDao.selectOne(con, cno);
+		
+		close(con);
+		
+		return c;
+		
+	}
+
 }
