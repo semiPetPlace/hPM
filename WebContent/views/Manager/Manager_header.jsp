@@ -1,8 +1,7 @@
-/* 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
-!!!!!!!!!!!!!!!!!! 공통 css 수정하지 마시오. !!!!!!!!!!! 
-
-*/
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -68,13 +67,7 @@ html,body {
     margin-left: auto;
     margin-right: auto;
 }
-
-/* -------------------- HEADER -------------------- */
-#main {
-    width: 100%;
-    height: 1000px;
-}
-
+ 
 #main-nav {
     height: 120px;
     background: #1E344E;
@@ -193,25 +186,28 @@ html,body {
     margin-left: 120px;
     text-align: center;
 }
-/* -------------------- MAIN -------------------- */
-
-.content {
-    width: 80%;
-    height: 100%;
-}
-
-/* -------------------- FOOTER -------------------- */
-#footer {
-    width: 100%;
-    height: fit-content;
-}
-
-#foot {
-    min-width: 1500px;
-    border-top: 1px solid gray;
-    height: 80px;
-    width: 100%;
-    background: #a6a6a6;
-    padding-top: 10px;
-    text-align: center;
-}
+</style>
+<header>
+    <div id="main-nav" class="clearfix">
+        <div class="m-logo">
+            <a href="#" class="m-logo-link"><img src="<%=request.getContextPath()%>/resources/images/logo.png" alt="로고"></a>
+        </div>
+        <div class="m-menu-nav">
+            <div class="list">
+                <ul>
+                    <li><a href="./Manager_main.html">관리자 메인</a></li>
+                    <li><a href="./Manager_reservation.html">예약·결제 관리</a></li>
+                    <li><a href="./Manager_reviewBoard.html">게시판 관리</a></li>
+                    <li><a href="./">업체 관리</a></li>
+                    <li><a href="./Manager_client_search.html">회원 관리</a></li>
+                    <li><a href="./Manager_sells_Total_detail copy.html">매출 관리</a></li>
+                    <li><a href="./Manager_main.html">통계 관리</a></li>
+                </ul>
+            </div>
+            <div class="login-area">
+                <label class="login-name">관리자 님의 방문을 환영합니다.</label>
+                <div class="logoutBtn" onclick="logout()">로그아웃</div> 
+            </div>
+        </div>
+    </div>
+</header>

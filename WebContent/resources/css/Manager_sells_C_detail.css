@@ -1,0 +1,186 @@
+.content {
+    width: 80%;
+    height: 100%;
+}
+
+.statistics {
+    margin-left: 150px;
+    height: 500px;
+}
+
+.visitor_trend, .sales_trend {
+    width: 500px;
+    height: 300px;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    background-color: #F8F8F8;
+    float: left;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+.visitor_name, .sales_name {
+    width: 285px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.t1 {
+    color: black;
+    font-size: 23pt;
+    font-weight: 700;
+}
+
+.t2 {
+    color: black;
+    font-size: 13pt;
+    margin-left: 10px;
+}
+
+.t3 {
+    color: rgb(143, 143, 143);
+    font-size: 9pt;
+}
+
+.more_details {
+    width: fit-content;
+    height: fit-content;
+    margin-top: 255px;
+}
+
+.more_details>a {
+    text-decoration: none;
+    margin-left: 450px;
+}
+
+.current_situation {
+    width: 1300px;
+    height: 500px;
+    margin-left: 100px;
+}
+
+.situation_box {
+    width: 1100px;
+    height: 200px;
+    margin-left: 150px;
+    border: 1px solid lightgray;
+    
+}
+
+.sb_lb {
+    width: 50px;
+    font-size: 14pt;
+    font-weight: 600;
+}
+
+
+
+#userNo{
+    width: 40px;
+} 
+#userName{
+    width: 60px;
+}
+#reserCount{
+    width: 40px;
+}
+#cancelCount{
+    width: 40px;
+}
+#totalPay{
+
+}
+#avgPay{
+
+}
+#reserByY{
+    width: 40px;
+}
+#joinDate{
+
+}
+#status{
+
+}
+
+
+/* -------------------- FOOTER -------------------- */
+
+/* payment */
+#footer {
+    width: 100%;
+    height: fit-content;
+}
+
+#foot {
+    min-width: 960px;
+    border-top: 1px solid gray;
+    height: 80px;
+    width: 96%;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.detailedTable{
+    border: 1px solid black;
+    width: 100%;
+}
+.detailedTable>td{
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.content{
+    margin-top: 100px;
+    margin-left: 200px ;
+}
+.sub-menu{
+    width: 300px;
+}
+.main-content{
+
+    display: flex;
+}
+.searchPot{
+    width: 600px;
+    height: 15px;
+    background: #7A9BAD;
+    margin-bottom: 50px;
+}
+.filter-block{
+    width: 1200px;
+    height: 30px;
+    text-align: right;
+}
+#filter{
+    width: 100px;
+    height: 20px;
+}
+.reservationList{
+    width: 1200px;
+}
+.searchPot{
+    width: 1200px;
+}
+.listTitle{
+    width: 80px;
+    font-size: 16px;
+    font-weight: 300;
+   border: 1px solid black;
+   border-bottom: 2px solid black;
+    text-align: center;
+}
+
+.listCal>td{
+    height: 20px;
+    font-size: 15px;
+    text-align: center;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    vertical-align: bottom;
+}
+th{
+    background: rgb(207, 217, 236);
+    border: none;
+}

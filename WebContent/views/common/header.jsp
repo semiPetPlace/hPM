@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,16 +15,16 @@
 	<header id="header">        
             <div class="H_menu_top">
                 <div class="wrapper">
-                	<%-- <% if(m = null) { %>
+                	<%-- <% if(m = null) { %> --%>
                 		<a href="/semi/views/login/login.jsp">로그인</a>
                         <a href="/semi/views/mypage/mypage-basic.jsp">회원가입</a>
-                	<%}else if(m.userId == "admin"){ %>
+                	
                 	 	<a href="/semi/views/login/login.jsp">*관리자*</a>
-                    	<a href="/semi/views/mypage/mypage-basic.jsp">관리자페이지</a>
-                	<%} else{%>
-                		<a href="/semi/views/login/login.jsp"><%m.userId %></a>
+                    	<a href='#' onclick="goManager()">관리자페이지</a>
+                	<%-- <%} else{%> --%>
+                	<%-- 	<a href="/semi/views/login/login.jsp"><%m.userId %></a> --%>
                     	<a href="/semi/views/mypage/mypage-basic.jsp">마이페이지</a>
-                    <%} %> --%>
+                  <%--   <%} %>  --%>
                     
                 </div>
             </div>
@@ -73,7 +70,12 @@
                 </div>
             </div>   
         </header>
+        <script>
+        	function goManager(){
+				location.href="/semi/chart.ma";
+			}
         
+        </script>
 
 </body>
 </html>
