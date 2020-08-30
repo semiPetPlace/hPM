@@ -18,10 +18,10 @@
         <script src ="/semi/resources/js/script.js"></script>
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         
-         <!-- jQuery -->
-  		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-		  <!-- iamport.payment.js -->
-		<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
     </head>
     <body>
     	
@@ -175,7 +175,7 @@
                             </div>
                             <div class="clientname">
                                 <p>투숙객 성명</p>
-                                <input class="inputbox" type="text" name="fullname" id="">
+                                <input class="inputbox" type="text" name="fullname" id="fullname">
                             </div>
                         </div>
                     </div>
@@ -219,7 +219,7 @@
 	
                 </div>
                 <div id="btn-block">
-                    <input id="test1" type="submit" value="다음 단계 >">
+                    <input type="button" id="test1" value="결제 하기">
                     <p>예약 완료시 주소로 예약 확인서가 바로 전송됩니다. </p>
                 </div>
                 
@@ -240,65 +240,39 @@
         <!--------------------- main 끝 --------------------->
         
         <%@ include file = "../common/footer.jsp" %>
-        <!-- 카카오페이 ajax -->
-        <script>
-		    $('#test1').click(function(){
-		        var msg;
+        
+<script>
+	$('#test1').click(function(){
+		IMP.init('imp30525532');
+		
+		IMP.request_pay({
+		    pg : 'inicis',
+		    pay_method : 'card',
+		    merchant_uid : 'merchant_' + new Date().getTime(),
+		    name : '<%=hr.getRname()%>',
+		    amount : <%=hr.getRprice()*0.1+hr.getRprice()%>, 
+		    buyer_email : 'kkkkk',
+		    buyer_name : 'kkkkk',
+		    buyer_tel : '010-1234-5678',
+
+		}, function(rsp) {
+		    if ( rsp.success ) {
+		        var msg = '결제가 완료되었습니다.';
+		        msg += '고유ID : ' + rsp.imp_uid;
+		        msg += '상점 거래ID : ' + rsp.merchant_uid;
+		        msg += '결제 금액 : ' + rsp.paid_amount;
+		        msg += '카드 승인번호 : ' + rsp.apply_num;
 		        
-		        IMP.request_pay({
-		            pg : 'kakaopay',
-		            pay_method : 'card',
-		            merchant_uid : 'merchant_' + new Date().getTime(),
-		            name : '<%=h.gethName()%> <%=hr.getRname()%>',
-		            amount : <%=hr.getRprice()*0.1+hr.getRprice()%>,
-		            buyer_email : 'dbstn3949qq@gmail.com',
-		            buyer_name : '한윤수',
-		            buyer_tel : '010-2222-3333',
-		            buyer_addr : 'suwon',
-		            buyer_postcode : '123-456',
-		            //m_redirect_url : 'http://www.naver.com'
-		        }, function(rsp) {
-		            if ( rsp.success ) {
-		                //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-		                jQuery.ajax({
-		                    url: "/semi/payment.ys", //cross-domain error가 발생하지 않도록 주의해주세요
-		                    type: 'POST',
-		                    dataType: 'json',
-		                    data: {
-		                        imp_uid : rsp.imp_uid,
-		                        merchant_uid: rsp.merchant_uid
-		                        //기타 필요한 데이터가 있으면 추가 전달
-		                    }
-		                	
-		                }).done(function(data) {
-		                    //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-		                    if ( everythings_fine ) {
-		                        msg = '결제가 완료되었습니다.';
-		                        msg += '\n고유ID : ' + rsp.imp_uid;
-		                        msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-		                        msg += '\결제 금액 : ' + rsp.paid_amount;
-		                        msg += '카드 승인번호 : ' + rsp.apply_num;
-		                        
-		                        alert(msg);
-		                    } else {
-		                        //[3] 아직 제대로 결제가 되지 않았습니다.
-		                        //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-		                    }
-		                });
-		                //성공시 이동할 페이지
-		                location href = '<%= request.getContextPath()%>/hotel_finishedReservation.jsp';
-		               <%--  location.href='<%=request.getContextPath()%>/order/paySuccess?msg='+msg; --%>
-		            } else {
-		                msg = '결제에 실패하였습니다.';
-		                msg += '에러내용 : ' + rsp.error_msg;
-		                //실패시 이동할 페이지
-		                location.href="<%=request.getContextPath()%>/hotelmain.jsp";
-		                alert(msg);
-		            }
-		        });
-		        
-		    });
-   		 </script> 
+		        location.href='/semi/view/reservationfinished.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>'
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		    }
+		    alert(msg);
+		});
+	});
+	
+</script>
         
         
     </body>
