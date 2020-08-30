@@ -81,10 +81,10 @@ public class CafeDao {
 			
 			while(rset.next()) {
 				Cafe c = new Cafe();
-				c.setCno(rset.getInt("CNO"));
-				c.setCimage(rset.getString("CIMAGE"));
-				c.setCname(rset.getString("CNAME"));
-				c.setCscore(rset.getInt("CSCORE"));
+				c.setCno(rset.getInt("C_NO"));
+				c.setCimage(rset.getString("C_IMAGE"));
+				c.setCname(rset.getString("C_NAME"));
+				c.setCscore(rset.getDouble("C_SCORE"));
 				
 				list.add(c);
 
@@ -97,6 +97,47 @@ public class CafeDao {
 		}
 		
 		return list;
+	}
+
+
+	public Cafe selectOne(Connection con, int cno) {
+		
+		Cafe c = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOne");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, cno);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				c = new Cafe();
+//				c.setCrimage(rset.getString("C_RIMAGE"));
+				c.setCimage(rset.getString("C_IMAGE"));
+				c.setCname(rset.getString("C_NAME"));
+				c.setCtel(rset.getString("C_TEL"));
+				c.setCtime(rset.getString("C_TIME"));
+				c.setCscore(rset.getDouble("C_SCORE"));
+				c.setCaddress(rset.getString("C_ADDRESS"));
+//				c.setCdogCompInfo(rset.getString("C_DOGCOMPINFO"));
+				c.setCpromotion(rset.getString("C_PROMOTION"));
+				c.setCreview(rset.getString("C_REVIEW"));
+				c.setCrequest(rset.getString("C_REQUESTS"));
+				c.setCregisterDate(rset.getDate("C_REGISTERDATE"));
+				c.setCregistration(rset.getString("C_REGISTRATION"));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return c;
 	}
 
 }

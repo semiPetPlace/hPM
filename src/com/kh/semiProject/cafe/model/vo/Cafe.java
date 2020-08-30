@@ -12,26 +12,28 @@ public class Cafe implements Serializable {
 	
 	
 	private int cno;
+	private String crimage;
 	private String cimage;
 	private String cname;
 	private String ctel;
 	private String ctime;
-	private int cscore;
+	private double cscore;
 	private String caddress;
+	private String cdogCompInfo;
 	private String cpromotion;
 	private String creview;
 	private String crequest;
 	private Date cregisterDate;
-	private Date cregistration;
+	private String cregistration;
 	
 	
 	public Cafe() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
 
-	public Cafe(int cno, String cimage, String cname, int cscore) {
+
+	public Cafe(int cno, String cimage, String cname, double cscore) {
 		super();
 		this.cno = cno;
 		this.cimage = cimage;
@@ -40,16 +42,39 @@ public class Cafe implements Serializable {
 	}
 
 
-	public Cafe(int cno, String cimage, String cname, String ctel, String ctime, int cscore, String caddress,
-			String cpromotion, String creview, String crequest, Date cregisterDate, Date cregistration) {
+	public Cafe(String crimage, String cimage, String cname, String ctel, String ctime, double cscore, String caddress,
+			String cdogCompInfo, String cpromotion, String creview, String crequest, Date cregisterDate,
+			String cregistration) {
 		super();
-		this.cno = cno;
+		this.crimage = crimage;
 		this.cimage = cimage;
 		this.cname = cname;
 		this.ctel = ctel;
 		this.ctime = ctime;
 		this.cscore = cscore;
 		this.caddress = caddress;
+		this.cdogCompInfo = cdogCompInfo;
+		this.cpromotion = cpromotion;
+		this.creview = creview;
+		this.crequest = crequest;
+		this.cregisterDate = cregisterDate;
+		this.cregistration = cregistration;
+	}
+
+
+	public Cafe(int cno, String crimage, String cimage, String cname, String ctel, String ctime, double cscore,
+			String caddress, String cdogCompInfo, String cpromotion, String creview, String crequest,
+			Date cregisterDate, String cregistration) {
+		super();
+		this.cno = cno;
+		this.crimage = crimage;
+		this.cimage = cimage;
+		this.cname = cname;
+		this.ctel = ctel;
+		this.ctime = ctime;
+		this.cscore = cscore;
+		this.caddress = caddress;
+		this.cdogCompInfo = cdogCompInfo;
 		this.cpromotion = cpromotion;
 		this.creview = creview;
 		this.crequest = crequest;
@@ -63,8 +88,8 @@ public class Cafe implements Serializable {
 	}
 
 
-	public void setCno(int cno) {
-		this.cno = cno;
+	public String getCrimage() {
+		return crimage;
 	}
 
 
@@ -73,18 +98,8 @@ public class Cafe implements Serializable {
 	}
 
 
-	public void setCimage(String cimage) {
-		this.cimage = cimage;
-	}
-
-
 	public String getCname() {
 		return cname;
-	}
-
-
-	public void setCname(String cname) {
-		this.cname = cname;
 	}
 
 
@@ -93,28 +108,13 @@ public class Cafe implements Serializable {
 	}
 
 
-	public void setCtel(String ctel) {
-		this.ctel = ctel;
-	}
-
-
 	public String getCtime() {
 		return ctime;
 	}
 
 
-	public void setCtime(String ctime) {
-		this.ctime = ctime;
-	}
-
-
-	public int getCscore() {
+	public double getCscore() {
 		return cscore;
-	}
-
-
-	public void setCscore(int cscore) {
-		this.cscore = cscore;
 	}
 
 
@@ -123,8 +123,8 @@ public class Cafe implements Serializable {
 	}
 
 
-	public void setCaddress(String caddress) {
-		this.caddress = caddress;
+	public String getCdogCompInfo() {
+		return cdogCompInfo;
 	}
 
 
@@ -133,18 +133,8 @@ public class Cafe implements Serializable {
 	}
 
 
-	public void setCpromotion(String cpromotion) {
-		this.cpromotion = cpromotion;
-	}
-
-
 	public String getCreview() {
 		return creview;
-	}
-
-
-	public void setCreview(String creview) {
-		this.creview = creview;
 	}
 
 
@@ -153,13 +143,73 @@ public class Cafe implements Serializable {
 	}
 
 
-	public void setCrequest(String crequest) {
-		this.crequest = crequest;
+	public Date getCregisterDate() {
+		return cregisterDate;
 	}
 
 
-	public Date getCregisterDate() {
-		return cregisterDate;
+	public String getCregistration() {
+		return cregistration;
+	}
+
+
+	public void setCno(int cno) {
+		this.cno = cno;
+	}
+
+
+	public void setCrimage(String crimage) {
+		this.crimage = crimage;
+	}
+
+
+	public void setCimage(String cimage) {
+		this.cimage = cimage;
+	}
+
+
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+
+
+	public void setCtel(String ctel) {
+		this.ctel = ctel;
+	}
+
+
+	public void setCtime(String ctime) {
+		this.ctime = ctime;
+	}
+
+
+	public void setCscore(double cscore) {
+		this.cscore = cscore;
+	}
+
+
+	public void setCaddress(String caddress) {
+		this.caddress = caddress;
+	}
+
+
+	public void setCdogCompInfo(String cdogCompInfo) {
+		this.cdogCompInfo = cdogCompInfo;
+	}
+
+
+	public void setCpromotion(String cpromotion) {
+		this.cpromotion = cpromotion;
+	}
+
+
+	public void setCreview(String creview) {
+		this.creview = creview;
+	}
+
+
+	public void setCrequest(String crequest) {
+		this.crequest = crequest;
 	}
 
 
@@ -168,22 +218,16 @@ public class Cafe implements Serializable {
 	}
 
 
-	public Date getCregistration() {
-		return cregistration;
-	}
-
-
-	public void setCregistration(Date cregistration) {
+	public void setCregistration(String cregistration) {
 		this.cregistration = cregistration;
 	}
 
 
 	@Override
 	public String toString() {
-		return "cno=" + cno + ", cimage=" + cimage + ", cname=" + cname + ", ctel=" + ctel + ", ctime=" + ctime
-				+ ", cscore=" + cscore + ", caddress=" + caddress + ", cpromotion=" + cpromotion + ", creview="
-				+ creview + ", crequest=" + crequest + ", cregisterDate=" + cregisterDate + ", cregistration="
-				+ cregistration;
+		return "cno=" + cno + ", crimage=" + crimage + ", cimage=" + cimage + ", cname=" + cname + ", ctel="
+				+ ctel + ", ctime=" + ctime + ", cscore=" + cscore + ", caddress=" + caddress + ", cdogCompInfo="
+				+ cdogCompInfo + ", cpromotion=" + cpromotion + ", creview=" + creview + ", crequest=" + crequest
+				+ ", cregisterDate=" + cregisterDate + ", cregistration=" + cregistration;
 	}
-
 }
