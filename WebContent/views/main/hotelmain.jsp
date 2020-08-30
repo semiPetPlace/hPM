@@ -58,31 +58,31 @@
                     <h1>필터링 기준</h1>
                     <hr>
                     <label for="">인기필터</label><br>
-                    <div class="filter"><input type="checkbox" > 24시프론트</div> 
-                    <div class="filter"><input type="checkbox" > 주차장</div> 
-                    <div class="filter"><input type="checkbox" > 레스토랑</div> 
-                    <div class="filter"><input type="checkbox" > 룸서비스</div>
-                    <div class="filter"><input type="checkbox" > 피트니스센터</div> 
-                    <div class="filter"><input type="checkbox" > 금연실</div> 
-                    <div class="filter"><input type="checkbox" > 공항셔틀버스</div>
-                    <div class="filter"><input type="checkbox" > 방음</div> 
-                    <div class="filter"><input type="checkbox" > 가족실</div> 
-                    <div class="filter"><input type="checkbox" > 스파</div> 
-                    <div class="filter"><input type="checkbox" > 사우나</div> 
-                    <div class="filter"><input type="checkbox" > 와이파이</div> 
-                    <div class="filter"><input type="checkbox" > 전기차 충전소</div> 
-                    <div class="filter"><input type="checkbox" > 간의주방</div> 
-                    <div class="filter"><input type="checkbox" > 욕실</div> 
-                    <div class="filter"><input type="checkbox" > 욕조</div> 
-                    <div class="filter"><input type="checkbox" > TV</div> 
-                    <div class="filter"><input type="checkbox" > 세탁</div> 
-                    <div class="filter"><input type="checkbox" > 전망</div> 
-                    <div class="filter"><input type="checkbox" > 전기포트</div> 
-                    <div class="filter"><input type="checkbox" > 커피머신</div> 
-                    <div class="filter"><input type="checkbox" > 루프탑</div> 
-                    <div class="filter"><input type="checkbox" > 공기청정기</div> 
-                    <div class="filter"><input type="checkbox" > 테라스</div> 
-                    <div class="filter"><input type="checkbox" > 발코니</div> 
+                    <div class="filter"><input type="checkbox" id='1' name="checklist"> 24시프론트</div> 
+                    <div class="filter"><input type="checkbox" id='2' name="checklist"> 주차장</div> 
+                    <div class="filter"><input type="checkbox" id='3' name="checklist"> 레스토랑</div> 
+                    <div class="filter"><input type="checkbox" id='4' name="checklist"> 룸서비스</div>
+                    <div class="filter"><input type="checkbox" id='5' name="checklist"> 피트니스센터</div> 
+                    <div class="filter"><input type="checkbox" id='6' name="checklist"> 금연실</div> 
+                    <div class="filter"><input type="checkbox" id='7' name="checklist"> 공항셔틀버스</div>
+                    <div class="filter"><input type="checkbox" id='8' name="checklist"> 방음</div> 
+                    <div class="filter"><input type="checkbox" id='9' name="checklist"> 가족실</div> 
+                    <div class="filter"><input type="checkbox" id='10' name="checklist"> 스파</div> 
+                    <div class="filter"><input type="checkbox" id='11' name="checklist"> 사우나</div> 
+                    <div class="filter"><input type="checkbox" id='12' name="checklist"> 와이파이</div> 
+                    <div class="filter"><input type="checkbox" id='13' name="checklist"> 전기차 충전소</div> 
+                    <div class="filter"><input type="checkbox" id='14' name="checklist"> 간의주방</div> 
+                    <div class="filter"><input type="checkbox" id='15' name="checklist"> 욕실</div> 
+                    <div class="filter"><input type="checkbox" id='16' name="checklist"> 욕조</div> 
+                    <div class="filter"><input type="checkbox" id='17' name="checklist"> TV</div> 
+                    <div class="filter"><input type="checkbox" id='18' name="checklist"> 세탁</div> 
+                    <div class="filter"><input type="checkbox" id='19' name="checklist"> 전망</div> 
+                    <div class="filter"><input type="checkbox" id='20' name="checklist"> 전기포트</div> 
+                    <div class="filter"><input type="checkbox" id='21' name="checklist"> 커피머신</div> 
+                    <div class="filter"><input type="checkbox" id='22' name="checklist"> 루프탑</div> 
+                    <div class="filter"><input type="checkbox" id='23' name="checklist"> 공기청정기</div> 
+                    <div class="filter"><input type="checkbox" id='24' name="checklist"> 테라스</div> 
+                    <div class="filter"><input type="checkbox" id='25' name="checklist"> 발코니</div> 
                     <hr>
                     <label for="">위치</label><br>
                      
@@ -135,6 +135,32 @@
          <!------------------------ 메인 끝------------------------->
 
          <%@ include file = "../common/footer.jsp" %>
+         
+         <!-- <script>
+	         $(document).ready(function(){
+	        	 	$(".filter").checked(function() {
+	                 
+	                 //ajax 호출
+	                 $.ajax({
+	                     url         :   "/semi/hotelfilter.ys",
+	                     dataType    :   "json",
+	                     contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
+	                     type        :   "get",
+	                     data        :   no : this.val()
+	                     success     :   function(data){
+	  
+
+	                          
+	                     },
+	                     error       :   function(request, status, error){
+	                         console.log("AJAX_ERROR");
+	                     }
+	                 });
+	                 
+	             })
+	             
+	         });
+         </script> -->
          
     </body>
 </html>

@@ -15,6 +15,7 @@ import java.util.Properties;
 
 import com.kh.semiProject.Hotel.model.vo.Hotel;
 import com.kh.semiProject.Hotel.model.vo.HotelConvenience;
+import com.kh.semiProject.Hotel.model.vo.HotelFacility;
 import com.kh.semiProject.Hotel.model.vo.HotelRoom;
 public class HotelDao {
 	private Properties prop;
@@ -156,7 +157,6 @@ public class HotelDao {
 			pstmt.setInt(1, h_no);
 			
 			rset = pstmt.executeQuery();
-			System.out.println("확인");
 			if(rset.next()) {
 				hc = new HotelConvenience();
 				
@@ -169,7 +169,6 @@ public class HotelDao {
 				
 				
 			}
-			System.out.println(hc+"확인");
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -177,6 +176,103 @@ public class HotelDao {
 			close(pstmt);
 		}
 		return hc;
+	}
+
+	public HotelFacility facility(Connection con, int h_no) {
+		HotelFacility hf = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("facility");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, h_no);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				hf = new HotelFacility();
+				
+				hf.setHno(rset.getInt("f_hotelnumber"));
+				hf.setFront(rset.getString("f_24h_front"));
+				hf.setPaking(rset.getString("f_parkinglot"));
+				hf.setRestaurant(rset.getString("f_restaurant"));
+				hf.setRoomservice(rset.getString("f_room_service"));
+				hf.setfitness(rset.getString("f_fitness_cnt"));
+				hf.setNosmk(rset.getString("f_no_smk_rm"));
+				hf.setAirport(rset.getString("f_airport_st"));
+				hf.setDisabled(rset.getString("f_facility_disb"));
+				hf.setSoundproof(rset.getString("f_soundproof"));
+				hf.setFamily(rset.getString("f_family_room"));
+				hf.setSpa(rset.getString("f_spa"));
+				hf.setSauna(rset.getString("f_sauna"));
+				hf.setWifi(rset.getString("f_wifi"));
+				hf.setEvsc(rset.getString("f_ev_cs"));
+				hf.setPool(rset.getString("f_s_pool"));
+				hf.setKitchen(rset.getString("f_kitchen"));
+				hf.setBathroom(rset.getString("f_bathroom"));
+				hf.setBathtub(rset.getString("f_bathtub"));
+				hf.setTv(rset.getString("f_tv"));
+				hf.setWasher(rset.getString("f_washer"));
+				hf.setOutlook(rset.getString("f_outlook"));
+				hf.setKettle(rset.getString("f_elct_kettle"));
+				hf.setBar(rset.getString("f_minibar"));
+				hf.setCoffeemachine(rset.getString("f_coffeemachine"));
+				hf.setRooftop(rset.getString("f_rooftop"));
+				hf.setAirconditioner(rset.getString("f_air_conditioner"));
+				hf.setTerrace(rset.getString("f_terrace"));
+				hf.setBalcony(rset.getString("f_balcony"));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return hf;
+	}
+
+	public HotelRoom payment(int hno, String rname, Connection con) {
+		HotelRoom hr = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("payment");
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, hno);
+			pstmt.setString(2, rname);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				hr = new HotelRoom();
+				
+				hr.setHno(rset.getInt("hr_hotelnumber"));
+				hr.setHname(rset.getString("hr_hotelname"));
+				hr.setRname(rset.getString("hr_roomname"));
+				hr.setRprice(rset.getInt("hr_price"));
+				hr.setRcheckin(rset.getString("hr_checkin"));
+				hr.setRcheckout(rset.getString("hr_checkout"));
+				hr.setRimg(rset.getString("hr_img"));
+				hr.setRtub(rset.getString("hr_convenience_tub"));
+				hr.setRbreakfast(rset.getString("hr_breakfast"));
+				hr.setRbadtype(rset.getString("hr_badtype"));
+				hr.setRsize(rset.getString("hr_roomsize"));
+				hr.setRview(rset.getString("hr_view"));
+				hr.setRstatus(rset.getString("hr_status"));
+				
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return hr;
 	}
 
 

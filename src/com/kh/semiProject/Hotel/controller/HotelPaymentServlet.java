@@ -1,7 +1,6 @@
 package com.kh.semiProject.Hotel.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,16 +15,16 @@ import com.kh.semiProject.Hotel.model.vo.HotelFacility;
 import com.kh.semiProject.Hotel.model.vo.HotelRoom;
 
 /**
- * Servlet implementation class HotelDetailServlet
+ * Servlet implementation class HotelPaymentServlet
  */
-@WebServlet("/hotelDetail.ys")
-public class HotelDetailServlet extends HttpServlet {
+@WebServlet("/hotelpayment.ys")
+public class HotelPaymentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HotelDetailServlet() {
+    public HotelPaymentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,26 +33,22 @@ public class HotelDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int h_no = Integer.parseInt(request.getParameter("h_no"));
-		
-		ArrayList<HotelRoom> hrlist = new ArrayList<>();
+		int hno = Integer.parseInt(request.getParameter("hno"));
+		String rname = request.getParameter("hroom");
 		
 		HotelService hs = new HotelService();
 		
-		Hotel hd = hs.selectHotel(h_no);
-	
-		hrlist = hs.roomlist(h_no);
+		Hotel hd = hs.selectHotel(hno);
+		HotelConvenience hc = hs.Convenience(hno);
+		HotelFacility hf = hs.facility(hno);
 		
-		HotelConvenience hc = hs.Convenience(h_no);
-		
-		HotelFacility hf = hs.facility(h_no);
-		
-		String page ="";
-		if(hd != null) {
-			page = "views/hotel/hotel_detail.jsp";
+		HotelRoom hr = hs.payment(hno,rname);
+		String page = "";
+		if(hr != null) {
+			page="views/hotel/hotel_payment.jsp";
 			request.setAttribute("hd", hd);
-			request.setAttribute("hrlist", hrlist);
 			request.setAttribute("hc", hc);
+			request.setAttribute("hr", hr);
 			request.setAttribute("hf", hf);
 		}else {
 			page = "views/main/main.jsp";

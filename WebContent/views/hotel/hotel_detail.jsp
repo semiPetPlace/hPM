@@ -4,6 +4,7 @@
 <% Hotel h = (Hotel)request.getAttribute("hd"); %>
 <% ArrayList<HotelRoom> hrlist = (ArrayList<HotelRoom>)request.getAttribute("hrlist"); %>
 <% HotelConvenience hc = (HotelConvenience)request.getAttribute("hc"); %>
+<% HotelFacility hf = (HotelFacility)request.getAttribute("hf"); %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -33,7 +34,7 @@
                         <div class="box80">
 
                             <div class="hotelimg">
-                                <img src="/semi/resources/images/hotel2.jpg" alt="">
+                                <img src="<%=h.gethImg() %>" alt="">
                             </div>
                             <div class="pay-box">
                                 <span id="h-name"><%= h.gethName() %></span>
@@ -41,12 +42,24 @@
                                 <p id="price-after">&#8361;<%= h.gethPrice() %></p><br><br><br>
                                 <p id="stars"><%= h.gethGrade() %>성급</p>
                                 <p id="grade"><%= h.gethScore() %>점</p>
-                                <a href="/semi/views/hotel/hotel_payment.jsp" id="nextpage">예약하기</a>
+                                
                                 <div id="facility">호텔 주요시설</div>
                                 <div id="facility-preview">
-                                    <div>공용 수영장</div>
                                     <div>애견 산책로</div>
-                                    <div>레스토랑</div>
+                                    <%if(hf.getPool().equals("Y")){ %><div>공용 수영장</div> <%} %>
+                                    <%if(hf.getRestaurant().equals("Y")){ %><div>레스토랑</div><%} %>
+                                    <%if(hf.getfitness().equals("Y")){ %><div>피트니스 센터</div><%} %>
+                                    <%if(hf.getDisabled().equals("Y")){ %><div>장애인</div><%} %>
+                                    <%if(hf.getEvsc().equals("Y")){ %><div>전기차 충전소</div><%} %>
+                                    <%if(hf.getWasher().equals("Y")){ %><div>세탁</div><%} %>
+                                    <%if(hf.getBar().equals("Y")){ %><div>미니바</div><%} %>
+                                    <%if(hf.getRooftop().equals("Y")){ %><div>루프탑</div><%} %>
+                                    <%if(hf.getAirconditioner().equals("Y")){ %><div>공기청정기</div><%} %>
+                                    <%if(hf.getTerrace().equals("Y")){ %><div>테라스</div><%} %>
+                                    <%if(hf.getBalcony().equals("Y")){ %><div>발코니</div><%} %>
+                                    <%if(hf.getSoundproof().equals("Y")){ %><div>방음시설</div><%} %>
+                                    <%if(hf.getPaking().equals("Y")){ %><div>주차장</div><%} %>
+                                    
                                 </div>
                             </div>
                             <div class="facility-block">
@@ -168,14 +181,7 @@
 			                                <div class="hotelimgS">
 			                                    <img src="<%= hr.getRimg() %>" alt="">
 			                                    <a class="font-16" href="">객실 사진 및 상세 구성 보기</a>
-			                                </div>
-			                                <hr>
-			                                <div class="bedtype">
-			                                    <label for="bed1">침대 구성 선택(가능한 경우 반영)<br>
-			                                        <input type="radio" name="bed1" id="bed1"> 더블베드 1개 <br>
-			                                        <input type="radio" name="bed1" id="bed1"> 싱글베드 2개
-			                                    </label>
-			                                </div>
+			                                </div>			                           
 			                                <hr>
 			                                <div class="roomfacility">
 			                                    <li class="font-16 green"><img class="mini-icon" src="" alt="">무료 Wi-Fi</li>
@@ -216,7 +222,7 @@
 			                                </select>
 			                                </div>
 			                                <div class="reservation" style="width:175px;border: none;">
-			                                    <input class="font-16B" type="button" value="예약하기" >
+			                                    <input class="font-16B" type="button" value="예약하기" onclick="location.href='/semi/hotelpayment.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>'">
 			                                    <div >
 			                                        <p class="font-14" style="line-height: 50px;">예약 취소 요금 없음</p>
 			                                    </div>    
@@ -248,7 +254,7 @@
 			                                </select>
 			                                </div>
 			                                <div class="reservation" style="width:175px;border: none;">
-			                                    <input class="font-16B" type="button" value="예약하기">
+			                                    <input class="font-16B" type="button" value="예약하기" onclick="location.href='/semi/hotelpayment.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>'">
 			                                    <div >
 			                                        <p class="font-14" style="line-height: 50px;">예약 취소 요금 없음</p>
 			                                    </div>    
@@ -282,6 +288,6 @@
         <!-- -------------------------- main --------------------------- -->
 
         <%@ include file = "../common/footer.jsp" %>
-        
+    
     </body>
 </html>

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.kh.semiProject.Hotel.model.dao.HotelDao;
 import com.kh.semiProject.Hotel.model.vo.Hotel;
 import com.kh.semiProject.Hotel.model.vo.HotelConvenience;
+import com.kh.semiProject.Hotel.model.vo.HotelFacility;
 import com.kh.semiProject.Hotel.model.vo.HotelRoom;
 
 public class HotelService {
@@ -49,6 +50,24 @@ public class HotelService {
 		
 		close(con);
 		return hc;
+	}
+
+	public HotelFacility facility(int h_no) {
+		Connection con = getConnection();
+		
+		HotelFacility hf = hDao.facility(con,h_no);
+		
+		close(con);
+		return hf;
+	}
+
+	public HotelRoom payment(int hno, String rname) {
+		Connection con = getConnection();
+		
+		HotelRoom hr = hDao.payment(hno,rname,con);
+		
+		close(con);
+		return hr;
 	}
 
 }
