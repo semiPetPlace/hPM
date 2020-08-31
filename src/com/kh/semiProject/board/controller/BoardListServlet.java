@@ -9,9 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.PageInfo;
 import com.kh.semiProject.board.model.service.BoardService;
 import com.kh.semiProject.board.model.vo.Board;
-import com.kh.semiProject.board.model.vo.PageInfo;
+
 
 /**
  * Servlet implementation class BoardListServlet
