@@ -59,8 +59,8 @@
 			<tr>
 				<td>
 					<div class="postInfo">
-						<img src="<%=b.getbUserImg()%>" class="postInfo_Img"> <label
-							class="label_position"><%=b.getbWriter()%></label>
+						<img src="<%=b.getbUserImg()%>" class="postInfo_Img">
+						<label class="label_position"><%=b.getbWriter()%></label>
 					</div>
 				</td>
 			</tr>
@@ -70,7 +70,8 @@
 
 
 		</table>
-		<%@ include file ="../common/pagination.jsp" %>
+		
+	<%@ include file ="../common/pagination.jsp" %>
 
 	</div>
 	
@@ -91,9 +92,7 @@
 	$('#mxp').click(function(){
 		location.href='<%= request.getContextPath() %>/blist.th?currentPage=<%= maxPage %>';
 	});	
-		$(function() {
-		  $('#listArea td')			
-		});
+	
 	</script>
 
 	<!-- TOP -->

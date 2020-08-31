@@ -30,7 +30,7 @@ public class BoardService {
 		return blist;
 	}
 
-	public Board selecrOne(int bno) {
+	public Board selectOne(int bno) {
 		Connection con = getConnection();
 		
 		Board b = bDao.selectOne(con,bno);
