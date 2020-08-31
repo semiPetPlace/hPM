@@ -63,7 +63,6 @@
 							class="label_position"><%=b.getbWriter()%></label>
 					</div>
 				</td>
-				</div>
 			</tr>
 			<%
 				}
@@ -71,8 +70,8 @@
 
 
 		</table>
+		<%@ include file ="../common/pagination.jsp" %>
 
-	<%@ include file ="../common/pagination.jsp" %>
 	</div>
 	
 	<script>
