@@ -1,13 +1,12 @@
-package com.kh.semiProject.cafe.model.vo;
-
+package com.kh.semiProject.common;
 import java.io.Serializable;
 
-public class PageInfo implements Serializable {
+public class PageInfo implements Serializable{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7714803656803133711L;
+	private static final long serialVersionUID = 7042585890579769582L;
 
 	private int currentPage;
 	private int listCount;
@@ -17,7 +16,6 @@ public class PageInfo implements Serializable {
 	private int endPage;
 	
 	public PageInfo() {
-		super();
 	}
 
 	public PageInfo(int currentPage, int listCount, int limit, int maxPage, int startPage, int endPage) {
@@ -34,44 +32,44 @@ public class PageInfo implements Serializable {
 		return currentPage;
 	}
 
-	public int getListCount() {
-		return listCount;
-	}
-
-	public int getLimit() {
-		return limit;
-	}
-
-	public int getMaxPage() {
-		return maxPage;
-	}
-
-	public int getStartPage() {
-		return startPage;
-	}
-
-	public int getEndPage() {
-		return endPage;
-	}
-
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
+	}
+
+	public int getListCount() {
+		return listCount;
 	}
 
 	public void setListCount(int listCount) {
 		this.listCount = listCount;
 	}
 
+	public int getLimit() {
+		return limit;
+	}
+
 	public void setLimit(int limit) {
 		this.limit = limit;
+	}
+
+	public int getMaxPage() {
+		return maxPage;
 	}
 
 	public void setMaxPage(int maxPage) {
 		this.maxPage = maxPage;
 	}
 
+	public int getStartPage() {
+		return startPage;
+	}
+
 	public void setStartPage(int startPage) {
 		this.startPage = startPage;
+	}
+
+	public int getEndPage() {
+		return endPage;
 	}
 
 	public void setEndPage(int endPage) {
@@ -80,8 +78,10 @@ public class PageInfo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "currentPage=" + currentPage + ", listCount=" + listCount + ", limit=" + limit + ", maxPage="
-				+ maxPage + ", startPage=" + startPage + ", endPage=" + endPage;
+		return "PageInfo [currentPage=" + currentPage + ", listCount=" + listCount + ", limit=" + limit + ", maxPage="
+				+ maxPage + ", startPage=" + startPage + ", endPage=" + endPage + "]";
 	}
+	
+	
 	
 }

@@ -23,7 +23,7 @@
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
-
+<main>
 	<div class="post">
 		<img
 			src="<%=request.getContextPath()%>/resources/images/freeboard_list/dog_lab.png"
@@ -67,16 +67,20 @@
 			<%
 				}
 			%>
-
-
 		</table>
-		
-	<%@ include file ="../common/pagination.jsp" %>
+	</div>
+	<div id="post_num" style="width:400px">
+	<%@ include file="../common/pagination.jsp"%>
+	</div>
+	</main>
 
+	<!-- TOP -->
+	<div style="height: 20px;  margin-right: 2%; margin-top: 200px;">
+		<a href="#header" id="top">▲ TOP</a>
 	</div>
 	
 	<script>
-	<% int p = startPage; %>
+
 	$('#stp').click(function(){
 		location.href='<%= request.getContextPath() %>/blist.th?currentPage=1';
 	});
@@ -84,7 +88,9 @@
 		location.href='<%= request.getContextPath() %>/blist.th?currentPage=<%= currentPage - 1 %>';
 	});
 	$('#chp').click(function(){
-		location.href='<%= request.getContextPath() %>/blist.th?currentPage=<%= p %>';
+		var btn =document.getElementById("chp").innerHTML;
+		
+		location.href='<%= request.getContextPath() %>/blist.th?currentPage='+btn;
 	});
 	$('#nxp').click(function(){
 		location.href='<%= request.getContextPath() %>/blist.th?currentPage=<%= currentPage + 1 %>';
@@ -94,12 +100,6 @@
 	});	
 	
 	</script>
-
-	<!-- TOP -->
-	<div style="height: 20px; margin-right: 2%; margin-top: 200px;">
-		<a href="#header" id="top">▲ TOP</a>
-	</div>
-
 
 	<%@ include file="../common/footer.jsp"%>
 </body>

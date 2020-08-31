@@ -30,7 +30,7 @@ public class BoardService {
 		return blist;
 	}
 
-	public Board selectOne(int bno) {
+	public Board selecrOne(int bno) {
 		Connection con = getConnection();
 		
 		Board b = bDao.selectOne(con,bno);
@@ -47,7 +47,20 @@ public class BoardService {
 		}else {
 			rollback(con);
 		}
+		close(con);
+		return result;
+	}
+
+	public int insertBoard(Board b) {
+		Connection con = getConnection();
+		int result =bDao.insertBoard(con,b);
 		
+		if(result>0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
 		return result;
 	}
 

@@ -72,7 +72,7 @@
 			<script>
 			// 페이징 처리 시작
 				// location.href 주소 안의 /servlet.link? 주소만 바꿔서 사용
-				<% int p = startPage; %>
+				
 				
 				$('#stp').click(function(){
 					location.href='<%= request.getContextPath() %>/cList.ch?currentPage=1';
@@ -81,7 +81,9 @@
 					location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= currentPage - 1 %>';
 				});
 				$('#chp').click(function(){
-					location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= p %>';
+					var btn =document.getElementById("chp").innerHTML;
+					
+					location.href='<%= request.getContextPath() %>/cList.ch?currentPage='+btn;
 				});
 				$('#nxp').click(function(){
 					location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= currentPage + 1 %>';

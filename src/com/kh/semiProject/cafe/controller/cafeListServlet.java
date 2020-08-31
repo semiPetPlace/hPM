@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semiProject.cafe.model.service.CafeService;
 import com.kh.semiProject.cafe.model.vo.Cafe;
-import com.kh.semiProject.cafe.model.vo.PageInfo;
+import com.kh.semiProject.common.PageInfo;
 
 /**
  * Servlet implementation class cafeListServlet
