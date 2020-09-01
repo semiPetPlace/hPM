@@ -60,7 +60,7 @@
                             </ul>
                         </li>
                         <li class="navi_set">
-                            <a href="<%= request.getContextPath() %>/views/restaurant/restaurant_main.jsp" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/petplace.png" alt="petplace"></a>
+                            <a href="<%= request.getContextPath() %>/rList.ch" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/petplace.png" alt="petplace"></a>
                             <ul class="subnav">
                                 <li><a href="<%= request.getContextPath() %>/rList.ch"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_restaurant.png" alt="반려견 동반 레스토랑"></a></li>
                                 <li><a href="<%= request.getContextPath() %>/cList.ch"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_cafe.png" alt="반려견 동반 카페"></a></li>
