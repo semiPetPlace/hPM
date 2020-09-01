@@ -34,7 +34,7 @@
 				<%
 					} else {
 				%>
-				<a href="/semi/views/login/login.jsp"> <%=m.getMuserName()%>
+				<a> <%=m.getMuserName()%>
 				</a> <a href="/semi/views/mypage/mypage-basic.jsp">마이페이지</a> <a href="#"
 					onclick='logout()'>로그아웃</a>
 				<%
