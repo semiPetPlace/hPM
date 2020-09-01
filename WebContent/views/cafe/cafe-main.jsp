@@ -50,8 +50,11 @@
             <!-- 카페/레스토랑 리스트 -->
             <div id="cafeList">
                 <table>
-                   <tr> 
-                    <% for(Cafe cm : list){ %>
+                <%! int cnt = 1; %>
+                    <% for(Cafe cm : list) { %>
+                	<% if(cnt % 3 == 1) { %>
+                    <tr>
+                    <% } %>
                         <td>
                         <input type="hidden" value="<%= cm.getCno() %>"/>
                             <div class="cafeList-list">
@@ -63,8 +66,12 @@
                                 <p class="score">★ 평점 <%= cm.getCscore() %></p>
                             </div>
                         </td>
-                        <% } %>
-                  	 </tr> 
+								                       	
+                  	 <% if(cnt % 3 == 0) { %>
+                    </tr>
+                    <% } %>
+                    <% cnt++; %>
+                    <% } %>
                 </table>
             </div>
             <!-- 카페/레스토랑 리스트 끝 -->
