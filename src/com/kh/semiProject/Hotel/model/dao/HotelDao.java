@@ -120,7 +120,6 @@ public class HotelDao {
 			while(rset.next()) {
 				HotelRoom hr = new HotelRoom();
 				hr.setHno(rset.getInt("hr_hotelnumber"));
-				hr.setHname(rset.getString("hr_hotelname"));
 				hr.setRname(rset.getString("hr_roomname"));
 				hr.setRprice(rset.getInt("hr_price"));
 				hr.setRcheckin(rset.getString("hr_price"));
@@ -128,7 +127,7 @@ public class HotelDao {
 				hr.setRimg(rset.getString("hr_img"));
 				hr.setRtub(rset.getString("hr_convenience_tub"));
 				hr.setRbreakfast(rset.getString("hr_breakfast"));
-				hr.setRbadtype(rset.getString("hr_badtype"));
+				hr.setRbadtype(rset.getString("HR_BEDTYPE"));
 				hr.setRsize(rset.getString("hr_roomsize"));
 				hr.setRview(rset.getString("hr_view"));
 				hr.setRstatus(rset.getString("hr_status"));
@@ -251,7 +250,6 @@ public class HotelDao {
 				hr = new HotelRoom();
 				
 				hr.setHno(rset.getInt("hr_hotelnumber"));
-				hr.setHname(rset.getString("hr_hotelname"));
 				hr.setRname(rset.getString("hr_roomname"));
 				hr.setRprice(rset.getInt("hr_price"));
 				hr.setRcheckin(rset.getString("hr_checkin"));
@@ -259,7 +257,7 @@ public class HotelDao {
 				hr.setRimg(rset.getString("hr_img"));
 				hr.setRtub(rset.getString("hr_convenience_tub"));
 				hr.setRbreakfast(rset.getString("hr_breakfast"));
-				hr.setRbadtype(rset.getString("hr_badtype"));
+				hr.setRbadtype(rset.getString("hr_bedtype"));
 				hr.setRsize(rset.getString("hr_roomsize"));
 				hr.setRview(rset.getString("hr_view"));
 				hr.setRstatus(rset.getString("hr_status"));
@@ -275,5 +273,44 @@ public class HotelDao {
 		return hr;
 	}
 
+	public ArrayList<Hotel> searchHotels(Connection con, String in, String out, String area) {
+		
+		
+		ArrayList<Hotel> hlist = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("searchHotels");
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, in);
+			pstmt.setString(2, out);
+			pstmt.setString(3, area);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Hotel h = new Hotel();
+				
+				h.sethNo(rset.getInt("h_no"));
+				h.sethName(rset.getString("h_Name"));
+				h.sethPrice(rset.getInt("h_Price"));
+				h.sethGrade(rset.getInt("h_Grade"));
+				h.sethScore(rset.getInt("h_Score"));
+				h.sethImg(rset.getString("h_Img"));
+				h.sethAddress(rset.getString("h_Address"));
+				h.sethPromotion(rset.getString("h_Promotion"));
+				
+				hlist.add(h);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return hlist;
+	}
 
 }

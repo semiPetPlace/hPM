@@ -41,7 +41,7 @@
                 
             </div>
             <div id="foot2" >
-                <div style="float: left; width: 150px; height: 80px; margin-left:30px"><img src="/semi/views/resources/images/logo.png" width="80%"></div>
+                <div style="float: left; width: 150px; height: 80px; margin-left:30px"><img src="/semi/resources/images/logo.png" width="80%"></div>
                 <ul id="payment" style="float: right;">
                     <li><img class="paymentIcon" src="/semi/resources/images/icons/picon1.png" alt="Payment Icons"></li>
                     <li><img class="paymentIcon" src="/semi/resources/images/icons/picon2.png" alt="Payment Icons"></li>
