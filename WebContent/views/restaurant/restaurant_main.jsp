@@ -80,21 +80,21 @@
 				// location.href 주소 안의 /servlet.link? 주소만 바꿔서 사용
 						
 				$('#stp').click(function(){
-					location.href='<%= request.getContextPath() %>/cList.ch?currentPage=1';
+					location.href='<%= request.getContextPath() %>/rList.ch?currentPage=1';
 				});
 				$('#bkp').click(function(){
-					location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= currentPage - 1 %>';
+					location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= currentPage - 1 %>';
 				});
 				$('#chp').click(function(){
 					var btn =document.getElementById("chp").innerHTML;
 					
-					location.href='<%= request.getContextPath() %>/cList.ch?currentPage='+btn;
+					location.href='<%= request.getContextPath() %>/rList.ch?currentPage='+btn;
 				});
 				$('#nxp').click(function(){
-					location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= currentPage + 1 %>';
+					location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= currentPage + 1 %>';
 				});
 				$('#mxp').click(function(){
-					location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= maxPage %>';
+					location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= maxPage %>';
 				});	
 			// 페이징 처리 끝
 			

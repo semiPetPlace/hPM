@@ -37,7 +37,7 @@ public class restaurantDetailViewServlet extends HttpServlet {
 		String page = "";
 		
 		if(r != null) {
-			page = "views/cafe/restaurant_detailpage.jsp";
+			page = "views/restaurant/restaurant_detailpage.jsp";
 			request.setAttribute("restaurant", r);
 		}else {
 			page = "views/common/errorPage.jsp";

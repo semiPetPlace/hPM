@@ -52,7 +52,7 @@ public class RestaurantDao {
 			close(rset);
 			close(stmt);
 		}
-
+		System.out.println(listCount);
 		return listCount;
 	}
 

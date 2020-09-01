@@ -115,17 +115,17 @@ public class CafeDao {
 			
 			if(rset.next()) {
 				c = new Cafe();
-//				c.setCrimage(rset.getString("C_RIMAGE"));
+				c.setCrimage(rset.getString("C_R_IMAGE"));
 				c.setCimage(rset.getString("C_IMAGE"));
 				c.setCname(rset.getString("C_NAME"));
 				c.setCtel(rset.getString("C_TEL"));
 				c.setCtime(rset.getString("C_TIME"));
 				c.setCscore(rset.getDouble("C_SCORE"));
 				c.setCaddress(rset.getString("C_ADDRESS"));
-//				c.setCdogCompInfo(rset.getString("C_DOGCOMPINFO"));
+				c.setCdogCompInfo(rset.getString("C_DOG_COMPINFO"));
 				c.setCpromotion(rset.getString("C_PROMOTION"));
 				c.setCreview(rset.getString("C_REVIEW"));
-				c.setCrequest(rset.getString("C_REQUESTS"));
+				c.setCrequest(rset.getString("C_REQUEST"));
 				c.setCregisterDate(rset.getDate("C_REGISTERDATE"));
 				c.setCregistration(rset.getString("C_REGISTRATION"));
 			}
