@@ -9,9 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.PageInfo;
 import com.kh.semiProject.cafe.model.service.CafeService;
 import com.kh.semiProject.cafe.model.vo.Cafe;
-import com.kh.semiProject.common.PageInfo;
+
 
 /**
  * Servlet implementation class cafeListServlet

@@ -1,4 +1,4 @@
-package com.kh.semiProject.common;
+package com.kh.common;
 
 import java.io.Serializable;
 

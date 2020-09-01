@@ -70,4 +70,13 @@ public class HotelService {
 		return hr;
 	}
 
+	public ArrayList<Hotel> searchHotels(String in, String out, String area) {
+		Connection con = getConnection();
+		
+		ArrayList<Hotel> hlist = hDao.searchHotels(con,in,out,area);
+		
+		close(con);
+		return hlist;
+	}
+
 }

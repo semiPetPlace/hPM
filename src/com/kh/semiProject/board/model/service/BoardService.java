@@ -47,7 +47,20 @@ public class BoardService {
 		}else {
 			rollback(con);
 		}
+		close(con);
+		return result;
+	}
+
+	public int insertBoard(Board b) {
+		Connection con = getConnection();
+		int result =bDao.insertBoard(con,b);
 		
+		if(result>0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
 		return result;
 	}
 

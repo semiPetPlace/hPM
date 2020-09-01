@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.kh.semiProject.member.model.vo.*"%>
     
-
+<%
+	Member m = (Member) session.getAttribute("member");
+%>
 
 
 <!DOCTYPE html>
@@ -18,16 +20,26 @@
 	<header id="header">        
             <div class="H_menu_top">
                 <div class="wrapper">
-                	<%-- <% if(m = null) { %>
-                		<a href="<%= request.getContextPath() %>/views/login/login.jsp">로그인</a>
-                        <a href="<%= request.getContextPath() %>/views/mypage/mypage-basic.jsp">회원가입</a>
-                	<%}else if(m.userId == "admin"){ %>
-                	 	<a href="<%= request.getContextPath() %>/views/login/login.jsp">*관리자*</a>
-                    	<a href="<%= request.getContextPath() %>/views/mypage/mypage-basic.jsp">관리자페이지</a>
-                	<%} else{%>
-                		<a href="<%= request.getContextPath() %>/views/login/login.jsp"><%m.userId %></a>
-                    	<a href="<%= request.getContextPath() %>/views/mypage/mypage-basic.jsp">마이페이지</a>
-                    <%} %> --%>
+       				<%
+					if (m == null) {
+				%>
+				<a href="/semi/views/login/login.jsp">로그인</a> <a
+					href="/semi/views/mypage/mypage-basic.jsp">회원가입</a>
+
+				<%
+					} else if (m.getMuserId() == "admin") {
+				%>
+				<a>*관리자*</a> <a href="/semi/views/mypage/mypage-basic.jsp">관리자페이지</a>
+				<a href="#" onclick='logout()'>로그아웃</a>
+				<%
+					} else {
+				%>
+				<a href="/semi/views/login/login.jsp"> <%=m.getMuserName()%>
+				</a> <a href="/semi/views/mypage/mypage-basic.jsp">마이페이지</a> <a href="#"
+					onclick='logout()'>로그아웃</a>
+				<%
+					}
+				%>
                     
                 </div>
             </div>
@@ -50,14 +62,14 @@
                         <li class="navi_set">
                             <a href="<%= request.getContextPath() %>/views/restaurant/restaurant_main.jsp" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/petplace.png" alt="petplace"></a>
                             <ul class="subnav">
-                                <li><a href="<%= request.getContextPath() %>/views/restaurant/restaurant_main.jsp"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_restaurant.png" alt="반려견 동반 레스토랑"></a></li>
+                                <li><a href="<%= request.getContextPath() %>/rList.ch"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_restaurant.png" alt="반려견 동반 레스토랑"></a></li>
                                 <li><a href="<%= request.getContextPath() %>/cList.ch"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_cafe.png" alt="반려견 동반 카페"></a></li>
                             </ul>
                         </li>
                         <li class="navi_set">
                             <a href="<%= request.getContextPath() %>/blist.th" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/community.png" alt="community"></a>
                             <ul class="subnav">
-                                <li><a href="<%= request.getContextPath() %>/views/main/freeboard_list.jsp"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_lab.png" alt="반려견 연구소"></a></li>
+                                <li><a href="<%= request.getContextPath() %>/blist.th"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_lab.png" alt="반려견 연구소"></a></li>
                                 <li><a href="<%= request.getContextPath() %>/views/review/review_list.jsp"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_review.png" alt="플레이스 리뷰"></a></li>
                             </ul>
                         </li>
@@ -73,6 +85,10 @@
                 </div>
             </div>   
         </header>
-
+	<script>
+		function logout() {
+			location.href = "<%=request.getContextPath()%>/logout.th";
+		}
+	</script>
 </body>
 </html>

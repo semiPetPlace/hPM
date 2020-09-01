@@ -1,8 +1,11 @@
-<%@page import="oracle.net.aso.h"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, com.kh.semiProject.Hotel.model.vo.*" %>
 <% ArrayList<Hotel> hlist = (ArrayList<Hotel>)request.getAttribute("hlist");  %>
+<% String Cin = (String)request.getAttribute("Cin"); %>
+<% String Cout = (String)request.getAttribute("Cout"); %>
+<% String area = (String)request.getAttribute("area"); %>
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -15,10 +18,60 @@
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src ="/semi/resources/js/script.js"></script>
         
-        
+       
     </head>
+<style>
+#search-box{
+    /* width: 70%; */
+    min-width: fit-content;
+    text-align: center;
+    margin-left: auto;
+    margin-bottom: 10px;
+    display: flex;
+/* 검색 버튼 */
+.button-5{
+    width:100px;
+    height:30px;
+    border:2px solid #f9c550;
+    float:right;
+    text-align:center;
+    cursor:pointer;
+    position:relative;
+    box-sizing: border-box;
+    overflow:hidden;
+    margin: 0px 90px 40px -300px;
+    border-radius: 15px;
+}
 
-    </style>
+
+
+.button-5:hover .eff-5{
+    left:0;top:0;
+}
+
+.button-5:hover a{
+    color:#fff;
+}
+
+
+/* 검색창 select태그 */
+select{
+    -moz-appearance: none; /* Firefox */  
+    -webkit-appearance: none; /* Safari and Chrome */  
+    appearance: none; 
+    text-align: center;
+    padding: 5px 20px 0px 0px;
+    border: 1px solid #c1c1c1;
+    border-radius: 3px;
+    margin-left: 140px;
+
+    font-size: 1.4rem;
+    width: 200px;
+    text-align: center;
+    margin-left: 0px;
+    border: none;
+}
+</style>
     <body>
         <%@ include file="../common/header.jsp" %>
 
@@ -29,29 +82,42 @@
                 <img src="/semi/resources/images/icons/hotel-main.png" alt="">
             </div>
             <!-- 메인 이미지 끝 -->
-            <!-- 검색창 부분 -->
-            <div id="searchbar">
-                <div id="search-box">
-                    <select name="지역" id="">
-                        <option value="x" class="nonselect">지역</option>
-                        <option value="">서울</option>
-                        <option value="">경기</option>
-                        <option value="">인천</option>
-                        <option value="">대구</option>
-                        <option value="">부산</option>
-                        <option value="">제주</option>
-                    </select>
-                    <select name="반려견사이즈" id="">
-                        <option value="반려견사이즈" class="nonselect">반려견사이즈</option> 
-                        <option value="소형견">소형견</option> 
-                        <option value="중형견">중형견</option> 
-                        <option value="대형견">대형견</option> 
-                    </select>
-                    <input type="text" placeholder="동반 카페명"></input>
-                    <button type="button" class="btn_search">검색</button>
-                </div>
-            </div>
-            <!-- 검색창 부분 끝 -->
+           <form id="searchform" method="post">
+				<div id="search-box">
+						<input type="date" class="check" name="checkin" id="checkin"
+							style="font-size: 1.4rem; width: 180px; border: none; margin-right: 20px;">
+							<% String checkin = request.getParameter("checkin");%>
+								console.log(checkin);
+						<input type="date" class="check" name="checkout" id="checkout"
+							style="font-size: 1.4rem; width: 180px; margin-right: 95px; border: none; ">
+					<select name="area" id="area"
+						style="font-size: 1.4rem; width: 180px; text-align: center; margin-right: 50px; border: none;">
+						<option value="x" class="nonselect">지역</option>
+						<option value="서울">서울</option>
+						<option value="경기">경기</option>
+						<option value="인천">인천</option>
+						<option value="대구">대구</option>
+						<option value="부산">부산</option>
+						<option value="제주">제주</option>
+					</select>
+
+					<!-- 검색 버튼 -->
+					<button value="검색" style="border:none ; width: 100px;height: 50%; border-radius: 10px; 
+							background: #f9c550;margin: auto;margin-right: 30px; font-size:14px;color: white;" id="searchBtn">검색</button>
+				</div>
+			</form>
+			<script>
+				$(function(){
+					$('#searchBtn').click(function(){
+
+						$('#searchform').attr('action','/semi/hotelsearch.ys?checkin='+$('#checkin').val()+'&checkout='+$('#checkout').val()+'&area='+$('#area').val()).submit();
+
+					});
+				});
+			</script>
+			
+			
+			<!-- 검색창 부분 끝 -->
             <div style="height: 3000">
                 <!------------ 왼쪽 필터 ------------>
                 <div id="left-filter">
@@ -103,9 +169,10 @@
                         <table id="hlist">
                            <% for(Hotel h : hlist){ %>
                             <tr>
-                                <td> 
-                                	<a href="<%=request.getContextPath() %>/hotelDetail.ys?h_no=<%= h.gethNo() %> ">
-	                                    <div>
+                                <td style="padding-bottom: 20px;"> 
+                                <input type="hidden" value="<%=h.gethNo()%>" id="ch1">
+          							<a  id="nextpage" href="<%=request.getContextPath() %>/hotelDetail.ys?h_no=<%= h.gethNo() %>">
+	                                    <div >
 	                                        <div class="hotelimg"><img src="<%=h.gethImg() %>" alt=""></div>
 	                                        <div class="hotelinfo">
 	                                            <strong><%= h.gethName() %></strong>
@@ -136,31 +203,15 @@
 
          <%@ include file = "../common/footer.jsp" %>
          
-         <!-- <script>
-	         $(document).ready(function(){
-	        	 	$(".filter").checked(function() {
-	                 
-	                 //ajax 호출
-	                 $.ajax({
-	                     url         :   "/semi/hotelfilter.ys",
-	                     dataType    :   "json",
-	                     contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
-	                     type        :   "get",
-	                     data        :   no : this.val()
-	                     success     :   function(data){
-	  
-
-	                          
-	                     },
-	                     error       :   function(request, status, error){
-	                         console.log("AJAX_ERROR");
-	                     }
-	                 });
-	                 
-	             })
-	             
-	         });
+         
+        <!--  <script>
+         	$('.filter').checked(function(){
+         		$.ajax({
+         			url:
+         		})
+         	})
          </script> -->
+         
          
     </body>
 </html>

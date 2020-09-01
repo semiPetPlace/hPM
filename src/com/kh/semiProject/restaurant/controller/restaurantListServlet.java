@@ -9,10 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.PageInfo;
 import com.kh.semiProject.restaurant.model.service.RestaurantService;
 import com.kh.semiProject.restaurant.model.vo.Restaurant;
-
-import com.kh.semiProject.common.PageInfo;
 
 /**
  * Servlet implementation class restaurantListServlet

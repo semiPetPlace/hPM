@@ -9,9 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.PageInfo;
 import com.kh.semiProject.board.model.service.BoardService;
 import com.kh.semiProject.board.model.vo.Board;
-import com.kh.semiProject.board.model.vo.PageInfo;
+
 
 /**
  * Servlet implementation class BoardListServlet
@@ -62,7 +63,6 @@ public class BoardListServlet extends HttpServlet {
 		if(blist != null) {
 			page="views/main/freeboard_list.jsp";
 			request.setAttribute("blist", blist);
-			endPage = startPage+limit-1;
 			PageInfo pi = new PageInfo(currentPage,listCount,limit,maxPage,startPage,endPage);
 			request.setAttribute("pi", pi);
 			

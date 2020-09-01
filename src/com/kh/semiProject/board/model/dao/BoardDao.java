@@ -135,4 +135,24 @@ public class BoardDao {
 		}
 		return result;
 	}
+
+	public int insertBoard(Connection con, Board b) {
+		int result =0;
+		PreparedStatement pstmt =null;
+		String sql = prop.getProperty("insertBoard");
+		String Image = "resources/images/"+b.getbImg();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, b.getbTitle());
+			pstmt.setString(2, b.getbContent());
+			pstmt.setString(3, b.getbWriter());
+			pstmt.setString(4, Image);
+			result = pstmt.executeUpdate();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }
