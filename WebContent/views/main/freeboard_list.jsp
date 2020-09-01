@@ -1,9 +1,15 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.kh.semiProject.board.model.vo.*"%>
+<%@ page import="com.kh.semiProject.board.model.vo.*, com.kh.common.PageInfo"%>
 <%
 	ArrayList<Board> blist = (ArrayList<Board>) request.getAttribute("blist");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -17,6 +23,7 @@
 	href="<%=request.getContextPath()%>/resources/css/mainpage.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/freeboard_list.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/pagination.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/script.js"></script>
 
@@ -70,8 +77,34 @@
 		</table>
 	</div>
 	<div id="post_num" style="width:400px">
-	<%@ include file="../common/pagination.jsp"%>
 	</div>
+	
+	    <!-- 페이징 처리 시작 -->
+		<div class="list_number" align="center">
+		<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=1'">◀◀</button>
+		<%  if(currentPage <= 1) {  %>
+		<button disabled>◀</button>
+		<%  }else { %>
+		<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= currentPage - 1 %>'">◀</button>
+		<%  } %>
+		
+		<% for(int p = startPage; p <= endPage; p++) {
+				if(p == currentPage) {	
+		%>
+			<button disabled style="border: 1px solid #ffb600; color: #ffb600;"><%= p %></button>
+		<%      }else { %>
+			<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= p %>'"><%= p %></button>
+		<%      } %>
+		<% } %>
+			
+		<%  if(currentPage >= maxPage) {  %>
+		<button disabled>▶</button>
+		<%  }else { %>
+		<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= currentPage + 1 %>'">▶</button>
+		<%  } %>
+		<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= maxPage %>'">▶▶</button>
+		</div>
+		<!-- 페이징 처리 끝 -->
 	</main>
 
 	<!-- TOP -->
@@ -81,24 +114,6 @@
 	
 	<script>
 
-	$('#stp').click(function(){
-		location.href='<%= request.getContextPath() %>/blist.th?currentPage=1';
-	});
-	$('#bkp').click(function(){
-		location.href='<%= request.getContextPath() %>/blist.th?currentPage=<%= currentPage - 1 %>';
-	});
-	$('#chp').click(function(){
-		var btn =document.getElementById("chp").innerHTML;
-		
-		location.href='<%= request.getContextPath() %>/blist.th?currentPage='+btn;
-	});
-	$('#nxp').click(function(){
-		location.href='<%= request.getContextPath() %>/blist.th?currentPage=<%= currentPage + 1 %>';
-	});
-	$('#mxp').click(function(){
-		location.href='<%= request.getContextPath() %>/blist.th?currentPage=<%= maxPage %>';
-	});	
-	
 	</script>
 
 	<%@ include file="../common/footer.jsp"%>
