@@ -76,51 +76,9 @@
 
 
 
-#userNo{
-    width: 40px;
-} 
-#userName{
-    width: 60px;
-}
-#reserCount{
-    width: 40px;
-}
-#cancelCount{
-    width: 40px;
-}
-#totalPay{
-
-}
-#avgPay{
-
-}
-#reserByY{
-    width: 40px;
-}
-#joinDate{
-
-}
-#status{
-
-}
 
 
-/* -------------------- FOOTER -------------------- */
 
-/* payment */
-#footer {
-    width: 100%;
-    height: fit-content;
-}
-
-#foot {
-    min-width: 960px;
-    border-top: 1px solid gray;
-    height: 80px;
-    width: 96%;
-    padding-top: 10px;
-    text-align: center;
-}
 
 .detailedTable{
     /* border: 1px solid black; */
@@ -164,24 +122,44 @@
     width: 1200px;
 }
 .listTitle{
-    line-height: normal;
     width: 80px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 300;
-   /* border: 1px solid black; */
-   border-bottom: 2px solid black;
+   /* border: 2px solid black; */
     text-align: center;
 }
 
 .listCal>td{
     height: 20px;
-    font-size: 13px;
+    font-size: 12px;
+    /* background: rgb(207, 217, 236); */
     text-align: center;
     /* border-right: 1px solid black; */
     /* border-bottom: 1px solid black; */
     vertical-align: bottom;
 }
-th{
-    /* background: rgb(207, 217, 236); */
-    border: none;
+
+#hNum{
+    width: 30px;
+}
+#hName{
+    width:40px ;
+}
+#hLocation{
+    width:60px ;
+}
+#dailySales{
+    width:50px ;
+}
+#dailyAvg{
+    width:50px ;
+}
+#montlySales{
+    width:50px ;
+}
+#yearthSales{
+    width: 50px;
+}
+#enrollDate{
+    width: 60px;
 }
