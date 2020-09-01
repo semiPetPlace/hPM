@@ -2,11 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, com.kh.semiProject.Hotel.model.vo.*"%>
 <%@ page import="com.kh.semiProject.cafe.model.vo.*"%>
-<%-- <%@ page import="com.kh.semiProject.restaurant.model.vo.*"%> --%>
+<%@ page import="com.kh.semiProject.restaurant.model.vo.*"%>
 <%
 	ArrayList<Hotel> hlist = (ArrayList<Hotel>) request.getAttribute("hlist");
 	ArrayList<Cafe> clist = (ArrayList<Cafe>) request.getAttribute("clist");
-	//ArrayList<Restaurant> rlist = (ArrayList<Restaurant>) request.getAttribute("rlist");
+	ArrayList<Restaurant> rlist = (ArrayList<Restaurant>) request.getAttribute("rlist");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -47,256 +47,255 @@
 	<!-- 여기에 메인 컨텐츠 넣으면 됩니다. -->
 
 	<main id="H_main">
-		<div id="main-wrapper">
-			<div id="main-image">
-				<img src="<%=request.getContextPath()%>/resources/images/main.png"
-					alt="main-background" width="100%;"
-					style="max-height: initial; min-width: 1900px;">
-			</div>
+	<div id="main-wrapper">
+		<div id="main-image">
+			<img src="<%=request.getContextPath()%>/resources/images/main.png"
+				alt="main-background" width="100%;"
+				style="max-height: initial; min-width: 1900px;">
+		</div>
 
-			<div class="wrapper2">
-				<!-- 검색창 부분 -->
-				<div id="search-box">
-					<select name="플레이스" id=""
-						style="font-size: 1.4rem; width: 200px; text-align: center; margin-right: 90px; margin-left: 70px; border: none;">
-						<option value="place" class="nonselect">플레이스 선택</option>
-						<option value="hotel">반려견 동반 호텔</option>
-						<option value="patHotel">반려견 위탁 호텔</option>
-						<option value="cafe">반려견 카페</option>
-						<option value="restaurant">반려견 레스토랑</option>
-					</select> <input type="date" class="check" name="체크인"
-						style="font-size: 1.4rem; width: 180px; border: none;"> <input
-						type="date" class="check" name="체크아웃"
-						style="font-size: 1.4rem; width: 180px; margin-right: 95px; border: none;">
-					<select name="지역" id=""
-						style="font-size: 1.4rem; width: 180px; text-align: center; margin-right: 150px; border: none;">
-						<option value="x" class="nonselect">지역</option>
-						<option value="seoul">서울</option>
-						<option value="gyeonggi">경기</option>
-						<option value="incheon">인천</option>
-						<option value="daegu">대구</option>
-						<option value="busan">부산</option>
-						<option value="jeju">제주</option>
-					</select>
+		<div class="wrapper2">
+			<!-- 검색창 부분 -->
+			<div id="search-box">
+				<select name="플레이스" id=""
+					style="font-size: 1.4rem; width: 200px; text-align: center; margin-right: 90px; margin-left: 70px; border: none;">
+					<option value="place" class="nonselect">플레이스 선택</option>
+					<option value="hotel">반려견 동반 호텔</option>
+					<option value="patHotel">반려견 위탁 호텔</option>
+					<option value="cafe">반려견 카페</option>
+					<option value="restaurant">반려견 레스토랑</option>
+				</select> <input type="date" class="check" name="체크인"
+					style="font-size: 1.4rem; width: 180px; border: none;"> <input
+					type="date" class="check" name="체크아웃"
+					style="font-size: 1.4rem; width: 180px; margin-right: 95px; border: none;">
+				<select name="지역" id=""
+					style="font-size: 1.4rem; width: 180px; text-align: center; margin-right: 150px; border: none;">
+					<option value="x" class="nonselect">지역</option>
+					<option value="seoul">서울</option>
+					<option value="gyeonggi">경기</option>
+					<option value="incheon">인천</option>
+					<option value="daegu">대구</option>
+					<option value="busan">부산</option>
+					<option value="jeju">제주</option>
+				</select>
 
-					<!-- 검색 버튼 -->
-					<div class="button-5" >
-						<div class="eff-5"></div>
-						<a href="#" onclick="searching();">검색</a>
-					</div>
+				<!-- 검색 버튼 -->
+				<div class="button-5">
+					<div class="eff-5"></div>
+					<a href="#" onclick="searching();">검색</a>
 				</div>
-				<!-- 검색창 부분 끝 -->
+			</div>
+			<!-- 검색창 부분 끝 -->
 
-				<!-- 이미지 슬라이드 -->
-				<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-					integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-					crossorigin="anonymous"></script>
-				<script
-					src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-					integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-					crossorigin="anonymous"></script>
-				<script
-					src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-					integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-					crossorigin="anonymous"></script>
-				<div class="slide-block">
-					<div id="carouselExampleCaptions" class="carousel slide"
-						data-ride="carousel">
-						<ol class="carousel-indicators">
-							<li data-target="#carouselExampleCaptions" data-slide-to="0"
-								class="active"></li>
-							<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-							<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-						</ol>
-						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<img
-									src="<%=request.getContextPath()%>/resources/images/test/test1.png"
-									class="d-block w-100" alt="...">
-								<div class="carousel-caption d-none d-md-block">
-									<h5></h5>
-									<p></p>
-								</div>
-							</div>
-							<div class="carousel-item">
-								<img
-									src="<%=request.getContextPath()%>/resources/images/test/test2.png"
-									class="d-block w-100" alt="...">
-								<div class="carousel-caption d-none d-md-block">
-									<h5></h5>
-									<p></p>
-								</div>
-							</div>
-							<div class="carousel-item">
-								<img
-									src="<%=request.getContextPath()%>/resources/images/test/test3.png"
-									class="d-block w-100" alt="...">
-								<div class="carousel-caption d-none d-md-block">
-									<h5></h5>
-									<p></p>
-								</div>
+			<!-- 이미지 슬라이드 -->
+			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+				integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+				crossorigin="anonymous"></script>
+			<script
+				src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+				integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+				crossorigin="anonymous"></script>
+			<script
+				src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+				integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+				crossorigin="anonymous"></script>
+			<div class="slide-block">
+				<div id="carouselExampleCaptions" class="carousel slide"
+					data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#carouselExampleCaptions" data-slide-to="0"
+							class="active"></li>
+						<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+						<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+					</ol>
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img
+								src="<%=request.getContextPath()%>/resources/images/test/test1.png"
+								class="d-block w-100" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h5></h5>
+								<p></p>
 							</div>
 						</div>
-						<a class="carousel-control-prev" href="#carouselExampleCaptions"
-							role="button" data-slide="prev"> <span
-							class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-							class="sr-only">Previous</span>
-						</a> <a class="carousel-control-next" href="#carouselExampleCaptions"
-							role="button" data-slide="next"> <span
-							class="carousel-control-next-icon" aria-hidden="true"></span> <span
-							class="sr-only">Next</span>
-						</a>
+						<div class="carousel-item">
+							<img
+								src="<%=request.getContextPath()%>/resources/images/test/test2.png"
+								class="d-block w-100" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h5></h5>
+								<p></p>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<img
+								src="<%=request.getContextPath()%>/resources/images/test/test3.png"
+								class="d-block w-100" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h5></h5>
+								<p></p>
+							</div>
+						</div>
 					</div>
-
+					<a class="carousel-control-prev" href="#carouselExampleCaptions"
+						role="button" data-slide="prev"> <span
+						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+						class="sr-only">Previous</span>
+					</a> <a class="carousel-control-next" href="#carouselExampleCaptions"
+						role="button" data-slide="next"> <span
+						class="carousel-control-next-icon" aria-hidden="true"></span> <span
+						class="sr-only">Next</span>
+					</a>
 				</div>
 
-				<!-- 이미지 슬라이드 끝 -->
+			</div>
 
-				<!-- 위탁 호텔 리스트 -->
-				<div id="placelist">
-					<h2 class="listname">
-						<a href="views/hotelmain.jsp"><img
-							src="resources/images/icons/consignment_hotel.png"
-							alt="반려견 위탁 호텔"></a>
-					</h2>
-				</div>
-				<table>
-					<tr>
-						<%
-							int num = 0;
+			<!-- 이미지 슬라이드 끝 -->
+
+			<!-- 위탁 호텔 리스트 -->
+			<div id="placelist">
+				<h2 class="listname">
+					<a href="views/hotelmain.jsp"><img
+						src="resources/images/icons/consignment_hotel.png" alt="반려견 위탁 호텔"></a>
+				</h2>
+			</div>
+			<table>
+				<tr>
+					<%
+						int num = 0;
 						for (Hotel h : hlist) {
 							if (num == 4) {
 								num = 0;
 								break;
 							}
-						%>
-						<td>
-							<div id="con_hotelList" style="float: none;">
-								<a href="views/pethotel/pet_hotel_detail.jsp">
-									<div class="con_hotelList-list">
-										<img src="<%=h.gethImg()%>" alt="con_hotel1">
-										<h4 style="margin-bottom: 0;"><%=h.gethName()%></h4>
-										<p class="infoText"><%=h.gethPromotion()%></p>
-										<p class="price"><%=h.gethPrice()%>/1박
-										</p>
-									</div>
-								</a>
-							</div>
-						</td>
-						<%
-							num++;
+					%>
+					<td>
+						<div id="con_hotelList" style="float: none;">
+							<a href="views/pethotel/pet_hotel_detail.jsp">
+								<div class="con_hotelList-list">
+									<img src="<%=h.gethImg()%>" alt="con_hotel1">
+									<h4 style="margin-bottom: 0;"><%=h.gethName()%></h4>
+									<p class="infoText"><%=h.gethPromotion()%></p>
+									<p class="price"><%=h.gethPrice()%>/1박
+									</p>
+								</div>
+							</a>
+						</div>
+					</td>
+					<%
+						num++;
 						}
-						%>
-					</tr>
-				</table>
-				<!-- 위탁 호텔 리스트 끝 -->
+					%>
+				</tr>
+			</table>
+			<!-- 위탁 호텔 리스트 끝 -->
 
-				<!-- 동반 호텔 리스트 -->
-				<div id="placelist">
-					<h2 class="listname">
-						<a href="views/hotelmain.jsp"><img
-							src="resources/images/icons/hotel.png" alt="반려견 동반 호텔"></a>
-					</h2>
-				</div>
-				<table>
-					<tr>
-						<td>
-							<div id="hotelList" style="float: none;">
-								<a href="views/hotel/hotel_detail.jsp">
-									<div class="hotelList-list">
-										<img src="resources/images/hotel1.jpg" alt="hotel1">
-										<h4 style="margin-bottom: 0;">hotel name</h4>
-										<p class="infoText">information of hotel</p>
-										<p class="price">₩180,000/1박</p>
-									</div>
-								</a>
-							</div>
-						</td>
-					</tr>
-				</table>
-				<!-- 동반 호텔 리스트 끝 -->
-
-				<!-- 레스토랑 리스트 -->
-				<div id="placelist">
-					<h2 class="listname">
-						<a href="views/restaurant/restaurant_main.jsp"><img
-							src="resources/images/icons/restaurant1.png" alt="반려견 동반 카페 레스토랑"></a>
-					</h2>
-				</div>
-				<table>
-					<tr>
-<%-- 						<%
-							for (Restaurant r : rlist) {
-							if (num == 4) {
-								num = 0;
-								break;
-							}
-						%>
-						<td>
-							<div id="restaurantList">
-								<a href="views/restaurant/restaurant_detailpage.jsp">
-									<div class="restaurantList-list">
-										<img src="<%=r.getrImg()%>" alt="Restaurant">
-										<h4 style="margin-bottom: 0;"><%=r.getrName()%></h4>
-										<p class="infoText"><%=r.getrPromotion()%></p>
-										<p class="price">
-											별점★<%=r.getrScore()%></p>
-									</div>
-								</a>
-							</div>
-						</td>
-						<%
-							num++;
-						}
-						%> --%>
-					</tr>
-				</table>
-				<!-- 레스토랑 리스트 끝 -->
-
-
-				<!-- 카페 리스트 -->
-				<div id="placelist">
-					<h2 class="listname">
-						<a href="views/cafe/cafe-main.jsp"><img
-							src="resources/images/icons/cafe1.png" alt="반려견 동반 카페 레스토랑"></a>
-					</h2>
-				</div>
-				<table>
-					<tr>
-						<%
-							for (Cafe c : clist) {
-							if (num == 4) {
-								num = 0;
-								break;
-							}
-						%>
-						<td>
-							<div id="cafeList">
-								<a href="views/cafe/cafe-detailpage.jsp">
-									<div class="cafeList-list">
-										<img src="<%=c.getCimage()%>" alt="cafe">
-										<h4 style="margin-bottom: 0;"><%=c.getCname()%></h4>
-										<p class="infoText"><%=c.getCpromotion()%></p>
-										<p class="price">
-											별점★
-											<%=c.getCscore()%></p>
-									</div>
-								</a>
-							</div>
-						</td>
-						<%
-							num++;
-						}
-						%>
-					</tr>
-				</table>
-				<!-- 카페 리스트 끝 -->
-
-				<!-- TOP -->
-				<div style="height: 20px;">
-					<a href="#header" id="top">▲ TOP</a>
-				</div>
+			<!-- 동반 호텔 리스트 -->
+			<div id="placelist">
+				<h2 class="listname">
+					<a href="views/hotelmain.jsp"><img
+						src="resources/images/icons/hotel.png" alt="반려견 동반 호텔"></a>
+				</h2>
 			</div>
+			<table>
+				<tr>
+					<td>
+						<div id="hotelList" style="float: none;">
+							<a href="views/hotel/hotel_detail.jsp">
+								<div class="hotelList-list">
+									<img src="resources/images/hotel1.jpg" alt="hotel1">
+									<h4 style="margin-bottom: 0;">hotel name</h4>
+									<p class="infoText">information of hotel</p>
+									<p class="price">₩180,000/1박</p>
+								</div>
+							</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<!-- 동반 호텔 리스트 끝 -->
+
+			<!-- 레스토랑 리스트 -->
+			<div id="placelist">
+				<h2 class="listname">
+					<a href="views/restaurant/restaurant_main.jsp"><img
+						src="resources/images/icons/restaurant1.png" alt="반려견 동반 카페 레스토랑"></a>
+				</h2>
+			</div>
+			<table>
+				<tr>
+					<%
+						for (Restaurant r : rlist) {
+							if (num == 4) {
+								num = 0;
+								break;
+							}
+					%>
+					<td>
+						<div id="restaurantList">
+							<a href="views/restaurant/restaurant_detailpage.jsp">
+								<div class="restaurantList-list">
+									<img src="<%=r.getRimage()%>" alt="Restaurant">
+									<h4 style="margin-bottom: 0;"><%=r.getRname()%></h4>
+									<p class="infoText"><%=r.getRpromotion()%></p>
+									<p class="price">
+										별점★<%=r.getRscore()%></p>
+								</div>
+							</a>
+						</div>
+					</td>
+					<%
+						num++;
+						}
+					%>
+				</tr>
+			</table>
+			<!-- 레스토랑 리스트 끝 -->
+
+
+			<!-- 카페 리스트 -->
+			<div id="placelist">
+				<h2 class="listname">
+					<a href="views/cafe/cafe-main.jsp"><img
+						src="resources/images/icons/cafe1.png" alt="반려견 동반 카페 레스토랑"></a>
+				</h2>
+			</div>
+			<table>
+				<tr>
+					<%
+						for (Cafe c : clist) {
+							if (num == 4) {
+								num = 0;
+								break;
+							}
+					%>
+					<td>
+						<div id="cafeList">
+							<a href="views/cafe/cafe-detailpage.jsp">
+								<div class="cafeList-list">
+									<img src="<%=c.getCimage()%>" alt="cafe">
+									<h4 style="margin-bottom: 0;"><%=c.getCname()%></h4>
+									<p class="infoText"><%=c.getCpromotion()%></p>
+									<p class="price">
+										별점★
+										<%=c.getCscore()%></p>
+								</div>
+							</a>
+						</div>
+					</td>
+					<%
+						num++;
+						}
+					%>
+				</tr>
+			</table>
+			<!-- 카페 리스트 끝 -->
+
+			<!-- TOP -->
+			<div style="height: 20px;">
+				<a href="#header" id="top">▲ TOP</a>
+			</div>
+		</div>
 	</main>
 
 	<script>

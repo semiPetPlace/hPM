@@ -1,5 +1,8 @@
 package com.kh.semiProject.main.model.service;
 
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.getConnection;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -7,8 +10,7 @@ import com.kh.semiProject.Hotel.model.vo.Hotel;
 import com.kh.semiProject.cafe.model.vo.Cafe;
 import com.kh.semiProject.main.model.dao.MainDao;
 //import com.kh.semiProject.restaurant.model.vo.Restaurant;
-
-import static com.kh.common.JDBCTemplate.*;
+import com.kh.semiProject.restaurant.model.vo.Restaurant;
 
 public class MainService {
 
@@ -32,13 +34,13 @@ public class MainService {
 		return hlist;
 	}
 
-//	public ArrayList<Restaurant> selectRtList() {
-//		Connection con = getConnection();
-//		ArrayList<Restaurant> rlist = mDao.selectRtList(con);
-//		
-//		close(con);
-//
-//		return rlist;
-//	}
+	public ArrayList<Restaurant> selectRtList() {
+		Connection con = getConnection();
+		ArrayList<Restaurant> rlist = mDao.selectRtList(con);
+		
+		close(con);
+
+		return rlist;
+	}
 
 }
