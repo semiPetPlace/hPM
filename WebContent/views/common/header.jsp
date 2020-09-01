@@ -46,11 +46,11 @@
             <div class="wrapper">
                 <div id="H_menu" class="clearfix">
                     <div class="logo_box">
-                        <a href="<%= request.getContextPath() %>/views/main/main.jsp" class="H_logo"><img src="<%= request.getContextPath() %>/resources/images/logo.png" alt="Logo"></a>
+                        <a href="<%= request.getContextPath() %>/mlist.th" class="H_logo"><img src="<%= request.getContextPath() %>/resources/images/logo.png" alt="Logo"></a>
                     </div>
                     <div id="H_nav">
                         <li class="navi_set">
-                            <a href="<%= request.getContextPath() %>/views/main/main.jsp" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/main.png" alt="main"></a>
+                            <a href="<%= request.getContextPath() %>/mlist.th" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/main.png" alt="main"></a>
                         </li>
                         <li class="navi_set">
                             <a href="<%= request.getContextPath() %>/hotel.ys" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/pethotel.png" alt="pethotel"></a>
