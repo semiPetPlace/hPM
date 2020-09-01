@@ -1,6 +1,6 @@
-<%@ page import="com.kh.semiProject.cafe.model.vo.PageInfo" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.kh.common.PageInfo" %>
 <%
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
 	int listCount = pi.getListCount();
@@ -24,10 +24,10 @@
 		<button disabled>◀</button>
 		<% } else { %>
 		<button id="bkp">◀</button>
-		<% } %>
-
-		<% for (int p = startPage; p <= endPage; p++) {
-				if (p == currentPage) { %>
+		<% }%>
+		<%int p=0;%>
+		<% for ( p = startPage; p <= endPage; p++) {
+			if (p == currentPage) { %>
 		<button disabled
 			style="border: 1px solid #ffb600; color: #ffb600; width: 25px; height: 30px; text-align: center;">
 			<%= p %></button>

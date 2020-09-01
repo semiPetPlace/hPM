@@ -1,294 +1,320 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, com.kh.semiProject.Hotel.model.vo.*"%>
+<%@ page import="com.kh.semiProject.cafe.model.vo.*"%>
+<%-- <%@ page import="com.kh.semiProject.restaurant.model.vo.*"%> --%>
+<%
+	ArrayList<Hotel> hlist = (ArrayList<Hotel>) request.getAttribute("hlist");
+	ArrayList<Cafe> clist = (ArrayList<Cafe>) request.getAttribute("clist");
+	//ArrayList<Restaurant> rlist = (ArrayList<Restaurant>) request.getAttribute("rlist");
+%>
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>main</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../resources/css/main.css">
-        <link rel="stylesheet" href="../../resources/css/mainpage.css">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Neucha" rel="stylesheet" type="text/css">
-        <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src ="../../resources/js/script.js"></script>
-        <script src="../../resources/js/jquery-3.5.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script type="text/javascript"></script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>main</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/main.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/mainpage.css">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Anton"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Neucha"
+	rel="stylesheet" type="text/css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/script.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/js/jquery-3.5.1.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
 
 
-    </head>
-    <body>
-        <%@ include file = "../common/header.jsp" %>
+</head>
+<body>
+	<%@ include file="../common/header.jsp"%>
 
-<!-- 여기에 메인 컨텐츠 넣으면 됩니다. -->
+	<!-- 여기에 메인 컨텐츠 넣으면 됩니다. -->
 
-    <main id="H_main">
-        <div id="main-wrapper">
-            <div id="main-image">
-                <img src="../../resources/images/main.png" alt="main-background" width="100%;" style="max-height: initial; min-width: 1900px;">
-            </div>
+	<main id="H_main">
+		<div id="main-wrapper">
+			<div id="main-image">
+				<img src="<%=request.getContextPath()%>/resources/images/main.png"
+					alt="main-background" width="100%;"
+					style="max-height: initial; min-width: 1900px;">
+			</div>
 
-         <div class="wrapper2">
-            <!-- 검색창 부분 -->
-            <div id="search-box">
-                <select name="플레이스" id="" style="font-size: 1.4rem; width: 200px; text-align: center; margin-right: 90px; margin-left: 70px; border: none;">
-                    <option value="플레이스 선택" class="nonselect">플레이스 선택</option> 
-                    <option value="반려견 동반 호텔">반려견 동반 호텔</option> 
-                    <option value="반려견 위탁 호텔">반려견 위탁 호텔</option> 
-                    <option value="반려견 동반 카페·레스토랑">반려견 카페·레스토랑</option> 
-                </select>
-                <input type="date" class="check" name="체크인" style="font-size: 1.4rem; width: 180px; border: none;">
-                <input type="date" class="check" name="체크아웃" style="font-size: 1.4rem; width: 180px; margin-right: 95px; border: none;">
-                <select name="지역" id="" style="font-size: 1.4rem; width: 180px; text-align: center; margin-right: 150px; border: none;">
-                    <option value="x" class="nonselect">지역</option>
-                    <option value="">서울</option>
-                    <option value="">경기</option>
-                    <option value="">인천</option>
-                    <option value="">대구</option>
-                    <option value="">부산</option>
-                    <option value="">제주</option>
-                </select>
+			<div class="wrapper2">
+				<!-- 검색창 부분 -->
+				<div id="search-box">
+					<select name="플레이스" id=""
+						style="font-size: 1.4rem; width: 200px; text-align: center; margin-right: 90px; margin-left: 70px; border: none;">
+						<option value="place" class="nonselect">플레이스 선택</option>
+						<option value="hotel">반려견 동반 호텔</option>
+						<option value="patHotel">반려견 위탁 호텔</option>
+						<option value="cafe">반려견 카페</option>
+						<option value="restaurant">반려견 레스토랑</option>
+					</select> <input type="date" class="check" name="체크인"
+						style="font-size: 1.4rem; width: 180px; border: none;"> <input
+						type="date" class="check" name="체크아웃"
+						style="font-size: 1.4rem; width: 180px; margin-right: 95px; border: none;">
+					<select name="지역" id=""
+						style="font-size: 1.4rem; width: 180px; text-align: center; margin-right: 150px; border: none;">
+						<option value="x" class="nonselect">지역</option>
+						<option value="seoul">서울</option>
+						<option value="gyeonggi">경기</option>
+						<option value="incheon">인천</option>
+						<option value="daegu">대구</option>
+						<option value="busan">부산</option>
+						<option value="jeju">제주</option>
+					</select>
 
-                <!-- 검색 버튼 -->
-                <div class="button-5">
-                    <div class="eff-5"></div>
-                    <a href="#">검색</a>
-                </div>
-            </div>
-            <!-- 검색창 부분 끝 -->
+					<!-- 검색 버튼 -->
+					<div class="button-5" >
+						<div class="eff-5"></div>
+						<a href="#" onclick="searching();">검색</a>
+					</div>
+				</div>
+				<!-- 검색창 부분 끝 -->
 
-            <!-- 이미지 슬라이드 -->
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-            <div class="slide-block" >
-                <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img src="../../resources/images/test/test1.png" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                          <h5></h5>
-                          <p></p>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <img src="../../resources/images/test/test2.png" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                          <h5></h5>
-                          <p></p>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <img src="../../resources/images/test/test3.png" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                          <h5></h5>
-                          <p></p>
-                        </div>
-                      </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </div>
+				<!-- 이미지 슬라이드 -->
+				<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+					integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+					crossorigin="anonymous"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+					integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+					crossorigin="anonymous"></script>
+				<script
+					src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+					integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+					crossorigin="anonymous"></script>
+				<div class="slide-block">
+					<div id="carouselExampleCaptions" class="carousel slide"
+						data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#carouselExampleCaptions" data-slide-to="0"
+								class="active"></li>
+							<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+							<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<img
+									src="<%=request.getContextPath()%>/resources/images/test/test1.png"
+									class="d-block w-100" alt="...">
+								<div class="carousel-caption d-none d-md-block">
+									<h5></h5>
+									<p></p>
+								</div>
+							</div>
+							<div class="carousel-item">
+								<img
+									src="<%=request.getContextPath()%>/resources/images/test/test2.png"
+									class="d-block w-100" alt="...">
+								<div class="carousel-caption d-none d-md-block">
+									<h5></h5>
+									<p></p>
+								</div>
+							</div>
+							<div class="carousel-item">
+								<img
+									src="<%=request.getContextPath()%>/resources/images/test/test3.png"
+									class="d-block w-100" alt="...">
+								<div class="carousel-caption d-none d-md-block">
+									<h5></h5>
+									<p></p>
+								</div>
+							</div>
+						</div>
+						<a class="carousel-control-prev" href="#carouselExampleCaptions"
+							role="button" data-slide="prev"> <span
+							class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+							class="sr-only">Previous</span>
+						</a> <a class="carousel-control-next" href="#carouselExampleCaptions"
+							role="button" data-slide="next"> <span
+							class="carousel-control-next-icon" aria-hidden="true"></span> <span
+							class="sr-only">Next</span>
+						</a>
+					</div>
 
-            </div>
-                  
-            <!-- 이미지 슬라이드 끝 -->
+				</div>
 
-            <!-- 위탁 호텔 리스트 -->
-            <div id="placelist"><h2 class="listname">
-            <a href="../../views/hotelmain.jsp"><img src="../../resources/images/icons/consignment_hotel.png" alt="반려견 위탁 호텔"></a></h2></div>
-        <table>
-            <tr>
-            <td>
-            <div id="con_hotelList" style="float: none;">
-                <a href="../../views/pethotel/pet_hotel_detail.jsp"><div class="con_hotelList-list">
-                    <img src="../../resources/images/hotel1.jpg" alt="con_hotel1">
-                    <h4 style="margin-bottom: 0;">hotel name</h4>
-                    <p class="infoText">information of hotel </p>
-                    <p class="price">₩180,000/1박</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/pethotel/pet_hotel_detail.jsp"><div class="con_hotelList-list">
-                    <img src="../../resources/images/hotel2.jpg" alt="con_hotel2">
-                    <h4 style="margin-bottom: 0;">hotel name</h4>
-                    <p class="infoText">information of hotel </p>
-                    <p class="price">₩200,000/1박</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/pethotel/pet_hotel_detail.jsp"><div class="con_hotelList-list">
-                    <img src="../../resources/images/hotel3.jpg" alt="con_hotel3">
-                    <h4 style="margin-bottom: 0;">hotel name</h4>
-                    <p class="infoText">information of hotel </p>
-                    <p class="price">₩90,000/1박</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/pethotel/pet_hotel_detail.jsp"><div class="con_hotelList-list">
-                    <img src="../../resources/images/hotel4.jpg" alt="con_hotel4">
-                    <h4 style="margin-bottom: 0;">hotel name</h4>
-                    <p class="infoText">information of hotel </p>
-                    <p class="price">₩160,000/1박</p>
-                </div></a></td>
-            </div>
-            </tr>
-        </table>
-            <!-- 위탁 호텔 리스트 끝 -->
-            
-            <!-- 동반 호텔 리스트 -->
-            <div id="placelist"><h2 class="listname">
-            <a href="../../views/hotelmain.jsp"><img src="../../resources/images/icons/hotel.png" alt="반려견 동반 호텔"></a></h2></div>
-        <table>
-            <tr>
-            <td>
-            <div id="hotelList" style="float: none;">
-                <a href="../../views/hotel/hotel_detail.jsp"><div class="hotelList-list">
-                    <img src="../../resources/images/hotel1.jpg" alt="hotel1">
-                    <h4 style="margin-bottom: 0;">hotel name</h4>
-                    <p class="infoText">information of hotel </p>
-                    <p class="price">₩180,000/1박</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/hotel/hotel_detail.jsp"><div class="hotelList-list">
-                    <img src="../../resources/images/hotel2.jpg" alt="hotel2">
-                    <h4 style="margin-bottom: 0;">hotel name</h4>
-                    <p class="infoText">information of hotel </p>
-                    <p class="price">₩200,000/1박</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/hotel/hotel_detail.jsp"><div class="hotelList-list">
-                    <img src="../../resources/images/hotel3.jpg" alt="hotel3">
-                    <h4 style="margin-bottom: 0;">hotel name</h4>
-                    <p class="infoText">information of hotel </p>
-                    <p class="price">₩90,000/1박</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/hotel/hotel_detail.jsp"><div class="hotelList-list">
-                    <img src="../../resources/images/hotel4.jpg" alt="hotel4">
-                    <h4 style="margin-bottom: 0;">hotel name</h4>
-                    <p class="infoText">information of hotel </p>
-                    <p class="price">₩160,000/1박</p>
-                </div></a></td>
-            </div>
-            </tr>
-        </table>
-            <!-- 동반 호텔 리스트 끝 -->
+				<!-- 이미지 슬라이드 끝 -->
 
-            <!-- 레스토랑 리스트 -->
-            <div id="placelist"><h2 class="listname">
-            <a href="../../views/restaurant/restaurant_main.jsp"><img src="../../resources/images/icons/restaurant1.png" alt="반려견 동반 카페 레스토랑"></a></h2></div>
-        <table>
-            <tr>
-            <td>
-            <div id="restaurantList">
-                <a href="../../views/restaurant/restaurant_detailpage.jsp"><div class="restaurantList-list">
-                    <img src="../../resources/images/cafe1.jpg" alt="Restaurant">
-                    <h4 style="margin-bottom: 0;">Restaurant name</h4>
-                    <p class="infoText">information of Restaurant </p>
-                    <p class="price">별점★★★★★</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/restaurant/restaurant_detailpage.jsp"><div class="restaurantList-list">
-                    <img src="../../resources/images/cafe2.jpg" alt="Restaurant">
-                    <h4 style="margin-bottom: 0;">Restaurant name</h4>
-                    <p class="infoText">information of Restaurant </p>
-                    <p class="price">별점★★★★☆</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/restaurant/restaurant_detailpage.jsp"><div class="restaurantList-list">
-                    <img src="../../resources/images/cafe3.jpg" alt="Restaurant">
-                    <h4 style="margin-bottom: 0;">Restaurant name</h4>
-                    <p class="infoText">information of Restaurant </p>
-                    <p class="price">별점★★★☆☆</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/restaurant/restaurant_detailpage.jsp"><div class="restaurantList-list">
-                    <img src="../../resources/images/cafe4.jpg" alt="Restaurant">
-                    <h4 style="margin-bottom: 0;">Restaurant name</h4>
-                    <p class="infoText">information of Restaurant </p>
-                    <p class="price">별점★★★★☆</p>
-                </div></a></td>
-            </div>
-            </tr>
-        </table>
-            <!-- 레스토랑 리스트 끝 -->
-            
-            
-            <!-- 카페 리스트 -->
-            <div id="placelist"><h2 class="listname">
-            <a href="../../views/cafe/cafe-main.jsp"><img src="../../resources/images/icons/cafe1.png" alt="반려견 동반 카페 레스토랑"></a></h2></div>
-        <table>
-            <tr>
-            <td>
-            <div id="cafeList">
-                <a href="../../views/cafe/cafe-detailpage.jsp"><div class="cafeList-list">
-                    <img src="../../resources/images/cafe1.jpg" alt="cafe">
-                    <h4 style="margin-bottom: 0;">cafe name</h4>
-                    <p class="infoText">information of cafe </p>
-                    <p class="price">별점★★★★★</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/cafe/cafe-detailpage.jsp"><div class="cafeList-list">
-                    <img src="../../resources/images/cafe2.jpg" alt="cafe">
-                    <h4 style="margin-bottom: 0;">cafe name</h4>
-                    <p class="infoText">information of cafe </p>
-                    <p class="price">별점★★★★☆</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/cafe/cafe-detailpage.jsp"><div class="cafeList-list">
-                    <img src="../../resources/images/cafe3.jpg" alt="cafe">
-                    <h4 style="margin-bottom: 0;">cafe name</h4>
-                    <p class="infoText">information of cafe </p>
-                    <p class="price">별점★★★☆☆</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/cafe/cafe-detailpage.jsp"><div class="cafeList-list">
-                    <img src="../../resources/images/cafe4.jpg" alt="cafe">
-                    <h4 style="margin-bottom: 0;">cafe name</h4>
-                    <p class="infoText">information of cafe </p>
-                    <p class="price">별점★★★★☆</p>
-                </div></a></td>
-            </div>
-            </tr>
-        </table>
-            <!-- 카페 리스트 끝 -->
+				<!-- 위탁 호텔 리스트 -->
+				<div id="placelist">
+					<h2 class="listname">
+						<a href="views/hotelmain.jsp"><img
+							src="resources/images/icons/consignment_hotel.png"
+							alt="반려견 위탁 호텔"></a>
+					</h2>
+				</div>
+				<table>
+					<tr>
+						<%
+							int num = 0;
+						for (Hotel h : hlist) {
+							if (num == 4) {
+								num = 0;
+								break;
+							}
+						%>
+						<td>
+							<div id="con_hotelList" style="float: none;">
+								<a href="views/pethotel/pet_hotel_detail.jsp">
+									<div class="con_hotelList-list">
+										<img src="<%=h.gethImg()%>" alt="con_hotel1">
+										<h4 style="margin-bottom: 0;"><%=h.gethName()%></h4>
+										<p class="infoText"><%=h.gethPromotion()%></p>
+										<p class="price"><%=h.gethPrice()%>/1박
+										</p>
+									</div>
+								</a>
+							</div>
+						</td>
+						<%
+							num++;
+						}
+						%>
+					</tr>
+				</table>
+				<!-- 위탁 호텔 리스트 끝 -->
 
-            <!-- TOP -->
-            <div style="height: 20px;"><a href="#header" id="top">▲ TOP</a></div>
-        </div>
+				<!-- 동반 호텔 리스트 -->
+				<div id="placelist">
+					<h2 class="listname">
+						<a href="views/hotelmain.jsp"><img
+							src="resources/images/icons/hotel.png" alt="반려견 동반 호텔"></a>
+					</h2>
+				</div>
+				<table>
+					<tr>
+						<td>
+							<div id="hotelList" style="float: none;">
+								<a href="views/hotel/hotel_detail.jsp">
+									<div class="hotelList-list">
+										<img src="resources/images/hotel1.jpg" alt="hotel1">
+										<h4 style="margin-bottom: 0;">hotel name</h4>
+										<p class="infoText">information of hotel</p>
+										<p class="price">₩180,000/1박</p>
+									</div>
+								</a>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<!-- 동반 호텔 리스트 끝 -->
 
-        <div class="wrapper3">
-            <!-- 구독정보 신청란 -->
-            <div id="subscribe">
-                <div style="padding-top: 60px; margin-bottom: 10px;">
-                    <h2>구독 정보 신청란</h2>
-                    <div style="width: 30%; border: 0.5px solid gray; background: white; margin-left: 32%; float: left;">
-                        <label style="color: gray; font-size: 1.2rem; float: left; margin-left: 30px; margin-top: 2px;">e-mail</label>
-                        <input type="email" style="border: none; width: 70%; height: 28px; overflow: hidden;">
-                    </div>
-                    <input type="submit" value="구독하기" style="width:80px; height:30px; float: left;">
-                </div>
-            </div>
-            <!-- 구독정보 신청란 끝 -->
-        </div>
-    </div>
-    </main>
+				<!-- 레스토랑 리스트 -->
+				<div id="placelist">
+					<h2 class="listname">
+						<a href="views/restaurant/restaurant_main.jsp"><img
+							src="resources/images/icons/restaurant1.png" alt="반려견 동반 카페 레스토랑"></a>
+					</h2>
+				</div>
+				<table>
+					<tr>
+<%-- 						<%
+							for (Restaurant r : rlist) {
+							if (num == 4) {
+								num = 0;
+								break;
+							}
+						%>
+						<td>
+							<div id="restaurantList">
+								<a href="views/restaurant/restaurant_detailpage.jsp">
+									<div class="restaurantList-list">
+										<img src="<%=r.getrImg()%>" alt="Restaurant">
+										<h4 style="margin-bottom: 0;"><%=r.getrName()%></h4>
+										<p class="infoText"><%=r.getrPromotion()%></p>
+										<p class="price">
+											별점★<%=r.getrScore()%></p>
+									</div>
+								</a>
+							</div>
+						</td>
+						<%
+							num++;
+						}
+						%> --%>
+					</tr>
+				</table>
+				<!-- 레스토랑 리스트 끝 -->
 
-<!-- 메인 끝 -->
-	<%@ include file = "../common/footer.jsp" %>
-    
-    </body>
+
+				<!-- 카페 리스트 -->
+				<div id="placelist">
+					<h2 class="listname">
+						<a href="views/cafe/cafe-main.jsp"><img
+							src="resources/images/icons/cafe1.png" alt="반려견 동반 카페 레스토랑"></a>
+					</h2>
+				</div>
+				<table>
+					<tr>
+						<%
+							for (Cafe c : clist) {
+							if (num == 4) {
+								num = 0;
+								break;
+							}
+						%>
+						<td>
+							<div id="cafeList">
+								<a href="views/cafe/cafe-detailpage.jsp">
+									<div class="cafeList-list">
+										<img src="<%=c.getCimage()%>" alt="cafe">
+										<h4 style="margin-bottom: 0;"><%=c.getCname()%></h4>
+										<p class="infoText"><%=c.getCpromotion()%></p>
+										<p class="price">
+											별점★
+											<%=c.getCscore()%></p>
+									</div>
+								</a>
+							</div>
+						</td>
+						<%
+							num++;
+						}
+						%>
+					</tr>
+				</table>
+				<!-- 카페 리스트 끝 -->
+
+				<!-- TOP -->
+				<div style="height: 20px;">
+					<a href="#header" id="top">▲ TOP</a>
+				</div>
+			</div>
+	</main>
+
+	<script>
+    		function searching(){
+			location.href="<%=request.getContextPath()%>
+		/searchMain.th?place="
+					+ $('#place').val()
+					+ "&checkin="
+					+ $('#checkin').val()
+					+ "&checkout="
+					+ $('#checkout').val()
+					+ "&area="
+					+ $('#area').val();
+
+		}
+	</script>
+	<!-- 메인 끝 -->
+	<%@ include file="../common/footer.jsp"%>
+
+</body>
 </html>
