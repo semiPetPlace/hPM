@@ -1,4 +1,4 @@
-package com.kh.semiProject.cafe.controller;
+package com.kh.semiProject.restaurant.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,21 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semiProject.cafe.model.service.CafeService;
-import com.kh.semiProject.cafe.model.vo.Cafe;
+import com.kh.semiProject.restaurant.model.service.RestaurantService;
+import com.kh.semiProject.restaurant.model.vo.Restaurant;
+
 import com.kh.semiProject.common.PageInfo;
 
 /**
- * Servlet implementation class cafeListServlet
+ * Servlet implementation class restaurantListServlet
  */
-@WebServlet("/cList.ch")
-public class cafeListServlet extends HttpServlet {
+@WebServlet("/rList.ch")
+public class restaurantListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public cafeListServlet() {
+    public restaurantListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,8 +33,8 @@ public class cafeListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Cafe> list = null;
-		CafeService cs = new CafeService();
+		ArrayList<Restaurant> list = null;
+		RestaurantService rs = new RestaurantService();
 
 		int startPage;
 		int endPage;
@@ -42,13 +43,13 @@ public class cafeListServlet extends HttpServlet {
 		int limit;
 		
 		currentPage = 1;
-		limit = 10;
+		limit = 9;
 
 		if(request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		int listCount = cs.getListCount();
+		int listCount = rs.getListCount();
 		System.out.println("총 페이지 수 : " + listCount);
 
 		maxPage = (int)((double)listCount / limit + 0.9);
@@ -63,12 +64,12 @@ public class cafeListServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		list = cs.selectList(currentPage, limit);
+		list = rs.selectList(currentPage, limit);
 		
 		String page = "";
 		
 		if(list != null) {
-			page = "views/cafe/cafe-main.jsp";
+			page = "views/restaurant/restaurant_main.jsp";
 			request.setAttribute("list", list);
 			
 			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);

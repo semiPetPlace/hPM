@@ -1,4 +1,4 @@
-<%@ page import="com.kh.semiProject.cafe.model.vo.PageInfo" %>
+<%@ page import="com.kh.semiProject.common.PageInfo" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%

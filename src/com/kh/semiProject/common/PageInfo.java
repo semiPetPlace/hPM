@@ -1,4 +1,4 @@
-package com.kh.semiProject.cafe.model.vo;
+package com.kh.semiProject.common;
 
 import java.io.Serializable;
 

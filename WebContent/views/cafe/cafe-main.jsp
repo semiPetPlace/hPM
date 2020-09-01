@@ -50,7 +50,7 @@
             <!-- 카페/레스토랑 리스트 -->
             <div id="cafeList">
                 <table>
-                    <tr>
+                   <tr> 
                     <% for(Cafe cm : list){ %>
                         <td>
                         <input type="hidden" value="<%= cm.getCno() %>"/>
@@ -64,7 +64,7 @@
                             </div>
                         </td>
                         <% } %>
-                  	 <tr>
+                  	 </tr> 
                 </table>
             </div>
             <!-- 카페/레스토랑 리스트 끝 -->

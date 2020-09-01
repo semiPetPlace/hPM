@@ -1,4 +1,4 @@
-package com.kh.semiProject.search.controller;
+package com.kh.semiProject.restaurant.controller;
 
 import java.io.IOException;
 
@@ -8,17 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.semiProject.restaurant.model.service.RestaurantService;
+import com.kh.semiProject.restaurant.model.vo.Restaurant;
+
 /**
- * Servlet implementation class search_main
+ * Servlet implementation class restaurantDetailViewServlet
  */
-@WebServlet("/search.main")
-public class searchServlet extends HttpServlet {
+@WebServlet("/rView.ch")
+public class restaurantDetailViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public searchServlet() {
+    public restaurantDetailViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,8 +30,21 @@ public class searchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int rno = Integer.parseInt(request.getParameter("rno"));
+		
+		Restaurant r = new RestaurantService().selectOne(rno);
+		
+		String page = "";
+		
+		if(r != null) {
+			page = "views/cafe/restaurant_detailpage.jsp";
+			request.setAttribute("restaurant", r);
+		}else {
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "게시글 상세 보기 실패!");
+		}
+		
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**
