@@ -57,7 +57,9 @@
                     <% } %>
                         <td>
                         <input type="hidden" value="<%= cm.getCno() %>"/>
-                            <div class="cafeList-list">
+							<div class="cafeList-list"
+							onclick="location.href='<%= request.getContextPath() %>/cView.ch?cno=<%= cm.getCno() %>'"
+							style="cursor:pointer;">
                             <a id="cfdetailpage">
                                 <img src="<%= request.getContextPath() %>/resources/images/cafe1.jpg" alt="cafe">
 							</a>
@@ -89,7 +91,7 @@
 				$('#chp').click(function(){
 					var btn =document.getElementById("chp").innerHTML;
 					
-					location.href='<%= request.getContextPath() %>/cList.ch?currentPage='+btn;
+					location.href='<%= request.getContextPath() %>/cList.ch?currentPage='+ btn;
 				});
 				$('#nxp').click(function(){
 					location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= currentPage + 1 %>';
@@ -101,16 +103,16 @@
 			
             
 			// 상세 페이지로 이동 시작
-    		$(function() {
-    						 
-    			 $(".cafeList-list").mouseenter(function(){
-    				 $(this).parent().css({"cursor":"pointer"});
-    			 }).click(function(){
-    				 var cno = $(this).parent().find("input").val();
-     				$('#cfdetailpage').attr("href",'/semi/cView.ch?cno=' + cno).click();
+//    		$(function() {
+//    						 
+//    			 $(".cafeList-list").mouseenter(function(){
+//    				 $(this).parent().css({"cursor":"pointer"});
+//    			 }).click(function(){
+//    				 var cno = $(this).parent().find("input").val();
+//     				$('#cfdetailpage').attr("href",'/semi/cView.ch?cno=' + cno).click();
      				<%-- location.href="<%= request.getContextPath() %>/cView.ch?cno=" + cno; --%>
-    			 });
-    		});
+//    			 });
+//    		});
 			// 상세 페이지로 이동 끝
 			
 			

@@ -57,8 +57,10 @@
                     <% } %>
 						<td>
                         <input type="hidden" value="<%= rm.getRno() %>"/>
-							<div class="cafeList-list">
-							<a id="rtdetailpage">
+							<div class="cafeList-list"
+							onclick="location.href='<%= request.getContextPath() %>/rView.ch?rno=<%= rm.getRno() %>'"
+							style="cursor:pointer;">
+							<a>
 								<img src="<%= request.getContextPath() %>/resources/images/cafe1.jpg" alt="restaurant">
 							</a>
 								<h4 style="margin-bottom: 0;"> <%= rm.getRname() %> </h4>
@@ -78,7 +80,7 @@
 			<script>
 			// 페이징 처리 시작
 				// location.href 주소 안의 /servlet.link? 주소만 바꿔서 사용
-						
+				
 				$('#stp').click(function(){
 					location.href='<%= request.getContextPath() %>/rList.ch?currentPage=1';
 				});
@@ -88,7 +90,7 @@
 				$('#chp').click(function(){
 					var btn =document.getElementById("chp").innerHTML;
 					
-					location.href='<%= request.getContextPath() %>/rList.ch?currentPage='+btn;
+					location.href='<%= request.getContextPath() %>/rList.ch?currentPage='+ btn;
 				});
 				$('#nxp').click(function(){
 					location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= currentPage + 1 %>';
@@ -100,15 +102,15 @@
 			
             
 			// 상세 페이지로 이동 시작
-    		$(function() {
-    			 $(".cafeList-list").mouseenter(function(){
-    				 $(this).parent().css({"cursor":"pointer"});
-    			 }).click(function(){
-    				 var rno = $(this).parent().find("input").val();
-     				$('#rtdetailpage').attr("href",'/semi/rView.ch?rno=' + rno).click();
+//    		$(function() {
+//    			 $(".cafeList-list").mouseenter(function(){
+//    				 $(this).parent().css({"cursor":"pointer"});
+//    			 }).click(function(){
+//    				 var rno = $(this).parent().find("input").val();
+//     				$('#rtdetailpage').attr("href",'/semi/rView.ch?rno=' + rno).click();
      				<%-- location.href="<%= request.getContextPath() %>/rView.ch?rno=" + cno; --%>
-    			 });
-    		});
+//    			 });
+//    		});
 			// 상세 페이지로 이동 끝
 			
 			
