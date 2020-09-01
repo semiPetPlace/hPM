@@ -22,7 +22,7 @@
     <main id="H_main">
         <div id="main-image">
             <div id="main-text">
-                <h1><%= c.getCname() %></h1>
+                <h1 style="width: 95%;"><%= c.getCname() %></h1>
                 <p><%= c.getCaddress() %></p>
                 <p>★ 평점 <%= c.getCscore() %></p>
             </div>
@@ -241,6 +241,7 @@
 		
 		// 찜하기 버튼 시작
 			function like() {
+				if()
 				alert('찜한 플레이스에 저장되었습니다.');
 			}
 		// 찜하기 버튼 끝

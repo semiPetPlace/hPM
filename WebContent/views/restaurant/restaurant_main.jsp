@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.semiProject.restaurant.model.vo.*, java.util.*" %>
+    pageEncoding="UTF-8" import="com.kh.semiProject.restaurant.model.vo.*, com.kh.common.PageInfo, java.util.*" %>
 <% 
 	ArrayList<Restaurant> list = (ArrayList<Restaurant>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
  %>    
     
 <!DOCTYPE html>
@@ -13,6 +19,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/mainpage.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/restaurant-main.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/pagination.css">
     <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src ="<%= request.getContextPath() %>/resources/js/script.js"></script>
 </head>
@@ -37,7 +44,7 @@
                     <option value="">제주</option>
                 </select>
                 <select name="반려견사이즈" id="">
-                    <option value="반려견사이즈" class="nonselect">반려견사이즈</option> 
+                    <option value="반려견사이즈" class="nonselect">반려견 사이즈</option> 
                     <option value="소형견">소형견</option> 
                     <option value="중형견">중형견</option> 
                     <option value="대형견">대형견</option> 
@@ -50,16 +57,16 @@
 			<!-- 카페/레스토랑 리스트 -->
 			<div id="cafeList">
 				<table>
-				<%! int cnt = 1; %>
+				<% int cnt = 1; %>
 					<% for(Restaurant rm : list) { %>
 					<% if(cnt % 3 == 1) { %>
 					<tr>
-                    <% } %>
-						<td>
+					<% } %>	
+                    	<td>
                         <input type="hidden" value="<%= rm.getRno() %>"/>
 							<div class="cafeList-list"
 							onclick="location.href='<%= request.getContextPath() %>/rView.ch?rno=<%= rm.getRno() %>'"
-							style="cursor:pointer;">
+							style="cursor:pointer; width: 433px;">
 							<a>
 								<img src="<%= request.getContextPath() %>/resources/images/cafe1.jpg" alt="restaurant">
 							</a>
@@ -68,52 +75,43 @@
 								<p class="price">★ 평점 <%= rm.getRscore() %></p>
 							</div>
 						</td>
-                  	 <% if(cnt % 3 == 0) { %>					
-					</tr>
-                    <% } %>
-                    <% cnt++; %>
-                    <% } %>
+					<% if(cnt % 3 == 0) { %>
+					</tr> 
+					<% cnt = 0; } %>
+                    <% cnt++; } %>
 				</table>
 			</div>
 			<!-- 카페/레스토랑 리스트 끝 -->
-			<%@ include file ="../common/pagination.jsp" %>
-			<script>
-			// 페이징 처리 시작
-				// location.href 주소 안의 /servlet.link? 주소만 바꿔서 사용
+			
+            <!-- 페이징 처리 시작 -->
+			<div class="list_number" align="center">
+			<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=1'">◀◀</button>
+			<%  if(currentPage <= 1) {  %>
+			<button disabled>◀</button>
+			<%  }else { %>
+			<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= currentPage - 1 %>'">◀</button>
+			<%  } %>
+			
+			<% for(int p = startPage; p <= endPage; p++) {
+					if(p == currentPage) {	
+			%>
+				<button disabled style="border: 1px solid #ffb600; color: #ffb600;"><%= p %></button>
+			<%      }else { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= p %>'"><%= p %></button>
+			<%      } %>
+			<% } %>
 				
-				$('#stp').click(function(){
-					location.href='<%= request.getContextPath() %>/rList.ch?currentPage=1';
-				});
-				$('#bkp').click(function(){
-					location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= currentPage - 1 %>';
-				});
-				$('#chp').click(function(){
-					var btn =document.getElementById("chp").innerHTML;
-					
-					location.href='<%= request.getContextPath() %>/rList.ch?currentPage='+ btn;
-				});
-				$('#nxp').click(function(){
-					location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= currentPage + 1 %>';
-				});
-				$('#mxp').click(function(){
-					location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= maxPage %>';
-				});	
-			// 페이징 처리 끝
+			<%  if(currentPage >= maxPage) {  %>
+			<button disabled>▶</button>
+			<%  }else { %>
+			<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= currentPage + 1 %>'">▶</button>
+			<%  } %>
+			<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= maxPage %>'">▶▶</button>
+			</div>
+			<!-- 페이징 처리 끝 -->
 			
-            
-			// 상세 페이지로 이동 시작
-//    		$(function() {
-//    			 $(".cafeList-list").mouseenter(function(){
-//    				 $(this).parent().css({"cursor":"pointer"});
-//    			 }).click(function(){
-//    				 var rno = $(this).parent().find("input").val();
-//     				$('#rtdetailpage').attr("href",'/semi/rView.ch?rno=' + rno).click();
-     				<%-- location.href="<%= request.getContextPath() %>/rView.ch?rno=" + cno; --%>
-//    			 });
-//    		});
-			// 상세 페이지로 이동 끝
-			
-			
+			<script>
+
 			</script>
 		</div>
               <!-- TOP -->

@@ -22,7 +22,7 @@
     <main id="H_main">
         <div id="main-image">
             <div id="main-text">
-                <h1><%= r.getRname() %></h1>
+                <h1 style="width: 95%;"><%= r.getRname() %></h1>
                 <p><%= r.getRaddress() %></p>
                 <p>★평점 <%= r.getRscore() %></p>
             </div>
