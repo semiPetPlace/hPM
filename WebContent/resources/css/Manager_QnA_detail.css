@@ -64,7 +64,11 @@ h3,h1{
     width: 100%;
     height: 35px;
     font-size: 14px;
+<<<<<<< HEAD
     background: #c0e6fa;
+=======
+    background: #7A9BAD;
+>>>>>>> branch 'master' of https://github.com/semiPetPlace/hPM.git
 }
 .QnAarea,.requestArea{
     width: 100%;

@@ -97,7 +97,7 @@
     width: 100%;
 }
 .pay-box{
-    height: 160px;
+    height: 180px;
     border: 1px solid lightgray;
     padding: 20px;
     border-radius: 5px;
@@ -160,6 +160,7 @@
 #facility-preview{
     width: 80%;
     height: 30px;
+    margin-bottom: 1px;
 }
 #facility-preview>div{
     width: 90px;

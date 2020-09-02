@@ -1,80 +1,121 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ page import="com.kh.semiProject.board.model.vo.*, com.kh.common.PageInfo"%>
+<%
+	ArrayList<Board> blist = (ArrayList<Board>) request.getAttribute("blist");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+%>
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>공지사항</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../resources/css/mainpage.css">
-        <link rel="stylesheet" href="../../resources/css/freeboard_list.css">
-        <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src ="../../resources/js/script.js"></script>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>게시판</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/mainpage.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/freeboard_list.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/pagination.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/script.js"></script>
 
-    </head>
-    <body>
-        <%@ include file = "../common/header.jsp" %>
-        
-        <div class="post">
-            <img src="../../resources/images/freeboard_list/dog_lab.png" alt="게시판" id="board-img">
-           <table>
-                <tr>
-                    <td>
-                   <div class="post_border">
-                         <a href="./freeboard/freeboard_detail.jsp" class="postName">게시판 글제목</a>
-                         <label class="write-date">작성일시</label>
-                   </td>
-                </tr>
-                <tr>
-                    <td>
-                     <div class="postImg_border" >
-                           <img src="../../resources/images/freeboard_list/images.jpg" class="postImg">
-                      </div>
-                  </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="postContent">
-                            내용을 작성하세요.
-                            <a href="./freeboard/freeboard_detail.jsp">더보기</a>
-                        </div>
-                     </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="postInfo">
-                            <img src="../../resources/images/freeboard_list/pat3.png" class="postInfo_Img">
-                            <label class="label_position">이름</label>
-                        </div>
-                     </td>
-                </div>
-                </tr>
+</head>
+<body>
+	<%@ include file="../common/header.jsp"%>
+<main>
+	<div class="post">
+		<img
+			src="<%=request.getContextPath()%>/resources/images/freeboard_list/dog_lab.png"
+			alt="게시판" id="board-img">
+			<input type="button" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/views/freeboard/freeboardwrite.jsp'" >
+		<table id="listArea">
+			<%
+				for (Board b : blist) {
+			%>
+			<input type="hidden" value="<%= b.getbNo() %>"/>
+			<tr>
+				<td>
+					<div class="post_border">
+						<a href="<%=request.getContextPath()%>/selectOne.th?bno=<%=b.getbNo() %>" class="postName"><%=b.getbTitle()%></a> <label
+							class="write-date"><%=b.getbDate()%></label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="postImg_border">
+						<img src="<%=b.getbImg()%>" class="postImg">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="postContent">
+						<%=b.getbContent()%>
+						<a href="<%=request.getContextPath()%>/selectOne.th?bno=<%=b.getbNo() %>">더보기</a>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="postInfo">
+						<img src="<%=b.getbUserImg()%>" class="postInfo_Img">
+						<label class="label_position"><%=b.getbWriter()%></label>
+					</div>
+				</td>
+			</tr>
+			<%
+				}
+			%>
+		</table>
+	</div>
+	<div id="post_num" style="width:400px">
+	</div>
+	
+	    <!-- 페이징 처리 시작 -->
+		<div class="list_number" align="center">
+		<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=1'">◀◀</button>
+		<%  if(currentPage <= 1) {  %>
+		<button disabled>◀</button>
+		<%  }else { %>
+		<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= currentPage - 1 %>'">◀</button>
+		<%  } %>
+		
+		<% for(int p = startPage; p <= endPage; p++) {
+				if(p == currentPage) {	
+		%>
+			<button disabled style="border: 1px solid #ffb600; color: #ffb600;"><%= p %></button>
+		<%      }else { %>
+			<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= p %>'"><%= p %></button>
+		<%      } %>
+		<% } %>
+			
+		<%  if(currentPage >= maxPage) {  %>
+		<button disabled>▶</button>
+		<%  }else { %>
+		<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= currentPage + 1 %>'">▶</button>
+		<%  } %>
+		<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= maxPage %>'">▶▶</button>
+		</div>
+		<!-- 페이징 처리 끝 -->
+	</main>
 
-                
+	<!-- TOP -->
+	<div style="height: 20px;  margin-right: 2%; margin-top: 200px;">
+		<a href="#header" id="top">▲ TOP</a>
+	</div>
+	
+	<script>
 
-            </table>
+	</script>
 
-
-            <div id="post_num">
-                <ul id="num">
-                    <li><input type="button" value="◀"></li>
-                    <li><input type="button" value="1" onclick="location.href='./freeboard_list.jsp' "></li>
-                    <li><input type="button" value="2" onclick="location.href='./freeboard_list.jsp' "></li>
-                    <li><input type="button" value="3" onclick="location.href='./freeboard_list.jsp' "></li>
-                    <li><input type="button" value="4" onclick="location.href='./freeboard_list.jsp' "></li>
-                    <li><input type="button" value="5" onclick="location.href='./freeboard_list.jsp' "></li>
-                    <li><input type="button" value="▶"></li>
-                </ul>
-            </div>
-
-        </div>
-   
-
-        <!-- TOP -->
-        <div style="height: 20px; margin-right: 2%; margin-top: 200px;"><a href="#header" id="top">▲ TOP</a></div>
-
-
-        <%@ include file = "../common/footer.jsp" %>
-    </body>
+	<%@ include file="../common/footer.jsp"%>
+</body>
 </html>

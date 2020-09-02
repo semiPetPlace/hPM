@@ -28,31 +28,7 @@ a:hover{
     margin: auto;
 }
 /* --------------------------- 검색바 ----------------------------- */
-#searchbar{
-    height: 80px;
-    text-align: center;
-}
-.wrapper{
-    width: 1300px;
-    margin-left: auto;
-    margin-right: auto;
-}
 
-#main-wrapper{
-    height: 100%;
-    text-align:center;
-    /* width: fit-content; */
-    min-width:1300px;
-}
-#H_main{
-    width: 100%;
-    height: fit-content;
-   
-}
-#main-image{
-    padding: 50px 0;
-    overflow: hidden;
-}
 /* 이미지 메뉴 */
 .Menu{
     background: #f8f8f8;
@@ -99,6 +75,7 @@ a:hover{
     line-height:68px;
     font-size:16px;
 }
+
 /* --------------------------- 검색바 끝----------------------------- */
 
 #H_main{
@@ -106,9 +83,9 @@ a:hover{
     height: 3650px;
 }
 #left-filter{
-    margin-left: 140px;
-    width: 180px;
-    height: 800px;
+    margin-left: 120px;
+    width: 200px;
+    height: 100%;
     float: left;
     border: 1px solid orange;
     border-radius: 5px;
