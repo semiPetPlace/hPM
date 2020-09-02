@@ -1,7 +1,6 @@
 package com.kh.semiProject.mQnA.model.dao;
 
-import static common.JDBCTemplate.close;
-
+import static com.kh.common.JDBCTemplate.*;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;

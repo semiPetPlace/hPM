@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import com.kh.semiProject.Manager.model.vo.Manager;
-import static common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.*;
 public class ManagerDao {
 
 	private Properties prop;

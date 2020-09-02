@@ -196,7 +196,6 @@ html,body {
             <div class="list">
                 <ul>
                     <li><a href="./Manager_main.html">관리자 메인</a></li>
-<<<<<<< HEAD
                     <li><a href="./Manager_reservation.html">예약 관리</a></li>
                     <li><a href="./Manager_reviewBoard.html">게시판 관리</a></li>
                     <li><a href="./">업체 관리</a></li>
@@ -214,7 +213,10 @@ html,body {
 </header>
 <script>
 	function gocList(){
-		location.href="/semi/cList.co"
+		location.href="/semi/cList.co";
+	}
+	function goCDetail(){
+		location.href="/semi/cDetail.cl";
 	}
 
 	function goViewChart(){
@@ -223,24 +225,4 @@ html,body {
 	function goListView(){
 		location.href="/semi/listView.mt";
 	}	
-=======
-                    <li><a href="./Manager_reservation.html">예약·결제 관리</a></li>
-                    <li><a href="./Manager_reviewBoard.html">게시판 관리</a></li>
-                    <li><a href="#" src="gocList()">업체 관리</a></li>
-                    <li><a href="./Manager_client_search.html">회원 관리</a></li>
-                    <li><a href="./Manager_sells_Total_detail copy.html">매출 관리</a></li>
-                </ul>
-            </div>
-            <div class="login-area">
-                <label class="login-name">관리자 님의 방문을 환영합니다.</label>
-                <div class="logoutBtn" onclick="logout()">로그아웃</div> 
-            </div>
-        </div>
-    </div>
-</header>
-<script>
-	function gocList(){
-		location.href="/semi/cList.co"
-	}
->>>>>>> branch 'master' of https://github.com/semiPetPlace/hPM.git
 </script>

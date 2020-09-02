@@ -1,7 +1,6 @@
 package com.kh.semiProject.mClient.model.service;
 
-import static common.JDBCTemplate.*;
-
+import static com.kh.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 

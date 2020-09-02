@@ -12,7 +12,7 @@ import java.util.Properties;
 
 import com.kh.semiProject.Manager.model.dao.ManagerDao;
 import com.kh.semiProject.mClient.model.vo.Client;
-import static common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.*;
 
 public class ClientDao {
 

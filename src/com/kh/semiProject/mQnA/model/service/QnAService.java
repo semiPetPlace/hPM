@@ -4,8 +4,7 @@ import com.kh.semiProject.Manager.model.vo.Manager;
 import com.kh.semiProject.mQnA.model.dao.QnADao;
 import com.kh.semiProject.mQnA.model.vo.QnA;
 
-import static common.JDBCTemplate.*;
-
+import static com.kh.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
