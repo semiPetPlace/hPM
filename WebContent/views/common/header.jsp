@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.kh.semiProject.member.model.vo.*"%>
-    
+
 <%
 	Member m = (Member) session.getAttribute("member");
 %>
-
 
 <!DOCTYPE html>
 <html>
@@ -20,6 +19,7 @@
 	<header id="header">        
             <div class="H_menu_top">
                 <div class="wrapper">
+
        				<%
 					if (m == null) {
 				%>
@@ -40,6 +40,7 @@
 				<%
 					}
 				%>
+
                     
                 </div>
             </div>
@@ -85,10 +86,20 @@
                 </div>
             </div>   
         </header>
+<<<<<<< HEAD
 	<script>
 		function logout() {
 			location.href = "<%=request.getContextPath()%>/logout.th";
 		}
 	</script>
+=======
+        <script>
+        	function goManager(){
+				location.href="/semi/chart.ma";
+			}
+        
+        </script>
+
+>>>>>>> refs/remotes/semiProject/test
 </body>
 </html>
