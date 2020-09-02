@@ -13,16 +13,16 @@ import com.kh.semiProject.Hotel.model.service.HotelService;
 import com.kh.semiProject.Hotel.model.vo.Hotel;
 
 /**
- * Servlet implementation class HotelServlet
+ * Servlet implementation class HotelSearchServlet
  */
-@WebServlet("/hotel.ys")
-public class HotelServlet extends HttpServlet {
+@WebServlet("/hotelsearch.ys")
+public class HotelSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HotelServlet() {
+    public HotelSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,24 +31,29 @@ public class HotelServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		ArrayList<Hotel> hlist = new ArrayList<>();
+		String in = request.getParameter("checkin");
+		String out = request.getParameter("checkout");
+		String area = request.getParameter("area");
 		
 		HotelService hs = new HotelService();
 		
-		hlist = hs.hotelList();
+		ArrayList<Hotel> hlist = new ArrayList<>();
+		
+		hlist = hs.searchHotels(in,out,area);
 		
 		String page = "";
 		if(!hlist.isEmpty()) {
 			page = "views/main/hotelmain.jsp";
 			request.setAttribute("hlist", hlist);
+			request.setAttribute("Cin", in);
+			request.setAttribute("Cout", out);
+			request.setAttribute("area", area);
 		}else {
 			page = "views/main/main.jsp";
 			System.out.println("되겠냐?");
 			
 		}
 		request.getRequestDispatcher(page).forward(request, response);
-		
 	}
 
 	/**

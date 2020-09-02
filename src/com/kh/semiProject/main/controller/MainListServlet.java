@@ -1,4 +1,4 @@
-package com.kh.semiProject.Hotel.controller;
+package com.kh.semiProject.main.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semiProject.Hotel.model.service.HotelService;
 import com.kh.semiProject.Hotel.model.vo.Hotel;
+import com.kh.semiProject.cafe.model.vo.Cafe;
+import com.kh.semiProject.main.model.service.MainService;
+import com.kh.semiProject.restaurant.model.vo.Restaurant;
+//import com.kh.semiProject.restaurant.model.vo.Restaurant;
 
 /**
- * Servlet implementation class HotelServlet
+ * Servlet implementation class MainList
  */
-@WebServlet("/hotel.ys")
-public class HotelServlet extends HttpServlet {
+@WebServlet("/mlist.th")
+public class MainListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HotelServlet() {
+    public MainListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,24 +34,29 @@ public class HotelServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<Cafe> clist = null;
+		ArrayList<Hotel> hlist = null;
+		ArrayList<Restaurant> rlist = null;
+		
+		MainService ms = new MainService();
+		
+		clist = ms.selectCafeList();
+		hlist = ms.selectHotelList();
+		rlist = ms.selectRtList();
+		
 
-		ArrayList<Hotel> hlist = new ArrayList<>();
-		
-		HotelService hs = new HotelService();
-		
-		hlist = hs.hotelList();
 		
 		String page = "";
-		if(!hlist.isEmpty()) {
-			page = "views/main/hotelmain.jsp";
+		if(!hlist.isEmpty() && !clist.isEmpty() /*&& !rlist.isEmpty()*/) {
+			page="views/main/main.jsp";
 			request.setAttribute("hlist", hlist);
+			request.setAttribute("clist", clist);
+			request.setAttribute("rlist", rlist);
 		}else {
-			page = "views/main/main.jsp";
-			System.out.println("되겠냐?");
-			
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "리스트 불러오기 실패!");
 		}
 		request.getRequestDispatcher(page).forward(request, response);
-		
 	}
 
 	/**

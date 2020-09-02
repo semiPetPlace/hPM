@@ -1,7 +1,6 @@
-package com.kh.semiProject.Hotel.controller;
+package com.kh.semiProject.restaurant.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semiProject.Hotel.model.service.HotelService;
-import com.kh.semiProject.Hotel.model.vo.Hotel;
+import com.kh.semiProject.restaurant.model.service.RestaurantService;
+import com.kh.semiProject.restaurant.model.vo.Restaurant;
 
 /**
- * Servlet implementation class HotelServlet
+ * Servlet implementation class restaurantDetailViewServlet
  */
-@WebServlet("/hotel.ys")
-public class HotelServlet extends HttpServlet {
+@WebServlet("/rView.ch")
+public class restaurantDetailViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HotelServlet() {
+    public restaurantDetailViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,24 +30,21 @@ public class HotelServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		ArrayList<Hotel> hlist = new ArrayList<>();
+		int rno = Integer.parseInt(request.getParameter("rno"));
 		
-		HotelService hs = new HotelService();
-		
-		hlist = hs.hotelList();
+		Restaurant r = new RestaurantService().selectOne(rno);
 		
 		String page = "";
-		if(!hlist.isEmpty()) {
-			page = "views/main/hotelmain.jsp";
-			request.setAttribute("hlist", hlist);
-		}else {
-			page = "views/main/main.jsp";
-			System.out.println("되겠냐?");
-			
-		}
-		request.getRequestDispatcher(page).forward(request, response);
 		
+		if(r != null) {
+			page = "views/restaurant/restaurant_detailpage.jsp";
+			request.setAttribute("restaurant", r);
+		}else {
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "게시글 상세 보기 실패!");
+		}
+		
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

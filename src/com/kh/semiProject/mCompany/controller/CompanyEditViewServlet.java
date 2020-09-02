@@ -1,28 +1,26 @@
-package com.kh.semiProject.Hotel.controller;
+package com.kh.semiProject.mCompany.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semiProject.Hotel.model.service.HotelService;
-import com.kh.semiProject.Hotel.model.vo.Hotel;
+import com.kh.semiProject.mCompany.model.service.CompanyService;
+import com.kh.semiProject.mCompany.model.vo.Company;
 
 /**
- * Servlet implementation class HotelServlet
+ * Servlet implementation class CompanyEditViewServlet
  */
-@WebServlet("/hotel.ys")
-public class HotelServlet extends HttpServlet {
+@WebServlet("/cEditView.co")
+public class CompanyEditViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HotelServlet() {
+    public CompanyEditViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,24 +29,19 @@ public class HotelServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		ArrayList<Hotel> hlist = new ArrayList<>();
+		int comNum = Integer.parseInt(request.getParameter("comNum"));
 		
-		HotelService hs = new HotelService();
+		Company c = new CompanyService().editView(comNum);
 		
-		hlist = hs.hotelList();
-		
-		String page = "";
-		if(!hlist.isEmpty()) {
-			page = "views/main/hotelmain.jsp";
-			request.setAttribute("hlist", hlist);
-		}else {
-			page = "views/main/main.jsp";
-			System.out.println("되겠냐?");
-			
+		String page="";
+		if(c != null) {
+			page = "views/Manager/Manager_company_editForm.jsp";
+			request.setAttribute("company", c);
+		} else {
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "업체 수정 페이지 연결 실패");
 		}
 		request.getRequestDispatcher(page).forward(request, response);
-		
 	}
 
 	/**
