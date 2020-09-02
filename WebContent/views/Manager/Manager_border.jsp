@@ -1,37 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>관리자 메인 화면</title>
-    <link rel="stylesheet" href="../../resources/css/Manager-DefaultCSS.css">
-    <link rel="stylesheet" href="../../resources/css/Manager-border.css">
+    <link rel="stylesheet" href="/semi/resources/css/Manager-DefaultCSS.css">
+    <link rel="stylesheet" href="/semi/resources/css/Manager-border.css">
 </head>
 <body>
-    <header>
-        <div id="main-nav" class="clearfix">
-            <div class="m-logo">
-                <a href="#" class="m-logo-link"><img src="../../resources/images/logo.png" alt="로고"></a>
-            </div>
-        <div class="m-menu-nav">
-            <div class="list">
-                <ul>
-                    <li><a href="">관리자 메인</a></li>
-                    <li><a href="">예약·결제 관리</a></li>
-                    <li><a href="">게시판 관리</a></li>
-                    <li><a href="">업체 관리</a></li>
-                    <li><a href="">회원 관리</a></li>
-                    <li><a href="">매출 관리</a></li>
-                    <li><a href="">통계 관리</a></li>
-                </ul>
-            </div>
-            <div class="login-area">
-                <label class="login-name">관리자 님의 방문을 환영합니다.</label>
-				<div class="logoutBtn" onclick="logout()">로그아웃</div> 
-            </div>
-        </div>
-    </div>
-</header>
-
+    <%@ include file = "./Manager_header.jsp" %>
 <main id="main">
     <div id="main-wrapper">
         <div class="main-content">
@@ -46,7 +24,7 @@
             </div>
             <div id="content">
             <div class="top">
-               <p id="top">리뷰 관리</p>
+               <p id="top">게시글 관리</p>
                <input type="button" value="삭제" class="btn">
                <input type="button" value="공지" class="btn">
             </div>

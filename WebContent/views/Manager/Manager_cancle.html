@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>관리자 메인 화면</title>
-    <link rel="stylesheet" href="../../resources/css/Manager-Payment-reservation.Payment.css">
+    <link rel="stylesheet" href="../../resources/css/Manager-list.css">
+    <link rel="stylesheet" href="../../resources/css/Manager-DefaultCSS.css">
 </head>
 <body>
     <header>
@@ -39,29 +40,54 @@
                     <p>예약.결제관리</p>
                     <ul>
                         <li><a href="">· 예약 현황</a></li>
-                        <li><a href="">· 취소 현황</a></li>
+                        <li><a href="">· 예약 취소 현황</a></li>
                     </ul>
                 </div>
             </div>
             <div class="content">
                 <div class="reservationTable">
-                    <p style="font-size: 30px; font-weight: 500px; margin-bottom: 40px;">예약 현황</p>
-                    <div class="searchPot">
-                        기간 통합 검색 등등 필터 
+                    <p style="font-size: 30px; font-weight: 500px; margin-bottom: 10px;">예약 취소현황</p>
+                    <div class="searchPot"> </div>
+                    <div class="filter-block">
+                        <select name="filter" id="filter">
+                            <option value="hotel">최신순</option>
+                        </select>
                     </div>
 
                     <div class="reservationList">
                         <table class="detailedTable">
-                            <th class="listTitle">번호</th>
-                            <th class="listTitle"> 예약번호</th>
-                            <th class="listTitle">예약 확정일</th>
-                            <th class="listTitle">입금일</th>
-                            <th class="listTitle">예약자</th>
-                            <th class="listTitle">예약자 연락처</th>
-                            <th class="listTitle">이용 상품 정보</th>
+                            <th class="listTitle">취소 날짜</th>
+                            <th class="listTitle">예약 날짜</th>
+                            <th class="listTitle">체크인전n일</th>
+                            <th class="listTitle">호텔명</th>
+                            <th class="listTitle">고객명</th>
                             <th class="listTitle">결제 금액</th>
-                            <th class="listTitle">진행 상태</th>
+                            <th class="listTitle">환불 금액</th>
+                            <th class="listTitle">환불처리 여부</th>
+                            <th class="listTitle">처리일</th>
 
+                            <tr class="listCal">
+                                <td>2020-08-31</td>
+                                <td>2020-08-20</td>
+                                <td>12</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                            <tr class="listCal">
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
                             <tr class="listCal">
                                 <td>1</td>
                                 <td>1</td>

@@ -1,0 +1,45 @@
+.content {
+    width: 80%;
+    height: 100%;
+    margin-top: 100px;
+    margin-left: 200px ;
+}
+.main-content{
+    display: flex;
+}
+.searchPot{
+    width: 600px;
+    height: 15px;
+    background: #7A9BAD;
+    margin-bottom: 50px;
+    width: 1000px;
+}
+.client-data-block{
+    width: 1000px;
+    height: 600px;
+    /* background: #f3fbff; */
+}
+
+.data-table{
+    border: 1px;
+    border: 1px solid black;
+    width: 900px;
+    margin: auto;
+}
+.data-table td{
+    height: 30px;
+    border: 1px solid black;
+    text-align: center;
+    font-size:  14px;
+    line-height: 25px;
+}
+.data-table th{
+    height: 15px;
+    font: 800;
+    border: 1px solid black;
+    background: lightgray;
+    font-size:  14px;
+    font-weight: bold;
+    line-height: 18px;
+    
+}

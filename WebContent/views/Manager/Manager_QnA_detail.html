@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>예약 결제관리</title>
     <link rel="stylesheet" href="../../resources/css/Manager-DefaultCSS.css">
-    <link rel="stylesheet" href="../../resources/css/Manager_Reservation.css">
+    <link rel="stylesheet" href="../../resources/css/Manager_QnA_detail.css">
 </head>
 <body>
     <header>
@@ -50,22 +50,40 @@
             <div id="reviewContent">
                 <div id="inquiry">
                     <p>문의처리</p>
-                    <label class="Email">이메일</label>
                 </div>
-                <div id="content">문의 내역</div>
+                <div class="QnAtext">
+                    <p class="font25">문의 내용</p>
+
+                    <div class="title-block">
+                        <h1>제목</h1><h3 class="BW"style="margin-left:13px;width:300px">체크아웃 시간</h3>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>작성자</h3><h3 class="BW">김혜주</h3>    
+                        <h3>이메일</h3><h3 class="BW">cdiee2@gmail.com</h3>    
+                        <h3>작성일</h3><h3 class="BW">2020-08-20</h3>
+                    </div>
+                    <div class="QnAarea">
+                        <p></p>
+                    </div>
+                    
+                </div>
+                <div class="QnArequset">
+                    <p class="font25">문의 처리</p>
+                    <div class="title-block">
+                        <h1>제목</h1><h3 class="BW"style="margin-left:13px;width:300px">체크아웃 시간</h3>
+                    </div>
+                    
+                    <div class="content-block">
+                        <h1>답변</h1><input type="text" class="input-title">
+                        <h3>담당자</h3><h3 class="BW">김민우</h3>    
                 
-                <div id="message">
-                    <label >회신 메세지</label>
-                    <div id="comment">
-                            <div id="content"></div>
-                            <input type="button" value="삭제" class="comentbtn" onclick="confirm('삭제하시겠습니까?')" id="review_delete">
-                            <input type="button" value="수정" class="comentbtn" onclick="confirm('수정하시겠습니까?')" id="review_update">
                     </div>
-                    <div id="answer">
-                        <h3>답장하기</h3>
-                        <textarea cols="30" rows="10"></textarea>
-                        <input type="button" value="답장하기" id="answerbtn">
+                    <div class="requestArea">
+                        <textarea id="request-text" cols="73" rows="25" ></textarea>
                     </div>
-                </div>     
+                    <input type="submit" value="답변 메일로 전송" style="float: right;margin-top: 10px;">
+                </div>
+            </div>     
 </body>
 </html>
