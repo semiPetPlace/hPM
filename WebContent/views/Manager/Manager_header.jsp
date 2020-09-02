@@ -212,8 +212,8 @@ html,body {
     </div>
 </header>
 <script>
-	function goCDetail(){
-		location.href="/semi/cDetail.cl";
+	function gocList(){
+		location.href="/semi/cList.co"
 	}
 
 	function goViewChart(){
