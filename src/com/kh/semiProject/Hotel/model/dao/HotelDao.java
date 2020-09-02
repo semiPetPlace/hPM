@@ -1,6 +1,5 @@
 package com.kh.semiProject.Hotel.model.dao;
 
-
 import static com.kh.common.JDBCTemplate.close;
 
 import java.io.FileReader;

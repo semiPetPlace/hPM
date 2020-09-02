@@ -6,6 +6,7 @@
 	Member m = (Member) session.getAttribute("member");
 %>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,6 @@
 	<header id="header">        
             <div class="H_menu_top">
                 <div class="wrapper">
-
        				<%
 					if (m == null) {
 				%>
@@ -35,7 +35,7 @@
 				<%
 					} else {
 				%>
-				<a href="/semi/views/login/login.jsp"> <%=m.getMuserName()%>
+				<a> <%=m.getMuserName()%>
 				</a> <a href="/semi/views/mypage/mypage-basic.jsp">마이페이지</a> <a href="#"
 					onclick='logout()'>로그아웃</a>
 				<%
@@ -47,11 +47,11 @@
             <div class="wrapper">
                 <div id="H_menu" class="clearfix">
                     <div class="logo_box">
-                        <a href="<%= request.getContextPath() %>/views/main/main.jsp" class="H_logo"><img src="<%= request.getContextPath() %>/resources/images/logo.png" alt="Logo"></a>
+                        <a href="<%= request.getContextPath() %>/mlist.th" class="H_logo"><img src="<%= request.getContextPath() %>/resources/images/logo.png" alt="Logo"></a>
                     </div>
                     <div id="H_nav">
                         <li class="navi_set">
-                            <a href="<%= request.getContextPath() %>/views/main/main.jsp" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/main.png" alt="main"></a>
+                            <a href="<%= request.getContextPath() %>/mlist.th" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/main.png" alt="main"></a>
                         </li>
                         <li class="navi_set">
                             <a href="<%= request.getContextPath() %>/hotel.ys" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/pethotel.png" alt="pethotel"></a>
@@ -61,9 +61,9 @@
                             </ul>
                         </li>
                         <li class="navi_set">
-                            <a href="<%= request.getContextPath() %>/views/restaurant/restaurant_main.jsp" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/petplace.png" alt="petplace"></a>
+                            <a href="<%= request.getContextPath() %>/rList.ch" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/petplace.png" alt="petplace"></a>
                             <ul class="subnav">
-                                <li><a href="<%= request.getContextPath() %>/views/restaurant/restaurant_main.jsp"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_restaurant.png" alt="반려견 동반 레스토랑"></a></li>
+                                <li><a href="<%= request.getContextPath() %>/rList.ch"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_restaurant.png" alt="반려견 동반 레스토랑"></a></li>
                                 <li><a href="<%= request.getContextPath() %>/cList.ch"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_cafe.png" alt="반려견 동반 카페"></a></li>
                             </ul>
                         </li>
@@ -86,20 +86,11 @@
                 </div>
             </div>   
         </header>
-<<<<<<< HEAD
 	<script>
 		function logout() {
 			location.href = "<%=request.getContextPath()%>/logout.th";
 		}
 	</script>
-=======
-        <script>
-        	function goManager(){
-				location.href="/semi/chart.ma";
-			}
-        
-        </script>
 
->>>>>>> refs/remotes/semiProject/test
 </body>
 </html>
