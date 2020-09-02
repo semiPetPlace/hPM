@@ -16,11 +16,9 @@ import com.kh.semiProject.Hotel.model.vo.Hotel;
 import com.kh.semiProject.Hotel.model.vo.HotelConvenience;
 import com.kh.semiProject.Hotel.model.vo.HotelFacility;
 import com.kh.semiProject.Hotel.model.vo.HotelRoom;
-<<<<<<< HEAD
-import com.kh.semiProject.Hotel.model.vo.PetHotel;
-=======
 
->>>>>>> branch 'master' of https://github.com/semiPetPlace/hPM.git
+import com.kh.semiProject.Hotel.model.vo.PetHotel;
+
 public class HotelDao {
 	private Properties prop;
 
