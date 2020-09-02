@@ -21,7 +21,7 @@ public class Hotel implements Serializable{
 	private String hPromotion;
 	private String hRequests;
 	private Data hRegisterData;
-	private Data hRegistration;
+	private String hRegistration;
 	public Hotel() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -39,7 +39,7 @@ public class Hotel implements Serializable{
 		this.hPromotion = hPromotion;
 	}
 	public Hotel(int hNo, String hName, String hTel, int hPrice, int hGrade, int hScore, String hAddress, String hImg,
-			String hPromotion, String hRequests, Data hRegisterData, Data hRegistration) {
+			String hPromotion, String hRequests, Data hRegisterData, String hRegistration) {
 		super();
 		this.hNo = hNo;
 		this.hName = hName;
@@ -120,10 +120,10 @@ public class Hotel implements Serializable{
 	public void sethRegisterData(Data hRegisterData) {
 		this.hRegisterData = hRegisterData;
 	}
-	public Data gethRegistration() {
+	public String gethRegistration() {
 		return hRegistration;
 	}
-	public void sethRegistration(Data hRegistration) {
+	public void sethRegistration(String hRegistration) {
 		this.hRegistration = hRegistration;
 	}
 	@Override

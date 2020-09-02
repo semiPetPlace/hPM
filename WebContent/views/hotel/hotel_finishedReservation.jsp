@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, com.kh.semiProject.Hotel.model.vo.*" %>
+<% Hotel h = (Hotel)request.getAttribute("hd"); %>
+<% HotelRoom hr = (HotelRoom)request.getAttribute("hr");%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -30,22 +33,22 @@
                             <span>체크 아웃</span>
                             <span>객실 명</span>
                             <span>예약자 명</span>
-                            <span>인원</span>
+                            <span>반려견 수</span>
                             <span>예약 요금</span>
-                            <span>부가 서비스</span>
+
                         </div>
                         <div class="details-data">
                             <p id="check-in">2020년 05월 07일 (목)</p>
                             <p id="check-out">2020년 12월 8일 (금)</p>
-                            <p id="room-type">스탠다드 더블 룸</p>
+                            <p id="room-type"><%=hr.getRname() %></p>
                             <p id="client-name">윤수 한</p>
                             <p id="headcount">2</p>
-                            <p id="price">&#8361;180,900</p>
-                            <p id="facility">조식 포함</p>
+                            <p id="price">&#8361;<%=hr.getRprice()*0.1+hr.getRprice() %></p>
+
 
                         </div>
                         <div class="btn-block">
-                            <div onclick="location. href='../mypage/mypage-basic.jsp'">내 예약 확인하기</div>
+                            <div onclick="location. href='../mypage/mypage-reservation.payment.jsp'">내 예약 확인하기</div>
                         </div>
                     </div>
                 </div>

@@ -2,8 +2,11 @@ package com.kh.semiProject.Hotel.model.service;
 
 
 import static com.kh.common.JDBCTemplate.*;
+<<<<<<< HEAD
 
 import static com.kh.common.JDBCTemplate.*;
+=======
+>>>>>>> branch 'master' of https://github.com/semiPetPlace/hPM.git
 
 import java.sql.Connection;
 import java.util.ArrayList;
