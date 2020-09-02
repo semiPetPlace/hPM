@@ -1,6 +1,9 @@
 package com.kh.semiProject.board.model.service;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
+import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -30,7 +33,7 @@ public class BoardService {
 		return blist;
 	}
 
-	public Board selecrOne(int bno) {
+	public Board selectOne(int bno) {
 		Connection con = getConnection();
 		
 		Board b = bDao.selectOne(con,bno);
@@ -61,6 +64,23 @@ public class BoardService {
 			rollback(con);
 		}
 		close(con);
+		return result;
+	}
+
+	public Board updateView(int bno) {
+		Connection con = getConnection();
+		
+		Board b = bDao.selectOne(con, bno);
+		
+		close(con);
+		return b;
+	}
+
+	public int updateBoard(Board b) {
+		Connection con = getConnection();
+		int result = bDao.updateBoard(con,b);
+		if(result > 0) commit(con);
+		else rollback(con);
 		return result;
 	}
 

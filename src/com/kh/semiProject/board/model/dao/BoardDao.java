@@ -155,4 +155,36 @@ public class BoardDao {
 		}
 		return result;
 	}
+
+	public int updateBoard(Connection con, Board b) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = null;
+		String Image = "resources/images/"+b.getbImg();
+		if(b.getbImg() !=null) {
+			sql = prop.getProperty("updateBoardChangeFile");
+		}else {
+			sql = prop.getProperty("updateBoard");
+		}
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, b.getbTitle());
+			pstmt.setString(2, b.getbContent());
+			if(b.getbImg() != null) {
+				pstmt.setString(3, Image);
+				pstmt.setInt(4, b.getbNo());
+			}else {
+				pstmt.setInt(3, b.getbNo());
+			}
+			
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }

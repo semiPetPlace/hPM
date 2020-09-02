@@ -1,10 +1,11 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.kh.semiProject.board.model.vo.*, com.kh.common.PageInfo"%>
+<%@ page import="com.kh.semiProject.board.model.vo.*"%>
+<%@ page import="com.kh.common.PageInfo" %>
 <%
 	ArrayList<Board> blist = (ArrayList<Board>) request.getAttribute("blist");
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	PageInfo pi = (PageInfo) request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
@@ -23,29 +24,31 @@
 	href="<%=request.getContextPath()%>/resources/css/mainpage.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/freeboard_list.css">
-<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/pagination.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/script.js"></script>
 
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
-<main>
-	<div class="post">
+	<main>
+	<div class="post" style="width: 1300px">
 		<img
 			src="<%=request.getContextPath()%>/resources/images/freeboard_list/dog_lab.png"
-			alt="게시판" id="board-img">
-			<input type="button" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/views/freeboard/freeboardwrite.jsp'" >
+			alt="게시판" id="board-img"> <input type="button" value="글쓰기"
+			onclick="location.href='<%=request.getContextPath()%>/views/freeboard/freeboardwrite.jsp'"
+			style="float: right; background-color: #ffb600;  color: black;  font-size: 15px; width: 100px; height: 30px; border-radius: 8px; border: 0px solid;"
+			>
 		<table id="listArea">
 			<%
 				for (Board b : blist) {
 			%>
-			<input type="hidden" value="<%= b.getbNo() %>"/>
+			<input type="hidden" value="<%=b.getbNo()%>" />
 			<tr>
 				<td>
 					<div class="post_border">
-						<a href="<%=request.getContextPath()%>/selectOne.th?bno=<%=b.getbNo() %>" class="postName"><%=b.getbTitle()%></a> <label
-							class="write-date"><%=b.getbDate()%></label>
+						<a
+							href="<%=request.getContextPath()%>/selectOne.th?bno=<%=b.getbNo()%>"
+							class="postName"><%=b.getbTitle()%></a> <label class="write-date"><%=b.getbDate()%></label>
 				</td>
 			</tr>
 			<tr>
@@ -59,15 +62,16 @@
 				<td>
 					<div class="postContent">
 						<%=b.getbContent()%>
-						<a href="<%=request.getContextPath()%>/selectOne.th?bno=<%=b.getbNo() %>">더보기</a>
+						<a
+							href="<%=request.getContextPath()%>/selectOne.th?bno=<%=b.getbNo()%>">더보기</a>
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<div class="postInfo">
-						<img src="<%=b.getbUserImg()%>" class="postInfo_Img">
-						<label class="label_position"><%=b.getbWriter()%></label>
+						<img src="<%=request.getContextPath()%>/resources/images/review_detail/img1.jpg" class="postInfo_Img"> <label
+							class="label_position"><%=b.getbWriter()%></label>
 					</div>
 				</td>
 			</tr>
@@ -76,46 +80,65 @@
 			%>
 		</table>
 	</div>
-	<div id="post_num" style="width:400px">
-	</div>
-	
-	    <!-- 페이징 처리 시작 -->
-		<div class="list_number" align="center">
-		<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=1'">◀◀</button>
-		<%  if(currentPage <= 1) {  %>
-		<button disabled>◀</button>
-		<%  }else { %>
-		<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= currentPage - 1 %>'">◀</button>
-		<%  } %>
-		
-		<% for(int p = startPage; p <= endPage; p++) {
-				if(p == currentPage) {	
+	<div id="post_num" style="width: 400px">
+		<button id="stp"
+			onclick="location.href='<%=request.getContextPath()%>/blist.th?currentPage=1'">◀◀</button>
+		<%
+			if (currentPage <= 1) {
 		%>
-			<button disabled style="border: 1px solid #ffb600; color: #ffb600;"><%= p %></button>
-		<%      }else { %>
-			<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= p %>'"><%= p %></button>
-		<%      } %>
-		<% } %>
-			
-		<%  if(currentPage >= maxPage) {  %>
+		<button disabled>◀</button>
+		<%
+			} else {
+		%>
+		<button id="bkp"
+			onclick="location.href='<%=request.getContextPath()%>/blist.th?currentPage=<%=currentPage - 1%>'">◀</button>
+		<%
+			}
+		%>
+		<%
+			int p = 0;
+		%>
+		<%
+			for (p = startPage; p <= endPage; p++) {
+				if (p == currentPage) {
+		%>
+		<button disabled
+			style="border: 1px solid #ffb600; color: #ffb600; width: 25px; height: 30px; text-align: center;">
+			<%=p%></button>
+		<%
+			} else {
+		%>
+		<button id="chp"
+			onclick="location.href='<%=request.getContextPath()%>/blist.th?currentPage=<%=p%>'"><%=p%></button>
+		<%
+			}
+		%>
+		<%
+			}
+		%>
+
+		<%
+			if (currentPage >= maxPage) {
+		%>
 		<button disabled>▶</button>
-		<%  }else { %>
-		<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= currentPage + 1 %>'">▶</button>
-		<%  } %>
-		<button onclick="location.href='<%= request.getContextPath() %>/rList.ch?currentPage=<%= maxPage %>'">▶▶</button>
-		</div>
-		<!-- 페이징 처리 끝 -->
+		<%
+			} else {
+		%>
+		<button id="nxp"
+			onclick="location.href='<%=request.getContextPath()%>/blist.th?currentPage=<%=currentPage + 1%>'">▶</button>
+		<%
+			}
+		%>
+		<button id="mxp"
+			onclick="location.href='<%=request.getContextPath()%>/blist.th?currentPage=<%=maxPage%>'">>▶▶</button>
+
+	</div>
 	</main>
 
 	<!-- TOP -->
-	<div style="height: 20px;  margin-right: 2%; margin-top: 200px;">
+	<div style="height: 20px; margin-right: 2%; margin-top: 200px;">
 		<a href="#header" id="top">▲ TOP</a>
 	</div>
-	
-	<script>
-
-	</script>
-
 	<%@ include file="../common/footer.jsp"%>
 </body>
 </html>

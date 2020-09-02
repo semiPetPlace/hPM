@@ -1,4 +1,4 @@
-package com.kh.semiProject.board.controller;
+package com.kh.semiProject.notice.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,19 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semiProject.board.model.service.BoardService;
-import com.kh.semiProject.board.model.vo.Board;
+import com.kh.semiProject.notice.model.service.NoticeService;
 
 /**
- * Servlet implementation class BoardSelectOne
+ * Servlet implementation class NoticeDeleteServlet
  */
-@WebServlet("/selectOne.th")
-public class BoardSelectOne extends HttpServlet {
+@WebServlet("/nDelete.th")
+public class NoticeDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardSelectOne() {
+    public NoticeDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,19 +29,19 @@ public class BoardSelectOne extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int bno = Integer.parseInt(request.getParameter("bno"));
+		int nno = Integer.parseInt(request.getParameter("nno"));
 		
-		Board b = new BoardService().selectOne(bno);
+		int result = new NoticeService().noticeDelete(nno);
 		
 		String page = "";
-		if(b != null) {
-			page="views/freeboard/freeboard_detail.jsp";
-			request.setAttribute("board", b);
+		if(result != 0) {
+			page="/semi/nList.th";
+			response.sendRedirect(page);
 		}else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 상세보기 실패!");
+			request.getRequestDispatcher(page).forward(request, response);
 		}
-		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**
