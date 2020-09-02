@@ -1,6 +1,6 @@
 package com.kh.semiProject.mCompany.model.dao;
 
-import static com.kh.semiProject.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.close;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

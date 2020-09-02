@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import com.kh.semiProject.mCompany.exception.CompanyException;
 import com.kh.semiProject.mCompany.model.dao.CompanyDao;
 import com.kh.semiProject.mCompany.model.vo.Company;
-import static com.kh.semiProject.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.*;
 
 public class CompanyService {
 	
