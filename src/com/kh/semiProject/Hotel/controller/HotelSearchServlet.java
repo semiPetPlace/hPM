@@ -40,7 +40,7 @@ public class HotelSearchServlet extends HttpServlet {
 		ArrayList<Hotel> hlist = new ArrayList<>();
 		
 		hlist = hs.searchHotels(in,out,area);
-		
+		System.out.println(hlist);
 		String page = "";
 		if(!hlist.isEmpty()) {
 			page = "views/main/hotelmain.jsp";
@@ -49,8 +49,8 @@ public class HotelSearchServlet extends HttpServlet {
 			request.setAttribute("Cout", out);
 			request.setAttribute("area", area);
 		}else {
-			page = "views/main/main.jsp";
-			System.out.println("되겠냐?");
+			page = "views/main/hotelmain.jsp";
+			
 			
 		}
 		request.getRequestDispatcher(page).forward(request, response);

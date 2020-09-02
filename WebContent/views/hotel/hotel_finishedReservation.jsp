@@ -3,6 +3,14 @@
 <%@ page import="java.util.*, com.kh.semiProject.Hotel.model.vo.*" %>
 <% Hotel h = (Hotel)request.getAttribute("hd"); %>
 <% HotelRoom hr = (HotelRoom)request.getAttribute("hr");%>
+<% String petnum = (String)request.getAttribute("petnum");%>
+<% String guestname = (String)request.getAttribute("guestname"); %>
+<% String email = (String)request.getAttribute("email"); %>
+<% String checkintime = (String)request.getAttribute("checkintime"); %>
+<% String guestrequest = (String)request.getAttribute("guestrequest"); %>
+<% String Cin = (String)request.getAttribute("Cin"); %>
+<% String Cout = (String)request.getAttribute("Cout"); %>
+<% String breakfast = (String)request.getAttribute("breakfast"); %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,10 +18,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title></title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../resources/css/mainpage.css">
-        <link rel="stylesheet" href="../../resources/css/finishedReservation.css">
+        <link rel="stylesheet" href="/semi/resources/css/mainpage.css">
+        <link rel="stylesheet" href="/semi/resources/css/finishedReservation.css">
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src ="../../resources/js/script.js"></script>
+        <script src ="/semi/resources/js/script.js"></script>
     </head>
     <body>
         <%@ include file = "../common/header.jsp" %>
@@ -25,7 +33,7 @@
             <div class="maincontent">
                 <div class="reservationcheck">
                     <div class="hotelimg">
-                        <img src="../../resources/images/hotel1.jpg" alt="">
+                        <img src="/semi/resources/images/hotel1.jpg" alt="">
                     </div>
                     <div class="details">
                         <div class="details-category">
@@ -35,14 +43,17 @@
                             <span>예약자 명</span>
                             <span>반려견 수</span>
                             <span>예약 요금</span>
-
+                            <%if(breakfast == "have"){%>
+                            <span>호텔 조식이 같이 예약되었습니다.</span>
+                            <%}%>
+							
                         </div>
                         <div class="details-data">
-                            <p id="check-in">2020년 05월 07일 (목)</p>
-                            <p id="check-out">2020년 12월 8일 (금)</p>
+                            <p id="check-in"><%=Cin %></p>
+                            <p id="check-out"><%=Cout %></p>
                             <p id="room-type"><%=hr.getRname() %></p>
-                            <p id="client-name">윤수 한</p>
-                            <p id="headcount">2</p>
+                            <p id="client-name"><%=guestname %></p>
+                            <p id="headcount"><%=petnum%></p>
                             <p id="price">&#8361;<%=hr.getRprice()*0.1+hr.getRprice() %></p>
 
 

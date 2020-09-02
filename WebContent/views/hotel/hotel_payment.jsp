@@ -5,6 +5,9 @@
 <% HotelConvenience hc = (HotelConvenience)request.getAttribute("hc"); %>
 <% HotelFacility hf = (HotelFacility)request.getAttribute("hf"); %>
 <% HotelRoom hr = (HotelRoom)request.getAttribute("hr");%>
+<% String Cin = (String)request.getAttribute("Cin"); %>
+<% String Cout = (String)request.getAttribute("Cout"); %>
+<% String breakfast = (String)request.getAttribute("breakfast"); %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -42,17 +45,17 @@
                     <div class="checkinout">
                         <div class="checkin" >
                             <p class="normaltext" style="border-right: 3px solid white;">체크인</p>
-                            <strong class="boldtext">2020년 8월 9일 (일)</strong>
-                            <p class="normaltext"><%= hr.getRcheckin() %></p>
+                            <strong class="boldtext"><%=Cin %></strong><br>
+                            <p class="normaltext">14:00</p>
                         </div>
                         <div class="checkout">
                             <p class="normaltext">체크아웃</p>
-                            <strong class="boldtext">2020년 9월 10일 (월)</strong>
-                            <p class="normaltext"><%= hr.getRcheckout() %></p>
+                            <strong class="boldtext"><%=Cout %></strong><br>
+                            <p class="normaltext">11:00</p>
                         </div>
                     </div>
                     <p class="normaltext">총 숙박기간:</p>
-                    <strong class="boldtext">1박</strong>
+                    <strong class="boldtext"><%= Integer.parseInt( Cout.substring(Cout.lastIndexOf("-")+1))-Integer.parseInt( Cin.substring(Cin.lastIndexOf("-")+1)) %></strong>
                     <hr style="color: orange;">
                     <strong class="boldtext">선택 객실:</strong>
                     <p class="normaltext"><%=hr.getRname() %></p>
@@ -128,11 +131,7 @@
                 </div>
                 <div id="textblock">상세 정보를 입력해 주십시오.</div>
                 <div id="client-input">
-                    <div class="travltype">
-                        <span>여행 목적 선택하기</span><br>
-                        <label for="totrable"> <input type="radio" name="fortravel" id="totrable"> 여행 및 관광</label>
-                        <label for="tobusiness"> <input type="radio" name="forbusiness" id="tobusiness"> 출장 및 비지니스</label>
-                    </div>
+                    
                     <div class="personaldata">
                         <div class="name">
                             <div class="firstname" style="float: left;">
@@ -171,7 +170,7 @@
                                 <div class="facility"><img src="/semi/resources/images/icons/mute.png" alt=""><span>방음 시설</span></div>
                             </div>
                             <div class="headcount">
-                                투숙객: <input class="inputbox" style="width: 40px;" type="number" name="" min="1" max="20">
+                              		반려견: <input id="petnum"class="inputbox" style="width: 40px;" type="number" name="" min="1" max="20">
                             </div>
                             <div class="clientname">
                                 <p>투숙객 성명</p>
@@ -188,7 +187,7 @@
                         별도  요청사항 제공을 보장해드리기 어렵습니다만, 숙소 측에서 최선을 다해 준비하겠습니다. <br>
                         예약 후에고 별도 요청사항을 보내실 수 있어요!    
                     </p>
-                    <textarea name="guestRequest" id="" cols="50" rows="6"></textarea>
+                    <textarea name="guestRequest" id="guestrequest" cols="50" rows="6"></textarea>
                     <div>
                         <input type="checkbox"  name="" id="" style="float: left;margin-top: 3px;margin-right: 5px; ">
                         <p class="normaltext" style="margin-top: 0px; padding-left: 5px;">조용한 객실을 원합니다.</p>
@@ -250,8 +249,8 @@
 		    pay_method : 'card',
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : '<%=hr.getRname()%>',
-		    amount : <%=hr.getRprice()*0.1+hr.getRprice()%>, 
-		    buyer_email : 'kkkkk',
+		    amount : 100, 
+		    buyer_email : $('#email').val(),
 		    buyer_name : $('#fullname').val(),
 		    
 		    buyer_tel : '010-1234-5678',
@@ -263,8 +262,10 @@
 		        msg += '상점 거래ID : ' + rsp.merchant_uid;
 		        msg += '결제 금액 : ' + rsp.paid_amount;
 		        msg += '카드 승인번호 : ' + rsp.apply_num;
-		        console.log(buyer_name);
-		        location.href='/semi/view/reservationfinished.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>'
+		        
+		        console.log("페이먼트서블릿 체크");
+		        location.href='/semi/reservationfinished.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>&checkin=<%=Cin%>&checkout=<%=Cout%>&breakfast=<%=breakfast%>&petnum='+$('#petnum').val()+'&guestname='+$('#fullname').val()+'&email='+$('#email').val()+'&checkintime='+$('#checkintime').val()+'&guestrequest='+$('#guestrequest').val()
+		        console.log("페이먼트서블릿 체크1");
 		    } else {
 		        var msg = '결제에 실패하였습니다.';
 		        msg += '에러내용 : ' + rsp.error_msg;

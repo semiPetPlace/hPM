@@ -35,7 +35,8 @@ public class HotelDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int h_no = Integer.parseInt(request.getParameter("h_no"));
-		
+		String Cin = request.getParameter("checkin");
+		String Cout = request.getParameter("checkout");
 		ArrayList<HotelRoom> hrlist = new ArrayList<>();
 		
 		HotelService hs = new HotelService();
@@ -55,6 +56,9 @@ public class HotelDetailServlet extends HttpServlet {
 			request.setAttribute("hrlist", hrlist);
 			request.setAttribute("hc", hc);
 			request.setAttribute("hf", hf);
+			request.setAttribute("Cin", Cin);
+			request.setAttribute("Cout", Cout);
+			
 		}else {
 			page = "views/main/main.jsp";
 			System.out.println("되겠냐?");

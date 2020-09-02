@@ -55,7 +55,7 @@
                         <li class="navi_set">
                             <a href="<%= request.getContextPath() %>/hotel.ys" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/pethotel.png" alt="pethotel"></a>
                             <ul class="subnav">
-                                <li><a href="<%= request.getContextPath() %>/views/main/pet_hotelmain.jsp"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_consignmenthotel.png" alt="반려견 위탁 호텔"></a></li>
+                                <li><a href="<%= request.getContextPath() %>/pethotel.ys"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_consignmenthotel.png" alt="반려견 위탁 호텔"></a></li>
                                 <li><a href="<%= request.getContextPath() %>/hotel.ys"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_hotel.png" alt="반려견 동반 호텔"></a></li>
                             </ul>
                         </li>

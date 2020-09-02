@@ -6,6 +6,7 @@
 <% String Cin = (String)request.getAttribute("Cin"); %>
 <% String Cout = (String)request.getAttribute("Cout"); %>
 <% String area = (String)request.getAttribute("area"); %>
+
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -72,6 +73,9 @@ select{
     border: none;
 }
 </style>
+
+
+
     <body>
         <%@ include file="../common/header.jsp" %>
 
@@ -84,11 +88,9 @@ select{
             <!-- 메인 이미지 끝 -->
            <form id="searchform" method="post">
 				<div id="search-box">
-						<input type="date" class="check" name="checkin" id="checkin"
+						<input type="date" class="check" name="checkin" id="checkin" 
 							style="font-size: 1.4rem; width: 180px; border: none; margin-right: 20px;">
-							<% String checkin = request.getParameter("checkin");%>
-								console.log(checkin);
-						<input type="date" class="check" name="checkout" id="checkout"
+						<input type="date" class="check" name="checkout" id="checkout" 
 							style="font-size: 1.4rem; width: 180px; margin-right: 95px; border: none; ">
 					<select name="area" id="area"
 						style="font-size: 1.4rem; width: 180px; text-align: center; margin-right: 50px; border: none;">
@@ -108,16 +110,30 @@ select{
 			</form>
 			<script>
 				$(function(){
+					$(function(){
+						var checkin = $('#checkin').val();
+					})	
+					
+				
 					$('#searchBtn').click(function(){
-
-						$('#searchform').attr('action','/semi/hotelsearch.ys?checkin='+$('#checkin').val()+'&checkout='+$('#checkout').val()+'&area='+$('#area').val()).submit();
-
+						
+					
+						if($('#checkin').val()!="" && $('#checkout').val() !="" && $('#area').val() !="x"){
+							
+							$('#searchform').attr('action','/semi/hotelsearch.ys?checkin='+$('#checkin').val()+'&checkout='+$('#checkout').val()+'&area='+$('#area').val()).submit();
+							
+						}else{
+							alert("체크인/체크아웃/지역 값을 모두선택해주세요");
+						} 
+						
+						
 					});
 				});
 			</script>
 			
 			
 			<!-- 검색창 부분 끝 -->
+			<%if(Cin != null || Cout != null){ %>
             <div style="height: 3000">
                 <!------------ 왼쪽 필터 ------------>
                 <div id="left-filter">
@@ -164,15 +180,16 @@ select{
                     
                     <div class="hotel-box">
                         <div class="count-hotel">
-                                <p style="float: right;">검색된 숙소 120개</p>
                         </div>
                         <table id="hlist">
+                        	
                            <% for(Hotel h : hlist){ %>
                             <tr>
-                                <td style="padding-bottom: 20px;"> 
-                                <input type="hidden" value="<%=h.gethNo()%>" id="ch1">
-          							<a  id="nextpage" href="<%=request.getContextPath() %>/hotelDetail.ys?h_no=<%= h.gethNo() %>">
-	                                    <div >
+                                <td style="padding-bottom: 20px; "> 
+                                <input type="hidden" value="<%=h.gethNo()%>" id="ch1"> 
+                                
+									<a id="nextpage" href="<%=request.getContextPath() %>/hotelDetail.ys?h_no=<%= h.gethNo() %>&checkin=<%=Cin%>&checkout=<%=Cout%>">
+	                                    <div class="hotel-info-list">
 	                                        <div class="hotelimg"><img src="<%=h.gethImg() %>" alt=""></div>
 	                                        <div class="hotelinfo">
 	                                            <strong><%= h.gethName() %></strong>
@@ -189,7 +206,8 @@ select{
                              <%} %>
                         </table>
                     </div>
-                </div>        
+                </div>
+                      
             <!------------ hotel-list 끝----------->
         </main>
         <!--페이징-->
@@ -198,6 +216,9 @@ select{
                 <p><div class="list_n_menu"><span class="disabled"><  이전</span><span class="current">1</span><a href="#?page=2">2</a><a href="#?page=3">3</a><a href="#?page=4">4</a><a href="#?page=5">5</a><a href="#?page=6">6</a><a href="#?page=7">7</a>...<a href="#?page=199">199</a><a href="#?page=200">200</a><a href="#?page=2">다음  ></a></div></p>
             </div>
         </div>
+        
+        <%} %>
+        <div id="imgunder"><img src="" style="height:200px;"></div>
         <!--페이징 끝-->   
          <!------------------------ 메인 끝------------------------->
 
@@ -211,6 +232,7 @@ select{
          		})
          	})
          </script> -->
+         
          
          
     </body>

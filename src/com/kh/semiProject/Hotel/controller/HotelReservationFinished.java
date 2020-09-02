@@ -32,8 +32,17 @@ public class HotelReservationFinished extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("예약완료서블릿 시작");
 		int hno = Integer.parseInt(request.getParameter("hno"));
 		String rname = request.getParameter("hroom");
+		String petnum = (request.getParameter("petnum"));
+		String guestname = request.getParameter("guestname");
+		String email = request.getParameter("email");
+		String checkintime =request.getParameter("checkintime");
+		String guestrequest = request.getParameter("guestrequest");
+		String Cin = request.getParameter("checkin");
+		String Cout = request.getParameter("checkout");
+		String breakfast = request.getParameter("breakfast");
 		
 		HotelService hs = new HotelService();
 		
@@ -41,11 +50,22 @@ public class HotelReservationFinished extends HttpServlet {
 		
 		HotelRoom hr = hs.payment(hno,rname);
 		
+		
+		
 		String page = "";
 		if(hr != null) {
 			page="views/hotel/hotel_finishedReservation.jsp";
 			request.setAttribute("hd", hd);
 			request.setAttribute("hr", hr);
+			request.setAttribute("petnum", petnum);
+			request.setAttribute("guestname", guestname);
+			request.setAttribute("email", email);
+			request.setAttribute("checkintime", checkintime);
+			request.setAttribute("guestrequest", guestrequest);
+			request.setAttribute("Cin", Cin);
+			request.setAttribute("Cout", Cout);
+			request.setAttribute("breakfast", breakfast);
+			System.out.println("예약완료 서블릿 도착");
 		}else {
 			page = "views/main/main.jsp";
 			System.out.println("되겠냐?");

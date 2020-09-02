@@ -5,6 +5,8 @@
 <% ArrayList<HotelRoom> hrlist = (ArrayList<HotelRoom>)request.getAttribute("hrlist"); %>
 <% HotelConvenience hc = (HotelConvenience)request.getAttribute("hc"); %>
 <% HotelFacility hf = (HotelFacility)request.getAttribute("hf"); %>
+<% String Cin = (String)request.getAttribute("Cin"); %>
+<% String Cout = (String)request.getAttribute("Cout"); %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -222,7 +224,7 @@
 			                                </select>
 			                                </div>
 			                                <div class="reservation" style="width:175px;border: none;">
-			                                    <input class="font-16B" type="button" value="예약하기" onclick="location.href='/semi/hotelpayment.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>'">
+			                                    <input class="font-16B" type="button" value="예약하기" onclick="location.href='/semi/hotelpayment.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>&checkin=<%=Cin%>&checkout=<%=Cout%>&breakfast=none'">
 			                                    <div >
 			                                        <p class="font-14" style="line-height: 50px;">예약 취소 요금 없음</p>
 			                                    </div>    
@@ -254,9 +256,10 @@
 			                                </select>
 			                                </div>
 			                                <div class="reservation" style="width:175px;border: none;">
-			                                    <input class="font-16B" type="button" value="예약하기" onclick="location.href='/semi/hotelpayment.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>'">
+			                                    <input class="font-16B" type="button" value="예약하기" onclick="location.href='/semi/hotelpayment.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>&checkin=<%=Cin%>&checkout=<%=Cout%>&breakfast=have'">
 			                                    <div >
 			                                        <p class="font-14" style="line-height: 50px;">예약 취소 요금 없음</p>
+			                                        
 			                                    </div>    
 			                                </div>
 			                            </div>

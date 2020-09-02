@@ -11,6 +11,7 @@ import com.kh.semiProject.Hotel.model.vo.Hotel;
 import com.kh.semiProject.Hotel.model.vo.HotelConvenience;
 import com.kh.semiProject.Hotel.model.vo.HotelFacility;
 import com.kh.semiProject.Hotel.model.vo.HotelRoom;
+import com.kh.semiProject.Hotel.model.vo.PetHotel;
 
 public class HotelService {
 	
@@ -77,6 +78,33 @@ public class HotelService {
 		
 		close(con);
 		return hlist;
+	}
+
+	public ArrayList<PetHotel> pethotelList() {
+		Connection con = getConnection();
+		
+		ArrayList<PetHotel> phlist = hDao.pethotelList(con);
+		
+		close(con);
+		return phlist;
+	}
+
+	public PetHotel pethotelDetail(int ph_no) {
+		Connection con = getConnection();
+		
+		PetHotel ph = hDao.pethotelDetail(con,ph_no);
+		
+		close(con);
+		return ph;
+	}
+
+	public ArrayList<PetHotel> searchPethotels(String area) {
+		Connection con = getConnection();
+		
+		ArrayList<PetHotel> phlist = hDao.searchPethotels(con,area);
+		
+		close(con);
+		return phlist;
 	}
 
 }
