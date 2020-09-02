@@ -57,9 +57,7 @@ public class ClientDao {
 				c.setCancelcnt(rset.getInt("CANCELCNT"));
 				c.setEnrollDate(rset.getDate("M_REGISTERDATE")); 
 				c.setStatus(rset.getString("M_STATUS"));
-				System.out.println(c);
 				cList.add(c);
-				System.out.println(cList);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

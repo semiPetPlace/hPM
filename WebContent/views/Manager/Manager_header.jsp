@@ -196,9 +196,10 @@ html,body {
             <div class="list">
                 <ul>
                     <li><a href="./Manager_main.html">관리자 메인</a></li>
-                    <li><a href="./Manager_reservation.html">예약·결제 관리</a></li>
+                    <li><a href="./Manager_reservation.html">예약 관리</a></li>
                     <li><a href="./Manager_reviewBoard.html">게시판 관리</a></li>
                     <li><a href="./">업체 관리</a></li>
+                    <li><a href="#" onclick="goListView()" >문의 처리</a></li>
                     <li><a href="#" onclick="goCDetail()">회원 관리</a></li>
                     <li><a href="#" onclick="goViewChart()">매출 관리</a></li>
                 </ul>
@@ -217,5 +218,8 @@ html,body {
 
 	function goViewChart(){
 		location.href="/semi/viewChart.hs";
+	}	
+	function goListView(){
+		location.href="/semi/listView.mt";
 	}	
 </script>

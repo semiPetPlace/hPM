@@ -38,7 +38,7 @@ public class SalesDao {
 		PreparedStatement pstmt = null;
 
 		ResultSet rset = null;
-
+		
 		String sql = prop.getProperty("hotelChart");
 
 		try {
@@ -57,7 +57,6 @@ public class SalesDao {
 				h.setYearlySales(rset.getInt("YEARLY_SALES"));
 				h.setEnrolldate(rset.getDate("H_REGISTERDATE"));
 				hList.add(h);
-				System.out.println(hList);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
