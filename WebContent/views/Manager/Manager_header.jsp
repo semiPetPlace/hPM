@@ -196,12 +196,12 @@ html,body {
             <div class="list">
                 <ul>
                     <li><a href="./Manager_main.html">관리자 메인</a></li>
-                    <li><a href="./Manager_reservation.html">예약·결제 관리</a></li>
+                    <li><a href="./Manager_reservation.html">예약 관리</a></li>
                     <li><a href="./Manager_reviewBoard.html">게시판 관리</a></li>
                     <li><a href="./">업체 관리</a></li>
-                    <li><a href="./Manager_client_search.html">회원 관리</a></li>
-                    <li><a href="./Manager_sells_Total_detail copy.html">매출 관리</a></li>
-                    <li><a href="./Manager_main.html">통계 관리</a></li>
+                    <li><a href="#" onclick="goListView()" >문의 처리</a></li>
+                    <li><a href="#" onclick="goCDetail()">회원 관리</a></li>
+                    <li><a href="#" onclick="goViewChart()">매출 관리</a></li>
                 </ul>
             </div>
             <div class="login-area">
@@ -211,3 +211,18 @@ html,body {
         </div>
     </div>
 </header>
+<script>
+	function gocList(){
+		location.href="/semi/cList.co";
+	}
+	function goCDetail(){
+		location.href="/semi/cDetail.cl";
+	}
+
+	function goViewChart(){
+		location.href="/semi/viewChart.hs";
+	}	
+	function goListView(){
+		location.href="/semi/listView.mt";
+	}	
+</script>

@@ -15,11 +15,11 @@
             <div class="footerMenu" id="move">
                 <p>간편 이동</p>
                 <ul>
-                    <li><a href="/semi/views/main/main.jsp">개편한 세상</a></li>
+                    <li><a href="<%= request.getContextPath() %>/mList.th">개편한 세상</a></li>
                     <li><a href="/semi/views/main/pet_hotelmain.jsp">반려견 위탁 호텔</a></li>
-                    <li><a href="/semi/views/main/hotelmain.jsp">반려견 동반 호텔</a></li>
-                    <li><a href="/semi/views/restaurant/restaurant_main.jsp">반려견 동반 음식점</a></li>
-                    <li><a href="/semi/views/cafe/cafe-main.jsp">반려견 동반 카페</a></li>
+                    <li><a href="<%= request.getContextPath() %>/hotel.ys">반려견 동반 호텔</a></li>
+                    <li><a href="<%= request.getContextPath() %>/rList.ch">반려견 동반 음식점</a></li>
+                    <li><a href="<%= request.getContextPath() %>/cList.ch">반려견 동반 카페</a></li>
                 </ul>
             </div>
             <div class="footerMenu">

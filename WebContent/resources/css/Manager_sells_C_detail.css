@@ -123,7 +123,7 @@
 }
 
 .detailedTable{
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 100%;
 }
 .detailedTable>td{
@@ -164,23 +164,24 @@
     width: 1200px;
 }
 .listTitle{
+    line-height: normal;
     width: 80px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 300;
-   border: 1px solid black;
+   /* border: 1px solid black; */
    border-bottom: 2px solid black;
     text-align: center;
 }
 
 .listCal>td{
     height: 20px;
-    font-size: 15px;
+    font-size: 13px;
     text-align: center;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
+    /* border-right: 1px solid black; */
+    /* border-bottom: 1px solid black; */
     vertical-align: bottom;
 }
 th{
-    background: rgb(207, 217, 236);
+    /* background: rgb(207, 217, 236); */
     border: none;
 }

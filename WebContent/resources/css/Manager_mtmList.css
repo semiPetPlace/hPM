@@ -1,0 +1,79 @@
+#content{
+    margin-top: 100px;
+    margin-left: 200px;
+}
+#table{
+    margin-top: 70px;
+    width: 1200px;
+    height: 750px;
+}
+#top{
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+table{
+    width: 100%;
+    border-spacing: 10px;
+}
+table,td,th,tr{
+    text-align: center;
+    font-size: 14px;
+}
+td{
+    height: 20px;
+    padding-top: 5px;
+}
+tr{
+    height: 25px;
+}
+th{
+    border-bottom: 1px solid black;
+    padding: 5px;
+}
+#qno{
+    width: 20px;
+}
+#userid{
+    width: 80px;
+}
+#user-name{
+   width: 80px;
+}
+#title{
+    width: 600px;
+}
+#category{
+    width: 80px;
+}
+#enrolldate{
+    width: 100px;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+#next{
+    font-size: 15px;
+    text-align: center;
+    
+}
+#next ul li{
+    list-style-type: none;
+    display: inline;
+}
+.search{
+    margin-top: 40px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.btn{
+    margin-left: 1%;
+    float: right;
+    margin-bottom: 10px;
+}
+.searchPot{
+    width: 1200px;
+    height: 15px;
+    background: #7A9BAD;
+    margin-bottom: 50px;
+}

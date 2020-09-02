@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" import= "java.text.*,com.kh.semiProject.Manager.model.vo.*, java.util.*"%>
-
+    pageEncoding="UTF-8" %>
+<%@ page import="java.util.*" import= "java.text.*,com.kh.semiProject.Manager.model.vo.*,com.kh.semiProject.mClient.model.vo.*, java.util.*"%>
+<%	
+	ArrayList<Client> cList = (ArrayList<Client>)request.getAttribute("cList");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -40,105 +42,30 @@
                     <div class="reservationList">
                         <table class="detailedTable">
                             <th class="listTitle" id="userNo" >회원 번호</th>
+                            <th class="listTitle" id="userId" >회원 아이디</th>
                             <th class="listTitle" id="userName">회원 명</th>
                             <th class="listTitle" id="reserCount">예약 횟수</th>
-                            <th class="listTitle" id="cancelCount">취소 횟수</th>
+                            <th class="listTitle" id="reserByY">연간 이용(회)</th>
                             <th class="listTitle" id="totalPay">총 결제 금액</th>
                             <th class="listTitle" id="avgPay">평균 결제 금액</th>
-                            <th class="listTitle" id="reserByY">연간 이용(회)</th>
+                            <th class="listTitle" id="cancelCount">취소 횟수</th>
                             <th class="listTitle" id="joinDate">회원가입일</th>
                             <th class="listTitle" id="status">회원 상태</th>
-
+						<%for(Client c : cList){ %>
                             <tr class="listCal">
-                                <td>1</td>
-                                <td>김민우</td>
-                                <td>4</td>
-                                <td>0</td>
-                                <td>1014800원</td>
-                                <td>253300</td>
-                                <td>2</td>
-                                <td>2019-04-11</td>
-                                <td>normal</td>
-                            </tr>
-                            <tr class="listCal">
-                                <td>2</td>
-                                <td>김혜주</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr class="listCal">
-                                <td>3</td>
-                                <td>정택환</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr class="listCal">
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr class="listCal">
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                             <tr class="listCal">
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr class="listCal">
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr class="listCal">
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            
-                            
+                                <td><%= c.getUserNo() %></td>
+                                <td><%= c.getUserId() %></td>
+                                <td><%= c.getUserName() %></td>
+                                <td><%= c.getReserCount() %></td>
+                                <td><%= c.getReserCountByY() %></td>
+                                <td><%= c.getTotalPrice() %></td>
+                                <td><%= c.getAvePrice() %></td>
+                                <td><%= c.getCancelcnt() %></td>
+                                <td><%= c.getEnrollDate() %></td>
+                                <td><%=c.getStatus() %></td>
+                            </tr> 
+                         <%} %>
+                     
                         </table>
                     </div>
                 </div>

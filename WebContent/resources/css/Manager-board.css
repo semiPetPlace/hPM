@@ -5,7 +5,11 @@
     margin-top: 70px;
     width: 700px;
     height: 750px;
+<<<<<<< HEAD
     border: 1px solid black;
+=======
+    /* border: 1px solid black; */
+>>>>>>> branch 'master' of https://github.com/semiPetPlace/hPM.git
 }
 #top{
     font-size: 30px;

@@ -1,0 +1,170 @@
+.content {
+    margin-top: 100px;
+    margin-left: 200px;
+}
+.content:after{
+    content:"";
+    display:block;
+    clear:both;
+}
+.main-content{
+    display: flex;
+    /* overflow: auto; */
+}
+.searchPot{
+    width: 1200px;
+    height: 15px;
+    background: #7A9BAD;
+    margin-bottom: 50px;
+}
+#table{
+    margin-top: 40px;
+    width: 80%;
+    /* border: 1px solid black; */
+    margin-left: 20px;
+}
+.searchCompany{
+    width: 100%;
+    margin-left: 400px;
+    /* border: 1px solid black; */
+    font-weight: 500;
+    margin-top: 80px;
+}
+.searchCompany>table{
+    width: 50%;
+    text-align: left;
+    padding-left: 20px;
+}
+table{
+    width: 100%;
+    /* border-spacing: 10px; */
+}
+#table table,#table td,#table th,#table tr{
+    /* text-align: center; */
+    font-size: medium;
+    border-bottom: 1px solid black;
+}
+#listArea{
+	/* overflow-x:scroll;
+	white-space:nowrap; */
+	margin-left: 20px;
+}
+#listArea #address{
+	width: 500px;
+}
+#listArea #cName{
+	width: 150px;
+}
+#next>ul{
+	margin-right: 20%;
+}
+.searchCompany table,.searchCompany th,.searchCompany tr{
+    /* text-align: center; */
+    font-size: medium;
+    border-left: 5px inset rgb(136, 151, 163);
+}
+td{
+    height: 20px;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+tr{
+    height: 25px;
+}
+th{
+    padding: 5px;
+    text-align: left;
+    height: 20px;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+#num{
+    width: 50px;
+}
+#comNum{
+    width: 60px;
+}
+#category{
+	width: 60px;
+}
+#
+#name{
+   width: 180px;
+}
+#enrollDate{
+    width: 80px;
+}
+#phone{
+    width: 100px;
+}
+#email{
+    width: 160px;
+}
+#table #endDate{
+    width: 100px;
+}
+#tel{
+    width: 130px;
+}
+#now{
+    width: 100px;
+}
+#cont{
+    width: 250px;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+#filter1{
+    float: left;
+    height: 22px;
+    margin-bottom: -4px;
+}
+#searchCom{
+    float: left;
+    width: 250px;
+}
+#startDate{
+    margin-right: 10px;
+}
+#searchBtn{
+    float: left;
+    margin-left: 10px;
+    height: 22px;
+}
+.btns{
+    width: 30%;
+    float: right;
+    margin-right: 20px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.enrollBtn{
+    margin-right: 10px;
+}
+#local{
+    width: 80px;
+    height: 22px;
+}
+#next{
+    font-size: 15px;
+    text-align: center;
+    
+}
+#next ul li{
+    list-style-type: none;
+    display: inline;
+}
+.search{
+    margin-top: 40px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.btn{
+    margin-left: 1%;
+    float: right;
+}
+.select_board{
+    display: none;
+}
