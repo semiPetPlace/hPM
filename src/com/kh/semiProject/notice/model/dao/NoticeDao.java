@@ -53,7 +53,7 @@ public class NoticeDao {
 		}
 		return listCount;
 	}
-	public ArrayList<Notice> boardList(Connection con, int currentPage, int limit) {
+	public ArrayList<Notice> noticeList(Connection con, int currentPage, int limit) {
 		ArrayList<Notice> nlist = new ArrayList<Notice>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;

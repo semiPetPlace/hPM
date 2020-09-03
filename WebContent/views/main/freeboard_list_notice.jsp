@@ -32,7 +32,7 @@
 <body>
 	<%@ include file="../common/header.jsp"%>
 
-	<div class="post">
+	<div class="post" >
 		<img
 			src="<%=request.getContextPath()%>/resources/images/freeboard_list/dog_lab.png"
 			alt="게시판" id="board-img">

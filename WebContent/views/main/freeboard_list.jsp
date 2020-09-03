@@ -31,7 +31,7 @@
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<main>
-	<div class="post" style="width: 1300px">
+	<div class="post">
 		<img
 			src="<%=request.getContextPath()%>/resources/images/freeboard_list/dog_lab.png"
 			alt="게시판" id="board-img"> <input type="button" value="글쓰기"

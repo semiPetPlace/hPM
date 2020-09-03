@@ -28,7 +28,7 @@ public class NoticeService {
 	public ArrayList<Notice> noticeList(int currentPage, int limit) {
 		Connection con = getConnection();
 		ArrayList<Notice> nlist = new ArrayList<Notice>();
-		nlist=nDao.boardList(con,currentPage,limit);
+		nlist=nDao.noticeList(con,currentPage,limit);
 		
 		close(con);
 		return nlist;

@@ -74,9 +74,9 @@
                             </ul>
                         </li>
                         <li class="navi_set">
-                            <a href="<%= request.getContextPath() %>/views/main/freeboard_list_notice.jsp" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/service.png" alt="service"></a>
+                            <a href="<%= request.getContextPath() %>/nList.th" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/service.png" alt="service"></a>
                             <ul class="subnav">
-                                <li><a href="<%= request.getContextPath() %>/views/main/freeboard_list_notice.jsp"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_notice.png" alt="공지사항"></a></li>
+                                <li><a href="<%= request.getContextPath() %>/nList.th"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_notice.png" alt="공지사항"></a></li>
                                 <li><a href="<%= request.getContextPath() %>/views/service/Q&A.jsp"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_QnA.png" alt="Q & A"></a></li>
                                 <li><a href="<%= request.getContextPath() %>/views/service/Question.jsp"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_contactmtm.png" alt="1:1 문의"></a></li>
                             </ul>
