@@ -30,7 +30,8 @@ public class mtmRequestServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		QnA q = new QnAService().qnaRequest();
+		int qno = Integer.parseInt(request.getParameter("qno"));
+		QnA q = new QnAService().qnaRequest(qno);
 		
 		String page = "";
 

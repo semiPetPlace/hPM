@@ -3,6 +3,7 @@
 !!!!!!!!!!!!!!!!!! 공통 css 수정하지 마시오. !!!!!!!!!!! 
 
 */
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -213,4 +214,7 @@ html,body {
     background: #a6a6a6;
     padding-top: 10px;
     text-align: center;
+}
+#trh:hover{
+    background: #cae5f3 ;
 }
