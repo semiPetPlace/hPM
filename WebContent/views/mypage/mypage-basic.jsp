@@ -8,11 +8,11 @@
         <title>main</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../resources/css/mainpage.css">
-        <link rel="stylesheet" href="../../resources/css/mypage_basic.css">
-        <link rel="stylesheet" href="../../resources/css/cafe-main.css">
+        <link rel="stylesheet" href="/semi/resources/css/mainpage.css">
+        <link rel="stylesheet" href="/semi/resources/css/mypage_basic.css">
+        <link rel="stylesheet" href="/semi/resources/css/cafe-main.css">
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src ="../../resources/js/script.js"></script>
+        <script src ="/semi/resources/js/script.js"></script>
 
     </head>
     <body>
@@ -44,9 +44,9 @@
                             <div id="userInfo">
                                 <tr>
                                     <td>
-                                        <li><label id="userName" style="font-size: large; font-weight: 500;">Name</label></li>     
-                                        <li><label id="userId" style="font-size: 14px; color: gray;">Id</label></li>
-                                        <li><label id="phoneNum" style="font-size: 14px;">010-2222-3333</label></li>                           
+                                        <li><label id="userName" style="font-size: large; font-weight: 500;">Name: <%=m.getMuserName() %></label></li>     
+                                        <li><label id="userId" style="font-size: 14px; color: gray;">Id: <%=m.getMuserId() %></label></li>
+                                        <li><label id="phoneNum" style="font-size: 14px;"><%=m.getMphone() %></label></li>                           
                                     </td>
                                 </tr>
                                 
@@ -62,7 +62,7 @@
                                 <tr class="place">
                                     <td>
                                         <div class="list">
-                                            <a href="#"><img src="../../resources/images/hotel1.jpg" alt="" width="200px"></a>
+                                            <a href="#"><img src="/semi/resources/images/hotel1.jpg" alt="" width="200px"></a>
                                             <ul>
                                                 <li>종류</li>
                                                 <li>상호명</li>
@@ -73,7 +73,7 @@
                                     </td>
                                     <td>
                                         <div class="list">
-                                            <a href="#"><img src="../../resources/images/hotel1.jpg" alt="" width="200px"></a>
+                                            <a href="#"><img src="/semi/resources/images/hotel1.jpg" alt="" width="200px"></a>
                                             <ul>
                                                 <li>종류</li>
                                                 <li>상호명</li>
@@ -84,7 +84,7 @@
                                     </td>
                                     <td>
                                         <div class="list">
-                                            <a href="#"><img src="../../resources/images/hotel1.jpg" alt="" width="200px"></a>
+                                            <a href="#"><img src="/semi/resources/images/hotel1.jpg" alt="" width="200px"></a>
                                             <ul>
                                                 <li>종류</li>
                                                 <li>상호명</li>
@@ -95,7 +95,7 @@
                                     </td>
                                     <td>
                                         <div class="list">
-                                            <a href="#"><img src="../../resources/images/hotel1.jpg" alt="" width="200px"></a>
+                                            <a href="#"><img src="/semi/resources/images/hotel1.jpg" alt="" width="200px"></a>
                                             <ul>
                                                 <li>종류</li>
                                                 <li>상호명</li>
@@ -110,7 +110,7 @@
                         <tr class="place2">
                             <td>
                                 <div class="list">
-                                    <a href="#"><img src="../../resources/images/hotel1.jpg" alt="" width="200px"></a>
+                                    <a href="#"><img src="/semi/resources/images/hotel1.jpg" alt="" width="200px"></a>
                                     <ul>
                                         <li>종류</li>
                                         <li>상호명</li>
@@ -121,7 +121,7 @@
                             </td>
                             <td>
                                 <div class="list">
-                                    <a href="#"><img src="../../resources/images/hotel1.jpg" alt="" width="200px"></a>
+                                    <a href="#"><img src="/semi/resources/images/hotel1.jpg" alt="" width="200px"></a>
                                     <ul>
                                         <li>종류</li>
                                         <li>상호명</li>
@@ -132,7 +132,7 @@
                             </td>
                             <td>
                                 <div class="list">
-                                    <a href="#"><img src="../../resources/images/hotel1.jpg" alt="" width="200px"></a>
+                                    <a href="#"><img src="/semi/resources/images/hotel1.jpg" alt="" width="200px"></a>
                                     <ul>
                                         <li>종류</li>
                                         <li>상호명</li>
@@ -143,7 +143,7 @@
                             </td>
                             <td>
                                 <div class="list">
-                                    <a href="#"><img src="../../resources/images/hotel1.jpg" alt="" width="200px"></a>
+                                    <a href="#"><img src="/semi/resources/images/hotel1.jpg" alt="" width="200px"></a>
                                     <ul>
                                         <li>종류</li>
                                         <li>상호명</li>

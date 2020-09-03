@@ -55,6 +55,7 @@ public class HotelDao {
 				h.sethImg(rset.getString("h_Img"));
 				h.sethAddress(rset.getString("h_Address"));
 				h.sethPromotion(rset.getString("h_Promotion"));
+
 				
 				hlist.add(h);
 			}
@@ -92,6 +93,8 @@ public class HotelDao {
 				hd.sethAddress(rset.getString("h_Address"));
 				hd.sethPromotion(rset.getString("h_Promotion"));
 				hd.sethRequests(rset.getString("h_requests"));
+				hd.setLat(rset.getFloat("h_lat"));
+				hd.setLng(rset.getFloat("h_lng"));
 				
 				
 			}
@@ -433,5 +436,67 @@ public class HotelDao {
 		}
 		return phlist;
 	}
+
+	public int inserReser(Connection con, int hno, String rname, String cin, String cout, String checkintime,
+			String totalprice, String guestname, String email, String guestrequest, String breakfast, String petnum, String userid) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReser");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, hno);
+			pstmt.setString(2, rname);
+			pstmt.setString(3, cin);
+			pstmt.setString(4, cout);
+			pstmt.setString(5, checkintime);
+			pstmt.setString(6, totalprice);
+			pstmt.setString(7, guestname);
+			pstmt.setString(8, email);
+			pstmt.setString(9, guestrequest);
+			pstmt.setString(10, breakfast);
+			pstmt.setString(11, petnum);
+			pstmt.setString(12, userid);
+			
+			result =pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateRoom(Connection con, int hno, String rname, String Cin, String Cout) {
+		int update = 0;
+		PreparedStatement pstmt = null;
+
+		
+		String sql = prop.getProperty("roomupdate");
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, Cin);
+			pstmt.setString(2, Cout);
+			pstmt.setString(3, rname);
+			pstmt.setInt(4, hno);
+			
+			update = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+
+			close(pstmt);
+		}
+		
+		
+		return update;
+	}
+
+	
 
 }

@@ -30,7 +30,7 @@
     	
     	
         <%@ include file = "../common/header.jsp" %>
-
+		
         <!--------------------- main --------------------->
         <form id="kakao.jsp" method="get">
         <div class="main">
@@ -264,7 +264,7 @@
 		        msg += '카드 승인번호 : ' + rsp.apply_num;
 		        
 		        console.log("페이먼트서블릿 체크");
-		        location.href='/semi/reservationfinished.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>&checkin=<%=Cin%>&checkout=<%=Cout%>&breakfast=<%=breakfast%>&petnum='+$('#petnum').val()+'&guestname='+$('#fullname').val()+'&email='+$('#email').val()+'&checkintime='+$('#checkintime').val()+'&guestrequest='+$('#guestrequest').val()
+		        location.href='/semi/reservationfinished.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>&userid=<%=m.getMuserId()%>&checkin=<%=Cin%>&checkout=<%=Cout%>&breakfast=<%=breakfast%>&totalprice=<%=hr.getRprice()*0.1+hr.getRprice()%>&petnum='+$('#petnum').val()+'&guestname='+$('#fullname').val()+'&email='+$('#email').val()+'&checkintime='+$('#checkintime').val()+'&guestrequest='+$('#guestrequest').val()
 		        console.log("페이먼트서블릿 체크1");
 		    } else {
 		        var msg = '결제에 실패하였습니다.';

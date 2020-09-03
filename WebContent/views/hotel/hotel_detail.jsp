@@ -132,7 +132,7 @@
                                    
                                    function initMap() {
                                    map = new google.maps.Map(document.getElementById('map'), {
-                                   center: {lat: 37.538537, lng:  127.074660}, //위도 경도
+                                   center: {lat: <%=h.getLat()%>, lng: <%=h.getLng()%>}, //위도 경도
                                    zoom: 16 //숫자클수록 지도가 자세히보임
                                    });
                                    
@@ -143,7 +143,7 @@
                                                                new google.maps.Size(60, 60));
                                    
                                    marker = new google.maps.Marker({
-                                               position: {lat: 37.538537, lng:  127.074660}, // 마커가 위치할 위도와 경도(변수)
+                                               position: {lat:<%=h.getLat()%>, lng: <%=h.getLng()%>}, // 마커가 위치할 위도와 경도(변수)
                                                map: map,
                                                icon: image, // 마커로 사용할 이미지(변수)
                                                title: '동문회관' // 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
@@ -162,7 +162,7 @@
                         예약 가능한 객실 종류 2개
                     </div>
                     <table>
-                    	<% for(HotelRoom hr : hrlist){ %>
+                    	<%for(HotelRoom hr : hrlist){ %>
                     		<tr>
 			                    
 			                    <div class="roomtype-block">
@@ -224,7 +224,11 @@
 			                                </select>
 			                                </div>
 			                                <div class="reservation" style="width:175px;border: none;">
+			                                	<%if(m != null) {%>
 			                                    <input class="font-16B" type="button" value="예약하기" onclick="location.href='/semi/hotelpayment.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>&checkin=<%=Cin%>&checkout=<%=Cout%>&breakfast=none'">
+			                                    <%}else{ %>
+			                                     <input class="font-16B" type="button" value="로그인후 가능합니다." >
+			                                    <%} %>
 			                                    <div >
 			                                        <p class="font-14" style="line-height: 50px;">예약 취소 요금 없음</p>
 			                                    </div>    
@@ -256,7 +260,11 @@
 			                                </select>
 			                                </div>
 			                                <div class="reservation" style="width:175px;border: none;">
+			                                	<% if(m !=null) {%>
 			                                    <input class="font-16B" type="button" value="예약하기" onclick="location.href='/semi/hotelpayment.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>&checkin=<%=Cin%>&checkout=<%=Cout%>&breakfast=have'">
+			                                    <%}else{ %>
+			                                     <input class="font-16B" type="button" value="로그인후 가능합니다." >
+			                                    <%} %>
 			                                    <div >
 			                                        <p class="font-14" style="line-height: 50px;">예약 취소 요금 없음</p>
 			                                        
