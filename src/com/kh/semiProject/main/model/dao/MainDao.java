@@ -133,7 +133,6 @@ public class MainDao {
 				h.sethName(rset.getString("PH_NAME"));
 				h.sethImg(rset.getString("PH_IMG"));
 				h.sethPrice(rset.getInt("PH_PRICE"));
-				h.sethScore(rset.getInt("PH_SCORE"));
 				h.sethPromotion(rset.getString("PH_PROMOTION"));
 				
 				plist.add(h);
