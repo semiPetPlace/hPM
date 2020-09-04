@@ -13,6 +13,7 @@ import com.kh.semiProject.Hotel.model.vo.HotelConvenience;
 import com.kh.semiProject.Hotel.model.vo.HotelFacility;
 import com.kh.semiProject.Hotel.model.vo.HotelRoom;
 import com.kh.semiProject.Hotel.model.vo.PetHotel;
+import com.kh.semiProject.Manager.model.vo.ReservationManager;
 
 public class HotelService {
 	
@@ -107,5 +108,35 @@ public class HotelService {
 		close(con);
 		return phlist;
 	}
+
+	public int insertReser(int hno, String rname, String cin, String cout, String checkintime,
+			String totalprice, String guestname, String email, String guestrequest, String breakfast, String petnum, String userid) {
+		Connection con = getConnection();
+		
+		
+		int result = hDao.inserReser(con,hno,rname,cin,cout,checkintime,totalprice,guestname,email,guestrequest,breakfast,petnum,userid);
+		
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int updateRoom(int hno, String rname, String Cin, String Cout) {
+		Connection con = getConnection();
+		
+		int update = hDao.updateRoom(con,hno,rname,Cin,Cout);
+		
+		if(update>0)commit(con);
+		else rollback(con);
+		
+		close(con);
+		return update;
+	}
+
+	
 
 }

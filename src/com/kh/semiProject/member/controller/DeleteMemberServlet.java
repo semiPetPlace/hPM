@@ -1,28 +1,30 @@
-package com.kh.semiProject.Manager.controller;
+package com.kh.semiProject.member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.kh.semiProject.mQnA.model.service.MtMListService;
-import com.kh.semiProject.mQnA.model.vo.QnA;
+import com.kh.semiProject.board.model.service.BoardService;
+import com.kh.semiProject.member.exception.MemberException;
+import com.kh.semiProject.member.model.service.MemberService;
+import com.kh.semiProject.member.model.vo.Member;
 
 /**
- * Servlet implementation class mtmListView
+ * Servlet implementation class DeleteMemberServlet
  */
-@WebServlet("/listView.mt")
-public class mtmListViewServlet extends HttpServlet {
+@WebServlet("/deleteMember.th")
+public class DeleteMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public mtmListViewServlet() {
+    public DeleteMemberServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,23 +33,21 @@ public class mtmListViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String type = "N";
-		ArrayList<QnA> qList = new MtMListService().viewList(type);
+		HttpSession session = request.getSession(false);
+		String userId = ((Member)session.getAttribute("member")).getMuserId();
+		
+		int result = new MemberService().deleteMember(userId);
 		
 		String page = "";
-
-		if(qList != null) {
-			System.out.println(qList);
-			request.setAttribute("qList", qList);
-			page = "views/Manager/Manager_mtmList.jsp";
+		if(result != 0) {
+			System.out.println("회원 탈퇴성공!");
+			session.invalidate();
+			response.sendRedirect("index.jsp");
 		}else {
-			request.setAttribute("msg", "관리자 1:1 문의 완료 리스트 접근 실패");
-			page = "views/common/errorPage.jsp";	
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "회원탈퇴 실패!");
+			request.getRequestDispatcher(page).forward(request, response);
 		}
-
-		request.getRequestDispatcher(page).forward(request, response);
-		
 	}
 
 	/**

@@ -59,7 +59,7 @@
 
                         </div>
                         <div class="btn-block">
-                            <div onclick="location. href='../mypage/mypage-reservation.payment.jsp'">내 예약 확인하기</div>
+                            <div onclick="location.href='../mypage/mypage-reservation.payment.jsp'">내 예약 확인하기</div>
                         </div>
                     </div>
                 </div>

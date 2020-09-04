@@ -54,7 +54,7 @@ public class QnA implements Serializable {
 	}
 
 	public QnA(String clientName, String qnaTitle, String qnaText, Date qnaDate, String clientEmail, String requester,
-			String reText, Date reDate) {
+			String reTitle,String reText, Date reDate) {
 		super();
 		this.clientName = clientName;
 		this.qnaTitle = qnaTitle;
@@ -69,14 +69,9 @@ public class QnA implements Serializable {
 	public int getQno() {
 		return qno;
 	}
-
-
-
 	public void setQno(int qno) {
 		this.qno = qno;
 	}
-
-
 
 	public String getClientName() {
 		return clientName;

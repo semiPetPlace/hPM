@@ -1,6 +1,7 @@
 package com.kh.semiProject.Hotel.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,9 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semiProject.Hotel.model.service.HotelService;
 import com.kh.semiProject.Hotel.model.vo.Hotel;
-import com.kh.semiProject.Hotel.model.vo.HotelConvenience;
-import com.kh.semiProject.Hotel.model.vo.HotelFacility;
 import com.kh.semiProject.Hotel.model.vo.HotelRoom;
+import com.kh.semiProject.Manager.model.vo.ReservationManager;
 
 /**
  * Servlet implementation class HotelReservationFinished
@@ -35,22 +35,29 @@ public class HotelReservationFinished extends HttpServlet {
 		System.out.println("예약완료서블릿 시작");
 		int hno = Integer.parseInt(request.getParameter("hno"));
 		String rname = request.getParameter("hroom");
-		String petnum = (request.getParameter("petnum"));
-		String guestname = request.getParameter("guestname");
-		String email = request.getParameter("email");
-		String checkintime =request.getParameter("checkintime");
-		String guestrequest = request.getParameter("guestrequest");
 		String Cin = request.getParameter("checkin");
 		String Cout = request.getParameter("checkout");
+		String checkintime =request.getParameter("checkintime");
+		String totalprice = request.getParameter("totalprice");
+		String guestname = request.getParameter("guestname");				//회원아이디로 교체
+		String email = request.getParameter("email");
+		String guestrequest = request.getParameter("guestrequest");
 		String breakfast = request.getParameter("breakfast");
+		String petnum = (request.getParameter("petnum"));
+		String userid = request.getParameter("userid");
 		
+		System.out.println(userid);
 		HotelService hs = new HotelService();
 		
 		Hotel hd = hs.selectHotel(hno);
 		
 		HotelRoom hr = hs.payment(hno,rname);
+		int update = hs.updateRoom(hno,rname,Cin,Cout);
+		System.out.println(update);
 		
+		int result = hs.insertReser(hno,rname,Cin,Cout,checkintime,totalprice,guestname,email,guestrequest,breakfast,petnum,userid);
 		
+		System.out.println(result);
 		
 		String page = "";
 		if(hr != null) {

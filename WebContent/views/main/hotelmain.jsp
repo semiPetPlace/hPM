@@ -140,37 +140,38 @@ select{
                     <h1>필터링 기준</h1>
                     <hr>
                     <label for="">인기필터</label><br>
-                    <div class="filter"><input type="checkbox" id='1' name="checklist"> 24시프론트</div> 
-                    <div class="filter"><input type="checkbox" id='2' name="checklist"> 주차장</div> 
-                    <div class="filter"><input type="checkbox" id='3' name="checklist"> 레스토랑</div> 
-                    <div class="filter"><input type="checkbox" id='4' name="checklist"> 룸서비스</div>
-                    <div class="filter"><input type="checkbox" id='5' name="checklist"> 피트니스센터</div> 
-                    <div class="filter"><input type="checkbox" id='6' name="checklist"> 금연실</div> 
-                    <div class="filter"><input type="checkbox" id='7' name="checklist"> 공항셔틀버스</div>
-                    <div class="filter"><input type="checkbox" id='8' name="checklist"> 방음</div> 
-                    <div class="filter"><input type="checkbox" id='9' name="checklist"> 가족실</div> 
-                    <div class="filter"><input type="checkbox" id='10' name="checklist"> 스파</div> 
-                    <div class="filter"><input type="checkbox" id='11' name="checklist"> 사우나</div> 
-                    <div class="filter"><input type="checkbox" id='12' name="checklist"> 와이파이</div> 
-                    <div class="filter"><input type="checkbox" id='13' name="checklist"> 전기차 충전소</div> 
-                    <div class="filter"><input type="checkbox" id='14' name="checklist"> 간의주방</div> 
-                    <div class="filter"><input type="checkbox" id='15' name="checklist"> 욕실</div> 
-                    <div class="filter"><input type="checkbox" id='16' name="checklist"> 욕조</div> 
-                    <div class="filter"><input type="checkbox" id='17' name="checklist"> TV</div> 
-                    <div class="filter"><input type="checkbox" id='18' name="checklist"> 세탁</div> 
-                    <div class="filter"><input type="checkbox" id='19' name="checklist"> 전망</div> 
-                    <div class="filter"><input type="checkbox" id='20' name="checklist"> 전기포트</div> 
-                    <div class="filter"><input type="checkbox" id='21' name="checklist"> 커피머신</div> 
-                    <div class="filter"><input type="checkbox" id='22' name="checklist"> 루프탑</div> 
-                    <div class="filter"><input type="checkbox" id='23' name="checklist"> 공기청정기</div> 
-                    <div class="filter"><input type="checkbox" id='24' name="checklist"> 테라스</div> 
-                    <div class="filter"><input type="checkbox" id='25' name="checklist"> 발코니</div> 
+                    <div class="filter"><input type="checkbox" id='1' name="checklist" value="24시프론트"> 24시프론트</div> 
+                    <div class="filter"><input type="checkbox" id='2' name="checklist" value="주차장"> 주차장</div> 
+                    <div class="filter"><input type="checkbox" id='3' name="checklist" value="레스토랑"> 레스토랑</div> 
+                    <div class="filter"><input type="checkbox" id='4' name="checklist" value="룸서비스"> 룸서비스</div>
+                    <div class="filter"><input type="checkbox" id='5' name="checklist" value="피트니스센터"> 피트니스센터</div> 
+                    <div class="filter"><input type="checkbox" id='6' name="checklist" value="금연실"> 금연실</div> 
+                    <div class="filter"><input type="checkbox" id='7' name="checklist" value="공항셔틀버스"> 공항셔틀버스</div>
+                    <div class="filter"><input type="checkbox" id='8' name="checklist" value="방음"> 방음</div> 
+                    <div class="filter"><input type="checkbox" id='9' name="checklist" value="가족실"> 가족실</div> 
+                    <div class="filter"><input type="checkbox" id='10' name="checklist" value="스파"> 스파</div> 
+                    <div class="filter"><input type="checkbox" id='11' name="checklist" value="사우나"> 사우나</div> 
+                    <div class="filter"><input type="checkbox" id='12' name="checklist" value="와이파이"> 와이파이</div> 
+                    <div class="filter"><input type="checkbox" id='13' name="checklist" value="전기차충전소"> 전기차충전소</div> 
+                    <div class="filter"><input type="checkbox" id='14' name="checklist" value="간의주방"> 간의주방</div> 
+                    <div class="filter"><input type="checkbox" id='15' name="checklist" value="욕실"> 욕실</div>  
+                    <div class="filter"><input type="checkbox" id='17' name="checklist" value="TV"> TV</div> 
+                    <div class="filter"><input type="checkbox" id='18' name="checklist" value="세탁"> 세탁</div> 
+                    <div class="filter"><input type="checkbox" id='19' name="checklist" value="전망"> 전망</div> 
+                    <div class="filter"><input type="checkbox" id='20' name="checklist" value="전기포트"> 전기포트</div> 
+                    <div class="filter"><input type="checkbox" id='21' name="checklist" value="커피머신"> 커피머신</div> 
+                    <div class="filter"><input type="checkbox" id='22' name="checklist" value="루프탑"> 루프탑</div> 
+                    <div class="filter"><input type="checkbox" id='23' name="checklist" value="공기청정기"> 공기청정기</div> 
+                    <div class="filter"><input type="checkbox" id='24' name="checklist" value="테라스"> 테라스</div> 
+                    <div class="filter"><input type="checkbox" id='25' name="checklist" value="발코니"> 발코니</div> 
                     <hr>
                     <label for="">위치</label><br>
                      
                     <hr>
                     <label for="">평점</label><br>
                      
+                    <button value="검색" style="border:none ; width: 100px;height: 25px; border-radius: 10px; 
+							background: #f9c550;margin-top: 5px;margin-left: 30px; font-size:14px;color: white;" id="searchfilter">검색</button>
                 </div>
  
                 <!------------ 왼쪽 필터 끝 ------------>

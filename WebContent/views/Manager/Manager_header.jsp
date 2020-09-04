@@ -4,7 +4,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+ h2,  h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -186,6 +186,7 @@ html,body {
     margin-left: 120px;
     text-align: center;
 }
+
 </style>
 <header>
     <div id="main-nav" class="clearfix">
@@ -224,5 +225,5 @@ html,body {
 	}	
 	function goListView(){
 		location.href="/semi/listView.mt";
-	}	
+	}		
 </script>

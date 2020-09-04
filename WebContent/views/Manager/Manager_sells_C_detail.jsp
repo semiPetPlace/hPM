@@ -52,7 +52,7 @@
                             <th class="listTitle" id="joinDate">회원가입일</th>
                             <th class="listTitle" id="status">회원 상태</th>
 						<%for(Client c : cList){ %>
-                            <tr class="listCal">
+                            <tr class="listCal" id="trh">
                                 <td><%= c.getUserNo() %></td>
                                 <td><%= c.getUserId() %></td>
                                 <td><%= c.getUserName() %></td>

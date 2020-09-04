@@ -1,28 +1,26 @@
 package com.kh.semiProject.Manager.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semiProject.mQnA.model.service.MtMListService;
+import com.kh.semiProject.mQnA.model.service.QnAService;
 import com.kh.semiProject.mQnA.model.vo.QnA;
 
 /**
- * Servlet implementation class mtmListView
+ * Servlet implementation class requestClearServlet
  */
-@WebServlet("/listView.mt")
-public class mtmListViewServlet extends HttpServlet {
+@WebServlet("/Clear.re")
+public class requestClearServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public mtmListViewServlet() {
+    public requestClearServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,23 +29,20 @@ public class mtmListViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String type = "N";
-		ArrayList<QnA> qList = new MtMListService().viewList(type);
+		int qno =Integer.parseInt(request.getParameter("qno"));
 		
-		String page = "";
+		String requester = request.getParameter("requester");
+		String reText = request.getParameter("retext");
+		int result = new QnAService().reClear(qno,requester,reText);
+		
 
-		if(qList != null) {
-			System.out.println(qList);
-			request.setAttribute("qList", qList);
-			page = "views/Manager/Manager_mtmList.jsp";
+		if(result > 0) {
+			response.sendRedirect("mSend.mi?qno="+qno);
 		}else {
-			request.setAttribute("msg", "관리자 1:1 문의 완료 리스트 접근 실패");
-			page = "views/common/errorPage.jsp";	
+			request.setAttribute("msg", "답변 저장 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 
-		request.getRequestDispatcher(page).forward(request, response);
-		
 	}
 
 	/**
