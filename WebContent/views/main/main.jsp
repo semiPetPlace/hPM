@@ -5,6 +5,7 @@
 <%@ page import="com.kh.semiProject.restaurant.model.vo.*"%>
 <%
 	ArrayList<Hotel> hlist = (ArrayList<Hotel>) request.getAttribute("hlist");
+	ArrayList<Hotel> plist = (ArrayList<Hotel>) request.getAttribute("plist");
 	ArrayList<Cafe> clist = (ArrayList<Cafe>) request.getAttribute("clist");
 	ArrayList<Restaurant> rlist = (ArrayList<Restaurant>) request.getAttribute("rlist");
 %>
@@ -155,7 +156,7 @@
 			<!-- 위탁 호텔 리스트 -->
 			<div id="placelist">
 				<h2 class="listname">
-					<a href="views/hotelmain.jsp"><img
+					<a onclick="return false;"><img
 						src="resources/images/icons/consignment_hotel.png" alt="반려견 위탁 호텔"></a>
 				</h2>
 			</div>
@@ -165,18 +166,17 @@
 						int num = 0;
 						for (Hotel h : hlist) {
 							if (num == 4) {
-								num = 0;
 								break;
 							}
 					%>
 					<td>
 						<div id="con_hotelList" style="float: none;">
-							<a href="views/pethotel/pet_hotel_detail.jsp">
+							<a href="<%=request.getContextPath() %>/hotelDetail.ys?h_no=<%= h.gethNo() %>">
 								<div class="con_hotelList-list">
 									<img src="<%=h.gethImg()%>" alt="con_hotel1">
 									<h4 style="margin-bottom: 0;"><%=h.gethName()%></h4>
 									<p class="infoText"><%=h.gethPromotion()%></p>
-									<p class="price"><%=h.gethPrice()%>/1박
+									<p class="price">₩<%=h.gethPrice()%>/1박
 									</p>
 								</div>
 							</a>
@@ -185,6 +185,7 @@
 					<%
 						num++;
 						}
+						num=0;
 					%>
 				</tr>
 			</table>
@@ -193,24 +194,30 @@
 			<!-- 동반 호텔 리스트 -->
 			<div id="placelist">
 				<h2 class="listname">
-					<a href="views/hotelmain.jsp"><img
+					<a onclick="return false;"><img
 						src="resources/images/icons/hotel.png" alt="반려견 동반 호텔"></a>
 				</h2>
 			</div>
 			<table>
 				<tr>
+				<% for(Hotel p :  plist){ %>
 					<td>
 						<div id="hotelList" style="float: none;">
-							<a href="views/hotel/hotel_detail.jsp">
+							<a href="<%=request.getContextPath() %>/pethoteldetail.ys?p_no=<%= p.gethNo() %>">
 								<div class="hotelList-list">
-									<img src="resources/images/hotel1.jpg" alt="hotel1">
-									<h4 style="margin-bottom: 0;">hotel name</h4>
-									<p class="infoText">information of hotel</p>
-									<p class="price">₩180,000/1박</p>
+									<img src="<%=p.gethImg()%>" alt="hotel1">
+									<h4 style="margin-bottom: 0;"><%=p.gethName()%></h4>
+									<p class="infoText"><%=p.gethPromotion()%></p>
+									<p class="price">₩<%=p.gethPrice()%>/1박</p>
 								</div>
 							</a>
 						</div>
 					</td>
+					<%
+						num++;
+						}
+					num=0;
+					%>
 				</tr>
 			</table>
 			<!-- 동반 호텔 리스트 끝 -->
@@ -218,7 +225,7 @@
 			<!-- 레스토랑 리스트 -->
 			<div id="placelist">
 				<h2 class="listname">
-					<a href="views/restaurant/restaurant_main.jsp"><img
+					<a onclick="return false;"><img
 						src="resources/images/icons/restaurant1.png" alt="반려견 동반 카페 레스토랑"></a>
 				</h2>
 			</div>
@@ -233,13 +240,13 @@
 					%>
 					<td>
 						<div id="restaurantList">
-							<a href="views/restaurant/restaurant_detailpage.jsp">
+							<a href="<%= request.getContextPath() %>/rView.ch?rno=<%= r.getRno() %>">
 								<div class="restaurantList-list">
 									<img src="<%=r.getRimage()%>" alt="Restaurant">
 									<h4 style="margin-bottom: 0;"><%=r.getRname()%></h4>
 									<p class="infoText"><%=r.getRpromotion()%></p>
 									<p class="price">
-										별점★<%=r.getRscore()%></p>
+										별점★ <%= r.getRscore() %></p>
 								</div>
 							</a>
 						</div>
@@ -247,6 +254,7 @@
 					<%
 						num++;
 						}
+					num=0;
 					%>
 				</tr>
 			</table>
@@ -256,13 +264,14 @@
 			<!-- 카페 리스트 -->
 			<div id="placelist">
 				<h2 class="listname">
-					<a href="views/cafe/cafe-main.jsp"><img
+					<a onclick="return false;"><img
 						src="resources/images/icons/cafe1.png" alt="반려견 동반 카페 레스토랑"></a>
 				</h2>
 			</div>
 			<table>
 				<tr>
 					<%
+
 						for (Cafe c : clist) {
 							if (num == 4) {
 								num = 0;
@@ -271,7 +280,7 @@
 					%>
 					<td>
 						<div id="cafeList">
-							<a href="views/cafe/cafe-detailpage.jsp">
+							<a href="<%= request.getContextPath() %>/cView.ch?cno=<%= c.getCno() %>">
 								<div class="cafeList-list">
 									<img src="<%=c.getCimage()%>" alt="cafe">
 									<h4 style="margin-bottom: 0;"><%=c.getCname()%></h4>
@@ -286,6 +295,7 @@
 					<%
 						num++;
 						}
+					num=0;
 					%>
 				</tr>
 			</table>

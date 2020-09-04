@@ -52,7 +52,7 @@ public class RestaurantDao {
 			close(rset);
 			close(stmt);
 		}
-		System.out.println(listCount);
+
 		return listCount;
 	}
 
@@ -137,4 +137,69 @@ public class RestaurantDao {
 
 		return r;
 	}
+
+
+	public ArrayList<Restaurant> searchRestaurant(Connection con, String local, String size, String keyword) {
+		
+		ArrayList<Restaurant> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String sql = prop.getProperty("searchRestaurant");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, local);
+			pstmt.setString(2, size);
+			pstmt.setString(3, keyword);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<Restaurant>();
+
+			while(rset.next()) {
+				Restaurant r = new Restaurant();
+				r.setRno(rset.getInt("R_NO"));
+				r.setRimage(rset.getString("R_IMAGE"));
+				r.setRname(rset.getString("R_NAME"));
+				r.setRscore(rset.getDouble("R_SCORE"));
+
+				list.add(r);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
+	}
+
+
+	public int getSearchListCount(Connection con, String local, String size, String keyword) {
+		
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("searchListCount");
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, local);
+			pstmt.setString(2, size);
+			pstmt.setString(3, keyword);
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return listCount;
+	}
+	
 }

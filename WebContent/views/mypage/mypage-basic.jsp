@@ -8,16 +8,16 @@
         <title>main</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../resources/css/mainpage.css">
-        <link rel="stylesheet" href="../../resources/css/mypage_basic.css">
-        <link rel="stylesheet" href="../../resources/css/cafe-main.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mainpage.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mypage_basic.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/cafe-main.css">
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src ="../../resources/js/script.js"></script>
+        <script src ="<%=request.getContextPath()%>/resources/js/script.js"></script>
 
     </head>
     <body>
         <%@ include file = "../common/header.jsp" %>
-        
+        <% if(m !=null){ %>
         <main id="H_main">
             <div id="main_wrapper">
                 <div id="imgFile">
@@ -160,12 +160,16 @@
                 
             </div>
             
-            
+            <% } else { 
+		request.setAttribute("msg", "회원만 열람 가능합니다.");
+		request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response);
+	 } %> 
             
         </main>
         <!-- TOP -->
         <div style="height: 20px; margin: 2px;"><a href="#header" id="top">▲ TOP</a></div>
 
+	
 		<%@ include file = "../common/footer.jsp" %>
             
     </body>

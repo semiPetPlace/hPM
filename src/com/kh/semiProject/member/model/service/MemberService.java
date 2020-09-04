@@ -59,7 +59,7 @@ public class MemberService {
 		return result;
 	}
 
-	public int deleteMember(String muserId) throws MemberException {
+	public int deleteMember(String muserId){
 		con= getConnection();
 		
 		int result = mDao.deleteMember(con,muserId);
@@ -72,7 +72,7 @@ public class MemberService {
 			rollback(con);
 		}
 		close(con);
-		
+		System.out.println("service"+result);
 		return result;
 		
 	}
@@ -83,5 +83,19 @@ public class MemberService {
 		
 		close(con);
 		return result;
+	}
+
+	public String findIdMember(String name, String email) {
+		con = getConnection();
+		String id = mDao.findIdMember(con,name,email);
+		close(con);	
+		return id;
+	}
+
+	public String findPwdMember(String userId, String name, String email) {
+		con = getConnection();
+		String pwd = mDao.findPwdMember(con,userId,name,email);
+		close(con);	
+		return pwd;
 	}
 }

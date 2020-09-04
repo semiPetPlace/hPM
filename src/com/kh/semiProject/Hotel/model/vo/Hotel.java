@@ -240,5 +240,8 @@ public class Hotel implements Serializable{
 				+ ", hRequests=" + hRequests + ", hRegisterData=" + hRegisterData + ", hRegistration=" + hRegistration
 				+ ", lat=" + lat + ", lng=" + lng + ", filter=" + filter + "]";
 	}
+	
+	
+
 
 }

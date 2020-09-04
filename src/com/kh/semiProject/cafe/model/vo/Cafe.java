@@ -25,6 +25,7 @@ public class Cafe implements Serializable {
 	private String crequest;
 	private Date cregisterDate;
 	private String cregistration;
+	private String cpetSize;
 	
 	
 	public Cafe() {
@@ -64,7 +65,7 @@ public class Cafe implements Serializable {
 
 	public Cafe(int cno, String crimage, String cimage, String cname, String ctel, String ctime, double cscore,
 			String caddress, String cdogCompInfo, String cpromotion, String creview, String crequest,
-			Date cregisterDate, String cregistration) {
+			Date cregisterDate, String cregistration, String cpetSize) {
 		super();
 		this.cno = cno;
 		this.crimage = crimage;
@@ -80,6 +81,7 @@ public class Cafe implements Serializable {
 		this.crequest = crequest;
 		this.cregisterDate = cregisterDate;
 		this.cregistration = cregistration;
+		this.cpetSize = cpetSize;
 	}
 
 
@@ -221,6 +223,16 @@ public class Cafe implements Serializable {
 	public void setCregistration(String cregistration) {
 		this.cregistration = cregistration;
 	}
+	
+
+	public String getCpetSize() {
+		return cpetSize;
+	}
+
+
+	public void setCpetSize(String cpetSize) {
+		this.cpetSize = cpetSize;
+	}
 
 
 	@Override
@@ -228,6 +240,8 @@ public class Cafe implements Serializable {
 		return "cno=" + cno + ", crimage=" + crimage + ", cimage=" + cimage + ", cname=" + cname + ", ctel="
 				+ ctel + ", ctime=" + ctime + ", cscore=" + cscore + ", caddress=" + caddress + ", cdogCompInfo="
 				+ cdogCompInfo + ", cpromotion=" + cpromotion + ", creview=" + creview + ", crequest=" + crequest
-				+ ", cregisterDate=" + cregisterDate + ", cregistration=" + cregistration;
+				+ ", cregisterDate=" + cregisterDate + ", cregistration=" + cregistration + ", cpetSize=" + cpetSize;
 	}
+
+
 }

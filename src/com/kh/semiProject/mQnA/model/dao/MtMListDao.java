@@ -29,15 +29,18 @@ public class MtMListDao {
 		}
 
 	}
-	public ArrayList<QnA> viewList(Connection con) {
+	public ArrayList<QnA> viewList(Connection con, String type) {
 		ArrayList<QnA> qList = new ArrayList();
 		
 		PreparedStatement pstmt = null;
 		
 		ResultSet rset = null;
-		
-		String sql = prop.getProperty("viewList");
-		
+		String sql="";
+		if(type.equals("N")) {
+			sql = prop.getProperty("viewList");
+		}else if(type.equals("Y")){
+			sql = prop.getProperty("requestedList");
+		}
 		try {
 			pstmt = con.prepareStatement(sql);
 			rset = pstmt.executeQuery();
@@ -46,14 +49,7 @@ public class MtMListDao {
 			
 			while(rset.next()) {
 				QnA q ;
-				
-//				q.setQno(rset.getInt("Q_NO"));
-//				q.setClientId(rset.getString("C_NAME"));
-//				q.setClientName(rset.getString("C_ID"));
-//				q.setQnaTitle(rset.getString("QNA_TITLE"));
-//				q.setQnaCategory(rset.getString("QNA_CATEGORY"));
-//				q.setReDate(rset.getDate("QNA_DATE"));
-				
+	
 				int qno = rset.getInt("Q_NO");
 				String cName = rset.getString("C_NAME");
 				String cId = rset.getString("C_ID");

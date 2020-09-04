@@ -40,7 +40,8 @@ public class HotelSearchServlet extends HttpServlet {
 		ArrayList<Hotel> hlist = new ArrayList<>();
 		
 		hlist = hs.searchHotels(in,out,area);
-		System.out.println(hlist);
+		
+
 		String page = "";
 		if(!hlist.isEmpty()) {
 			page = "views/main/hotelmain.jsp";

@@ -9,13 +9,13 @@
         
         
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../resources/css/mainpage.css">
-        <link rel="stylesheet" href="../../resources/css/cafe-main.css">
+        <link rel="stylesheet" href="/semi/resources/css/mainpage.css">
+        <link rel="stylesheet" href="/semi/resources/css/cafe-main.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-        <link rel="stylesheet" href="../../resources/css/mypage_Member.Modification.css">
+        <link rel="stylesheet" href="/semi/resources/css/mypage_Member.Modification.css">
 
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src ="../../resources/js/script.js"></script>
+        <script src ="/semi/resources/js/script.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
@@ -64,7 +64,7 @@
                                         <li> <label class="caution">*</label> 비밀번호</li>
                                         <li> <label class="caution">*</label> 비밀번호 확인</li>
                                         <li>이름</li>
-                                        <li>주민번호</li>
+                                        <li>생년월일</li>
                                         <li>  <label class="caution">*</label> 연락처</li>
                                     </ul>
                                 </div>
@@ -73,14 +73,13 @@
                             <td>
                                 <div class="showRecode">
                                     <ul class="list2">
-                                        <li><input type="text" name="" id="id" placeholder="아이디"></li>
+                                        <li><input type="text" name="" id="id" readonly value="<%=m.getMuserId()%>"></li>
                                         <li><input type="text" name="" id="password"></li>
                                         <li><input type="text" name="" id="passwordCheck"></li>
-                                        <li><input type="text" name="" id="name" placeholder="한윤수"></li>
-                                        <li><input type="text" name="" id="ssn1" class="ssn" placeholder="921228"> - 
-                                            <input type="text" name="" id="ssn2" class="ssn" placeholder="1*****">
+                                        <li><input type="text" name="" id="name" readonly value="<%=m.getMuserName()%>"></li>
+                                        <li><input type="text" name="" id="brith" class="ssn" value="<%=m.getMbirth()%>" readonly> 
                                         </li>
-                                        <li style="margin-bottom: 20px;"><input type="text" name="" id="phone1" class="pNum"> - 
+                                        <li style="margin-bottom: 20px;"><input type="text" name="" id="phone1" class="pNum" readonly value="010"> - 
                                             <input type="text" name="" id="phone2" class="pNum"> - 
                                             <input type="text" name="" id="phone3" class="pNum"></li>
                                     </ul>
@@ -102,11 +101,10 @@
                                 <div class="showRecode">
                                     <ul class="list2">
                                         <li><input type="text" name="zib" id="address1" class="adr"> - 
-                                            <input type="text" name="addr1" id="address2" class="adr"> 
+                                            <input type="text" name="addr1" id="address2" class="adr" style="width:200px"> 
                                             <input type="button" class="postbtn" value="우편주소 검색" onclick="openZipSearch()">
                                         </li>
                                         <li><input type="text" name="addr2" id="address3" class="detailAdr"></li>
-                                        <li><input type="text" name="" id="address4" class="detailAdr" placeholder="상세주소 입력"></li>
                                         <li><input type="text" name="" id="email1" class="email"> @
                                             <input type="text" name="" id="email2" class="email" >
                                         </li>
@@ -159,24 +157,37 @@
             </p>
         </div>
         <script>
-            $('a[href="#ex1"]').click(function(event) {
-              event.preventDefault();
-         
-              $(this).modal({
-                fadeDuration: 250
-              });
-            });
+	        $('a[href="#ex1"]').click(function(event) {
+	        	var password = $('#password').val();
+	        	var passwordcheck = $('#passwordcheck').val();
+	    		event.preventDefault();
+	            if($('#password').val() == "" || $('#passwordcheck').val() == "" || $('#phone2').val() == ""|| $('#phone3').val() == ""){
+	            	alert("필수값을 입력해주세요.");
+	            }else if(password == passwordcheck){
+	            	alert("변경할 비밀번호를 확인하세요.")
+	            }else{
+	            	$(this).modal({
+	              		fadeDuration: 250
+	            	});
+	            }
+	    	
+	      
+	   		});
+	       
+	        
+	        
+            
 
             function openZipSearch() {
 	            new daum.Postcode({
 		            oncomplete: function(data) {
-                    $('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
+                    $('[name=zip]').val(data.postcode); // 우편번호 (5자리)
                     $('[name=addr1]').val(data.address);
                     $('[name=addr2]').val(data.buildingName);
                     }
                 }).open();
             }
-                    </script>
+     	</script>
         
     </body>
 </html>

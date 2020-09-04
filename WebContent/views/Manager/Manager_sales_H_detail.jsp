@@ -52,7 +52,7 @@
                             <th class="listTitle" id="enrollDate">등록일</th>
 
                            <%for(Hsales h : hList){ %>
-                            <tr class="listCal">
+                            <tr class="listCal" id="trh">
                                 <td><%= h.gethNum() %></td>
                                 <td><%= h.gethName() %></td>
                                 <td><%= h.gethLocation() %></td>

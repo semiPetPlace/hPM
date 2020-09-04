@@ -55,6 +55,7 @@ public class HotelDao {
 				h.sethImg(rset.getString("h_Img"));
 				h.sethAddress(rset.getString("h_Address"));
 				h.sethPromotion(rset.getString("h_Promotion"));
+
 				
 				hlist.add(h);
 			}
@@ -493,4 +494,4 @@ public class HotelDao {
 		
 		return update;
 	}
-}
+}

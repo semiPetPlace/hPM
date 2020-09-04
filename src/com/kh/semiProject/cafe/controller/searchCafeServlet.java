@@ -14,16 +14,16 @@ import com.kh.semiProject.cafe.model.service.CafeService;
 import com.kh.semiProject.cafe.model.vo.Cafe;
 
 /**
- * Servlet implementation class cafeListServlet
+ * Servlet implementation class searchCafeServlet
  */
-@WebServlet("/cList.ch")
-public class cafeListServlet extends HttpServlet {
+@WebServlet("/cSearch.ch")
+public class searchCafeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public cafeListServlet() {
+    public searchCafeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,9 +32,13 @@ public class cafeListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Cafe> list = null;
-		CafeService cs = new CafeService();
-
+		// 검색 카테고리
+		String local = request.getParameter("local");
+		String size = request.getParameter("size");
+		// 검색 키워드
+		String keyword = request.getParameter("keyword");
+		
+		// 페이징 처리
 		int startPage;
 		int endPage;
 		int maxPage;
@@ -43,12 +47,15 @@ public class cafeListServlet extends HttpServlet {
 		
 		currentPage = 1;
 		limit = 9;
-
+		
+		ArrayList<Cafe> list = new ArrayList<>();
+		list = new CafeService().searchCafe(local, size, keyword, currentPage, limit);
+		
 		if(request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		int listCount = cs.getListCount();
+		int listCount = new CafeService().getSearchListCount(local, size, keyword);
 		System.out.println("총 페이지 수 : " + listCount);
 
 		maxPage = (int)((double)listCount / limit + 0.9);
@@ -63,7 +70,6 @@ public class cafeListServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		list = cs.selectList(currentPage, limit);
 		
 		String page = "";
 		
