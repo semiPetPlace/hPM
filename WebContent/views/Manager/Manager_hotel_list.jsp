@@ -50,15 +50,17 @@ int endPage = pi.getEndPage(); */
                 <div class="sub-list">
                     <p>업체 관리</p>
                     <ul>
-                        <li><a href="/semi/cList.co">· 전체 업체 목록</a></li>
-                        <li><a href="/semi/views/Manager/Manager_company_enrollForm.jsp">· 업체 등록</a></li>
+                        <li><a href="/semi/hList.hj">· 위탁 호텔 리스트</a></li>
+                        <li><a href="/semi/phList.hj">· 동반 호텔 리스트</a></li>
+                        <li><a href="/semi/cList.hj">· 동반 카페 리스트</a></li>
+                        <li><a href="/semi/rList.hj">· 동반 식당 리스트</a></li>
                     </ul>
                 </div>
             </div>
              <!-- 여기에 메인 컨텐츠 넣으면 됩니다. -->    
             <div class="content">
                 <div class="reservationTable">
-                    <p style="font-size: 30px; font-weight: 500px; margin-bottom: 10px;">전체 업체 목록</p>
+                    <p style="font-size: 30px; font-weight: 500px; margin-bottom: 10px;">위탁 호텔 리스트</p>
                     <div class="searchPot"></div>
                     
                     <div class="searchCompany">
@@ -77,7 +79,7 @@ int endPage = pi.getEndPage(); */
 						<button type="button" onclick="search();">검색</button>
 					</div>
                     <div class="btns">
-                        <input type="button" value="업체 등록" class="enrollBtn" onclick="location.href='views/Manager/Manager_company_enrollForm.jsp'">
+                        <input type="button" value="업체 등록" class="enrollBtn" onclick="location.href='views/Manager/Manager_hotel_enrollForm.jsp'">
                         <!-- <input type="button" value="업체 삭제" class="deleteBtn" onclick="alert('해당 업체 삭제가 완료되었습니다. ')"> -->
                     </div> 
        			<table id="listArea">
@@ -157,12 +159,12 @@ int endPage = pi.getEndPage(); */
 			}).click(function(){
 				//console.log($(this).parent().children().eq(0).text());
 				var comNum = $(this).parent().children().eq(0).text();
-				location.href="<%=request.getContextPath()%>/cDetail.co?comNum=" + comNum;
+				location.href="<%=request.getContextPath()%>/hDetail.hj?hno=" + hno;
 			});
 		});
 		
 		function search(){
-			location.href="<%=request.getContextPath()%>/searchCompany.co?con="+$('#searchCondition').val()+"&keyword="+$('#keyword').val();
+			location.href="<%=request.getContextPath()%>/searchHotel.hj?con="+$('#searchCondition').val()+"&keyword="+$('#keyword').val();
 		}
 		
 		</script>

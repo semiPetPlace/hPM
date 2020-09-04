@@ -1,9 +1,7 @@
-package com.kh.semiProject.mCompany.controller;
+package com.kh.semiProject.Manager.controller;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,20 +10,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.common.PageInfo;
+import com.kh.semiProject.Hotel.model.vo.Hotel;
+import com.kh.semiProject.Hotel.model.vo.HotelConvenience;
+import com.kh.semiProject.Hotel.model.vo.HotelRoom;
+import com.kh.semiProject.Manager.model.service.ManagerService;
+
 import com.kh.semiProject.mCompany.model.service.CompanyService;
 import com.kh.semiProject.mCompany.model.vo.Company;
 
 /**
- * Servlet implementation class CompanyListServlet
+ * Servlet implementation class HotelListServlet
  */
-@WebServlet("/cList.co")
-public class CompanyListServlet extends HttpServlet {
+@WebServlet("/hList.hj")
+public class HotelListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CompanyListServlet() {
+    public HotelListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,47 +37,47 @@ public class CompanyListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Company> list = new ArrayList<>();
-		CompanyService cs = new CompanyService();
+		ArrayList<Hotel> list = new ArrayList<>();
+		ManagerService ms = new ManagerService();
 		
-//		int startPage;
-//		int endPage;
-//		int maxPage;
-//		int currentPage;
-//		int limit;
-//		
-//		currentPage = 1;
-//		limit = 10;
-//
-//		if(request.getParameter("currentPage") != null) {
-//			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-//		}
-//		
-//		int listCount = cs.getListCount();
-//		System.out.println("총 페이지 수 : " + listCount);
-//
-//		maxPage = (int)((double)listCount / limit + 0.9);
-//		// 시작 페이지와 마지막 페이지 계산
-//		// 1~10 : 7
-//		
-//		startPage = ((int)((double)currentPage / limit + 0.9) - 1) * limit + 1;
-//		
-//		endPage = startPage + limit - 1;
-//		
-//		if(endPage > maxPage) {
-//			endPage = maxPage;
-//		}
-//		
-//		list = cs.listCompany(currentPage, limit);
-		list = cs.listCompany();
+		int startPage;
+		int endPage;
+		int maxPage;
+		int currentPage;
+		int limit;
+		
+		currentPage = 1;
+		limit = 10;
+
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int listCount = ms.getListCount();
+		System.out.println("총 페이지 수 : " + listCount);
+
+		maxPage = (int)((double)listCount / limit + 0.9);
+		// 시작 페이지와 마지막 페이지 계산
+		// 1~10 : 7
+		
+		startPage = ((int)((double)currentPage / limit + 0.9) - 1) * limit + 1;
+		
+		endPage = startPage + limit - 1;
+		
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		list = ms.listHotel(currentPage, limit);
+//		list = ms.listHotel();
 		
 		String page = "";
 		
 		if(list != null) {
 			page = "views/Manager/Manager_company_list.jsp";
 			request.setAttribute("list", list);
-//			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
-//			request.setAttribute("pi", pi);
+			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
+			request.setAttribute("pi", pi);
 		} else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg","업체 리스트 불러오기 에러");

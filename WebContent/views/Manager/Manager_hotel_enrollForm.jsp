@@ -1,13 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.semiProject.mCompany.model.vo.*"%>
-<% Company c = (Company)request.getAttribute("company"); %>
+    pageEncoding="UTF-8" import="com.kh.semiProject.Hotel.model.vo.*"%>
+<%
+	Hotel h = (Hotel)request.getAttribute("hotel");
+	HotelConvenience hc = (HotelConvenience)request.getAttribute("hotelConvenience");
+	HotelFacility hf = (HotelFacility)request.getAttribute("hotelFacility");
+	HotelRoom hr = (HotelRoom)request.getAttribute("hotelRoom");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>관리자 메인 화면</title>
-    <link rel="stylesheet" href="/semi/resources/css/Manager-DefaultCSS.css">
-    <link rel="stylesheet" href="/semi/resources/css/Manager-company-enrollForm.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/Manager-DefaultCSS.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/Manager-company-enrollForm.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 </head>
@@ -20,71 +25,59 @@
                 <div class="sub-list">
                     <p>업체 관리</p>
                     <ul>
-                        <li><a href="/semi/cList.co">· 전체 업체 목록</a></li>
-                        <li><a href="/semi/views/Manager/Manager_company_enrollForm.jsp">· 업체 등록</a></li>
+                        <li><a href="/semi/hList.hj">· 위탁 호텔 리스트</a></li>
+                        <li><a href="/semi/phList.hj">· 동반 호텔 리스트</a></li>
+                        <li><a href="/semi/cList.hj">· 동반 카페 리스트</a></li>
+                        <li><a href="/semi/rList.hj">· 동반 식당 리스트</a></li>
                     </ul>
                 </div>
             </div>
              <!-- 여기에 메인 컨텐츠 넣으면 됩니다. -->    
             <div class="content">
                 <div class="reservationTable">
-                    <p style="font-size: 30px; font-weight: 500px; margin-bottom: 10px;">업체 상세 정보 수정</p>
+                    <p style="font-size: 30px; font-weight: 500px; margin-bottom: 10px;">호텔 등록</p>
                     <div class="searchPot"></div>
                     <div class="enrollCom">
-                   		<form id="editForm" action="${pageContext.request.contextPath}/cEdit.co" method="post">
+                   		<form id="erollForm" action="${pageContext.request.contextPath}/hEnroll.hj" method="post">
 	                        <table border="1">
-		                        <tr>
-	                        		<th></th>
-	                        	</tr>
-	                        	<tr>
-	                        		<th></th>
-	                        	</tr>
+		h.sethPrice(hPrice);
+		h.sethGrade(hGrade);
+		h.sethScore(hScore);
+		h.sethImg(hImg);
+		h.sethPromotion(hPromotion);
+		h.sethRequests(hRequests);
+		h.sethRegisterData(hRegisterData);
+		h.sethRegistration(hRegistration);
+		h.sethLat(hLat);
+		h.sethLng(hLng);
+		h.setFilter(filter);
+		
+		HotelConvenience hc = new HotelConvenience();
+		hc.setTansport(tansport);
+		hc.setAirport(airport);
+		hc.setLocation(location);
+		hc.setWifi(wifi);
+		hc.setTub(tub);
+		
+		HotelRoom hr = new HotelRoom();
+		hr.setRname(rname);
+		hr.setRprice(rprice);
+		hr.setRimg(rimg);
+		hr.setRtub(rtub);
+		hr.setRbreakfast(rbreakfast);
+		hr.setRbadtype(rbadtype);
+		hr.setRsize(rsize);
+		hr.setRview(rview);
 	                            <tr>
-	                            	<th></th>
-	                            	<td>
-	                            		<input type="hidden" name="comNum" value="<%= c.getComNum() %>">
-	                            	</td>
-	                            </tr>
-	                            <tr>
-	                                <th>업체 분류</th>
+	                                <th>호텔 명</th>
 	                                <td>
-	                                    <select name="category" id="category">
-                                            <option value="<%= c.getCategory() %>" selected><%= c.getCategory() %></option>
-                                            <option value="위탁호텔">위탁호텔</option>
-                                            <option value="동반호텔">동반호텔</option>
-                                            <option value="동반카페">동반카페</option>
-                                            <option value="동반식당">동반식당</option>
-                                        </select>
+	                                    <input type="text" name="hName" id="hName" required="required">
 	                                </td>
 	                            </tr>
 	                            <tr>
-	                                <th>사업자번호</th>
+	                                <th>등록 일</th>
 	                                <td>
-	                                    <input type="text" maxlength="3" name="num1" id="num1" required="required">-
-	                                    <input type="text" maxlength="2" name="num2" id="num2" required="required">-
-	                                    <input type="text" maxlength="5" name="num3" id="num3" required="required">
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th>기업 형태</th>
-	                                <td>
-	                                    <select name="corp" id="corp" value="<%= c.getCorp() %>">
-                                            <option value="<%= c.getCorp() %>" selected><%= c.getCorp() %></option>
-                                            <option value="법인">법인</option>
-                                            <option value="개인">개인</option>
-                                        </select>
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th>업체 명</th>
-	                                <td>
-	                                    <input type="text" name="cName" id="cName" required="required" value="<%= c.getcName() %>">
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th>업체 등록 일</th>
-	                                <td>
-	                                    <input type="date" name="enrollDate" id="enrollDate" value="<%= c.getEnrollDate() %>">
+	                                    <input type="date" name="hRegisterData" id="hRegisterData">
 	                                </td>
 	                            </tr>
 								<tr>
@@ -107,23 +100,23 @@
                                     </td>
 								</tr>
 								<tr>
-	                                <th>업체 연락처</th>
+	                                <th>연락처</th>
 	                                <td>
-	                                    <input type="text" maxlength="4" name="pNum1" id="pNum1">-
-	                                    <input type="text" maxlength="4" name="pNum2" id="pNum2">-
-	                                    <input type="text" maxlength="4" name="pNum3" id="pNum3">
+	                                    <input type="text" maxlength="4" name="num1" id="num1">-
+	                                    <input type="text" maxlength="4" name="num2" id="num2">-
+	                                    <input type="text" maxlength="4" name="num3" id="num3">
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                                <th>대표자</th>
 	                                <td>
-	                                    <input type="text" maxlength="5" name="rName1" id="rName1" value="<%= c.getrName1() %>">
+	                                    <input type="text" maxlength="5" name="rName1" id="rName1">
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                                <th>담당자</th>
 	                                <td>
-	                                    <input type="text" maxlength="5" name="rName2" id="rName2" value="<%= c.getrName2() %>">
+	                                    <input type="text" maxlength="5" name="rName2" id="rName2">
 	                                </td>
 	                            </tr>
 	                            <tr>
@@ -137,37 +130,37 @@
 	                            <tr>
 	                                <th>담당자 이메일</th>
 	                                <td>
-	                                    <input type="email" name="email" id="email" value="<%= c.getEmail() %>">
+	                                    <input type="email" name="email" id="email">
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                                <th>은행명</th>
 	                                <td>
-	                                    <input type="text" name="bankName" id="bankName" value="<%= c.getBankName() %>">
+	                                    <input type="text" name="bankName" id="bankName">
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                                <th>예금주</th>
 	                                <td>
-	                                    <input type="text" name="holder" id="holder" value="<%= c.getHolder() %>">
+	                                    <input type="text" name="holder" id="holder">
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                                <th>계좌번호</th>
 	                                <td>
-	                                    <input type="text" maxlength="14" name="account" id="account" value="<%= c.getAccount() %>">
+	                                    <input type="text" maxlength="14" name="account" id="account">
 	                                </td>
 	                            </tr>
 	                            <tr>
 									<th>등록 상태</th>
 									<td>
-										<select name="state" id="state" value="<%= c.getState() %>">
+										<select name="state" id="state">
 											<option value="Y" selected>Y</option>
 											<option value="N">N</option>
 										</select>
 									</td>
 								</tr>
-								<tr>
+	     						<tr>
 	                        		<th></th>
 	                        	</tr>
 	                        	<tr>
@@ -178,9 +171,8 @@
 		                        <br><br><br>
 		                    </div>
 		                    <div class="btns">
-		                    	<input type="button" value="이전" class="preBtn" onclick="location.href='cDetail.co?comNum=<%=c.getComNum()%>'">
-		                        <input type="submit" value="수정 완료" class="editBtn" onclick="editCompany();">
-		                        <input type="submit" value="업체 삭제" class="deleteBtn" onclick="deleteCompany();">
+		                        <input type="button" value="이전 메뉴로" class="preBtn" onclick="history.back(-1);">
+		                        <input type="submit" value="등록 완료" class="subBtn" onclick="enrollCompany();">
 		                    </div>
 						</form>
                     </div>
@@ -189,37 +181,10 @@
         </div>
     </div>
     <script>
-	    $(function(){
-			var phoneArr = '<%= c.getPhone() %>'.split('-');
-			$('input[name*="conNum"]').each(function(index){
-				$(this).val(phoneArr[index]);
-			});
-			
-			var telArr = '<%= c.getTel() %>'.split('-');
-			$('input[name*="pNum"]').each(function(index){
-				$(this).val(telArr[index]);
-			});
-			
-			var cNumArr = '<%= c.getcNum() %>'.split('-');
-			$('input[name*="num"]').each(function(index){
-				$(this).val(cNumArr[index]);
-			});
-			
-			var addressArr = '<%= c.getAddress() %>'.split(', ');
-			$('#address1').val(addressArr[0]);
-			$('#address2').val(addressArr[1]);
-			$('#zipCode').val(addressArr[2]);
-			
-		});
-	    
-		function editCompany() {
-			alert('업체 수정이 완료되었습니다. ');
-			$("#editForm").submit();
-		}
-		
-		function deleteCompany() {
-			alert('업체 상태가 변경되었습니다. ');
-			$("#editForm").attr("action","<%= request.getContextPath()%>/cDelete.co");
+	    function enrollCompany() {
+			alert('업체 등록이 완료되었습니다. ');
+			/* $("#enrollForm").submit(); */
+			$("#enrollForm").attr("action","<%= request.getContextPath()%>/hEnroll.hj");
 		}
     
 	    function addrSearch() {

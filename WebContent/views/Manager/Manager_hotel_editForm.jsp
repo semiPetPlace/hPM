@@ -20,8 +20,10 @@
                 <div class="sub-list">
                     <p>업체 관리</p>
                     <ul>
-                        <li><a href="/semi/cList.co">· 전체 업체 목록</a></li>
-                        <li><a href="/semi/views/Manager/Manager_company_enrollForm.jsp">· 업체 등록</a></li>
+                        <li><a href="/semi/hList.hj">· 위탁 호텔 리스트</a></li>
+                        <li><a href="/semi/phList.hj">· 동반 호텔 리스트</a></li>
+                        <li><a href="/semi/cList.hj">· 동반 카페 리스트</a></li>
+                        <li><a href="/semi/rList.hj">· 동반 식당 리스트</a></li>
                     </ul>
                 </div>
             </div>
