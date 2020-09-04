@@ -12,44 +12,34 @@
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src ="../../resources/js/script.js"></script>
         <script>
+        	
             function allCheck() {
+            	if($("[name=check1]").is(":checked")==true){
                 $("[name=check2]").prop("checked", true);
-            }// 모두 체크하기
-    
-            function oneCheck(a) {
-                var allChkBox = $("[name=check1]");
-                var chkBoxName = $(a).attr("name");
-    
-                if ($(a).prop("checked")) {
-                    checkBoxLength = $("[name=" + chkBoxName + "]").length;
-                    //전체체크박스 수(모두동의하기 체크박스 제외)
-                    checkedLength = $("[name=" + chkBoxName + "]:checked").length;
-                    //체크된 체크박스 수 
-                    if (checkBoxLength == checkedLength) {
-                        allChkBox.prop("checked", true);
-                        //전체체크박스수 == 체크된 체크박스 수 같다면 모두체크
-    
-                    } else {
-                        allChkBox.prop("checked", false);
-    
-                    }
-                }
-                else {
-                    allChkBox.prop("checked", false);
-                }
+            	}else{
+                $("[name=check2]").prop("checked", false);
+            	}
             }
+    
+
     
             $(function () {
                 $("[name=check1]").click(function () {
                     allCheck(this);
-                    //모두동의하기 체크박스 클릭시
                 });
-                $("[name=check2]").each(function () {
-                    $(this).click(function () {
-                        oneCheck(this);
-                    });
-                });
+
             });
+            function next(){
+            	if($("input[id=necessary1]").prop("checked")){
+            		if( $("input[id=necessary2]").prop("checked")){
+            			alert("넘어가");
+            			location.href="/semi/views/login/sing-up2.jsp";            			
+            		}
+                	}else{
+                		alert("필수 체크사항을 선택해 주세요");
+                	}
+       	     }
+           
     
     </script>
     </head>
@@ -57,7 +47,7 @@
         <%@ include file = "../common/header.jsp" %>
 
         <section class="all_wrap">
-            <form action="" id="section01">
+            <form  id="section01">
                 <ul class="join_box">
                     <div class="title"><img src="../../resources/images/sign2.png" alt=""></div>
                     <li class="checkBox check01">
@@ -66,7 +56,7 @@
                                 위치정보 이용약관(선택), 프로모션 안내
                                 메일 수신(선택)에 모두 동의합니다.</li>
                             <li class="btn mainbtn">
-                                <input type="checkbox" name="check1" id="chk" class="chekALL hidden chkid chkAll">  
+                                <input type="checkbox" name="check1"  class="chekALL hidden chkid chkAll">  
                             </li>
                         </ul>
     
@@ -75,7 +65,7 @@
                         <ul class="clearfix">
                             <li>이용약관 동의(필수)</li>
                             <li class="btn">
-                                <input type="checkbox" name="check2" class="chekALL hidden chk2All chkAll" required="">
+                                <input type="checkbox" name="check2" id="necessary1" class="chekALL hidden chk2All chkAll" required="">
                                 
                             </li>
                         </ul>
@@ -88,7 +78,7 @@
                         <ul class="clearfix">
                             <li>개인정보 수집 및 이용에 대한 안내(필수)</li>
                             <li class="btn">
-                                <input type="checkbox" name="check2" class="chekALL hidden chk3All chkAll" required="">
+                                <input type="checkbox" name="check2" id="necessary2" class="chekALL hidden chk3All chkAll" required="">
                                 
                             </li>
                         </ul>
@@ -112,18 +102,18 @@
                         <ul class="clearfix">
                             <li>이벤트 등 프로모션 알림 메일 수신(선택)</li>
                             <li class="btn">
-                                <input type="checkbox" name="check2" class="chekALL hidden chk5ll chkAll">
+                                <input type="checkbox" name="check2"  class="chekALL hidden chk5All chkAll">
                                
                             </li>
                         </ul>
     
                     </li>
                 </ul>
+            </form>
                 <ul class="footBtwrap">
                     <li><button class="fpmgBt1" onclick="location='login.jsp'">이전</button></li>
-                    <li><button class="fpmgBt2" onclick="location='sing-up2.jsp'">다음</button></li>
+                    <li><button class="fpmgBt2" onclick="next()">다음</button></li>
                 </ul>
-            </form>
         </section>
 
         <div style="height: 20px;"><a href="#header" id="top">▲ TOP</a></div>
