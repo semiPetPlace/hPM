@@ -37,13 +37,14 @@ public class MainListServlet extends HttpServlet {
 		ArrayList<Cafe> clist = null;
 		ArrayList<Hotel> hlist = null;
 		ArrayList<Restaurant> rlist = null;
+		ArrayList<Hotel> plist = null;
 		
 		MainService ms = new MainService();
 		
 		clist = ms.selectCafeList();
 		hlist = ms.selectHotelList();
 		rlist = ms.selectRtList();
-		
+		plist = ms.selectPetHotelList();
 
 		
 		String page = "";
@@ -52,6 +53,7 @@ public class MainListServlet extends HttpServlet {
 			request.setAttribute("hlist", hlist);
 			request.setAttribute("clist", clist);
 			request.setAttribute("rlist", rlist);
+			request.setAttribute("plist", plist);
 		}else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "리스트 불러오기 실패!");

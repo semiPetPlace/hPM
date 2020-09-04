@@ -43,4 +43,13 @@ public class MainService {
 		return rlist;
 	}
 
+	public ArrayList<Hotel> selectPetHotelList() {
+		Connection con = getConnection();
+		ArrayList<Hotel> plist = mDao.selectPetHotelList(con);
+		
+		close(con);
+
+		return plist;
+	}
+
 }
