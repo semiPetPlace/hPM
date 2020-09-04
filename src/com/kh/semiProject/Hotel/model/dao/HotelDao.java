@@ -93,7 +93,8 @@ public class HotelDao {
 				hd.sethPromotion(rset.getString("h_Promotion"));
 				hd.sethRequests(rset.getString("h_requests"));
 				hd.setLat(rset.getFloat("h_lat"));
-				hd.setLng(rset.getFloat("h_lng"));				
+				hd.setLng(rset.getFloat("h_lng"));
+				
 				
 			}
 			
@@ -121,18 +122,18 @@ public class HotelDao {
 			hrlist = new ArrayList<>();
 			while(rset.next()) {
 				HotelRoom hr = new HotelRoom();
-				hr.sethNo(rset.getInt("hr_hotelnumber"));
-				hr.setrName(rset.getString("hr_roomname"));
-				hr.setrPrice(rset.getInt("hr_price"));
-				hr.setrCheckin(rset.getString("hr_price"));
-				hr.setrCheckout(rset.getString("hr_checkout"));
-				hr.setrImg(rset.getString("hr_img"));
-				hr.setrTub(rset.getString("hr_convenience_tub"));
-				hr.setrBreakfast(rset.getString("hr_breakfast"));
-				hr.setrBadtype(rset.getString("HR_BEDTYPE"));
-				hr.setrSize(rset.getString("hr_roomsize"));
-				hr.setrView(rset.getString("hr_view"));
-				hr.setrStatus(rset.getString("hr_status"));
+				hr.setHno(rset.getInt("hr_hotelnumber"));
+				hr.setRname(rset.getString("hr_roomname"));
+				hr.setRprice(rset.getInt("hr_price"));
+				hr.setRcheckin(rset.getString("hr_price"));
+				hr.setRcheckout(rset.getString("hr_checkout"));
+				hr.setRimg(rset.getString("hr_img"));
+				hr.setRtub(rset.getString("hr_convenience_tub"));
+				hr.setRbreakfast(rset.getString("hr_breakfast"));
+				hr.setRbadtype(rset.getString("HR_BEDTYPE"));
+				hr.setRsize(rset.getString("hr_roomsize"));
+				hr.setRview(rset.getString("hr_view"));
+				hr.setRstatus(rset.getString("hr_status"));
 				
 				hrlist.add(hr);
 			}
@@ -251,18 +252,18 @@ public class HotelDao {
 			if(rset.next()) {
 				hr = new HotelRoom();
 				
-				hr.sethNo(rset.getInt("hr_hotelnumber"));
-				hr.setrName(rset.getString("hr_roomname"));
-				hr.setrPrice(rset.getInt("hr_price"));
-				hr.setrCheckin(rset.getString("hr_checkin"));
-				hr.setrCheckout(rset.getString("hr_checkout"));
-				hr.setrImg(rset.getString("hr_img"));
-				hr.setrTub(rset.getString("hr_convenience_tub"));
-				hr.setrBreakfast(rset.getString("hr_breakfast"));
-				hr.setrBadtype(rset.getString("hr_bedtype"));
-				hr.setrSize(rset.getString("hr_roomsize"));
-				hr.setrView(rset.getString("hr_view"));
-				hr.setrStatus(rset.getString("hr_status"));
+				hr.setHno(rset.getInt("hr_hotelnumber"));
+				hr.setRname(rset.getString("hr_roomname"));
+				hr.setRprice(rset.getInt("hr_price"));
+				hr.setRcheckin(rset.getString("hr_checkin"));
+				hr.setRcheckout(rset.getString("hr_checkout"));
+				hr.setRimg(rset.getString("hr_img"));
+				hr.setRtub(rset.getString("hr_convenience_tub"));
+				hr.setRbreakfast(rset.getString("hr_breakfast"));
+				hr.setRbadtype(rset.getString("hr_bedtype"));
+				hr.setRsize(rset.getString("hr_roomsize"));
+				hr.setRview(rset.getString("hr_view"));
+				hr.setRstatus(rset.getString("hr_status"));
 				
 			}
 			
@@ -434,8 +435,6 @@ public class HotelDao {
 		return phlist;
 	}
 
-	}
-
 	public int inserReser(Connection con, int hno, String rname, String cin, String cout, String checkintime,
 			String totalprice, String guestname, String email, String guestrequest, String breakfast, String petnum, String userid) {
 		
@@ -495,4 +494,7 @@ public class HotelDao {
 		
 		return update;
 	}
-}
+
+	
+
+}
