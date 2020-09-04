@@ -1,0 +1,123 @@
+
+.cal_top{
+    text-align: center;
+    font-size: 30px;
+    display: block;
+    margin: 10px;
+}
+.cal{
+    text-align: center; 
+}
+table.calendar{
+    border: 1px solid black;
+    display: inline-table;
+    text-align: left;
+}
+table.calendar td{
+    vertical-align: top;
+    border: 1px solid skyblue;
+    width: 100px;
+}
+.left_cont{
+    /* background: rgb(131, 129, 136); */
+    width: 50%;
+    float: left;
+}
+.right_cont{
+    /* background: rgb(175, 174, 174); */
+    width: 32%;
+    height: 600px;
+    float: left;
+    margin-top: 50px;
+    margin-left: 30px;
+    /* visibility: hidden; */
+}
+div.bottom_cont {
+    display: none;
+    float: left;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    /* visibility: hidden; */
+}
+#detailBtn{
+    margin-top: 20px;
+    float: right;
+    border: unset;
+    font-size: medium;
+    color:#666;
+    margin-right: 50px;
+}
+.reserv_cont table{
+    width:90%;
+    table-layout:fixed;
+    border-collapse:collapse;
+}
+.reserv_cont .date>th{
+    height:35px;
+    color:#666;
+    /* border:1px solid #36a49e; */
+    background: white;
+    border: unset;
+    text-align:center;
+    font-weight:bold;
+    font-size:medium;
+}
+.reserv_cont table th{
+    height:35px;
+    color:#666;
+    border:1px solid #36a49e;
+    background: rgb(207, 217, 236);
+    text-align:center;
+    font-weight:400;
+    font-size:medium;
+}
+.reserv_cont table td{
+    height:35px;
+    color:#666;
+    border:1px solid #36a49e;
+    text-align:center;
+    font-weight:400;
+    font-size:medium;
+}
+.listCal>td,th{
+    background: rgb(207, 217, 236);
+    /* border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    vertical-align: bottom; */
+    height:35px;
+    color:#666;
+    border:1px solid #36a49e;
+    text-align:center;
+    font-weight:400;
+    font-size:medium;
+}
+.left_cont td{
+    font-size: medium;
+}
+.calendar td>div{
+    margin: 5px;
+}
+.content {
+    width: 80%;
+    height: 100%;
+    margin-top: 100px;
+    margin-left: 200px;
+}
+.content:after{
+    content:"";
+    display:block;
+    clear:both;
+}
+.main-content{
+    display: flex;
+    /* overflow: auto; */
+}
+.searchPot{
+    width: 1200px;
+    height: 15px;
+    background: #7A9BAD;
+    margin-bottom: 50px;
+}
+
+

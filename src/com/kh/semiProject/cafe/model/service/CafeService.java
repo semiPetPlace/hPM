@@ -1,5 +1,6 @@
 package com.kh.semiProject.cafe.model.service;
 
+
 import static com.kh.common.JDBCTemplate.*;
 
 import java.sql.Connection;
@@ -31,6 +32,17 @@ public class CafeService {
 		
 		return list;
 
+	}
+
+	public Cafe selectOne(int cno) {
+		
+		Connection con = getConnection();
+		Cafe c = cDao.selectOne(con, cno);
+		
+		close(con);
+		
+		return c;
+		
 	}
 
 }

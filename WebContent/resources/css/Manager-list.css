@@ -1,0 +1,347 @@
+/* 
+
+!!!!!!!!!!!!!!!!!! 공통 css 수정하지 마시오. !!!!!!!!!!! 
+
+*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+    line-height: 1;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+ol, ul, li{
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+html,body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+
+.clearfix{
+    content:"";
+    display: block;
+    clear: both;
+}
+
+.wrapper{
+    width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* -------------------- HEADER -------------------- */
+#main {
+    width: 100%;
+    height: 1000px;
+}
+
+#main-nav {
+    height: 120px;
+    background: #1E344E;
+}
+
+.m-logo {
+    float:left;
+}
+
+.m-logo-link {
+    display: block;
+    height: 80px;
+    margin-top: 20px;
+    margin-left: 60px;
+}
+
+.m-logo img {
+    height: 100%;
+}
+
+.m-menu-nav {
+    color: white;
+    font-size: 18pt;
+    font-weight: 600;
+    margin-left: 50px;
+}
+
+.list {
+    position: absolute;
+    margin-top: 45px;
+    margin-left: 300px;
+    width: 1400px;
+    height: 30px;
+    
+}
+
+.m-menu-nav li {
+    color: white;
+    float: left;
+    margin-left: 40px;
+    margin-right: 40px;
+    text-shadow: 0 0 12px #7a9bad;
+}
+
+.m-menu-nav a {
+    color: white;
+    text-decoration: none;
+}
+
+#main-wrapper {
+    min-width: 960px;
+    height: 100%;
+}
+
+.main-content {
+    height: 95%;
+}
+
+.main-content>div {
+    float: left;
+}
+
+.sub-menu {
+    width: 15%;
+    height: 100%;
+    background: #7A9BAD;
+}
+
+.sub-list {
+    width: 215px;
+    height: 500px;
+    margin-left: 70px;
+}
+
+.sub-list>p {
+    color: black;
+    font-size: 18pt;
+    font-weight: 600;
+    line-height: 2em;
+    margin-top: 50px;
+}
+
+.sub-list li {
+    font-size: 14pt;
+    line-height: 1.4em;
+    margin-left: 30px;
+}
+
+.sub-list a {
+    color: black;
+    text-decoration: none;
+}
+
+.login-area {
+    float: right;
+    margin-top: 50px;
+    margin-right: 15px;
+}
+
+.login-name {
+    font-size: 11pt;
+    font-weight: 400;
+}
+
+.logoutBtn {
+    width: 70px;
+    height: 20px;
+    background-color: white;
+    color: black;
+    font-size: 12pt;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-left: 120px;
+    text-align: center;
+}
+/* -------------------- MAIN -------------------- */
+
+.content {
+    width: 80%;
+    height: 100%;
+}
+
+.statistics {
+    margin-left: 150px;
+    height: 500px;
+}
+
+.visitor_trend, .sales_trend {
+    width: 500px;
+    height: 300px;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    background-color: #F8F8F8;
+    float: left;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+.visitor_name, .sales_name {
+    width: 285px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.t1 {
+    color: black;
+    font-size: 23pt;
+    font-weight: 700;
+}
+
+.t2 {
+    color: black;
+    font-size: 13pt;
+    margin-left: 10px;
+}
+
+.t3 {
+    color: rgb(143, 143, 143);
+    font-size: 9pt;
+}
+
+.more_details {
+    width: fit-content;
+    height: fit-content;
+    margin-top: 255px;
+}
+
+.more_details>a {
+    text-decoration: none;
+    margin-left: 450px;
+}
+
+.current_situation {
+    width: 1300px;
+    height: 500px;
+    margin-left: 100px;
+}
+
+.situation_box {
+    width: 1100px;
+    height: 200px;
+    margin-left: 150px;
+    border: 1px solid lightgray;
+    
+}
+
+.sb_lb {
+    width: 50px;
+    font-size: 14pt;
+    font-weight: 600;
+}
+
+
+/* -------------------- FOOTER -------------------- */
+
+/* payment */
+#footer {
+    width: 100%;
+    height: fit-content;
+}
+
+#foot {
+    min-width: 960px;
+    border-top: 1px solid gray;
+    height: 80px;
+    width: 96%;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.detailedTable{
+    border: 1px solid black;
+    width: 100%;
+}
+.detailedTable>td{
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.content{
+    margin-top: 100px;
+    margin-left: 200px ;
+}
+.sub-menu{
+    width: 300px;
+}
+.main-content{
+
+    display: flex;
+}
+.searchPot{
+    width: 600px;
+    height: 15px;
+    background: #7A9BAD;
+    margin-bottom: 50px;
+}
+.filter-block{
+    width: 1200px;
+    height: 30px;
+    text-align: right;
+}
+#filter{
+    width: 100px;
+    height: 20px;
+}
+.reservationList{
+    width: 1200px;
+}
+.searchPot{
+    width: 1200px;
+}
+.listTitle{
+    width: 80px;
+    font-size: 16px;
+    font-weight: 300;
+   border: 2px solid black;
+    text-align: center;
+}
+
+.listCal>td{
+    height: 20px;
+    font-size: 15px;
+    background: rgb(207, 217, 236);
+    text-align: center;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    vertical-align: bottom;
+}

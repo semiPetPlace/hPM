@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.semiProject.board.model.vo.*"%>
+<% 	Board b = (Board)request.getAttribute("board"); %>
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -7,34 +9,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>상세보기</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../resources/css/mainpage.css">
-        <link rel="stylesheet" href="../../resources/css/freeboard_detail.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mainpage.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/freeboard_detail.css">
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src ="../../resources/js/script.js"></script>
+        <script src ="<%=request.getContextPath()%>/resources/js/script.js"></script>
     </head>
     <body>
         <%@ include file = "../common/header.jsp" %>
-
-
-
 
             <!-- 여기에 메인 컨텐츠 넣으면 됩니다. -->
                   
             <div id="reviewContent">
 
                 <div id="review_top">
-                    <h3>게시글 제목</h3>
-                    <img src="../../resources/images/freeboard_detail/pat3.png" id="miniImg">
-                    <label class="writer">작성자 이름</label>
-                    <input type="button" value="삭제" class="comentbtn" onclick="confirm('삭제하시겠습니까?')" id="content_delete">
-                    <input type="button" value="수정" class="comentbtn" onclick="confirm('수정하시겠습니까?')" id="content_update">
+                    <h3><%=b.getbTitle() %></h3>
+                    <img src="<%=request.getContextPath()%>/resources/images/review_detail/img1.jpg" id="miniImg">
+                    <label class="writer"><%=b.getbWriter() %></label>
+                    <input type="button" value="삭제" class="comentbtn" onclick="location.href='<%=request.getContextPath()%>/boardDelete.th?bno=<%=b.getbNo() %>'" id="content_delete">
+                    
+                    	<% if(m != null && m.getMuserName().equals(b.getbWriter())){ %>
+                    <input type="button" value="수정" class="comentbtn" onclick="location.href='<%= request.getContextPath() %>/bUpView.th?bno=<%=b.getbNo()%>'" id="content_update">
+              		<%} %>
                 </div>
 
-                <img src="../../resources/images/freeboard_detail/images.jpg"alt="" id="contentImg">
+                <img src="<%= b.getbImg() %>" id="contentImg">
 
-                <div id="reviwecontent">게시글 내용</div>
+                <div id="reviwecontent"><%= b.getbContent() %></div>
 
-                <input type="button" value="목록" id="list_btn" class="comentbtn" onclick="location.href='./freeboard_list.jsp'">
+                <input type="button" value="목록" id="list_btn" class="comentbtn" onclick="location.href='/semi/blist.th'">
 
 
 
@@ -42,7 +44,7 @@
                     <label>댓글</label>
                     <div id="comment">
                         <div id="name">
-                            <img src="../../resources/images/freeboard_detail/pat3.png" id="miniImg">
+                            <img src="<%=request.getContextPath()%>/resources/images/review_detail/img1.jpg" id="miniImg">
                             <label class="writer">이름</label>
                         </div>
                             <div id="content">내용</div>

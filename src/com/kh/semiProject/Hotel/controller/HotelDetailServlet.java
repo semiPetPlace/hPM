@@ -1,6 +1,7 @@
 package com.kh.semiProject.Hotel.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semiProject.Hotel.model.service.HotelService;
 import com.kh.semiProject.Hotel.model.vo.Hotel;
+import com.kh.semiProject.Hotel.model.vo.HotelConvenience;
+import com.kh.semiProject.Hotel.model.vo.HotelFacility;
+import com.kh.semiProject.Hotel.model.vo.HotelRoom;
 
 /**
  * Servlet implementation class HotelDetailServlet
@@ -30,20 +34,36 @@ public class HotelDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Hotel hd = new Hotel();
+		int h_no = Integer.parseInt(request.getParameter("h_no"));
+		String Cin = request.getParameter("checkin");
+		String Cout = request.getParameter("checkout");
+		ArrayList<HotelRoom> hrlist = new ArrayList<>();
 		
 		HotelService hs = new HotelService();
 		
-		hd = hs.selectHotel();
+		Hotel hd = hs.selectHotel(h_no);
+	
+		hrlist = hs.roomlist(h_no);
+		
+		HotelConvenience hc = hs.Convenience(h_no);
+		
+		HotelFacility hf = hs.facility(h_no);
 		
 		String page ="";
 		if(hd != null) {
-			page = "/semi/hoteldetail.jsp";
+			page = "views/hotel/hotel_detail.jsp";
 			request.setAttribute("hd", hd);
+			request.setAttribute("hrlist", hrlist);
+			request.setAttribute("hc", hc);
+			request.setAttribute("hf", hf);
+			request.setAttribute("Cin", Cin);
+			request.setAttribute("Cout", Cout);
+			
 		}else {
 			page = "views/main/main.jsp";
 			System.out.println("되겠냐?");
 		}
+		
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 

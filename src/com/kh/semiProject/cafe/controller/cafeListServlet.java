@@ -9,9 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.PageInfo;
 import com.kh.semiProject.cafe.model.service.CafeService;
 import com.kh.semiProject.cafe.model.vo.Cafe;
-import com.kh.semiProject.cafe.model.vo.PageInfo;
+
 
 /**
  * Servlet implementation class cafeListServlet
@@ -41,7 +42,7 @@ public class cafeListServlet extends HttpServlet {
 		int currentPage;
 		int limit;
 		
-		currentPage= 1;
+		currentPage = 1;
 		limit = 10;
 
 		if(request.getParameter("currentPage") != null) {
