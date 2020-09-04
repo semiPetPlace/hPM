@@ -19,7 +19,6 @@
         <script type="text/javascript"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-
     </head>
     <body>
         <%@ include file = "../common/header.jsp" %>
@@ -109,184 +108,125 @@
                   
             <!-- 이미지 슬라이드 끝 -->
 
-            <!-- 위탁 호텔 리스트 -->
-            <div id="placelist"><h2 class="listname">
-            <a href="../../views/hotelmain.jsp"><img src="../../resources/images/icons/consignment_hotel.png" alt="반려견 위탁 호텔"></a></h2></div>
-        <table>
-            <tr>
-            <td>
-            <div id="con_hotelList" style="float: none;">
-                <a href="../../views/pethotel/pet_hotel_detail.jsp"><div class="con_hotelList-list">
-                    <img src="../../resources/images/hotel1.jpg" alt="con_hotel1">
-                    <h4 style="margin-bottom: 0;">hotel name</h4>
-                    <p class="infoText">information of hotel </p>
-                    <p class="price">₩180,000/1박</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/pethotel/pet_hotel_detail.jsp"><div class="con_hotelList-list">
-                    <img src="../../resources/images/hotel2.jpg" alt="con_hotel2">
-                    <h4 style="margin-bottom: 0;">hotel name</h4>
-                    <p class="infoText">information of hotel </p>
-                    <p class="price">₩200,000/1박</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/pethotel/pet_hotel_detail.jsp"><div class="con_hotelList-list">
-                    <img src="../../resources/images/hotel3.jpg" alt="con_hotel3">
-                    <h4 style="margin-bottom: 0;">hotel name</h4>
-                    <p class="infoText">information of hotel </p>
-                    <p class="price">₩90,000/1박</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/pethotel/pet_hotel_detail.jsp"><div class="con_hotelList-list">
-                    <img src="../../resources/images/hotel4.jpg" alt="con_hotel4">
-                    <h4 style="margin-bottom: 0;">hotel name</h4>
-                    <p class="infoText">information of hotel </p>
-                    <p class="price">₩160,000/1박</p>
-                </div></a></td>
-            </div>
-            </tr>
-        </table>
-            <!-- 위탁 호텔 리스트 끝 -->
-            
-            <!-- 동반 호텔 리스트 -->
-            <div id="placelist"><h2 class="listname">
-            <a href="../../views/hotelmain.jsp"><img src="../../resources/images/icons/hotel.png" alt="반려견 동반 호텔"></a></h2></div>
-        <table>
-            <tr>
-            <td>
-            <div id="hotelList" style="float: none;">
-                <a href="../../views/hotel/hotel_detail.jsp"><div class="hotelList-list">
-                    <img src="../../resources/images/hotel1.jpg" alt="hotel1">
-                    <h4 style="margin-bottom: 0;">hotel name</h4>
-                    <p class="infoText">information of hotel </p>
-                    <p class="price">₩180,000/1박</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/hotel/hotel_detail.jsp"><div class="hotelList-list">
-                    <img src="../../resources/images/hotel2.jpg" alt="hotel2">
-                    <h4 style="margin-bottom: 0;">hotel name</h4>
-                    <p class="infoText">information of hotel </p>
-                    <p class="price">₩200,000/1박</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/hotel/hotel_detail.jsp"><div class="hotelList-list">
-                    <img src="../../resources/images/hotel3.jpg" alt="hotel3">
-                    <h4 style="margin-bottom: 0;">hotel name</h4>
-                    <p class="infoText">information of hotel </p>
-                    <p class="price">₩90,000/1박</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/hotel/hotel_detail.jsp"><div class="hotelList-list">
-                    <img src="../../resources/images/hotel4.jpg" alt="hotel4">
-                    <h4 style="margin-bottom: 0;">hotel name</h4>
-                    <p class="infoText">information of hotel </p>
-                    <p class="price">₩160,000/1박</p>
-                </div></a></td>
-            </div>
-            </tr>
-        </table>
-            <!-- 동반 호텔 리스트 끝 -->
 
-            <!-- 레스토랑 리스트 -->
-            <div id="placelist"><h2 class="listname">
-            <a href="../../views/restaurant/restaurant_main.jsp"><img src="../../resources/images/icons/restaurant1.png" alt="반려견 동반 카페 레스토랑"></a></h2></div>
-        <table>
-            <tr>
-            <td>
-            <div id="restaurantList">
-                <a href="../../views/restaurant/restaurant_detailpage.jsp"><div class="restaurantList-list">
-                    <img src="../../resources/images/cafe1.jpg" alt="Restaurant">
-                    <h4 style="margin-bottom: 0;">Restaurant name</h4>
-                    <p class="infoText">information of Restaurant </p>
-                    <p class="price">별점★★★★★</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/restaurant/restaurant_detailpage.jsp"><div class="restaurantList-list">
-                    <img src="../../resources/images/cafe2.jpg" alt="Restaurant">
-                    <h4 style="margin-bottom: 0;">Restaurant name</h4>
-                    <p class="infoText">information of Restaurant </p>
-                    <p class="price">별점★★★★☆</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/restaurant/restaurant_detailpage.jsp"><div class="restaurantList-list">
-                    <img src="../../resources/images/cafe3.jpg" alt="Restaurant">
-                    <h4 style="margin-bottom: 0;">Restaurant name</h4>
-                    <p class="infoText">information of Restaurant </p>
-                    <p class="price">별점★★★☆☆</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/restaurant/restaurant_detailpage.jsp"><div class="restaurantList-list">
-                    <img src="../../resources/images/cafe4.jpg" alt="Restaurant">
-                    <h4 style="margin-bottom: 0;">Restaurant name</h4>
-                    <p class="infoText">information of Restaurant </p>
-                    <p class="price">별점★★★★☆</p>
-                </div></a></td>
-            </div>
-            </tr>
-        </table>
-            <!-- 레스토랑 리스트 끝 -->
-            
-            
-            <!-- 카페 리스트 -->
-            <div id="placelist"><h2 class="listname">
-            <a href="../../views/cafe/cafe-main.jsp"><img src="../../resources/images/icons/cafe1.png" alt="반려견 동반 카페 레스토랑"></a></h2></div>
-        <table>
-            <tr>
-            <td>
-            <div id="cafeList">
-                <a href="../../views/cafe/cafe-detailpage.jsp"><div class="cafeList-list">
-                    <img src="../../resources/images/cafe1.jpg" alt="cafe">
-                    <h4 style="margin-bottom: 0;">cafe name</h4>
-                    <p class="infoText">information of cafe </p>
-                    <p class="price">별점★★★★★</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/cafe/cafe-detailpage.jsp"><div class="cafeList-list">
-                    <img src="../../resources/images/cafe2.jpg" alt="cafe">
-                    <h4 style="margin-bottom: 0;">cafe name</h4>
-                    <p class="infoText">information of cafe </p>
-                    <p class="price">별점★★★★☆</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/cafe/cafe-detailpage.jsp"><div class="cafeList-list">
-                    <img src="../../resources/images/cafe3.jpg" alt="cafe">
-                    <h4 style="margin-bottom: 0;">cafe name</h4>
-                    <p class="infoText">information of cafe </p>
-                    <p class="price">별점★★★☆☆</p>
-                </div></a></td>
-                <td>
-                <a href="../../views/cafe/cafe-detailpage.jsp"><div class="cafeList-list">
-                    <img src="../../resources/images/cafe4.jpg" alt="cafe">
-                    <h4 style="margin-bottom: 0;">cafe name</h4>
-                    <p class="infoText">information of cafe </p>
-                    <p class="price">별점★★★★☆</p>
-                </div></a></td>
-            </div>
-            </tr>
-        </table>
-            <!-- 카페 리스트 끝 -->
+			<!-- 위탁 호텔 리스트 -->
+			<div id="placelist">
+				<h2 class="listname">
+					<a href="views/hotelmain.jsp"><img
+						src="resources/images/icons/consignment_hotel.png" alt="반려견 위탁 호텔"></a>
+				</h2>
+			</div>
+			<table>
+				<tr>
+			<%for(Hotel h : hlist) { %>
+					<td>
+						<div id="con_hotelList" style="float: none;">
+							<a href="views/pethotel/pet_hotel_detail.jsp">
+								<div class="con_hotelList-list">
+									<img src="<%=h.gethImg() %>" alt="con_hotel1">
+									<h4 style="margin-bottom: 0;"><%= h.gethName() %></h4>
+									<p class="infoText"><%= h.gethPromotion() %></p>
+									<p class="price"><%= h.gethPrice() %>/1박</p>
+								</div>
+							</a>
+						</div>
+					</td>
+				<% } %>
+				</tr>
+			</table>
+			<!-- 위탁 호텔 리스트 끝 -->
 
-            <!-- TOP -->
-            <div style="height: 20px;"><a href="#header" id="top">▲ TOP</a></div>
-        </div>
+			<!-- 동반 호텔 리스트 -->
+			<div id="placelist">
+				<h2 class="listname">
+					<a href="views/hotelmain.jsp"><img
+						src="resources/images/icons/hotel.png" alt="반려견 동반 호텔"></a>
+				</h2>
+			</div>
+			<table>
+				<tr>
+					<td>
+						<div id="hotelList" style="float: none;">
+							<a href="views/hotel/hotel_detail.jsp">
+								<div class="hotelList-list">
+									<img src="resources/images/hotel1.jpg" alt="hotel1">
+									<h4 style="margin-bottom: 0;">hotel name</h4>
+									<p class="infoText">information of hotel</p>
+									<p class="price">₩180,000/1박</p>
+								</div>
+							</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<!-- 동반 호텔 리스트 끝 -->
 
-        <div class="wrapper3">
-            <!-- 구독정보 신청란 -->
-            <div id="subscribe">
-                <div style="padding-top: 60px; margin-bottom: 10px;">
-                    <h2>구독 정보 신청란</h2>
-                    <div style="width: 30%; border: 0.5px solid gray; background: white; margin-left: 32%; float: left;">
-                        <label style="color: gray; font-size: 1.2rem; float: left; margin-left: 30px; margin-top: 2px;">e-mail</label>
-                        <input type="email" style="border: none; width: 70%; height: 28px; overflow: hidden;">
-                    </div>
-                    <input type="submit" value="구독하기" style="width:80px; height:30px; float: left;">
-                </div>
-            </div>
-            <!-- 구독정보 신청란 끝 -->
-        </div>
-    </div>
-    </main>
+			<!-- 레스토랑 리스트 -->
+			<div id="placelist">
+				<h2 class="listname">
+					<a href="views/restaurant/restaurant_main.jsp"><img
+						src="resources/images/icons/restaurant1.png" alt="반려견 동반 카페 레스토랑"></a>
+				</h2>
+			</div>
+			<table>
+				<tr>
+					<td>
+						<div id="restaurantList">
+							<a href="views/restaurant/restaurant_detailpage.jsp">
+								<div class="restaurantList-list">
+									<img src="resources/images/cafe1.jpg" alt="Restaurant">
+									<h4 style="margin-bottom: 0;">Restaurant name</h4>
+									<p class="infoText">information of Restaurant</p>
+									<p class="price">별점★★★★★</p>
+								</div>
+							</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<!-- 레스토랑 리스트 끝 -->
 
+
+			<!-- 카페 리스트 -->
+			<div id="placelist">
+				<h2 class="listname">
+					<a href="views/cafe/cafe-main.jsp"><img
+						src="resources/images/icons/cafe1.png" alt="반려견 동반 카페 레스토랑"></a>
+				</h2>
+			</div>
+			<table>
+				<tr>
+					<td>
+						<div id="cafeList">
+							<a href="views/cafe/cafe-detailpage.jsp">
+								<div class="cafeList-list">
+									<img src="resources/images/cafe1.jpg" alt="cafe">
+									<h4 style="margin-bottom: 0;">cafe name</h4>
+									<p class="infoText">information of cafe</p>
+									<p class="price">별점★</p>
+								</div>
+							</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<!-- 카페 리스트 끝 -->
+
+			<!-- TOP -->
+			<div style="height: 20px;">
+				<a href="#header" id="top">▲ TOP</a>
+			</div>
+		</div>
+
+		<div class="wrapper3"></div>
+	</div>
+	</main>
+	
+    <script>
+    		function searching(){
+			location.href="<%=request.getContextPath()%>/searchMain.th?place="+$('#place').val()+"&checkin="+$('#checkin').val()+"&checkout="+$('#checkout').val()+"&area="+$('#area').val();
+		}
+    </script>
 <!-- 메인 끝 -->
 	<%@ include file = "../common/footer.jsp" %>
     
