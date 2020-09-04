@@ -93,8 +93,7 @@ public class HotelDao {
 				hd.sethPromotion(rset.getString("h_Promotion"));
 				hd.sethRequests(rset.getString("h_requests"));
 				hd.setLat(rset.getFloat("h_lat"));
-				hd.setLng(rset.getFloat("h_lng"));
-				
+				hd.setLng(rset.getFloat("h_lng"));				
 				
 			}
 			
@@ -494,7 +493,4 @@ public class HotelDao {
 		
 		return update;
 	}
-
-	
-
-}
+}

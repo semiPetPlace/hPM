@@ -214,7 +214,7 @@ public class Hotel implements Serializable{
 
 
 	public float getLng() {
-		return hLng;
+		return lng;
 	}
 
 
