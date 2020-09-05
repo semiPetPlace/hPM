@@ -6,8 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <title>관리자 메인 화면</title>
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/Manager-DefaultCSS.css">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/Manager-company-enrollForm.css">
+    <link rel="stylesheet" href="/semi/resources/css/Manager-DefaultCSS.css">
+    <link rel="stylesheet" href="/semi/resources/css/Manager-company-enrollForm.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 </head>
@@ -20,8 +20,8 @@
                 <div class="sub-list">
                     <p>업체 관리</p>
                     <ul>
-                        <li><a href="./Manager_company.html">· 전체 업체 목록</a></li>
-                        <li><a href="./Manager_company_enrollForm.html">· 업체 등록</a></li>
+                        <li><a href="/semi/cList.co">· 전체 업체 목록</a></li>
+                        <li><a href="/semi/views/Manager/Manager_company_enrollForm.jsp">· 업체 등록</a></li>
                     </ul>
                 </div>
             </div>
@@ -178,7 +178,7 @@
 		                        <br><br><br>
 		                    </div>
 		                    <div class="btns">
-		                    	<input type="button" value="이전" class="preBtn" onclick="history.back();">
+		                    	<input type="button" value="이전" class="preBtn" onclick="location.href='cDetail.co?comNum=<%=c.getComNum()%>'">
 		                        <input type="submit" value="수정 완료" class="editBtn" onclick="editCompany();">
 		                        <input type="submit" value="업체 삭제" class="deleteBtn" onclick="deleteCompany();">
 		                    </div>

@@ -3,6 +3,11 @@
 <% 
 	ArrayList<Cafe> list = (ArrayList<Cafe>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	String local = (String)request.getAttribute("local");
+	String size = (String)request.getAttribute("size");
+	String keyword = (String)request.getAttribute("keyword");
+	
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
@@ -33,60 +38,87 @@
             </div>
 
             <!-- 검색창 부분 -->
-            <form action="searchForm_cafe" method="get">
             <div id="search-box">
-                <select name="지역" id="search_local">
-                    <option value="x" class="nonselect">지역</option>
-                    <option value="">서울</option>
-                    <option value="">경기</option>
-                    <option value="">인천</option>
-                    <option value="">대구</option>
-                    <option value="">부산</option>
-                    <option value="">제주</option>
+                <select name="local" id="search_local">
+                    <option value="nonselect" class="nonselect">지역</option>
+                    <option value="서울" class="seoul">서울</option>
+                    <option value="경기" class="gyeonggi">경기</option>
+                    <option value="인천" class="incheon">인천</option>
+                    <option value="대구" class="daegu">대구</option>
+                    <option value="부산" class="busan">부산</option>
+                    <option value="제주" class="jeju">제주</option>
                 </select>
-                <select name="반려견사이즈" id="search_size">
-                    <option value="반려견사이즈" class="nonselect">반려견 사이즈</option> 
-                    <option value="소형견">소형견</option> 
-                    <option value="중형견">중형견</option> 
-                    <option value="대형견">대형견</option> 
+                <select name="size" id="search_size">
+                    <option value="nonselect" class="nonselect">반려견 사이즈</option>
+                    <option value="A">견종 무관</option>
+                    <option value="S">소형견</option>
+                    <option value="M">중형견</option>
+                    <option value="L">대형견</option>
                 </select>
-                <input type="text" id="keyword" placeholder="동반 카페명">
+                <input type="text" name="keyword" id="keyword" placeholder="동반 카페명">
                 <button onclick="search_cafe();" class="btn_search">검색</button>
             </div>
-            </form>
+            
             <!-- 검색창 부분 끝 -->
 
             <!-- 카페/레스토랑 리스트 -->
             <div id="cafeList">
-                <table>
-				<% int cnt = 1; %>
-                    <% for(Cafe cm : list) { %>
+            	<% if(list.isEmpty()) { %>
+            		<p style="font-size: 20pt; margin: auto; padding-top: 50px;">검색 결과가 없습니다.</p>
+            	<% } %>
+				<table>
+					<% int cnt = 1; %>
+					<% for(Cafe cm : list) { %>
 					<% if(cnt % 3 == 1) { %>
-                    <tr>
-                    <% } %>	
-                        <td>
+					<tr>
+					<% } %>	
+                    	<td>
                         <input type="hidden" value="<%= cm.getCno() %>"/>
 							<div class="cafeList-list"
 							onclick="location.href='<%= request.getContextPath() %>/cView.ch?cno=<%= cm.getCno() %>'"
-							style="cursor:pointer; width: 433px;">
-                            <a>
-                                <img src="<%= request.getContextPath() %>/resources/images/cafe1.jpg" alt="cafe">
-							</a>
-                                <h4 style="margin-bottom: 0;"><%= cm.getCname() %></h4>
-                                <p class="infoText"><%= cm.getCpromotion() %></p>
-                                <p class="price">★ 평점 <%= cm.getCscore() %></p>
-                            </div>
-                        </td>
+							style="cursor: pointer; width: 433px;">
+								<a><img src="<%= request.getContextPath() %>/resources/images/cafe1.jpg" alt="cafe"></a>
+								<h4 style="margin-bottom: 0;"> <%= cm.getCname() %></h4>
+								<p class="infoText"><%= cm.getCpromotion() %></p>
+								<p class="price">★ 평점 <%= cm.getCscore() %></p>
+							</div>
+						</td>
 					<% if(cnt % 3 == 0) { %>
 					</tr> 
 					<% cnt = 0; } %>
                     <% cnt++; } %>
-                </table>
+				</table>
             </div>
             <!-- 카페/레스토랑 리스트 끝 -->
             
-            <!-- 페이징 처리 시작 -->
-			<div class="list_number" align="center">
+	<!-- 페이징 처리 시작 -->
+	<div class="list_number" align="center">
+		<% if(keyword != null) { %>
+			<button onclick="location.href='<%= request.getContextPath() %>/cSearch.ch?local=<%= local %>&size=<%= size %>&keyword=<%= keyword %>&currentPage=1'">◀◀</button>
+			<%  if(currentPage <= 1) {  %>
+			<button disabled>◀</button>
+			<%  }else { %>
+			<button onclick="location.href='<%= request.getContextPath() %>/cSearch.ch?local=<%= local %>&size=<%= size %>&keyword=<%= keyword %>&currentPage=<%= currentPage - 1 %>'">◀</button>
+			<%  } %>
+			
+			<% for(int p = startPage; p <= endPage; p++) {
+				if(p == currentPage) {	
+			%>
+			<button disabled style="border: 1px solid #ffb600; color: #ffb600;"><%= p %></button>
+			<%      }else { %>
+			<button onclick="location.href='<%= request.getContextPath() %>/cSearch.ch?local=<%= local %>&size=<%= size %>&keyword=<%= keyword %>&currentPage=<%= p %>'"><%= p %></button>
+			<%      } %>
+			<% } %>
+				
+			<%  if(currentPage >= maxPage) {  %>
+			<button disabled>▶</button>
+			<%  }else { %>
+			<button onclick="location.href='<%= request.getContextPath() %>/cSearch.ch?local=<%= local %>&size=<%= size %>&keyword=<%= keyword %>&currentPage=<%= currentPage + 1 %>'">▶</button>
+			<%  } %>
+			<button onclick="location.href='<%= request.getContextPath() %>/cSearch.ch?local=<%= local %>&size=<%= size %>&keyword=<%= keyword %>&currentPage=<%= maxPage %>'">▶▶</button>
+			
+		<% }else { %>
+		
 			<button onclick="location.href='<%= request.getContextPath() %>/cList.ch?currentPage=1'">◀◀</button>
 			<%  if(currentPage <= 1) {  %>
 			<button disabled>◀</button>
@@ -95,37 +127,48 @@
 			<%  } %>
 			
 			<% for(int p = startPage; p <= endPage; p++) {
-					if(p == currentPage) {	
+				if(p == currentPage) {	
 			%>
-				<button disabled style="border: 1px solid #ffb600; color: #ffb600;"><%= p %></button>
+			<button disabled style="border: 1px solid #ffb600; color: #ffb600;"><%= p %></button>
 			<%      }else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= p %>'"><%= p %></button>
+			<button onclick="location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= p %>'"><%= p %></button>
 			<%      } %>
 			<% } %>
 				
-			<%  if(currentPage >= maxPage) {  %>
+			<% if(currentPage >= maxPage) {  %>
 			<button disabled>▶</button>
-			<%  }else { %>
+			<% }else { %>
 			<button onclick="location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= currentPage + 1 %>'">▶</button>
-			<%  } %>
+			<% } %>
 			<button onclick="location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= maxPage %>'">▶▶</button>
-			</div>
-			<!-- 페이징 처리 끝 -->
-			
-			
-			<script>
-			
-			// 검색 기능
-			function search_cafe(){
-				location.href="<%= request.getContextPath() %>/searchNotice.no?con="+$('#search_local').val()+$('#search_size').val()+"&keyword="+$('#keyword').val();
+		<% } %>
+	</div>
+	<!-- 페이징 처리 끝 -->
+	
+	<script>
+	$(function(){
+		
+		$(function(){
+			var search_local = $('#search_local').val();
+			var search_size = $('#search_size').val();
+		});
+		
+		$('.btn_search').click(function(){
+			if($('#search_local').val() != "nonselect" && $('#search_size').val() != "nonselect") {	
+				location.href="<%= request.getContextPath() %>/cSearch.ch?local=" + $('#search_local').val() + "&size=" + $('#search_size').val() + "&keyword=" + $('#keyword').val();
+			}else {
+				alert("검색할 지역과 반려견 사이즈를 선택해 주세요.");
 			}
 			
-			</script>
-        </div>
-            <!-- TOP -->
-            <div style="height: 20px; margin-right: 2%;"><a href="#header" id="top">▲ TOP</a></div>
-            
+		});
+	});
+	</script>
+    </div>
+    
+    <!-- TOP -->
+    <div style="height: 20px; margin-right: 2%;"><a href="#header" id="top">▲ TOP</a></div>
+
     </main>
-        <%@ include file = "../common/footer.jsp" %>
-    </body>
-    </html>
+   	<%@ include file="../common/footer.jsp" %>
+</body>
+</html>

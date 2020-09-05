@@ -65,8 +65,8 @@
                             <td>
                                 <div class="showRecode">
                                     <ul class="list">
-                                        <li><input type="text" name="" id="id" placeholder="아이디"></li>
-                                        <li><input type="text" name="" id="password"></li>
+                                        <li><input type="text" name="" id="id" value="<%= m.getMuserId() %>" disabled></li>
+                                        <li><input type="text" name="pwd" id="password"></li>
                                         
                                     </ul>
                                 </div>
@@ -125,7 +125,7 @@
         
                 </div>
                 <div style="text-align: center; margin-top: 10px;" >
-                    <a href="#"><input type="button" value="회원탈퇴" id="btn3"></a>
+                    <a href="<%=request.getContextPath()%>/deleteMember.th"><input type="button" value="회원탈퇴" id="btn3" onclick="location.href='<%=request.getContextPath()%>/deleteMember.th'"></a>
                     <a href="#"><input type="button" value="취소" id="btn3"></a>
                 </div>
                 </div>

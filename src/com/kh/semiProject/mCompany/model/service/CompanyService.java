@@ -43,6 +43,24 @@ public class CompanyService {
 		close(con);
 		return list;
 	}
+	
+//	public ArrayList<Company> listCompany(int currentPage, int limit) {
+//		Connection con = getConnection();
+//		
+//		ArrayList<Company> list = cDao.listCompany(con, currentPage, limit);
+//		
+//		close(con);
+//		return list;
+//	}
+	
+	public int getListCount() {
+		Connection con = getConnection();
+		int listCount = cDao.getListCount(con);
+		
+		close(con);
+		
+		return listCount;
+	}
 
 	public ArrayList<Company> searchCompany(String categorySearch, String keyword) {
 		Connection con = getConnection();

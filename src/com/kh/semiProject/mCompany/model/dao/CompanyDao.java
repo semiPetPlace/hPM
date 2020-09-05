@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.semiProject.cafe.model.vo.Cafe;
 import com.kh.semiProject.mCompany.exception.CompanyException;
 import com.kh.semiProject.mCompany.model.vo.Company;
 
@@ -62,8 +63,8 @@ public class CompanyDao {
 			
 			result = pstmt.executeUpdate();
 		} catch(SQLException e) {
+			e.printStackTrace();
 			throw new CompanyException(e.getMessage());
-//			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
@@ -112,6 +113,51 @@ public class CompanyDao {
 		
 		return c;
 	}
+	
+//	public ArrayList<Company> listCompany(Connection con, int currentPage, int limit) {
+//		ArrayList<Company> list = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		
+//		String sql = prop.getProperty("listCompany");
+//		
+//		try {
+//			pstmt = con.prepareStatement(sql);
+//			
+//			int startRow = (currentPage - 1) * limit + 1;
+//			int endRow = startRow + limit - 1;
+//			pstmt.setInt(1, endRow);
+//			pstmt.setInt(2, startRow);
+//			
+//			rset = pstmt.executeQuery();
+//			
+//			list = new ArrayList<Company>();
+//			
+//			while(rset.next()) {
+//				Company c = new Company();
+//				c.setComNum(rset.getInt(1));
+//				c.setCategory(rset.getString("category"));
+//				c.setcName(rset.getString("cName"));
+//				c.setcNum(rset.getString("cNum"));
+//				c.setCorp(rset.getString("corp"));
+//				c.setEnrollDate(rset.getDate("enrollDate"));
+//				c.setAddress(rset.getString("address"));
+//				c.setPhone(rset.getString("phone"));
+//				c.setEmail(rset.getString("Email"));
+//				c.setBankName(rset.getString("BankName"));
+//				c.setState(rset.getString("state"));
+//				
+//				list.add(c);
+//			}
+//		}catch(SQLException e) {
+//			e.printStackTrace();
+//		}finally {
+//			close(rset);
+//			close(pstmt);
+//		}
+//		
+//		return list;
+//	}
 
 	public ArrayList<Company> listCompany(Connection con) {
 		ArrayList<Company> list = null;
@@ -133,7 +179,6 @@ public class CompanyDao {
 				c.setCorp(rset.getString("corp"));
 				c.setEnrollDate(rset.getDate("enrollDate"));
 				c.setAddress(rset.getString("address"));
-//						+ ".substring(temp.length()-2, temp.length())"));
 				c.setPhone(rset.getString("phone"));
 				c.setEmail(rset.getString("Email"));
 				c.setBankName(rset.getString("BankName"));
@@ -276,5 +321,29 @@ public class CompanyDao {
 		}
 		return result;
 	}
+
+	public int getListCount(Connection con) {
+		int listCount = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("listCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return listCount;
+	}
+
 
 }

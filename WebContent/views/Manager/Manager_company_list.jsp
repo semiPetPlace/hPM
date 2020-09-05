@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.kh.semiProject.mCompany.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.common.PageInfo, com.kh.semiProject.mCompany.model.vo.*"%>
 
-<% ArrayList<Company> list = (ArrayList<Company>)request.getAttribute("list"); %>
+<% 
+ArrayList<Company> list = (ArrayList<Company>)request.getAttribute("list"); 
+/* PageInfo pi = (PageInfo)request.getAttribute("pi");
+int listCount = pi.getListCount();
+int currentPage = pi.getCurrentPage();
+int maxPage = pi.getMaxPage();
+int startPage = pi.getStartPage();
+int endPage = pi.getEndPage(); */
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,7 +17,29 @@
     <title>관리자 메인 화면</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/Manager-DefaultCSS.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/Manager-company.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/pagination.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <style>
+    	.searchCompany{
+    	width: 800px;
+    	}
+    	
+    	.btns{
+    	width: 70px;
+    	margin-right: 270px;
+    	margin-bottom: 40px;
+    	float: right;
+    	margin-top: 50px;
+    	}
+    	#searchCondition{
+    	height: 22px;
+    	margin-right: 10px;
+    	}
+    	#keyword{
+    	height: 22px;
+    	margin-right: 5px;
+    	}
+    </style>
 </head>
 <body>
      <%@ include file = "./Manager_header.jsp" %>
@@ -74,11 +104,36 @@
 					</tr>
 					<% } %>
 				</table>
+                <div class="empty">
+                    <br><br><br>
+                </div>
+                <!-- 페이징 처리 시작 -->
+				<%-- <div class="next" align="center">
+				<button onclick="location.href='<%= request.getContextPath() %>/cList.co?currentPage=1'">◀◀</button>
+				<%  if(currentPage <= 1) {  %>
+				<button disabled>◀</button>
+				<%  }else { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/cList.co?currentPage=<%= currentPage - 1 %>'">◀</button>
+				<%  } %>
 				
-                        <div class="empty">
-                            <br><br><br>
-                        </div>
-                        <div id="next">
+				<% for(int p = startPage; p <= endPage; p++) {
+						if(p == currentPage) {	
+				%>
+					<button disabled style="border: 1px solid #ffb600; color: #ffb600;"><%= p %></button>
+				<%      }else { %>
+					<button onclick="location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= p %>'"><%= p %></button>
+				<%      } %>
+				<% } %>
+					
+				<%  if(currentPage >= maxPage) {  %>
+				<button disabled>▶</button>
+				<%  }else { %>
+				<button onclick="location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= currentPage + 1 %>'">▶</button>
+				<%  } %>
+				<button onclick="location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= maxPage %>'">▶▶</button>
+				</div> --%>
+				<!-- 페이징 처리 끝 -->
+                      <div id="next">
                             <ul>
                                 <a href=""><li><</li></a>
                                 <a href=""><li>1</li></a>

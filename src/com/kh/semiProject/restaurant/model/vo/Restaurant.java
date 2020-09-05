@@ -25,6 +25,7 @@ public class Restaurant implements Serializable {
 	private String rrequest;
 	private Date rregisterDate;
 	private String rregistration;
+	private String rpetSize;
 	
 	public Restaurant() {
 		super();
@@ -60,7 +61,7 @@ public class Restaurant implements Serializable {
 
 	public Restaurant(int rno, String rrimage, String rimage, String rname, String rtel, String rtime, double rscore,
 			String raddress, String rdogCompInfo, String rpromotion, String rreview, String rrequest,
-			Date rregisterDate, String rregistration) {
+			Date rregisterDate, String rregistration, String rpetSize) {
 		super();
 		this.rno = rno;
 		this.rrimage = rrimage;
@@ -76,7 +77,9 @@ public class Restaurant implements Serializable {
 		this.rrequest = rrequest;
 		this.rregisterDate = rregisterDate;
 		this.rregistration = rregistration;
+		this.rpetSize = rpetSize;
 	}
+
 
 	public int getRno() {
 		return rno;
@@ -189,12 +192,21 @@ public class Restaurant implements Serializable {
 	public void setRregistration(String rregistration) {
 		this.rregistration = rregistration;
 	}
+	
+	public String getRpetSize() {
+		return rpetSize;
+	}
+
+	public void setRpetSize(String rpetSize) {
+		this.rpetSize = rpetSize;
+	}
 
 	@Override
 	public String toString() {
 		return "rno=" + rno + ", rrimage=" + rrimage + ", rimage=" + rimage + ", rname=" + rname + ", rtel="
 				+ rtel + ", rtime=" + rtime + ", rscore=" + rscore + ", raddress=" + raddress + ", rdogCompInfo="
 				+ rdogCompInfo + ", rpromotion=" + rpromotion + ", rreview=" + rreview + ", rrequest=" + rrequest
-				+ ", rregisterDate=" + rregisterDate + ", rregistration=" + rregistration;
+				+ ", rregisterDate=" + rregisterDate + ", rregistration=" + rregistration + ", rpetSize=" + rpetSize;
 	}
+
 }

@@ -55,6 +55,7 @@ public class HotelDao {
 				h.sethImg(rset.getString("h_Img"));
 				h.sethAddress(rset.getString("h_Address"));
 				h.sethPromotion(rset.getString("h_Promotion"));
+
 				
 				hlist.add(h);
 			}
@@ -92,6 +93,8 @@ public class HotelDao {
 				hd.sethAddress(rset.getString("h_Address"));
 				hd.sethPromotion(rset.getString("h_Promotion"));
 				hd.sethRequests(rset.getString("h_requests"));
+				hd.setLat(rset.getFloat("h_lat"));
+				hd.setLng(rset.getFloat("h_lng"));
 				
 				
 			}
@@ -179,61 +182,7 @@ public class HotelDao {
 		return hc;
 	}
 
-	public HotelFacility facility(Connection con, int h_no) {
-		HotelFacility hf = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = prop.getProperty("facility");
-		
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, h_no);
-			
-			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				hf = new HotelFacility();
-				
-				hf.setHno(rset.getInt("f_hotelnumber"));
-				hf.setFront(rset.getString("f_24h_front"));
-				hf.setPaking(rset.getString("f_parkinglot"));
-				hf.setRestaurant(rset.getString("f_restaurant"));
-				hf.setRoomservice(rset.getString("f_room_service"));
-				hf.setfitness(rset.getString("f_fitness_cnt"));
-				hf.setNosmk(rset.getString("f_no_smk_rm"));
-				hf.setAirport(rset.getString("f_airport_st"));
-				hf.setDisabled(rset.getString("f_facility_disb"));
-				hf.setSoundproof(rset.getString("f_soundproof"));
-				hf.setFamily(rset.getString("f_family_room"));
-				hf.setSpa(rset.getString("f_spa"));
-				hf.setSauna(rset.getString("f_sauna"));
-				hf.setWifi(rset.getString("f_wifi"));
-				hf.setEvsc(rset.getString("f_ev_cs"));
-				hf.setPool(rset.getString("f_s_pool"));
-				hf.setKitchen(rset.getString("f_kitchen"));
-				hf.setBathroom(rset.getString("f_bathroom"));
-				hf.setBathtub(rset.getString("f_bathtub"));
-				hf.setTv(rset.getString("f_tv"));
-				hf.setWasher(rset.getString("f_washer"));
-				hf.setOutlook(rset.getString("f_outlook"));
-				hf.setKettle(rset.getString("f_elct_kettle"));
-				hf.setBar(rset.getString("f_minibar"));
-				hf.setCoffeemachine(rset.getString("f_coffeemachine"));
-				hf.setRooftop(rset.getString("f_rooftop"));
-				hf.setAirconditioner(rset.getString("f_air_conditioner"));
-				hf.setTerrace(rset.getString("f_terrace"));
-				hf.setBalcony(rset.getString("f_balcony"));
-			}
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
-		}
-		return hf;
-	}
+	
 
 	public HotelRoom payment(int hno, String rname, Connection con) {
 		HotelRoom hr = null;
@@ -433,5 +382,118 @@ public class HotelDao {
 		}
 		return phlist;
 	}
+
+	public int inserReser(Connection con, int hno, String rname, String cin, String cout, String checkintime,
+			String totalprice, String guestname, String email, String guestrequest, String breakfast, String petnum, String userid) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReser");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, hno);
+			pstmt.setString(2, rname);
+			pstmt.setString(3, cin);
+			pstmt.setString(4, cout);
+			pstmt.setString(5, checkintime);
+			pstmt.setString(6, totalprice);
+			pstmt.setString(7, guestname);
+			pstmt.setString(8, email);
+			pstmt.setString(9, guestrequest);
+			pstmt.setString(10, breakfast);
+			pstmt.setString(11, petnum);
+			pstmt.setString(12, userid);
+			
+			result =pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateRoom(Connection con, int hno, String rname, String Cin, String Cout) {
+		int update = 0;
+		PreparedStatement pstmt = null;
+
+		
+		String sql = prop.getProperty("roomupdate");
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, Cin);
+			pstmt.setString(2, Cout);
+			pstmt.setString(3, rname);
+			pstmt.setInt(4, hno);
+			
+			update = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+
+			close(pstmt);
+		}
+		
+		
+		return update;
+	}
+
+	public ArrayList<Hotel> filteredHotel(Connection con, String in, String out, String area, String[] checkArr) {
+		ArrayList<Hotel> hlist = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		
+		
+		String sqlquery = "SELECT DISTINCT H_NO,H_NAME,H_PRICE,H_GRADE,H_SCORE,H_IMG,H_ADDRESS,H_PROMOTION FROM HOTEL JOIN HOTEL_ROOM ON(H_NO = HR_HOTELNUMBER) WHERE H_ADDRESS LIKE ? || '%' AND H_NO IN(SELECT HR_HOTELNUMBER FROM HOTEL_ROOM WHERE HR_STATUS = 'Y' OR HR_CHECKIN < TO_DATE(?,'YYYY-MM-DD') AND HR_CHECKOUT < TO_DATE(?,'YYYY-MM-DD') OR HR_CHECKIN > TO_DATE(?,'YYYY-MM-DD') AND HR_CHECKIN > TO_DATE(?,'YYYY-MM-DD')) AND ";
+		for(int i=0; i<checkArr.length; i++) {
+			sqlquery += "H_FILTER LIKE '%"+checkArr[i]+"%' AND ";
+					
+		}
+		
+		String filtercheck = sqlquery.substring(0,sqlquery.length()-4);
+		System.out.println(filtercheck);
+
+		try {
+			pstmt = con.prepareStatement(filtercheck);
+			pstmt.setString(1, area); 
+			pstmt.setString(2, in);
+			pstmt.setString(3, in);
+			pstmt.setString(4, out);
+			pstmt.setString(5, out);
+			
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Hotel h = new Hotel();
+				
+				h.sethNo(rset.getInt("h_no"));
+				h.sethName(rset.getString("h_Name"));
+				h.sethPrice(rset.getInt("h_Price"));
+				h.sethGrade(rset.getInt("h_Grade"));
+				h.sethScore(rset.getInt("h_Score"));
+				h.sethImg(rset.getString("h_Img"));
+				h.sethAddress(rset.getString("h_Address"));
+				h.sethPromotion(rset.getString("h_Promotion"));
+				
+				hlist.add(h);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return hlist;
+	}
+
+	
 
 }

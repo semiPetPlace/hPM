@@ -13,7 +13,6 @@ import com.kh.common.PageInfo;
 import com.kh.semiProject.cafe.model.service.CafeService;
 import com.kh.semiProject.cafe.model.vo.Cafe;
 
-
 /**
  * Servlet implementation class cafeListServlet
  */
@@ -43,7 +42,7 @@ public class cafeListServlet extends HttpServlet {
 		int limit;
 		
 		currentPage = 1;
-		limit = 10;
+		limit = 9;
 
 		if(request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));

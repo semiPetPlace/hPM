@@ -22,6 +22,8 @@ public class Hotel implements Serializable{
 	private String hRequests;
 	private Data hRegisterData;
 	private String hRegistration;
+	private float lat;
+	private float lng;
 	public Hotel() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -53,6 +55,38 @@ public class Hotel implements Serializable{
 		this.hRequests = hRequests;
 		this.hRegisterData = hRegisterData;
 		this.hRegistration = hRegistration;
+	}
+	
+	public Hotel(int hNo, String hName, String hTel, int hPrice, int hGrade, int hScore, String hAddress, String hImg,
+			String hPromotion, String hRequests, Data hRegisterData, String hRegistration, float lat, float lng) {
+		super();
+		this.hNo = hNo;
+		this.hName = hName;
+		this.hTel = hTel;
+		this.hPrice = hPrice;
+		this.hGrade = hGrade;
+		this.hScore = hScore;
+		this.hAddress = hAddress;
+		this.hImg = hImg;
+		this.hPromotion = hPromotion;
+		this.hRequests = hRequests;
+		this.hRegisterData = hRegisterData;
+		this.hRegistration = hRegistration;
+		this.lat = lat;
+		this.lng = lng;
+	}
+	
+	public float getLat() {
+		return lat;
+	}
+	public void setLat(float lat) {
+		this.lat = lat;
+	}
+	public float getLng() {
+		return lng;
+	}
+	public void setLng(float lng) {
+		this.lng = lng;
 	}
 	public int gethNo() {
 		return hNo;

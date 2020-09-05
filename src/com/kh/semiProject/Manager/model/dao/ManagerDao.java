@@ -14,7 +14,9 @@ import com.kh.semiProject.Hotel.model.vo.Hotel;
 import com.kh.semiProject.Hotel.model.vo.HotelConvenience;
 import com.kh.semiProject.Hotel.model.vo.HotelRoom;
 import com.kh.semiProject.Manager.model.vo.Manager;
+
 import com.kh.semiProject.member.model.vo.Member;
+
 
 import com.kh.semiProject.mCompany.exception.CompanyException;
 import com.kh.semiProject.mCompany.model.vo.Company;
@@ -114,6 +116,7 @@ public class ManagerDao {
 		
 		return mac;
 	}
+
 	public Member MemberDetail(Connection con, String userName) {
 		Member m = new Member();
 		
@@ -148,6 +151,7 @@ public class ManagerDao {
 		
 		return m;
 	}
+
 	
 	public int enrollCompany(Connection con, Hotel h, HotelConvenience hc, HotelRoom hr) {
 		int result = 0;

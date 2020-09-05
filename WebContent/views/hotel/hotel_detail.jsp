@@ -4,9 +4,9 @@
 <% Hotel h = (Hotel)request.getAttribute("hd"); %>
 <% ArrayList<HotelRoom> hrlist = (ArrayList<HotelRoom>)request.getAttribute("hrlist"); %>
 <% HotelConvenience hc = (HotelConvenience)request.getAttribute("hc"); %>
-<% HotelFacility hf = (HotelFacility)request.getAttribute("hf"); %>
 <% String Cin = (String)request.getAttribute("Cin"); %>
 <% String Cout = (String)request.getAttribute("Cout"); %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,15 +14,130 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>hotel_detail</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/semi/resources/css/mainpage.css">
-        <link rel="stylesheet" href="/semi/resources/css/hotel_detail.css">
+        <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mainpage.css">
+        <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/hotel_detail.css">
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src ="/semi/resources/js/script.js"></script>
+        <script src ="<%=request.getContextPath() %>/resources/js/script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     </head>
+<style>
+	.modal a.close-modal{
+	top: 1.5px;
+	right: 1.5px;
+	width: 30px;
+	height: 30px;
+	color:white;
+   	display: none;
+	}
+	#modalinfo>li{
+	font-size: 20px;
+	height: 100%;
+	margin-top:5px
+	}
+	body {
+	  font-family: Arial;
+	  margin: 0;
+	}
+	
+	* {
+	  box-sizing: border-box;
+	}
+	
+	img {
+	  vertical-align: middle;
+	}
+	
+	/* Position the image container (needed to position the left and right arrows) */
+	.container {
+	  position: relative;
+	}
+	
+	/* Hide the images by default */
+	.mySlides {
+	  display: none;
+	}
+	
+	/* Add a pointer when hovering over the thumbnail images */
+	.cursor {
+	  cursor: pointer;
+	}
+	
+	/* Next & previous buttons */
+	.prev,
+	.next {
+	  cursor: pointer;
+	  position: absolute;
+	  top: 40%;
+	  width: auto;
+	  padding: 16px;
+	  margin-top: -50px;
+	  color: white;
+	  font-weight: bold;
+	  font-size: 20px;
+	  border-radius: 0 3px 3px 0;
+	  user-select: none;
+	  -webkit-user-select: none;
+	}
+	
+	/* Position the "next button" to the right */
+	.next {
+	  right: 0;
+	  border-radius: 3px 0 0 3px;
+	}
+	
+	/* On hover, add a black background color with a little bit see-through */
+	.prev:hover,
+	.next:hover {
+	  background-color: rgba(0, 0, 0, 0.8);
+	}
+	
+	/* Number text (1/3 etc) */
+	.numbertext {
+	  color: #f2f2f2;
+	  font-size: 12px;
+	  padding: 8px 12px;
+	  position: absolute;
+	  top: 0;
+	}
+	
+	/* Container for image text */
+	.caption-container {
+	  text-align: center;
+	  background-color: #222;
+	  padding: 2px 16px;
+	  color: white;
+	}
+	
+	.row:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+	
+	/* Six columns side by side */
+	.column {
+	  float: left;
+	  width: 16.66%;
+	}
+	
+	/* Add a transparency effect for thumnbail images */
+	.demo {
+	  opacity: 0.6;
+	}
+	
+	.active,
+	.demo:hover {
+	  opacity: 1;
+	}
+
+</style>
     <body>
         <%@ include file = "../common/header.jsp" %>
 
         <!-- -------------------------- main --------------------------- -->
+        
         <main>
             <div class="main-content">
                 <!-- <div class="main-img"><img src="../resources/images/icons/pet_hotel-main.png" alt=""></div> -->
@@ -34,61 +149,62 @@
                 <div class="details">
                     <div class="maininfo">
                         <div class="box80">
-
+							<% String[] himg = h.gethImg().split(","); %>
                             <div class="hotelimg">
-                                <img src="<%=h.gethImg() %>" alt="">
+                                <img src="<%=request.getContextPath()%>/resources/images/<%=himg[0] %>" alt="">                                
                             </div>
+                            
                             <div class="pay-box">
                                 <span id="h-name"><%= h.gethName() %></span>
                                 <p id="price-before">&#8361;<%= h.gethPrice()*0.7+h.gethPrice() %></p>
-                                <p id="price-after">&#8361;<%= h.gethPrice() %></p><br><br><br>
+                                <p id="price-after">&#8361;<%= h.gethPrice() %></p> <a href="#ex1">호텔 사진 보기</a> <br><br><br>
                                 <p id="stars"><%= h.gethGrade() %>성급</p>
                                 <p id="grade"><%= h.gethScore() %>점</p>
                                 
                                 <div id="facility">호텔 주요시설</div>
                                 <div id="facility-preview">
                                     <div>애견 산책로</div>
-                                    <%if(hf.getPool().equals("Y")){ %><div>공용 수영장</div> <%} %>
-                                    <%if(hf.getRestaurant().equals("Y")){ %><div>레스토랑</div><%} %>
-                                    <%if(hf.getfitness().equals("Y")){ %><div>피트니스 센터</div><%} %>
-                                    <%if(hf.getDisabled().equals("Y")){ %><div>장애인</div><%} %>
-                                    <%if(hf.getEvsc().equals("Y")){ %><div>전기차 충전소</div><%} %>
-                                    <%if(hf.getWasher().equals("Y")){ %><div>세탁</div><%} %>
-                                    <%if(hf.getBar().equals("Y")){ %><div>미니바</div><%} %>
-                                    <%if(hf.getRooftop().equals("Y")){ %><div>루프탑</div><%} %>
-                                    <%if(hf.getAirconditioner().equals("Y")){ %><div>공기청정기</div><%} %>
-                                    <%if(hf.getTerrace().equals("Y")){ %><div>테라스</div><%} %>
-                                    <%if(hf.getBalcony().equals("Y")){ %><div>발코니</div><%} %>
-                                    <%if(hf.getSoundproof().equals("Y")){ %><div>방음시설</div><%} %>
-                                    <%if(hf.getPaking().equals("Y")){ %><div>주차장</div><%} %>
+                                    <div>공용 수영장</div>
+                                    <div>레스토랑</div>
+                                   <div>피트니스 센터</div>
+                                    <div>장애인</div>
+                                    <div>전기차 충전소</div>
+                                    <div>세탁</div>
+                                    <div>미니바</div>
+                                    <div>루프탑</div>
+                                    <div>공기청정기</div>
+                                    <div>테라스</div>
+                                    <div>발코니</div>
+                                    <div>방음시설</div>
+                                    <div>주차장</div>
                                     
                                 </div>
                             </div>
                             <div class="facility-block">
                             	
                                 <div class="facility-box">
-                                    <div class="icon-box"><img src="/semi/resources/images/icons/subway-icon.png" alt=""></div>
+                                    <div class="icon-box"><img src="<%=request.getContextPath() %>/resources/images/icons/subway-icon.png" alt=""></div>
                                     <p><%= hc.getTansport() %></p>
                                 </div>
                                 <% if(hc.getAirport().equals("Y")){ %>
                                 <div class="facility-box">
-                                    <div class="icon-box"><img src="/semi/resources/images/icons/airport-icon.png" alt=""></div>
+                                    <div class="icon-box"><img src="<%=request.getContextPath() %>/resources/images/icons/airport-icon.png" alt=""></div>
                                     <p>공항 이동 교통편 서비스</p>
                                 </div>
                                 <% } %>
                                 <div class="facility-box">
-                                    <div class="icon-box"><img src="/semi/resources/images/icons/centerofcity-icon.png" alt=""></div>
+                                    <div class="icon-box"><img src="<%=request.getContextPath() %>/resources/images/icons/centerofcity-icon.png" alt=""></div>
                                     <p><%=hc.getLocation() %></p>
                                 </div>
                                 <% if(hc.getWifi().equals("Y")) { %>
                                 <div class="facility-box">
-                                    <div class="icon-box"><img src="/semi/resources/images/icons/wifi-icon.png" alt=""></div>
+                                    <div class="icon-box"><img src="<%=request.getContextPath() %>/resources/images/icons/wifi-icon.png" alt=""></div>
                                     <p>무료 Wi-Fi(모든객실)</p>
                                 </div>
                                 <% } %>
                                 <% if(hc.getTub().equals("Y")) { %>
                                 <div class="facility-box">
-                                    <div class="icon-box"><img src="/semi/resources/images/icons/hotbath-icon.png" alt=""></div>
+                                    <div class="icon-box"><img src="<%=request.getContextPath() %>/resources/images/icons/hotbath-icon.png" alt=""></div>
                                     <p>온수 욕조</p>
                                 </div>
                                 <% } %>
@@ -119,7 +235,8 @@
                                 <div id="reviewwriter">g**lttuck님</div>
                                 </div>
                                 <hr>
-                                <div><a href="../review/review_list.jsp" style="float:right;">더보기</a></div>
+                                <div><a href="../review/review_list.jsp" style="float:right;">>리뷰 작성하기</a></div>
+                                <div><a href="../review/review_list.jsp" style="float:left;">>더보기</a></div>
                             </div>    
                             <!-- 구글지도 -->
                             <div class="map-img">
@@ -132,7 +249,7 @@
                                    
                                    function initMap() {
                                    map = new google.maps.Map(document.getElementById('map'), {
-                                   center: {lat: 37.538537, lng:  127.074660}, //위도 경도
+                                   center: {lat: <%=h.getLat()%>, lng: <%=h.getLng()%>}, //위도 경도
                                    zoom: 16 //숫자클수록 지도가 자세히보임
                                    });
                                    
@@ -143,7 +260,7 @@
                                                                new google.maps.Size(60, 60));
                                    
                                    marker = new google.maps.Marker({
-                                               position: {lat: 37.538537, lng:  127.074660}, // 마커가 위치할 위도와 경도(변수)
+                                               position: {lat:<%=h.getLat()%>, lng: <%=h.getLng()%>}, // 마커가 위치할 위도와 경도(변수)
                                                map: map,
                                                icon: image, // 마커로 사용할 이미지(변수)
                                                title: '동문회관' // 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
@@ -159,10 +276,12 @@
                     </div>   
 
                     <div class="titleblock">
-                        예약 가능한 객실 종류 2개
+
                     </div>
                     <table>
-                    	<% for(HotelRoom hr : hrlist){ %>
+                    	<%for(HotelRoom hr : hrlist){ %>
+        				<% String[] imglist = hr.getRimg().split(","); %>
+                    		
                     		<tr>
 			                    
 			                    <div class="roomtype-block">
@@ -180,9 +299,8 @@
 			                            </div>
 			                            <div class="basicoption">
 			
-			                                <div class="hotelimgS">
-			                                    <img src="<%= hr.getRimg() %>" alt="">
-			                                    <a class="font-16" href="">객실 사진 및 상세 구성 보기</a>
+			                                <div class="hotelimgS"> 
+			                                    <img src="<%=request.getContextPath()%>/resources/images/<%=imglist[0]%>" alt="">
 			                                </div>			                           
 			                                <hr>
 			                                <div class="roomfacility">
@@ -224,7 +342,11 @@
 			                                </select>
 			                                </div>
 			                                <div class="reservation" style="width:175px;border: none;">
-			                                    <input class="font-16B" type="button" value="예약하기" onclick="location.href='/semi/hotelpayment.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>&checkin=<%=Cin%>&checkout=<%=Cout%>&breakfast=none'">
+			                                	<%if(m != null) {%>
+			                                    <input class="font-16B" type="button" value="예약하기" onclick="location.href='<%=request.getContextPath() %>/hotelpayment.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>&checkin=<%=Cin%>&checkout=<%=Cout%>&breakfast=none'">
+			                                    <%}else{ %>
+			                                     <input class="font-16B" type="button" value="로그인후 가능합니다." >
+			                                    <%} %>
 			                                    <div >
 			                                        <p class="font-14" style="line-height: 50px;">예약 취소 요금 없음</p>
 			                                    </div>    
@@ -256,7 +378,11 @@
 			                                </select>
 			                                </div>
 			                                <div class="reservation" style="width:175px;border: none;">
-			                                    <input class="font-16B" type="button" value="예약하기" onclick="location.href='/semi/hotelpayment.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>&checkin=<%=Cin%>&checkout=<%=Cout%>&breakfast=have'">
+			                                	<% if(m !=null) {%>
+			                                    <input class="font-16B" type="button" value="예약하기" onclick="location.href='<%=request.getContextPath() %>/hotelpayment.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>&checkin=<%=Cin%>&checkout=<%=Cout%>&breakfast=have'">
+			                                    <%}else{ %>
+			                                     <input class="font-16B" type="button" value="로그인후 가능합니다." >
+			                                    <%} %>
 			                                    <div >
 			                                        <p class="font-14" style="line-height: 50px;">예약 취소 요금 없음</p>
 			                                        
@@ -291,6 +417,85 @@
         <!-- -------------------------- main --------------------------- -->
 
         <%@ include file = "../common/footer.jsp" %>
+        
+        <div id="ex1" class="modal" style=" max-width:1000px; ">
+            
+				<div class="container">
+				  <div class="mySlides">
+				    <div class="numbertext">1 / 6</div>
+				    <img src="<%=request.getContextPath()%>/resources/images/<%=himg[0] %>" style="width:100%">
+				  </div>
+				
+				  <div class="mySlides">
+				    <div class="numbertext">2 / 6</div>
+				    <img src="<%=request.getContextPath()%>/resources/images/<%=himg[1] %>" style="width:100%">
+				  </div>
+				
+				  <div class="mySlides">
+				    <div class="numbertext">3 / 6</div>
+				    <img src="<%=request.getContextPath()%>/resources/images/<%=himg[2] %>" style="width:100%">
+				  </div>
+				    
+				  <div class="mySlides">
+				    <div class="numbertext">4 / 6</div>
+				    <img src="<%=request.getContextPath()%>/resources/images/<%=himg[3] %>" style="width:100%">
+				  </div>
+				
+				  <div class="mySlides">
+				    <div class="numbertext">5 / 6</div>
+				    <img src="<%=request.getContextPath()%>/resources/images/<%=himg[4] %>" style="width:100%">
+				  </div>
+				    
+				  <div class="mySlides">
+				    <div class="numbertext">6 / 6</div>
+				    <img src="<%=request.getContextPath()%>/resources/images/<%=himg[5] %>" style="width:100%">
+				  </div>
+				    
+				  <a class="prev" onclick="plusSlides(-1)" style="font-size:120px;">❮</a>
+				  <a class="next" onclick="plusSlides(1)" style="font-size:120px;">❯</a>
+				
+				  
+				</div>
+        </div>
+        <script>
+            $('a[href="#ex1"]').click(function(event) {
+              event.preventDefault();
+         
+              $(this).modal({
+                fadeDuration: 250
+              });
+            });
+            
+            var slideIndex = 1;
+            showSlides(slideIndex);
+
+            function plusSlides(n) {
+              showSlides(slideIndex += n);
+            }
+
+            function currentSlide(n) {
+              showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+              var i;
+              var slides = document.getElementsByClassName("mySlides");
+              var dots = document.getElementsByClassName("demo");
+              var captionText = document.getElementById("caption");
+              if (n > slides.length) {slideIndex = 1}
+              if (n < 1) {slideIndex = slides.length}
+              for (i = 0; i < slides.length; i++) {
+                  slides[i].style.display = "none";
+              }
+              for (i = 0; i < dots.length; i++) {
+                  dots[i].className = dots[i].className.replace(" active", "");
+              }
+              slides[slideIndex-1].style.display = "block";
+              dots[slideIndex-1].className += " active";
+              captionText.innerHTML = dots[slideIndex-1].alt;
+            }
+        </script>
+        
     
     </body>
 </html>

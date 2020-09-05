@@ -1,6 +1,5 @@
 package com.kh.semiProject.cafe.model.service;
 
-
 import static com.kh.common.JDBCTemplate.*;
 
 import java.sql.Connection;
@@ -42,6 +41,28 @@ public class CafeService {
 		close(con);
 		
 		return c;
+		
+	}
+	
+	public ArrayList<Cafe> searchCafe(String local, String size, String keyword, int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<Cafe> list = null;
+		
+		if(local.length() > 0) list = cDao.searchCafe(con, local, size, keyword);
+		else list = cDao.selectList(con, currentPage, limit);
+		
+		return list;
+		
+	}
+
+	public int getSearchListCount(String local, String size, String keyword) {
+		Connection con = getConnection();
+		int listCount = cDao.getSearchListCount(con, local, size, keyword);
+		
+		close(con);
+		
+		return listCount;
 		
 	}
 

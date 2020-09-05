@@ -1,6 +1,5 @@
 package com.kh.semiProject.cafe.model.dao;
 
-
 import static com.kh.common.JDBCTemplate.*;
 
 import java.io.FileReader;
@@ -55,7 +54,6 @@ public class CafeDao {
 		}
 		
 		return listCount;
-
 	}
 
 
@@ -138,6 +136,70 @@ public class CafeDao {
 		}
 		
 		return c;
+	}
+
+
+	public ArrayList<Cafe> searchCafe(Connection con, String local, String size, String keyword) {
+		
+		ArrayList<Cafe> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("searchCafe");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, local);
+			pstmt.setString(2, size);
+			pstmt.setString(3, keyword);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<Cafe>();
+			
+			while(rset.next()) {
+				Cafe c = new Cafe();
+				c.setCno(rset.getInt("C_NO"));
+				c.setCimage(rset.getString("C_IMAGE"));
+				c.setCname(rset.getString("C_NAME"));
+				c.setCscore(rset.getDouble("C_SCORE"));
+			
+				list.add(c);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+
+	public int getSearchListCount(Connection con, String local, String size, String keyword) {
+		
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("searchListCount");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, local);
+			pstmt.setString(2, size);
+			pstmt.setString(3, keyword);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
 	}
 
 }

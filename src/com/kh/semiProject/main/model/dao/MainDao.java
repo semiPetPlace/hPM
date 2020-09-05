@@ -46,7 +46,7 @@ public class MainDao {
 				c.setCno(rset.getInt("C_NO"));
 				c.setCname(rset.getString("C_NAME"));
 				c.setCimage(rset.getString("C_IMAGE"));
-				c.setCscore(rset.getInt("C_SCORE"));
+				c.setCscore(rset.getDouble("C_SCORE"));
 				c.setCpromotion(rset.getString("C_PROMOTION"));
 				
 				clist.add(c);
@@ -76,7 +76,6 @@ public class MainDao {
 				h.sethName(rset.getString("H_NAME"));
 				h.sethImg(rset.getString("H_IMG"));
 				h.sethPrice(rset.getInt("H_PRICE"));
-				h.sethScore(rset.getInt("H_SCORE"));
 				h.sethPromotion(rset.getString("H_PROMOTION"));
 				
 				hlist.add(h);
@@ -105,7 +104,7 @@ public class MainDao {
 				r.setRno(rset.getInt("R_NO"));
 				r.setRname(rset.getString("R_NAME"));
 				r.setRimage(rset.getString("R_IMAGE"));
-				r.setRscore(rset.getInt("R_SCORE"));
+				r.setRscore(rset.getDouble("R_SCORE"));
 				r.setRpromotion(rset.getString("R_PROMOTION"));
 				
 				rlist.add(r);
@@ -117,6 +116,34 @@ public class MainDao {
 			close(stmt);
 		}
 		return rlist;
+	}
+	public ArrayList<Hotel> selectPetHotelList(Connection con) {
+		ArrayList<Hotel> plist =new ArrayList<Hotel>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectPetHotelList");
+		
+		try {
+			stmt=con.createStatement();
+			rset=stmt.executeQuery(sql);
+			
+			while(rset.next()) {
+				Hotel h = new Hotel();
+				h.sethNo(rset.getInt("PH_NO"));
+				h.sethName(rset.getString("PH_NAME"));
+				h.sethImg(rset.getString("PH_IMG"));
+				h.sethPrice(rset.getInt("PH_PRICE"));
+				h.sethPromotion(rset.getString("PH_PROMOTION"));
+				
+				plist.add(h);
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		return plist;
 	}
 
 }

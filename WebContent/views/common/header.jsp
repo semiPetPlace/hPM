@@ -24,12 +24,21 @@
 					if (m == null) {
 				%>
 				<a href="/semi/views/login/login.jsp">로그인</a> <a
+
 					href="<%= request.getContextPath() %>/mypage-basic.jsp">회원가입</a>
+
+					href="/semi/views/login/sing-up1.jsp">회원가입</a>
+
 
 				<%
 					} else if (m.getMuserId().equals("admin")) {
 				%>
+
 				<a>*관리자*</a> <a href="#" onclick="goManager()">관리자페이지</a>
+
+				<a>*관리자*</a> 
+				<a href="/semi/views/mypage/mypage-basic.jsp">관리자페이지</a>
+
 				<a href="#" onclick='logout()'>로그아웃</a>
 				<%
 					} else {

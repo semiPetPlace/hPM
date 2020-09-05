@@ -14,10 +14,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>hotelmain</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/semi/resources/css/mainpage.css">
-        <link rel="stylesheet" href="/semi/resources/css/hotelmain.css">
+        <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mainpage.css">
+        <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/hotelmain.css">
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src ="/semi/resources/js/script.js"></script>
+        <script src ="<%=request.getContextPath() %>/resources/js/script.js"></script>
         
        
     </head>
@@ -83,16 +83,16 @@ select{
         <main id="H_main">
             <!-- 메인 이미지 -->
             <div id="main-img-box">
-                <img src="/semi/resources/images/icons/hotel-main.png" alt="">
+                <img src="<%=request.getContextPath() %>/resources/images/icons/hotel-main.png" alt="">
             </div>
             <!-- 메인 이미지 끝 -->
            <form id="searchform" method="post">
 				<div id="search-box">
-						<input type="date" class="check" name="checkin" id="checkin" 
-							style="font-size: 1.4rem; width: 180px; border: none; margin-right: 20px;">
-						<input type="date" class="check" name="checkout" id="checkout" 
+						<input type="date" class="check" name="checkin" id="checkin"  value="<%if(Cin != ""){%><%=Cin %><%}%>"							
+						style="font-size: 1.4rem; width: 180px; border: none; margin-right: 20px;">
+						<input type="date" class="check" name="checkout" id="checkout" value="<%if(Cout != ""){%><%=Cout %><%}%>"
 							style="font-size: 1.4rem; width: 180px; margin-right: 95px; border: none; ">
-					<select name="area" id="area"
+					<select name="area" id="area" value="<%if(area != ""){%><%=area %><%}%>"
 						style="font-size: 1.4rem; width: 180px; text-align: center; margin-right: 50px; border: none;">
 						<option value="x" class="nonselect">지역</option>
 						<option value="서울">서울</option>
@@ -104,74 +104,66 @@ select{
 					</select>
 
 					<!-- 검색 버튼 -->
+					
 					<button value="검색" style="border:none ; width: 100px;height: 50%; border-radius: 10px; 
 							background: #f9c550;margin: auto;margin-right: 30px; font-size:14px;color: white;" id="searchBtn">검색</button>
 				</div>
 			</form>
-			<script>
-				$(function(){
-					$(function(){
-						var checkin = $('#checkin').val();
-					})	
 					
-				
-					$('#searchBtn').click(function(){
-						
-					
-						if($('#checkin').val()!="" && $('#checkout').val() !="" && $('#area').val() !="x"){
-							
-							$('#searchform').attr('action','/semi/hotelsearch.ys?checkin='+$('#checkin').val()+'&checkout='+$('#checkout').val()+'&area='+$('#area').val()).submit();
-							
-						}else{
-							alert("체크인/체크아웃/지역 값을 모두선택해주세요");
-						} 
-						
-						
-					});
-				});
-			</script>
+			
+			
 			
 			
 			<!-- 검색창 부분 끝 -->
 			<%if(Cin != null || Cout != null){ %>
+			<form id="filterform">
+					
             <div style="height: 3000">
                 <!------------ 왼쪽 필터 ------------>
                 <div id="left-filter">
                     <h1>필터링 기준</h1>
                     <hr>
                     <label for="">인기필터</label><br>
-                    <div class="filter"><input type="checkbox" id='1' name="checklist"> 24시프론트</div> 
-                    <div class="filter"><input type="checkbox" id='2' name="checklist"> 주차장</div> 
-                    <div class="filter"><input type="checkbox" id='3' name="checklist"> 레스토랑</div> 
-                    <div class="filter"><input type="checkbox" id='4' name="checklist"> 룸서비스</div>
-                    <div class="filter"><input type="checkbox" id='5' name="checklist"> 피트니스센터</div> 
-                    <div class="filter"><input type="checkbox" id='6' name="checklist"> 금연실</div> 
-                    <div class="filter"><input type="checkbox" id='7' name="checklist"> 공항셔틀버스</div>
-                    <div class="filter"><input type="checkbox" id='8' name="checklist"> 방음</div> 
-                    <div class="filter"><input type="checkbox" id='9' name="checklist"> 가족실</div> 
-                    <div class="filter"><input type="checkbox" id='10' name="checklist"> 스파</div> 
-                    <div class="filter"><input type="checkbox" id='11' name="checklist"> 사우나</div> 
-                    <div class="filter"><input type="checkbox" id='12' name="checklist"> 와이파이</div> 
-                    <div class="filter"><input type="checkbox" id='13' name="checklist"> 전기차 충전소</div> 
-                    <div class="filter"><input type="checkbox" id='14' name="checklist"> 간의주방</div> 
-                    <div class="filter"><input type="checkbox" id='15' name="checklist"> 욕실</div> 
-                    <div class="filter"><input type="checkbox" id='16' name="checklist"> 욕조</div> 
-                    <div class="filter"><input type="checkbox" id='17' name="checklist"> TV</div> 
-                    <div class="filter"><input type="checkbox" id='18' name="checklist"> 세탁</div> 
-                    <div class="filter"><input type="checkbox" id='19' name="checklist"> 전망</div> 
-                    <div class="filter"><input type="checkbox" id='20' name="checklist"> 전기포트</div> 
-                    <div class="filter"><input type="checkbox" id='21' name="checklist"> 커피머신</div> 
-                    <div class="filter"><input type="checkbox" id='22' name="checklist"> 루프탑</div> 
-                    <div class="filter"><input type="checkbox" id='23' name="checklist"> 공기청정기</div> 
-                    <div class="filter"><input type="checkbox" id='24' name="checklist"> 테라스</div> 
-                    <div class="filter"><input type="checkbox" id='25' name="checklist"> 발코니</div> 
+                       <div class="filter"><input type="checkbox" id='1' name="filter" value="24시프론트"> 24시프론트</div> 
+	                   <div class="filter"><input type="checkbox" id='2' name="filter" value="주차장"> 주차장</div> 
+	                   <div class="filter"><input type="checkbox" id='3' name="filter" value="레스토랑"> 레스토랑</div> 
+	                   <div class="filter"><input type="checkbox" id='4' name="filter" value="룸서비스"> 룸서비스</div>
+	                   <div class="filter"><input type="checkbox" id='5' name="filter" value="피트니스센터"> 피트니스센터</div> 
+	                   <div class="filter"><input type="checkbox" id='6' name="filter" value="금연실"> 금연실</div> 
+	                   <div class="filter"><input type="checkbox" id='7' name="filter" value="공항셔틀버스"> 공항셔틀버스</div>
+	                   <div class="filter"><input type="checkbox" id='8' name="filter" value="장애인편의시설"> 장애인편의시설</div>
+	                   <div class="filter"><input type="checkbox" id='9' name="filter" value="방음"> 방음</div> 
+	                   <div class="filter"><input type="checkbox" id='10' name="filter" value="가족실"> 가족실</div> 
+	                   <div class="filter"><input type="checkbox" id='11' name="filter" value="스파"> 스파</div> 
+	                   <div class="filter"><input type="checkbox" id='12' name="filter" value="사우나"> 사우나</div> 
+	                   <div class="filter"><input type="checkbox" id='13' name="filter" value="와이파이"> 와이파이</div> 
+	                   <div class="filter"><input type="checkbox" id='14' name="filter" value="전기차충전소"> 전기차충전소</div> 
+	                   <div class="filter"><input type="checkbox" id='15' name="filter" value="수영장"> 수영장</div> 
+	                   <div class="filter"><input type="checkbox" id='16' name="filter" value="간의주방"> 간의주방</div> 
+	                   <div class="filter"><input type="checkbox" id='17' name="filter" value="욕실"> 욕실</div>  
+	                   <div class="filter"><input type="checkbox" id='18' name="filter" value="TV"> TV</div> 
+	                   <div class="filter"><input type="checkbox" id='19' name="filter" value="세탁"> 세탁</div> 
+	                   <div class="filter"><input type="checkbox" id='20' name="filter" value="전기포트"> 전기포트</div> 
+	                   <div class="filter"><input type="checkbox" id='21' name="filter" value="커피머신"> 커피머신</div> 
+	                   <div class="filter"><input type="checkbox" id='22' name="filter" value="루프탑"> 루프탑</div> 
+	                   <div class="filter"><input type="checkbox" id='23' name="filter" value="에어컨"> 에어컨</div> 
+	                   <div class="filter"><input type="checkbox" id='24' name="filter" value="테라스"> 테라스</div> 
+	                   <div class="filter"><input type="checkbox" id='25' name="filter" value="발코니"> 발코니</div>
+                    <input type="hidden" value="<%=Cin%>" id="hdcin" name="hdcin"> 
+                    <input type="hidden" value="<%=Cout%>" id="hdcout" name="hdcout"> 
+                    <input type="hidden" value="<%=area%>" id="hdarea" name="hdarea"> 
                     <hr>
                     <label for="">위치</label><br>
                      
                     <hr>
                     <label for="">평점</label><br>
                      
+                    <button value="검색" style="border:none ; width: 100px;height: 25px; border-radius: 10px; 
+							background: #f9c550;margin-top: 5px;margin-left: 30px; font-size:14px;color: white;" id="searchfilter">검색</button>
                 </div>
+	                
+                </form>
+
  
                 <!------------ 왼쪽 필터 끝 ------------>
     
@@ -184,13 +176,14 @@ select{
                         <table id="hlist">
                         	
                            <% for(Hotel h : hlist){ %>
+                           <% String[] himg = h.gethImg().split(","); %>
                             <tr>
                                 <td style="padding-bottom: 20px; "> 
                                 <input type="hidden" value="<%=h.gethNo()%>" id="ch1"> 
                                 
 									<a id="nextpage" href="<%=request.getContextPath() %>/hotelDetail.ys?h_no=<%= h.gethNo() %>&checkin=<%=Cin%>&checkout=<%=Cout%>">
 	                                    <div class="hotel-info-list">
-	                                        <div class="hotelimg"><img src="<%=h.gethImg() %>" alt=""></div>
+	                                        <div class="hotelimg"><img src="<%=request.getContextPath()%>/resources/images/<%=himg[0] %>" alt=""></div>
 	                                        <div class="hotelinfo">
 	                                            <strong><%= h.gethName() %></strong>
 	                                            <span>  평점 <label><%= h.gethScore() %></label></span> 
@@ -203,7 +196,7 @@ select{
                                     </a>
                                 </td>
                             </tr>
-                             <%} %>
+                            <%} %>
                         </table>
                     </div>
                 </div>
@@ -233,6 +226,39 @@ select{
          	})
          </script> -->
          
+         <script>
+				$(function(){
+					var entime = $('#checkin').val();
+					var extime = $('#checkout').val();
+					var location = $('#area').val(); 
+					
+				
+					$('#searchBtn').click(function(){
+						
+					
+						if($('#checkin').val()!="" && $('#checkout').val() !="" && $('#area').val() !="x"){
+							
+							$('#searchform').attr('action','<%=request.getContextPath() %>/hotelsearch.ys?checkin='+$('#checkin').val()+'&checkout='+$('#checkout').val()+'&area='+$('#area').val()).submit();
+							
+						}else{
+							alert("체크인/체크아웃/지역 값을 모두선택해주세요");
+						} 
+						
+						
+					});
+					
+					$('#searchfilter').click(function(){
+						
+						
+						
+            			$('#filterform').attr('action','<%=request.getContextPath() %>/hotelsearch.ys?').submit();
+            		});
+            	
+				});
+			</script>
+			
+			
+			
          
          
     </body>

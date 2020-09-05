@@ -15,10 +15,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>hotel_payment</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/semi/resources/css/mainpage.css">
-        <link rel="stylesheet" href="/semi/resources/css/hotel_payment.css">
+        <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mainpage.css">
+        <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/hotel_payment.css">
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src ="/semi/resources/js/script.js"></script>
+        <script src ="<%=request.getContextPath() %>/resources/js/script.js"></script>
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -30,7 +30,7 @@
     	
     	
         <%@ include file = "../common/header.jsp" %>
-
+		
         <!--------------------- main --------------------->
         <form id="kakao.jsp" method="get">
         <div class="main">
@@ -126,7 +126,7 @@
                             <div class="facility">무료주차</div>
                             <div class="facility">흡연가능</div>
                         </div>
-                        <div class="address"><img src="/semi/resources/images/icons/location.png" width="20px" alt="깃발표시"><%= h.gethAddress() %></div>
+                        <div class="address"><img src="<%=request.getContextPath() %>/resources/images/icons/location.png" width="20px" alt="깃발표시"><%= h.gethAddress() %></div>
                     </div>
                 </div>
                 <div id="textblock">상세 정보를 입력해 주십시오.</div>
@@ -164,10 +164,10 @@
                             <p id="price"> &#8361;180,400</p><p id="day">(1박)</p>
                             <p><a href="">환불 불가</a></p>
                             <div class="facility-box">
-                                <div class="facility"><img src="/semi/resources/images/icons/cityview.png" alt=""> <span>도시 전망</span></div>
-                                <div class="facility"><img src="/semi/resources/images/icons/air-conditioner.png" alt=""><span>에어컨</span></div>
-                                <div class="facility"><img src="/semi/resources/images/icons/bathroom.png" alt=""><span>전용 욕실</span></div>
-                                <div class="facility"><img src="/semi/resources/images/icons/mute.png" alt=""><span>방음 시설</span></div>
+                                <div class="facility"><img src="<%=request.getContextPath() %>/resources/images/icons/cityview.png" alt=""> <span>도시 전망</span></div>
+                                <div class="facility"><img src="<%=request.getContextPath() %>/resources/images/icons/air-conditioner.png" alt=""><span>에어컨</span></div>
+                                <div class="facility"><img src="<%=request.getContextPath() %>/resources/images/icons/bathroom.png" alt=""><span>전용 욕실</span></div>
+                                <div class="facility"><img src="<%=request.getContextPath() %>/resources/images/icons/mute.png" alt=""><span>방음 시설</span></div>
                             </div>
                             <div class="headcount">
                               		반려견: <input id="petnum"class="inputbox" style="width: 40px;" type="number" name="" min="1" max="20">
@@ -226,7 +226,7 @@
                 <!-- <script>
                 	
                     $('#test1').click(function(){
-                        $('#fm1').attr('action','/semi/hotel_finishedReservation.jsp').submit();
+                        $('#fm1').attr('action','<%=request.getContextPath() %>/hotel_finishedReservation.jsp').submit();
                     });
                 </script> -->
 
@@ -264,7 +264,7 @@
 		        msg += '카드 승인번호 : ' + rsp.apply_num;
 		        
 		        console.log("페이먼트서블릿 체크");
-		        location.href='/semi/reservationfinished.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>&checkin=<%=Cin%>&checkout=<%=Cout%>&breakfast=<%=breakfast%>&petnum='+$('#petnum').val()+'&guestname='+$('#fullname').val()+'&email='+$('#email').val()+'&checkintime='+$('#checkintime').val()+'&guestrequest='+$('#guestrequest').val()
+		        location.href='<%=request.getContextPath() %>/reservationfinished.ys?hno=<%=h.gethNo()%>&hroom=<%=hr.getRname()%>&userid=<%=m.getMuserId()%>&checkin=<%=Cin%>&checkout=<%=Cout%>&breakfast=<%=breakfast%>&totalprice=<%=hr.getRprice()*0.1+hr.getRprice()%>&petnum='+$('#petnum').val()+'&guestname='+$('#fullname').val()+'&email='+$('#email').val()+'&checkintime='+$('#checkintime').val()+'&guestrequest='+$('#guestrequest').val()
 		        console.log("페이먼트서블릿 체크1");
 		    } else {
 		        var msg = '결제에 실패하였습니다.';
