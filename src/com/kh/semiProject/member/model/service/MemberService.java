@@ -98,7 +98,7 @@ public class MemberService {
 	public ArrayList<String> checkId() {
 		Connection con = getConnection();
 		
-		String[] idlist = mDao.checkId(con);
+		ArrayList<String> idlist = mDao.checkId(con);
 		
 		if(idlist != null)commit(con);
 		else rollback(con);
@@ -118,4 +118,6 @@ public class MemberService {
 		close(con);	
 		return pwd;
 	}
+
+
 }
