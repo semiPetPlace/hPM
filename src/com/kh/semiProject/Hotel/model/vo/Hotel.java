@@ -29,8 +29,19 @@ public class Hotel implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+
+	public Hotel(int hNo, String hName, String hTel, int hPrice, int hGrade, String hAddress, Date hRegisterData,
+			String hRegistration) {
+		super();
+		this.hNo = hNo;
+		this.hName = hName;
+		this.hTel = hTel;
+		this.hPrice = hPrice;
+		this.hGrade = hGrade;
+		this.hAddress = hAddress;
+		this.hRegisterData = hRegisterData;
+		this.hRegistration = hRegistration;
+	}
 	public Hotel(int hNo, String hName, int hPrice, int hGrade, int hScore, String hAddress, String hImg,
 			String hPromotion) {
 		super();

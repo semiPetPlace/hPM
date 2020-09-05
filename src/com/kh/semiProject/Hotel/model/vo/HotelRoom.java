@@ -8,7 +8,6 @@ public class HotelRoom implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1277443183984026159L;
-
 	
 	private int hno;
 	private String hname;
@@ -23,6 +22,7 @@ public class HotelRoom implements Serializable{
 	private String rsize;
 	private String rview;
 	private String rstatus;
+	
 	public HotelRoom() {
 		super();
 		// TODO Auto-generated constructor stub

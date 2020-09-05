@@ -1,15 +1,20 @@
 package com.kh.semiProject.Manager.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.crypto.Data;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -17,8 +22,6 @@ import com.kh.semiProject.Hotel.model.vo.Hotel;
 import com.kh.semiProject.Hotel.model.vo.HotelConvenience;
 import com.kh.semiProject.Hotel.model.vo.HotelRoom;
 import com.kh.semiProject.Manager.model.service.ManagerService;
-import com.kh.semiProject.mCompany.exception.CompanyException;
-import com.kh.semiProject.mCompany.model.vo.Company;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -62,18 +65,24 @@ public class HotelEnrollServlet extends HttpServlet {
 											"UTF-8",
 											new DefaultFileRenamePolicy()
 											);
-		int hNo = Integer.parseInt(mrequest.getParameter("hNo"));
+		
 		String hName = mrequest.getParameter("hName");
 		String hTel = mrequest.getParameter("num1")+"-"
 				 + mrequest.getParameter("num2")+"-"
 				 + mrequest.getParameter("num3");
 		int hPrice = Integer.parseInt(mrequest.getParameter("hPrice"));
 		int hGrade = Integer.parseInt(mrequest.getParameter("hGrade"));
-		int hScore = Integer.parseInt(mrequest.getParameter("hScore"));
 		String hAddress = mrequest.getParameter("address1")+", "
-				 + request.getParameter("address2")+", "
-				 + request.getParameter("zipCode");
-		String hImg = mrequest.getFilesystemName("hImg");
+				 + mrequest.getParameter("address2")+", "
+				 + mrequest.getParameter("zipCode");
+	    String hImg = mrequest.getFilesystemName("hImg");
+	    String hImg1 = mrequest.getFilesystemName("hImg1");
+		String hImg2 = mrequest.getFilesystemName("hImg2");
+		String hImg3 = mrequest.getFilesystemName("hImg3");
+		String hImg4 = mrequest.getFilesystemName("hImg4");
+		String hImg5 = mrequest.getFilesystemName("hImg5");
+		hImg += ","+hImg1+","+hImg2+","+hImg3+","+hImg4+","+hImg5;
+
 		String hPromotion = mrequest.getParameter("hPromotion");
 		String hRequests = mrequest.getParameter("hRequests");
 		String date = mrequest.getParameter("date");
@@ -90,9 +99,9 @@ public class HotelEnrollServlet extends HttpServlet {
 			hRegisterData = new Date(new GregorianCalendar().getTimeInMillis());
 		}
 		String hRegistration = mrequest.getParameter("hRegistration");
-		String hLat = mrequest.getParameter("hLat");
-		String hLng = mrequest.getParameter("hLng");
-		String filter = mrequest.getParameter("filter");
+		float lat = Float.parseFloat(mrequest.getParameter("lat"));
+		float lng = Float.parseFloat(mrequest.getParameter("lng"));
+		String filter = String.join(",",mrequest.getParameterValues("filter"));
 		
 		String tansport = mrequest.getParameter("tansport");
 		String airport = mrequest.getParameter("airport");
@@ -100,15 +109,23 @@ public class HotelEnrollServlet extends HttpServlet {
 		String wifi = mrequest.getParameter("wifi");
 		String tub = mrequest.getParameter("tub");
 		
-		String rname = mrequest.getParameter("rname");
-		int rprice = Integer.parseInt(mrequest.getParameter("rprice"));
-		String rimg = mrequest.getFilesystemName("rimg");
-		String rtub = mrequest.getParameter("rtub");
-		String rbreakfast = mrequest.getParameter("rbreakfast");
-		String rbadtype = mrequest.getParameter("rbadtype");
-		String rsize = mrequest.getParameter("rsize");
-		String rview = mrequest.getParameter("rview");
-		String rstatus = mrequest.getParameter("rstatus");
+		String rname1 = mrequest.getParameter("rname1");
+		int rprice1 = Integer.parseInt(mrequest.getParameter("rprice1"));
+		String rimg1 = mrequest.getFilesystemName("rimg1");
+		String rtub1 = mrequest.getParameter("rtub1");
+		String rbreakfast1 = mrequest.getParameter("rbreakfast1");
+		String rbadtype1 = mrequest.getParameter("rbadtype1");
+		String rsize1 = mrequest.getParameter("rsize1");
+		String rview1 = mrequest.getParameter("rview1");
+
+		String rname2 = mrequest.getParameter("rname2");
+		int rprice2 = Integer.parseInt(mrequest.getParameter("rprice2"));
+		String rimg2 = mrequest.getFilesystemName("rimg2");
+		String rtub2 = mrequest.getParameter("rtub2");
+		String rbreakfast2 = mrequest.getParameter("rbreakfast2");
+		String rbadtype2 = mrequest.getParameter("rbadtype2");
+		String rsize2 = mrequest.getParameter("rsize2");
+		String rview2 = mrequest.getParameter("rview2");
 		//총 29개
 
 		// 6. 전송된 파일 VO에 담아 서비스로 전달
@@ -117,15 +134,14 @@ public class HotelEnrollServlet extends HttpServlet {
 		h.sethTel(hTel);
 		h.sethPrice(hPrice);
 		h.sethGrade(hGrade);
-		h.sethScore(hScore);
 		h.sethAddress(hAddress);
 		h.sethImg(hImg);
 		h.sethPromotion(hPromotion);
 		h.sethRequests(hRequests);
 		h.sethRegisterData(hRegisterData);
 		h.sethRegistration(hRegistration);
-		h.sethLat(hLat);
-		h.sethLng(hLng);
+		h.setLat(lat);
+		h.setLng(lng);
 		h.setFilter(filter);
 		
 		HotelConvenience hc = new HotelConvenience();
@@ -136,19 +152,29 @@ public class HotelEnrollServlet extends HttpServlet {
 		hc.setTub(tub);
 		
 		HotelRoom hr = new HotelRoom();
-		hr.setRname(rname);
-		hr.setRprice(rprice);
-		hr.setRimg(rimg);
-		hr.setRtub(rtub);
-		hr.setRbreakfast(rbreakfast);
-		hr.setRbadtype(rbadtype);
-		hr.setRsize(rsize);
-		hr.setRview(rview);
+		hr.setRname(rname1);
+		hr.setRprice(rprice1);
+		hr.setRimg(rimg1);
+		hr.setRtub(rtub1);
+		hr.setRbreakfast(rbreakfast1);
+		hr.setRbadtype(rbadtype1);
+		hr.setRsize(rsize1);
+		hr.setRview(rview1);
+
+		HotelRoom hr2 = new HotelRoom();
+		hr2.setRname(rname2);
+		hr2.setRprice(rprice2);
+		hr2.setRimg(rimg2);
+		hr2.setRtub(rtub2);
+		hr2.setRbreakfast(rbreakfast2);
+		hr2.setRbadtype(rbadtype2);
+		hr2.setRsize(rsize2);
+		hr2.setRview(rview2);
 		
-		System.out.println("업체등록확인 : " + h + hc + hr);
+		System.out.println("업체등록확인 : " + h + hc + hr + hr2);
 		
 		// 7. 서비스 결과 처리
-		int result = new ManagerService().enrollHotel(h,hc,hr);
+		int result = new ManagerService().enrollHotel(h,hc,hr,hr2);
 	
 		if(result > 0) {
 			response.sendRedirect("hList.hj");
@@ -159,16 +185,6 @@ public class HotelEnrollServlet extends HttpServlet {
 		}
 
 	}
-//		try {
-//			hs.enrollHotel(h);
-//			System.out.println("업체 등록 완료");
-//			
-//			response.sendRedirect("hList.hj");
-//		} catch(CompanyException e){
-//			request.setAttribute("msg", "업체 등록 중 에러 발생");
-//			request.setAttribute("exception", e);
-//			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-		
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

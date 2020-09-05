@@ -38,19 +38,60 @@ public class ManagerService {
 		close(con);
 		return mac;
 	}
-
-	public int enrollHotel(Hotel h, HotelConvenience hc, HotelRoom hr) {
+	
+	public int enrollHotel(Hotel h, HotelConvenience hc, HotelRoom hr, HotelRoom hr2) {
 		Connection con = getConnection();
 		
 		int result = mDao.enrollCompany(con,h,hc,hr);
 		
-		if(result > 0) commit(con);
-		else rollback(con);
+		if(result > 0) {
+			int result1 = mDao.enrollRoom2(con,hr2);
+			
+			if(result1 > 0) commit(con);
+			else rollback(con);
+		}	
 		
 		close(con);
 		
 		return result;
 	}
+
+	public Hotel selectOneHotel(int hNo) {
+		Connection con = getConnection();
+		
+		Hotel h = mDao.selectOneHotel(con,hNo);
+		
+		close(con);
+		return h;
+	}
+
+	public HotelConvenience selectOneConvenience(int hNo) {
+		Connection con = getConnection();
+		
+		HotelConvenience hc = mDao.selectOneConvenience(con,hNo);
+		
+		close(con);
+		return hc;
+	}
+
+	public HotelRoom selectOneRoom(int hNo) {
+		Connection con = getConnection();
+		
+		HotelRoom hr = mDao.selectOneRoom(con,hNo);
+		
+		close(con);
+		return hr;
+	}
+
+	public HotelRoom selectOneRoom2(int hNo) {
+		Connection con = getConnection();
+		
+		HotelRoom hr2 = mDao.selectOneRoom2(con,hNo);
+		
+		close(con);
+		return hr2;
+	}
+
 
 	public int getListCount() {
 		Connection con = getConnection();
@@ -69,6 +110,20 @@ public class ManagerService {
 		close(con);
 		return list;
 	}
+
+
+	public ArrayList<Hotel> searchHotel(String categorySearch, String keyword) {
+		Connection con = getConnection();
+		ArrayList<Hotel> list = null;
+		
+		if(categorySearch.length() > 0) list = mDao.searchHotel(con,categorySearch,keyword);
+		else list = mDao.searchHotel(con);
+		
+		close(con);
+		return list;
+	}
+
+
 
 
 }
