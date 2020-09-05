@@ -55,14 +55,7 @@ public class HotelService {
 		return hc;
 	}
 
-	public HotelFacility facility(int h_no) {
-		Connection con = getConnection();
-		
-		HotelFacility hf = hDao.facility(con,h_no);
-		
-		close(con);
-		return hf;
-	}
+
 
 	public HotelRoom payment(int hno, String rname) {
 		Connection con = getConnection();
@@ -135,6 +128,13 @@ public class HotelService {
 		
 		close(con);
 		return update;
+	}
+
+	public ArrayList<Hotel> filteredHotel(String in, String out, String area, String[] checkArr) {
+		Connection con = getConnection();
+		
+		ArrayList<Hotel> hlist = hDao.filteredHotel(con,in,out,area,checkArr);
+		return hlist;
 	}
 
 	

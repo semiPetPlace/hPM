@@ -43,7 +43,6 @@ public class HotelPaymentServlet extends HttpServlet {
 		
 		Hotel hd = hs.selectHotel(hno);
 		HotelConvenience hc = hs.Convenience(hno);
-		HotelFacility hf = hs.facility(hno);
 		
 		HotelRoom hr = hs.payment(hno,rname);
 		String page = "";
@@ -52,7 +51,6 @@ public class HotelPaymentServlet extends HttpServlet {
 			request.setAttribute("hd", hd);
 			request.setAttribute("hc", hc);
 			request.setAttribute("hr", hr);
-			request.setAttribute("hf", hf);
 			request.setAttribute("Cin", Cin);
 			request.setAttribute("Cout", Cout);
 			request.setAttribute("breakfast", breakfast);
