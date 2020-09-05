@@ -71,7 +71,7 @@
                             <a href="<%= request.getContextPath() %>/blist.th" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/community.png" alt="community"></a>
                             <ul class="subnav">
                                 <li><a href="<%= request.getContextPath() %>/blist.th"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_lab.png" alt="반려견 연구소"></a></li>
-                                <li><a href="<%= request.getContextPath() %>/views/review/review_list.jsp"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_review.png" alt="플레이스 리뷰"></a></li>
+                                <li><a href="<%= request.getContextPath() %>/rvList.th"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_review.png" alt="플레이스 리뷰"></a></li>
                             </ul>
                         </li>
                         <li class="navi_set">
