@@ -19,6 +19,7 @@ public class Member implements Serializable {
 	private String muserPwd; // 비밀번호
 	private String maddress; // 주소
 	private String mphone; // 전화번호
+	private String tel;
 	private String memail; // 이메일
 	private String mgender; // 성별
 	private String mbirth; // 생년월일
@@ -26,7 +27,7 @@ public class Member implements Serializable {
 	private String mStatus; // 회원 상태
 
 	public Member(String mno, String mimg, String muserId, String muserName, String muserPwd, String maddress,
-			String mphone, String memail, String mgender, String mbirth, Date mRegisterdate, String mStatus) {
+			String mphone,String tel, String memail, String mgender, String mbirth, Date mRegisterdate, String mStatus) {
 		super();
 		this.mno = mno;
 		this.mimg = mimg;
@@ -35,6 +36,7 @@ public class Member implements Serializable {
 		this.muserPwd = muserPwd;
 		this.maddress = maddress;
 		this.mphone = mphone;
+		this.tel = tel;
 		this.memail = memail;
 		this.mgender = mgender;
 		this.mbirth = mbirth;
@@ -109,6 +111,14 @@ public class Member implements Serializable {
 		this.maddress = maddress;
 	}
 
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
 	public String getMphone() {
 		return mphone;
 	}
@@ -164,5 +174,7 @@ public class Member implements Serializable {
 				+ ", mgender=" + mgender + ", mbirth=" + mbirth + ", mRegisterdate=" + mRegisterdate + ", mStatus="
 				+ mStatus + "]";
 	}
+
+	
 
 }

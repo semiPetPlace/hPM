@@ -131,21 +131,22 @@ public class MemberDao {
 		return result;
 	}
 
-	public int deleteMember(Connection con, java.lang.String muserId) throws MemberException {
+	public int deleteMember(Connection con, java.lang.String muserId) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("deleteMember");
 		
 		try {
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(3, muserId);
+			pstmt.setString(1, muserId);
 			
 			result=pstmt.executeUpdate();
 		}catch (SQLException e) {
-			throw new MemberException();
+			e.printStackTrace();
 		}finally {
 			close(pstmt);
 		}
+		System.out.println("dao"+result);
 		return result;
 	}
 
@@ -176,6 +177,118 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public int createAcount(Connection con, Member m) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("createAccount");
+		
+		try {
+			System.out.println(sql);
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m.getMuserId());
+			pstmt.setString(2, m.getMuserName());
+			pstmt.setString(3, m.getMuserPwd());
+			pstmt.setString(4, m.getMaddress());
+			pstmt.setString(5, m.getMphone());
+			pstmt.setString(6, m.getMemail());
+			pstmt.setString(7, m.getMgender());
+			pstmt.setString(8, m.getMbirth());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	public ArrayList<String> checkId(Connection con) {
+		
+		ArrayList<String> idlist = new ArrayList();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("checkId");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				idlist.add(rset.getString(1));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return idlist;
+	}
+
+
+	public String findIdMember(Connection con, String name, String email) {
+		String id = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("findIdMember");
+		System.out.println(name);
+		System.out.println(email);
+		try {
+		pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, name);
+		pstmt.setString(2, email);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			
+			id=rset.getString("M_USERID");
+		}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println(id);
+		return id;
+	}
+
+	public String findPwdMember(Connection con, String userId, String name, String email) {
+		String pwd = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("findPwdMember");
+		System.out.println(name);
+		System.out.println(userId);
+		System.out.println(email);
+
+		try {
+		pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, name);
+		pstmt.setString(2, email);
+		pstmt.setString(3, userId);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			
+			pwd=rset.getString("M_PASSWORD");
+		}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println(pwd);
+		return pwd;
 	}
 
 }

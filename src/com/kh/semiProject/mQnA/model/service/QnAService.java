@@ -54,6 +54,13 @@ public class QnAService {
 		return result;
 	}
 
+	public int getListCount(String type) {
+		Connection con = getConnection();
+		int listCount = qDao.getListCount(con,type);
+		close(con);
+		return listCount;
+	}
+
 	
 	
 }

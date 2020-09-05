@@ -6,9 +6,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.semiProject.Manager.model.vo.Manager;
+import com.kh.semiProject.member.model.vo.Member;
+
+import com.kh.semiProject.mCompany.exception.CompanyException;
+import com.kh.semiProject.mCompany.model.vo.Company;
+
 import static com.kh.common.JDBCTemplate.*;
 public class ManagerDao {
 
@@ -103,6 +110,221 @@ public class ManagerDao {
 		
 		
 		return mac;
+	}
+	
+	public int enrollCompany(Connection con, Hotel h, HotelConvenience hc, HotelRoom hr) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("enrollHotel");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1,h.gethName());
+			pstmt.setString(2,h.gethTel());
+			pstmt.setInt(3,h.gethPrice());
+			pstmt.setInt(4,h.gethGrade());
+			pstmt.setInt(5,h.gethScore());
+			pstmt.setString(6,h.gethAddress());
+			pstmt.setString(7,h.gethImg());
+			pstmt.setString(8,h.gethPromotion());
+			pstmt.setString(9,h.gethRequests());
+			pstmt.setDate(10,h.gethRegisterData());
+			pstmt.setString(11,h.gethRegistration());
+			pstmt.setString(12,h.gethLat());
+			pstmt.setString(13,h.gethLng());
+			pstmt.setString(14,h.getFilter());
+			
+			pstmt.setString(15,hc.getTansport());
+			pstmt.setString(16,hc.getAirport());
+			pstmt.setString(17,hc.getLocation());
+			pstmt.setString(18,hc.getWifi());
+			pstmt.setString(19,hc.getTub());
+
+			pstmt.setString(20,hr.getRname());
+			pstmt.setInt(21,hr.getRprice());
+			pstmt.setString(22,hr.getRimg());
+			pstmt.setString(23,hr.getRtub());
+			pstmt.setString(24,hr.getRbreakfast());
+			pstmt.setString(25,hr.getRbadtype());
+			pstmt.setString(26,hr.getRsize());
+			pstmt.setString(27,hr.getRview());
+			// 27개
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int getListCount(Connection con) {
+		int listCount = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("listCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return listCount;
+	}
+	
+	public ArrayList<Hotel> listHotel(Connection con, int currentPage, int limit) {
+		ArrayList<Hotel> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("listHotel");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Hotel>();
+			
+			while(rset.next()) {
+				Hotel h = new Hotel();
+				
+				h.sethNo(rset.getInt(1));
+				h.sethName(rset.getString("hname"));
+				h.sethTel(rset.getString("htel"));
+				h.sethPrice(rset.getInt("hprice"));
+				h.sethGrade(rset.getInt("hgrade"));
+				h.sethScore(rset.getInt("hscore"));
+				h.sethAddress(rset.getString("haddress"));
+				h.sethRegisterData(rset.getDate("hregisterData"));
+				h.sethRegistration(rset.getString("hregistration"));
+				
+				list.add(h);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public ArrayList<Hotel> selectOneHotel(Connection con, int hno, Hotel h, HotelConvenience hc, HotelRoom hr) {
+		ArrayList<Hotel> hlist = null;
+		ArrayList<HotelConvenience> hclist = null;
+		ArrayList<HotelRoom> hrlist = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOneHotel");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, hno);
+			
+			rset = pstmt.executeQuery();
+			
+			hlist = new ArrayList<Hotel>();
+			
+			if(rset.next()) {
+				h = new Hotel();
+				h.sethNo(hno);
+				h.sethName(rset.getString("hname"));
+				h.sethTel(rset.getString("htel"));
+				h.sethPrice(rset.getInt("hprice"));
+				h.sethGrade(rset.getInt("hgrade"));
+				h.sethScore(rset.getInt("hscore"));
+				h.sethAddress(rset.getString("haddress"));
+				h.sethImg(rset.getString("himg"));
+				h.sethPromotion(rset.getString("hpromotion"));
+				h.sethRequests(rset.getString("hrequests"));
+				h.sethRegisterData(rset.getDate("hregisterData"));
+				h.sethRegistration(rset.getString("hregistration"));
+				h.sethLat(rset.getString("hlat"));
+				h.sethLng(rset.getString("hlng"));
+				h.setFilter(rset.getString("filter"));
+				
+				hc = new HotelConvenience();
+				hc.setTansport(rset.getString("tansport"));
+				hc.setAirport(rset.getString("sirport"));
+				hc.setLocation(rset.getString("location"));
+				hc.setWifi(rset.getString("wifi"));
+				hc.setTub(rset.getString("tub"));
+				
+				hr = new HotelRoom();
+				hr.setRname(rset.getString("rName"));
+				hr.setRprice(rset.getInt("rPrice"));
+				hr.setRimg(rset.getString("rImg"));
+				hr.setRtub(rset.getString("rTub"));
+				hr.setRbreakfast(rset.getString("rBreakfast"));
+				hr.setRbadtype(rset.getString("rBadtype"));
+				hr.setRsize(rset.getString("rSize"));
+				hr.setRview(rset.getString("rView"));
+				
+				hlist.add(h);
+				hclist.add(hc);
+				hrlist.add(hr);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return hlist;
+	}
+	
+	public Member MemberDetail(Connection con, String userName) {
+		Member m = new Member();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMember");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userName);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m.setMno(rset.getString("M_NO"));
+				m.setMuserId(rset.getString("M_USERID"));
+				m.setMuserName(rset.getString("M_USERNAME"));
+				m.setMemail(rset.getString("M_EMAIL"));
+				m.setMaddress(rset.getString("M_ADDRESS"));
+				m.setMphone(rset.getString("M_PHONE"));
+				m.setMbirth(rset.getString("M_BIRTH"));
+				m.setTel(rset.getString("M_PHONE"));
+				m.setmRegisterdate(rset.getDate("M_REGISTERDATE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		return m;
 	}
 
 }

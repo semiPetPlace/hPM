@@ -201,7 +201,7 @@ html,body {
                     <li><a href="./Manager_reviewBoard.html">게시판 관리</a></li>
                     <li><a href="./">업체 관리</a></li>
                     <li><a href="#" onclick="goListView()" >문의 처리</a></li>
-                    <li><a href="#" onclick="goCDetail()">회원 관리</a></li>
+                    <li><a href="#" onclick="">회원 관리</a></li>
                     <li><a href="#" onclick="goViewChart()">매출 관리</a></li>
                 </ul>
             </div>
@@ -216,9 +216,7 @@ html,body {
 	function gocList(){
 		location.href="/semi/cList.co";
 	}
-	function goCDetail(){
-		location.href="/semi/cDetail.cl";
-	}
+
 
 	function goViewChart(){
 		location.href="/semi/viewChart.hs";

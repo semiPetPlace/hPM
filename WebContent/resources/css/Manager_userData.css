@@ -1,0 +1,132 @@
+.content {
+    width: 80%;
+    margin-top: 100px;
+    margin-left: 200px;
+}
+.content:after{
+    content:"";
+    display:block;
+    clear:both;
+}
+.main-content{
+    display: flex;
+    /* overflow: auto; */
+}
+#local, #Company, #filter1{
+    height: 22px;
+}
+#bankName, #pNum1, #pNum2, #pNum3, #conNum1, #conNum2, #conNum3{
+    width: 80px;
+}
+.searchPot{
+    width: 1200px;
+    height: 15px;
+    background: #7A9BAD;
+    margin-bottom: 50px;
+}
+.enrollCom{
+    width: 80%;
+    margin-left: 15%;
+    font-weight: 500;
+    font-size: medium;
+    margin-top: 80px;
+}
+#address{
+    width: 600px;
+}
+.enrollCom table,.enrollCom th,.enrollCom tr{
+    font-size: medium;
+    border-left: 5px inset rgb(136, 151, 163);
+}
+.preBtn{
+    margin-left: 50px;
+    margin-right: 10px;
+}
+#sample6_address{
+    margin: 5px 0;
+}
+.searchCompany{
+    width: 100%;
+    margin-left: 300px;
+    /* border: 1px solid black; */
+    font-weight: 500;
+    margin-top: 80px;
+}
+.searchCompany>table{
+    width: 50%;
+    text-align: left;
+    padding-left: 20px;
+}
+table{
+    width: 100%;
+    /* border-spacing: 10px; */
+}
+.searchCompany table,.searchCompany th,.searchCompany tr{
+    /* text-align: center; */
+    font-size: medium;
+    border-left: 5px inset rgb(136, 151, 163);
+}
+td{
+    height: 20px;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+tr{
+    height: 25px;
+}
+th{
+    text-align: left;
+    /* height: 20px; */
+    padding-top: 10px;
+    padding-left: 60px;
+    padding-bottom: 10px;
+}
+#num{
+    width: 50px;
+}
+#category{
+    width: 80px;
+}
+#name{
+   width: 180px;
+}
+#enrollDate{
+    width: 130px;
+}
+#endDate{
+    width: 100px;
+}
+#tel{
+    width: 130px;
+}
+#now{
+    width: 100px;
+}
+#cont{
+    width: 250px;
+}
+#startDate{
+    margin-right: 10px;
+}
+#num1, #num3{
+    width: 50px;
+}
+#num2{
+    width: 30px;
+}
+.btns{
+    width: 50%;
+    float: right;
+    margin-right: 20%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.enrollBtn{
+    margin-right: 10px;
+}
+.deleteBtn{
+    margin-left: 10px;
+}
+#comNum{
+    width: 100px;
+}

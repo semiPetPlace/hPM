@@ -6,6 +6,7 @@ import static com.kh.common.JDBCTemplate.getConnection;
 import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.kh.semiProject.member.exception.MemberException;
 import com.kh.semiProject.member.model.dao.MemberDao;
@@ -83,5 +84,38 @@ public class MemberService {
 		
 		close(con);
 		return result;
+	}
+
+	public int createAcount(Member m) {
+		Connection con =getConnection();
+		int result = mDao.createAcount(con,m);
+		
+		if(result > 0 )commit(con);
+		else rollback(con);
+		return result;
+	}
+
+	public ArrayList<String> checkId() {
+		Connection con = getConnection();
+		
+		String[] idlist = mDao.checkId(con);
+		
+		if(idlist != null)commit(con);
+		else rollback(con);
+		return idlist;
+	}
+
+	public String findIdMember(String name, String email) {
+		con = getConnection();
+		String id = mDao.findIdMember(con,name,email);
+		close(con);	
+		return id;
+	}
+
+	public String findPwdMember(String userId, String name, String email) {
+		con = getConnection();
+		String pwd = mDao.findPwdMember(con,userId,name,email);
+		close(con);	
+		return pwd;
 	}
 }
