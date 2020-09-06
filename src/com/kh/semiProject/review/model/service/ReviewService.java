@@ -76,5 +76,13 @@ public class ReviewService {
 		else rollback(con);
 		return result;
 	}
+	public ArrayList<Review> reviewList(int currentPage, int limit, int ctno, String type) {
+		Connection con = getConnection();
+		ArrayList<Review> rvlist = new ArrayList<Review>();
+		rvlist=rDao.reviewList(con,currentPage,limit,ctno,type);
+		
+		close(con);
+		return rvlist;
+	}
 
 }
