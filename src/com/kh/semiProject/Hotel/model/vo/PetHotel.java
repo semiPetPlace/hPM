@@ -21,26 +21,15 @@ public class PetHotel implements Serializable{
 	private String phrequests;
 	private String phregisterdate;
 	private String registration;
+	private String lat;
+	private String lng;
 	public PetHotel() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public PetHotel(int phno, String phname, String phtel, int phprice, int phscore, String phaddress, String img,
-			String dimg, String phpromotion, String phrequests) {
-		super();
-		this.phno = phno;
-		this.phname = phname;
-		this.phtel = phtel;
-		this.phprice = phprice;
-		this.phscore = phscore;
-		this.phaddress = phaddress;
-		this.img = img;
-		this.dimg = dimg;
-		this.phpromotion = phpromotion;
-		this.phrequests = phrequests;
-	}
-	public PetHotel(int phno, String phname, String phtel, int phprice, int phscore, String phaddress, String img,
-			String dimg, String phpromotion, String phrequests, String phregisterdate, String registration) {
+			String dimg, String phpromotion, String phrequests, String phregisterdate, String registration, String lat,
+			String lng) {
 		super();
 		this.phno = phno;
 		this.phname = phname;
@@ -54,6 +43,24 @@ public class PetHotel implements Serializable{
 		this.phrequests = phrequests;
 		this.phregisterdate = phregisterdate;
 		this.registration = registration;
+		this.lat = lat;
+		this.lng = lng;
+	}
+	public PetHotel(int phno, String phname, String phtel, int phprice, int phscore, String phaddress, String img,
+			String dimg, String phpromotion, String phrequests, String lat, String lng) {
+		super();
+		this.phno = phno;
+		this.phname = phname;
+		this.phtel = phtel;
+		this.phprice = phprice;
+		this.phscore = phscore;
+		this.phaddress = phaddress;
+		this.img = img;
+		this.dimg = dimg;
+		this.phpromotion = phpromotion;
+		this.phrequests = phrequests;
+		this.lat = lat;
+		this.lng = lng;
 	}
 	public int getPhno() {
 		return phno;
@@ -127,12 +134,24 @@ public class PetHotel implements Serializable{
 	public void setRegistration(String registration) {
 		this.registration = registration;
 	}
+	public String getLat() {
+		return lat;
+	}
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+	public String getLng() {
+		return lng;
+	}
+	public void setLng(String lng) {
+		this.lng = lng;
+	}
 	@Override
 	public String toString() {
 		return "PetHotel [phno=" + phno + ", phname=" + phname + ", phtel=" + phtel + ", phprice=" + phprice
 				+ ", phscore=" + phscore + ", phaddress=" + phaddress + ", img=" + img + ", dimg=" + dimg
 				+ ", phpromotion=" + phpromotion + ", phrequests=" + phrequests + ", phregisterdate=" + phregisterdate
-				+ ", registration=" + registration + "]";
+				+ ", registration=" + registration + ", lat=" + lat + ", lng=" + lng + "]";
 	}
 	
 	

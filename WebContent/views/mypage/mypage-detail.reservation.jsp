@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, com.kh.semiProject.mypage.model.vo.*" %>
+<% ArrayList<ReservationMana> reserList = (ArrayList<ReservationMana>)request.getAttribute("reserList");%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,13 +10,13 @@
         <title>상세 예약 보기</title>
         
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../resources/css/mainpage.css">
-        <link rel="stylesheet" href="../../resources/css/cafe-main.css">
-        <link rel="stylesheet" href="../../resources/css/mypage_managment.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mainpage.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/cafe-main.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mypage_managment.css">
 
 
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src ="../../resources/js/script.js"></script>
+        <script src ="<%=request.getContextPath()%>/resources/js/script.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
@@ -34,7 +36,7 @@
                         <li><a href="./mypage-basic.jsp">마이페이지</a></li>
                     </ul>
                     <ul id="mypage_nav_sub">
-                        <li class="page_nav"><a href="./mypage-scheduled.reservation.jsp">예약·결제 관리</a></li>
+                        <li class="page_nav"><a href="<%=request.getContextPath() %>/scheduledReser.ys?userid=<%=m.getMuserId()%>">예약·결제 관리</a></li>
                         <li class="page_nav"><a href="./mypage-myplace.jsp">찜한 플레이스</a></li>
                         <li class="page_nav"><a href="./mypage-review.jsp">내가 쓴 게시글</a></li>
                         <br><br><br>
@@ -47,30 +49,33 @@
                 <div id="revervation_info">
                     <table>
                         <th id="hotelImg">
-                            <img src="../../resources/images/hotel1.jpg" alt="">                        
+                            <img src="<%=request.getContextPath()%>/resources/images/hotel1.jpg" alt="">                        
                         </th>
-                        
+                        <% if(reserList !=null){ %>
+               			<% for(ReservationMana rvm : reserList){ %>
+              			<% String[] himg = rvm.getReserHotelimg().split(","); %>
                         <td class="Reservation_recode">
-                            <div id="ReservationNum">예약번호 <label id="ReNum" class="userInfo" >0000-0000-0000</label></div>
-                            <div id="checkIn">체크인 <label id="CIn" class="userInfo">14:00 (2020-10-30)</label></div>
-                            <div id="checkOut">체크아웃 <label id="COut" class="userInfo" >12:00 (2020-11-02)</label></div>
-                            <div id="hotelNum">연락처 정보 <label id="Tel" class="userInfo"  >010-2042-5685</label></div>
-                            <div id="guestName">투숙객 이름 <label id="GName" class="userInfo" >한윤수</label></div>
-                            <div id="reservationRoom">예약객실 <label id="RType" class="userInfo">스위트룸</label></div>
-                            <div id="reservationTotalP">총 예약인원 <label id="Pimg"><img src="../../resources/images/mypage/people.png" width="20px" height="20px"> 성인</label> 
-                                 <label id="PNum" class="userInfo">1명</label> <br>
-                                <label id="Dimg"><img src="../../resources/images/mypage/dog.png" width="20px" height="20px" style="margin-left: 10px;">반려견</label>
-                                <lable id="DNum" class="userInfo">200마리</lable>
+                            <div id="ReservationNum">예약번호 <label id="ReNum" class="userInfo" >H-<%=rvm.getReserDate()%>.<%=rvm.getReserNo() %></label></div>
+                            <div id="checkIn">체크인 <label id="CIn" class="userInfo"><%=rvm.getReserCheckin() %></label></div>
+                            <div id="checkOut">체크아웃 <label id="COut" class="userInfo" ><%=rvm.getReserCheckout() %></label></div>
+                            <div id="checkintime">체크인시간 <label id="cintime" class="userInfo" ><%=rvm.getReserCheckintime() %></label></div>
+                            <div id="hotelNum">이메일 정보 <label id="Tel" class="userInfo"  ><%=rvm.getReserGuestemail() %></label></div>
+                            <div id="guestName">투숙객 이름 <label id="GName" class="userInfo" ><%=rvm.getReserGuestid() %></label></div>
+                            <div id="reserhotelname">예약호텔 <label id="hname" class="userInfo" ><%=rvm.getReserhotelname() %></label></div>
+                            <div id="reservationRoom">예약객실 <label id="RType" class="userInfo"><%=rvm.getReserRoom() %></label></div>
+                             
+                                <label id="Dimg"><img src="<%=request.getContextPath()%>/resources/images/mypage/dog.png" width="20px" height="20px" style="margin-left: 10px;">반려견</label>
+                                <lable id="DNum" class="userInfo"><%=rvm.getReserPetnumber()%>마리</lable>
                             </div>
                             
-                            <div id="TaxService" >세금 및 봉사료 <label id="tax" class="userInfo">1600000</label></div>
-                            <div id="totalPayment">총 결제 금액 <label id="TotalPay" class="userInfo">16000000</label></div>
-                            <br><br>
+                            <div id="TaxService" >세금 및 봉사료 <label id="tax" class="userInfo"><%=Integer.parseInt(rvm.getReserTotalprice())/11%></label></div>
+                            <div id="totalPayment">총 결제 금액 <label id="TotalPay" class="userInfo"><%=rvm.getReserTotalprice() %></label></div>
                             
-                            <div id="paymentInfo">결제 정보 <label id="PInfo" class="userInfo" >윤수카드</label></div>
 
 
                         </td>
+                        <%} %>
+                        <%} %>
                         
                         
                     </table>

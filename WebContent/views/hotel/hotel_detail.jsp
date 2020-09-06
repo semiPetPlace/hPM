@@ -263,7 +263,7 @@
                                                position: {lat:<%=h.getLat()%>, lng: <%=h.getLng()%>}, // 마커가 위치할 위도와 경도(변수)
                                                map: map,
                                                icon: image, // 마커로 사용할 이미지(변수)
-                                               title: '동문회관' // 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
+                                               title: '<%=h.gethName()%>' // 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
                                            });
                                    }
                                </script>

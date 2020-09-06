@@ -23,20 +23,20 @@
        				<%
 					if (m == null) {
 				%>
-				<a href="/semi/views/login/login.jsp">로그인</a> <a
-					href="/semi/views/login/sing-up1.jsp">회원가입</a>
+				<a href="<%=request.getContextPath() %>/views/login/login.jsp">로그인</a> <a
+					href="<%=request.getContextPath() %>/views/login/sing-up1.jsp">회원가입</a>
 
 				<%
 					} else if (m.getMuserId() == "admin") {
 				%>
 				<a>*관리자*</a> 
-				<a href="/semi/views/mypage/mypage-basic.jsp">관리자페이지</a>
+				<a href="<%=request.getContextPath() %>/views/mypage/mypage-basic.jsp">관리자페이지</a>
 				<a href="#" onclick='logout()'>로그아웃</a>
 				<%
 					} else {
 				%>
 				<a> <%=m.getMuserName()%>
-				</a> <a href="/semi/views/mypage/mypage-basic.jsp">마이페이지</a> <a href="#"
+				</a> <a href="<%=request.getContextPath() %>/views/mypage/mypage-basic.jsp">마이페이지</a> <a href="#"
 					onclick='logout()'>로그아웃</a>
 				<%
 					}

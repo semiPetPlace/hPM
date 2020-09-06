@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/semi/resources/css/mainpage.css">
-    <link rel="stylesheet" href="/semi/resources/css/login.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mainpage.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/login.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="/semi/resources/js/script.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/script.js"></script>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
         <div id="container">
             <div class="contents">
 
-                <form name="page_login_page_form" method="post" action="/semi/login.me" target="ok_frame"
+                <form name="page_login_page_form" method="post" action="<%=request.getContextPath() %>/login.me" target="ok_frame"
                     onsubmit="return page_login_page_form_chk(this)">
                     <input type="hidden" name="re_url" value="">
                     <input type="hidden" name="this_domain">
@@ -72,7 +72,7 @@
                                             <input type="password" name="pwd" maxlength="16" placeholder="비밀번호" required=""></li>
                                         </ul>
                                         <br>
-                                        <input id="button" class="button" type="image" src="/semi/resources/images/login.jpg"></input>
+                                        <input id="button" class="button" type="image" src="<%=request.getContextPath() %>/resources/images/login.jpg"></input>
                                     </div>
                                     <br>
                                     <div class="login-btn-box">
