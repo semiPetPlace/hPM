@@ -10,7 +10,8 @@ import com.kh.semiProject.Hotel.model.vo.HotelConvenience;
 import com.kh.semiProject.Hotel.model.vo.HotelRoom;
 import com.kh.semiProject.Manager.model.dao.ManagerDao;
 import com.kh.semiProject.Manager.model.vo.Manager;
-import com.kh.semiProject.mCompany.model.vo.Company;
+import com.kh.semiProject.member.model.vo.Member;
+
 public class ManagerService {
 
 	private ManagerDao mDao = new ManagerDao();
@@ -37,6 +38,17 @@ public class ManagerService {
 
 		close(con);
 		return mac;
+	}
+	public Member MemberDetail(String userName) {
+		Connection con = getConnection();
+
+		Member m = mDao.MemberDetail(con,userName);
+
+		if(m != null) commit(con);
+		else rollback(con);
+
+		close(con);
+		return m;
 	}
 	
 	public int enrollHotel(Hotel h, HotelConvenience hc, HotelRoom hr, HotelRoom hr2) {

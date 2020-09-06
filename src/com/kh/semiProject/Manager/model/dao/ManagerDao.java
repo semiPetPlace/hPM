@@ -15,8 +15,7 @@ import com.kh.semiProject.Hotel.model.vo.Hotel;
 import com.kh.semiProject.Hotel.model.vo.HotelConvenience;
 import com.kh.semiProject.Hotel.model.vo.HotelRoom;
 import com.kh.semiProject.Manager.model.vo.Manager;
-import com.kh.semiProject.mCompany.exception.CompanyException;
-import com.kh.semiProject.mCompany.model.vo.Company;
+import com.kh.semiProject.member.model.vo.Member;
 
 import static com.kh.common.JDBCTemplate.*;
 public class ManagerDao {
@@ -113,6 +112,42 @@ public class ManagerDao {
 		
 		return mac;
 	}
+
+	public Member MemberDetail(Connection con, String userName) {
+		Member m = new Member();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMember");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userName);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m.setMno(rset.getString("M_NO"));
+				m.setMuserId(rset.getString("M_USERID"));
+				m.setMuserName(rset.getString("M_USERNAME"));
+				m.setMemail(rset.getString("M_EMAIL"));
+				m.setMaddress(rset.getString("M_ADDRESS"));
+				m.setMphone(rset.getString("M_PHONE"));
+				m.setMbirth(rset.getString("M_BIRTH"));
+				m.setMphone(rset.getString("M_PHONE"));
+				m.setmRegisterdate(rset.getDate("M_REGISTERDATE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		
+		return m;
+	}
+
 	
 	public int enrollCompany(Connection con, Hotel h, HotelConvenience hc, HotelRoom hr) {
 		int result = 0;
