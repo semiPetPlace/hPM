@@ -23,11 +23,10 @@
        				<%
 					if (m == null) {
 				%>
-				<a href="/semi/views/login/login.jsp">로그인</a> <a
+				<a href="/semi/views/login/login.jsp">로그인</a> 
+				<a href="<%= request.getContextPath() %>/sing-up1.jsp">회원가입</a>
 
-					href="<%= request.getContextPath() %>/mypage-basic.jsp">회원가입</a>
-
-					href="/semi/views/login/sing-up1.jsp">회원가입</a>
+				
 
 
 				<%

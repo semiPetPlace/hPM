@@ -36,7 +36,8 @@ public class idCheckServlet extends HttpServlet {
 		String page="";
 		if(idlist != null) {
 			request.setAttribute("idlist", idlist);
-			page = "/semi/views/mypage/mypage-basic.jsp";
+			page = "/views/login/sing-up2.jsp";
+			System.out.println(idlist);
 		}else {
 			request.setAttribute("mag", "회원가입 서비스 에러 ");
 			page = "views/common/errorPage.jsp";

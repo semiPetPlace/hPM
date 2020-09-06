@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -7,8 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>회원가입 이용약관</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../resources/css/mainpage.css">
-        <link rel="stylesheet" href="../../resources/css/sign-up1.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mainpage.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/sign-up1.css">
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src ="../../resources/js/script.js"></script>
         <script>
@@ -20,7 +21,6 @@
                 $("[name=check2]").prop("checked", false);
             	}
             }
-    
 
     
             $(function () {
@@ -33,7 +33,7 @@
             	if($("input[id=necessary1]").prop("checked")){
             		if( $("input[id=necessary2]").prop("checked")){
             			alert("넘어가");
-            			location.href="/semi/views/login/sing-up2.jsp";            			
+            			location.href="<%=request.getContextPath()%>/idchk.me";            			
             		}
                 	}else{
                 		alert("필수 체크사항을 선택해 주세요");
@@ -49,7 +49,7 @@
         <section class="all_wrap">
             <form  id="section01">
                 <ul class="join_box">
-                    <div class="title"><img src="../../resources/images/sign2.png" alt=""></div>
+                    <div class="title"><img src="<%=request.getContextPath()%>/resources/images/sign2.png" alt=""></div>
                     <li class="checkBox check01">
                         <ul class="clearfix">
                             <li>이용약관, 개인정보 수집 및 이용,
@@ -111,7 +111,7 @@
                 </ul>
             </form>
                 <ul class="footBtwrap">
-                    <li><button class="fpmgBt1" onclick="location='login.jsp'">이전</button></li>
+                    <li><button class="fpmgBt1" onclick="<%=request.getContextPath()%>/idchk.me">이전</button></li>
                     <li><button class="fpmgBt2" onclick="next()">다음</button></li>
                 </ul>
         </section>

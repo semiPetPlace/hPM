@@ -191,12 +191,12 @@ html,body {
 <header>
     <div id="main-nav" class="clearfix">
         <div class="m-logo">
-            <a href="#" class="m-logo-link"><img src="<%=request.getContextPath()%>/resources/images/logo.png" alt="로고"></a>
+            <a href="#" onclick="goManager()" class="m-logo-link"><img src="<%=request.getContextPath()%>/resources/images/logo.png" alt="로고"></a>
         </div>
         <div class="m-menu-nav">
             <div class="list">
                 <ul>
-                    <li><a href="./Manager_main.html">관리자 메인</a></li>
+                    <li><a href="#" onclick="goManager()">관리자 메인</a></li>
                     <li><a href="./Manager_reservation.html">예약 관리</a></li>
                     <li><a href="./Manager_reviewBoard.html">게시판 관리</a></li>
                     <li><a href="./">업체 관리</a></li>
@@ -217,6 +217,9 @@ html,body {
 		location.href="/semi/cList.co";
 	}
 
+	function goManager() {
+		location.href = "<%=request.getContextPath()%>/chart.ma";
+	}
 
 	function goViewChart(){
 		location.href="/semi/viewChart.hs";

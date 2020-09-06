@@ -2,7 +2,18 @@
     pageEncoding="UTF-8" import="java.util.*"%>
 <!DOCTYPE html>
 
-<% ArrayList<String> idList = (ArrayList<String>)request.getAttribute("idlist");%>
+<% ArrayList<String> idlist = (ArrayList<String>)request.getAttribute("idlist");
+%>
+
+<%String chk = "";%>
+<% for(int i=0;i<idlist.size();i++){%>
+	<% if(i==0){
+		chk = "\""+idlist.get(i)+"\"";
+	}else{
+		chk += "||inputId ==\""+idlist.get(i)+"\"";
+	}
+}%>
+
 <html lang="ko">
 
 <head>
@@ -10,10 +21,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../resources/css/mainpage.css">
-    <link rel="stylesheet" href="../../resources/css/sing-up2.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mainpage.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/sing-up2.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="../../resources/js/script.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/script.js"></script>
     <style>
     .glores-A-info{
     	color: lightgray;
@@ -50,7 +61,7 @@
                         <label for="id"><span>아이디</span></label>
                         <div class="glores-A-value">
                             <div class="reg_memberID"><input type="text" name="id" id="id" maxlength="12" >
-                                <button type="button" class="id_overlap_button" onclick="id_overlap_check()" >아이디 중복체크</button>
+                                <button type="button" class="id_overlap_button" id="id_dupl_chk" >아이디 중복체크</button>
                                 <img id="id_check_sucess" style="display: none;">
                             </div>
                         </div>
@@ -135,8 +146,8 @@
                     
                     <div class="glores-A-btn-wrap">
                         <ul class="footBtwrap">
-                            <button class="fpmgBt1" onclick="location='../views/sing-up1.jsp'"style="width:100px;height:20px;font-size:18px;margin-left-50px">이전</button>
-                            <button class="fpmgBt2" id="signupbtn" onclick="goCreateAccount()" value="작성완료"  style="width:100px;height:20px;font-size:18px">
+                            <button class="fpmgBt1" onclick="location='../views/sing-up1.jsp'"style="width:100px;height:20px;font-size:18px;margin-left-50px;">이전</button>
+                            <button class="fpmgBt2" id="signupbtn" onclick="goCreateAccount()"  style="width:100px;height:20px;font-size:18px;float:left;margin-left:50px">작성완료</button>
                         </ul>														<!-- onclick="goCreateAccount()" -->
                     </div>
                 </form>
@@ -149,9 +160,27 @@
     <div style="height: 20px;"><a href="#header" id="top">▲ TOP</a></div>
     <%@ include file = "../common/footer.jsp" %>
 </body>
+
  <script>
- var check = 0;
+	
 		$(function(){
+			
+			 $('#id_dupl_chk').on('click',function(){
+					var inputId = $('#id').val(); 
+					
+					var ids = new Array();
+					for(var i=0;i<<%= idlist.size()%>;i++){
+						if(inputId == <%=chk %>){
+							 $("[class*='idinfo']").html("이미 사용중인 아이디 입니다.");
+			                 $("[class*='idinfo']").css("color","red");
+			                 return;
+						}
+					
+						 $("[class*='idinfo']").html("사용할 수 있는 아이디 입니다.");
+			             $("[class*='idinfo']").css("color","blue");
+					}
+				 });
+			
             // 중복확인 & id 유효성검사             
             $("#duplcheck").on("click",function(){
                 var id = $("#id").val();
