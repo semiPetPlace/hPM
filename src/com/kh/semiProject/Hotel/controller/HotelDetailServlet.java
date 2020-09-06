@@ -46,8 +46,7 @@ public class HotelDetailServlet extends HttpServlet {
 		hrlist = hs.roomlist(h_no);
 		
 		HotelConvenience hc = hs.Convenience(h_no);
-		
-		HotelFacility hf = hs.facility(h_no);
+
 		
 		String page ="";
 		if(hd != null) {
@@ -55,7 +54,7 @@ public class HotelDetailServlet extends HttpServlet {
 			request.setAttribute("hd", hd);
 			request.setAttribute("hrlist", hrlist);
 			request.setAttribute("hc", hc);
-			request.setAttribute("hf", hf);
+
 			request.setAttribute("Cin", Cin);
 			request.setAttribute("Cout", Cout);
 			

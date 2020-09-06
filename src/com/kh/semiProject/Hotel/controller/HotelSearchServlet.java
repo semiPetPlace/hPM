@@ -31,30 +31,63 @@ public class HotelSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String in = request.getParameter("checkin");
-		String out = request.getParameter("checkout");
-		String area = request.getParameter("area");
-		
-		HotelService hs = new HotelService();
-		
+		String page = "";
 		ArrayList<Hotel> hlist = new ArrayList<>();
 		
-		hlist = hs.searchHotels(in,out,area);
-		
+		if(request.getParameterValues("filter") != null) {
+			String in = request.getParameter("hdcin");
+			String out = request.getParameter("hdcout");
+			String area = request.getParameter("hdarea");
+			
+			String[] checkArr = request.getParameterValues("filter");
+			System.out.println(checkArr.length);
+			HotelService hs = new HotelService();
 
-		String page = "";
-		if(!hlist.isEmpty()) {
-			page = "views/main/hotelmain.jsp";
-			request.setAttribute("hlist", hlist);
-			request.setAttribute("Cin", in);
-			request.setAttribute("Cout", out);
-			request.setAttribute("area", area);
+			hlist = hs.filteredHotel(in,out,area,checkArr);
+			
+
+			
+			if(!hlist.isEmpty()) {
+				page = "views/main/hotelmain.jsp";
+				request.setAttribute("hlist", hlist);
+				request.setAttribute("Cin", in);
+				request.setAttribute("Cout", out);
+				request.setAttribute("area", area);
+			}else {
+				page = "views/main/hotelmain.jsp";
+				
+				
+			}
+			request.getRequestDispatcher(page).forward(request, response);
+		}else if(request.getParameterValues("filter") == null){
+			String in = request.getParameter("checkin");
+			String out = request.getParameter("checkout");
+			String area = request.getParameter("area");
+
+			HotelService hs = new HotelService();
+
+			
+			hlist = hs.searchHotels(in,out,area);
+			
+			System.out.println(hlist);
+			if(!hlist.isEmpty()) {
+				page = "views/main/hotelmain.jsp";
+				request.setAttribute("hlist", hlist);
+				request.setAttribute("Cin", in);
+				request.setAttribute("Cout", out);
+				request.setAttribute("area", area);
+			}else {
+				page = "views/main/hotelmain.jsp";
+				
+				
+			}
+			request.getRequestDispatcher(page).forward(request, response);
 		}else {
 			page = "views/main/hotelmain.jsp";
-			
-			
+			request.getRequestDispatcher(page).forward(request, response);
 		}
-		request.getRequestDispatcher(page).forward(request, response);
+		 
+		
 	}
 
 	/**

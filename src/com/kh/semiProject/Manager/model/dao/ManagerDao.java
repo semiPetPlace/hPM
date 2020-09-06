@@ -17,6 +17,7 @@ import com.kh.semiProject.Hotel.model.vo.HotelRoom;
 import com.kh.semiProject.Manager.model.vo.Manager;
 import com.kh.semiProject.member.model.vo.Member;
 
+
 import static com.kh.common.JDBCTemplate.*;
 public class ManagerDao {
 
@@ -134,7 +135,7 @@ public class ManagerDao {
 				m.setMaddress(rset.getString("M_ADDRESS"));
 				m.setMphone(rset.getString("M_PHONE"));
 				m.setMbirth(rset.getString("M_BIRTH"));
-				m.setMphone(rset.getString("M_PHONE"));
+				m.setTel(rset.getString("M_PHONE"));
 				m.setmRegisterdate(rset.getDate("M_REGISTERDATE"));
 			}
 		} catch (SQLException e) {

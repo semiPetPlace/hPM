@@ -203,7 +203,7 @@
 				<% for(Hotel p :  plist){ %>
 					<td>
 						<div id="hotelList" style="float: none;">
-							<a href="<%=request.getContextPath() %>/pethoteldetail.ys?p_no=<%= p.gethNo() %>">
+							<a href="<%=request.getContextPath() %>/pethoteldetail.ys?ph_no=<%= p.gethNo() %>">
 								<div class="hotelList-list">
 									<img src="<%=p.gethImg()%>" alt="hotel1">
 									<h4 style="margin-bottom: 0;"><%=p.gethName()%></h4>

@@ -18,10 +18,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title></title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/semi/resources/css/mainpage.css">
-        <link rel="stylesheet" href="/semi/resources/css/finishedReservation.css">
+        <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mainpage.css">
+        <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/finishedReservation.css">
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src ="/semi/resources/js/script.js"></script>
+        <script src ="<%=request.getContextPath() %>/resources/js/script.js"></script>
     </head>
     <body>
         <%@ include file = "../common/header.jsp" %>
@@ -33,7 +33,7 @@
             <div class="maincontent">
                 <div class="reservationcheck">
                     <div class="hotelimg">
-                        <img src="/semi/resources/images/hotel1.jpg" alt="">
+                        <img src="<%=request.getContextPath() %>/resources/images/hotel1.jpg" alt="">
                     </div>
                     <div class="details">
                         <div class="details-category">

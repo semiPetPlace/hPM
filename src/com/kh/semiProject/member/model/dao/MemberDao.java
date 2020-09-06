@@ -180,6 +180,63 @@ public class MemberDao {
 	}
 
 
+	public int createAcount(Connection con, Member m) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("createAccount");
+		
+		try {
+			System.out.println(sql);
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m.getMuserId());
+			pstmt.setString(2, m.getMuserName());
+			pstmt.setString(3, m.getMuserPwd());
+			pstmt.setString(4, m.getMaddress());
+			pstmt.setString(5, m.getMphone());
+			pstmt.setString(6, m.getMemail());
+			pstmt.setString(7, m.getMgender());
+			pstmt.setString(8, m.getMbirth());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	public ArrayList<String> checkId(Connection con) {
+		
+		ArrayList<String> idlist = new ArrayList();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("checkId");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				idlist.add(rset.getString(1));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return idlist;
+	}
+
+
 	public String findIdMember(Connection con, String name, String email) {
 		String id = null;
 		PreparedStatement pstmt = null;
@@ -234,5 +291,7 @@ public class MemberDao {
 		System.out.println(pwd);
 		return pwd;
 	}
+
+
 
 }

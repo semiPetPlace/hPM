@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 메인 화면</title>
+    <link rel="stylesheet" href="../../resources/css/Manager-DefaultCSS.css">
+    <link rel="stylesheet" href="../../resources/css/Manager_userData.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <header>
+        <div id="main-nav" class="clearfix">
+            <div class="m-logo">
+                <a href="#" class="m-logo-link"><img src="../../resources/images/logo.png" alt="로고"></a>
+            </div>
+        <div class="m-menu-nav">
+            <div class="list">
+                <ul>
+                    <li><a href="">관리자 메인</a></li>
+                    <li><a href="">예약 관리</a></li>
+                    <li><a href="">게시판 관리</a></li>
+                    <li><a href="">업체 관리</a></li>
+                    <li><a href="">회원 관리</a></li>
+                    <li><a href="">매출 관리</a></li>
+                </ul>
+            </div>
+            <div class="login-area">
+                <label class="login-name">관리자 님의 방문을 환영합니다.</label>
+				<div class="logoutBtn" onclick="logout()">로그아웃</div> 
+            </div>
+        </div>
+    </div>
+</header>
+
+<main id="main">
+    <div id="main-wrapper">
+        <div class="main-content">
+            <div class="sub-menu">
+                <div class="sub-list">
+                    <p>회원 관리</p>
+                    <ul>
+                        <li><a href="./Manager_company.html">· 전체 업체 목록</a></li>
+                        <li><a href="./Manager_company_enrollForm.html">· 업체 등록</a></li>
+                    </ul>
+                </div>
+            </div>
+             <!-- 여기에 메인 컨텐츠 넣으면 됩니다. -->    
+            <div class="content">
+                <div class="reservationTable">
+                    <p style="font-size: 30px; font-weight: 500px; margin-bottom: 10px;">회원 정보 조회</p>
+                    <div class="searchPot"></div>
+                    <div class="enrollCom">
+                        <table border="1">
+                            <tr>
+                                <th>회원 번호</th>
+                                <td>
+                                    <div class="filter-block">
+                                       1
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <th>회원 명</th>
+                                <td>
+                                    김민우
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>회원가입 일</th>
+                                <td>
+                                   2020-08-03
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>지역</th>
+                                <td>
+                                   인천시
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>상세 주소</th>
+                                <td>
+                                   인천시 부평구 산곡2동 한화아파트
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <th>전화번호</th>
+                                <td>
+                                   010-5656-4646        
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <th>휴대전화</th>
+                                <td>
+                                    010-9654-2230
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>이메일</th>
+                                <td>
+                                  unimik13@naver.com
+                                </td>
+                            </tr>
+                            
+                        </table>
+                    </div>
+                    <div class="empty">
+                        <br><br><br>
+                    </div>
+                    <div class="btns">
+                        <input type="submit" value="업체 삭제" class="deleteBtn" onclick="alert('업체 삭제가 완료되었습니다. ')">
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+           
+</main>
+<footer id="footer">
+    <div id="foot">
+        <p style="color: black;">Copyright © 1998-2020 KH Information Educational Institute All Right Reserved</p>
+    </div>
+</footer>
+</body>
+</html>

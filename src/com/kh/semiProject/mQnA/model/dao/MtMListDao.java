@@ -45,7 +45,6 @@ public class MtMListDao {
 			pstmt = con.prepareStatement(sql);
 			rset = pstmt.executeQuery();
 			
-			System.out.println(rset);
 			
 			while(rset.next()) {
 				QnA q ;
@@ -59,7 +58,6 @@ public class MtMListDao {
 				
 				q = new QnA(qno,cName,cId,qTitle,qDate,Qcategory);
 				
-				System.out.println("dao check: " +q);
 				qList.add(q);
 			}
 		} catch (SQLException e) {

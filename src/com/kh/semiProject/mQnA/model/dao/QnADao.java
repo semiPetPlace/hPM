@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 import javax.mail.MessagingException;
@@ -128,6 +129,34 @@ public class QnADao {
 		}
 		
 		return result;
+	}
+
+	public int getListCount(Connection con, String type) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("listCount");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,type);
+			rset = pstmt.executeQuery();
+			
+			System.out.println("rset.getint(1)  : " + rset.getInt(1));
+			if(rset.next()) {
+				System.out.println("rset.getint(1)  : " + rset.getInt(1));
+				listCount = rset.getInt(1);
+			}
+			
+			
+		}catch(SQLException e) {
+			e.getStackTrace(); 
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return listCount;
 	}
 	
 	

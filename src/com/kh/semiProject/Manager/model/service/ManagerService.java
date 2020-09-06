@@ -12,6 +12,7 @@ import com.kh.semiProject.Manager.model.dao.ManagerDao;
 import com.kh.semiProject.Manager.model.vo.Manager;
 import com.kh.semiProject.member.model.vo.Member;
 
+
 public class ManagerService {
 
 	private ManagerDao mDao = new ManagerDao();
@@ -39,6 +40,7 @@ public class ManagerService {
 		close(con);
 		return mac;
 	}
+	
 	public Member MemberDetail(String userName) {
 		Connection con = getConnection();
 
@@ -123,7 +125,6 @@ public class ManagerService {
 		return list;
 	}
 
-
 	public ArrayList<Hotel> searchHotel(String categorySearch, String keyword) {
 		Connection con = getConnection();
 		ArrayList<Hotel> list = null;
@@ -134,8 +135,6 @@ public class ManagerService {
 		close(con);
 		return list;
 	}
-
-
 
 
 }
