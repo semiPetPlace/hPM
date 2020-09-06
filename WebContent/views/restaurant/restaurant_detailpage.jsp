@@ -27,7 +27,7 @@
                 <p>★평점 <%= r.getRscore() %></p>
             </div>
             <% if(m != null){ %>
-            <div class="review_btn"><a href="../review/review_write.jsp">리뷰 작성</a></div>
+            <div class="review_btn"><a href="<%= request.getContextPath() %>/views/review/review_write.jsp?type=restaurant&cno=<%= r.getRno() %>">리뷰 작성</a></div>
             <div class="like_btn"><button onclick="like();" id="like_btn">찜하기</button></div>
             <% } %>
         </div>
