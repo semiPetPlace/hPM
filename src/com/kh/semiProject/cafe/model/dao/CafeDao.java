@@ -82,6 +82,7 @@ public class CafeDao {
 				c.setCno(rset.getInt("C_NO"));
 				c.setCimage(rset.getString("C_IMAGE"));
 				c.setCname(rset.getString("C_NAME"));
+				c.setCpromotion(rset.getString("C_PROMOTION"));
 				c.setCscore(rset.getDouble("C_SCORE"));
 				
 				list.add(c);
@@ -126,6 +127,8 @@ public class CafeDao {
 				c.setCrequest(rset.getString("C_REQUEST"));
 				c.setCregisterDate(rset.getDate("C_REGISTERDATE"));
 				c.setCregistration(rset.getString("C_REGISTRATION"));
+				c.setLat(rset.getFloat("LAT"));
+				c.setLng(rset.getFloat("LNG"));
 			}
 			
 		}catch(SQLException e) {
