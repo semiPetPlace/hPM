@@ -169,11 +169,14 @@
 								break;
 							}
 					%>
+					<% String[] Image =  h.gethImg().split(",");  %>
+					
+					
 					<td>
 						<div id="con_hotelList" style="float: none;">
 							<a href="<%=request.getContextPath() %>/hotelDetail.ys?h_no=<%= h.gethNo() %>">
 								<div class="con_hotelList-list">
-									<img src="<%=h.gethImg()%>" alt="con_hotel1">
+									<img src="<%= request.getContextPath() %>/resources/images/<%=Image[0]%>" alt="con_hotel1">
 									<h4 style="margin-bottom: 0;"><%=h.gethName()%></h4>
 									<p class="infoText"><%=h.gethPromotion()%></p>
 									<p class="price">₩<%=h.gethPrice()%>/1박
@@ -205,7 +208,7 @@
 						<div id="hotelList" style="float: none;">
 							<a href="<%=request.getContextPath() %>/pethoteldetail.ys?ph_no=<%= p.gethNo() %>">
 								<div class="hotelList-list">
-									<img src="<%=p.gethImg()%>" alt="hotel1">
+									<img src="<%= request.getContextPath() %>/resources/images/<%=p.gethImg()%>" alt="hotel1">
 									<h4 style="margin-bottom: 0;"><%=p.gethName()%></h4>
 									<p class="infoText"><%=p.gethPromotion()%></p>
 									<p class="price">₩<%=p.gethPrice()%>/1박</p>
@@ -242,7 +245,7 @@
 						<div id="restaurantList">
 							<a href="<%= request.getContextPath() %>/rView.ch?rno=<%= r.getRno() %>">
 								<div class="restaurantList-list">
-									<img src="<%=r.getRimage()%>" alt="Restaurant">
+									<img src="<%= request.getContextPath() %>/resources/images/restaurant/<%=r.getRrimage()%>" alt="Restaurant">
 									<h4 style="margin-bottom: 0;"><%=r.getRname()%></h4>
 									<p class="infoText"><%=r.getRpromotion()%></p>
 									<p class="price">
@@ -282,7 +285,7 @@
 						<div id="cafeList">
 							<a href="<%= request.getContextPath() %>/cView.ch?cno=<%= c.getCno() %>">
 								<div class="cafeList-list">
-									<img src="<%=c.getCimage()%>" alt="cafe">
+									<img src="<%= request.getContextPath() %>/resources/images/<%=c.getCrimage()%>" alt="cafe">
 									<h4 style="margin-bottom: 0;"><%=c.getCname()%></h4>
 									<p class="infoText"><%=c.getCpromotion()%></p>
 									<p class="price">

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.semiProject.cafe.model.vo.*, java.util.*"%>
+    pageEncoding="UTF-8" 
+    import="com.kh.semiProject.cafe.model.vo.*, com.kh.semiProject.review.model.vo.*, java.util.*"%>
 <%
 	Cafe c = (Cafe)request.getAttribute("cafe");
+	ArrayList<Review> rv = (ArrayList<Review>)request.getAttribute("review");
  %>
 <!DOCTYPE html>
 <html lang="ko">

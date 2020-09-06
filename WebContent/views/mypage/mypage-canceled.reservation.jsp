@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, com.kh.semiProject.mypage.model.vo.*" %>
+<% ArrayList<ReservationMana> reserList = (ArrayList<ReservationMana>)request.getAttribute("reserList");%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,12 +10,20 @@
         <title>취소된 예약</title>
         
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../resources/css/mainpage.css">
-        <link rel="stylesheet" href="../../resources/css/cafe-main.css">
-        <link rel="stylesheet" href="../../resources/css/mypage_scheduled.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mainpage.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/cafe-main.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mypage_scheduled.css">
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src ="../../resources/js/script.js"></script>
+        <script src ="<%=request.getContextPath()%>/resources/js/script.js"></script>
     </head>
+    <style>
+    #showImg>img{
+    width: 200px;
+    height: 200px;
+    margin-left: 1px;
+    padding: 10px;
+	}
+    </style>
     <body>
         <%@ include file = "../common/header.jsp" %>
         <main id="H_main">

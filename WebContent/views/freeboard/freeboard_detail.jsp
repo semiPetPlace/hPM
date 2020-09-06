@@ -35,6 +35,8 @@
               		<% }%>
 					<%if(m != null && m.getMuserId().equals("admin")){ %>
 					 <input type="button" value="삭제" class="comentbtn" onclick="location.href='<%=request.getContextPath()%>/boardDelete.th?bno=<%=b.getbNo() %>'" id="content_delete">
+              		<% }else if(m != null && m.getMuserId().equals("admin")){ %>
+					 <input type="button" value="삭제" class="comentbtn" onclick="location.href='<%=request.getContextPath()%>/boardDelete.th?bno=<%=b.getbNo() %>'" id="content_delete">
               		<%} %>
               		<% if(m != null && m.getMuserName().equals(b.getbWriter())){%>
                     <input type="button" value="수정" class="comentbtn" onclick="location.href='<%= request.getContextPath() %>/bUpView.th?bno=<%=b.getbNo()%>'" id="content_update">

@@ -84,7 +84,7 @@
 }
 .hotelList-list,.cafeList-list{
     width: 100%;
-    margin: 50px 0 0 5%;    
+/*    margin: 50px 0 0 5%;     	*/
     float: left;
     padding: 10px;
 }

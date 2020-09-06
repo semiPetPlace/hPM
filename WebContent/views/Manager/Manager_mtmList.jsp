@@ -73,7 +73,7 @@
                        <input type="text" name="search" id="search">
                        <input type="button" value="검색">
                      </div>
-                   <div class="pagingArea" align="center">
+          <div class="pagingArea" align="center">
 			<button onclick="location.href='<%= request.getContextPath() %>/listView.mt?currentPage=1'"><<</button>
 			<%  if(currentPage <= 1){  %>
 			<button disabled><</button>
