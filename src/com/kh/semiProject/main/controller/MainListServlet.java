@@ -48,7 +48,7 @@ public class MainListServlet extends HttpServlet {
 
 		
 		String page = "";
-		if(!hlist.isEmpty() && !clist.isEmpty() /*&& !rlist.isEmpty()*/) {
+		if(!hlist.isEmpty() && !clist.isEmpty() && !rlist.isEmpty()) {
 			page="views/main/main.jsp";
 			request.setAttribute("hlist", hlist);
 			request.setAttribute("clist", clist);

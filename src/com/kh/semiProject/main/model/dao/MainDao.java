@@ -45,7 +45,7 @@ public class MainDao {
 				Cafe c = new Cafe();
 				c.setCno(rset.getInt("C_NO"));
 				c.setCname(rset.getString("C_NAME"));
-				c.setCimage(rset.getString("C_IMAGE"));
+				c.setCrimage(rset.getString("C_R_IMAGE"));
 				c.setCscore(rset.getDouble("C_SCORE"));
 				c.setCpromotion(rset.getString("C_PROMOTION"));
 				
@@ -103,7 +103,7 @@ public class MainDao {
 				Restaurant r = new Restaurant();
 				r.setRno(rset.getInt("R_NO"));
 				r.setRname(rset.getString("R_NAME"));
-				r.setRimage(rset.getString("R_IMAGE"));
+				r.setRrimage(rset.getString("R_R_IMAGE"));
 				r.setRscore(rset.getDouble("R_SCORE"));
 				r.setRpromotion(rset.getString("R_PROMOTION"));
 				
