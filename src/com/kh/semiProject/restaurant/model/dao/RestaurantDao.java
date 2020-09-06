@@ -114,6 +114,7 @@ public class RestaurantDao {
 
 			if(rset.next()) {
 				r = new Restaurant();
+				r.setRno(rset.getInt("R_NO"));
 				r.setRrimage(rset.getString("R_R_IMAGE"));
 				r.setRimage(rset.getString("R_IMAGE"));
 				r.setRname(rset.getString("R_NAME"));

@@ -245,7 +245,7 @@
 						<div id="restaurantList">
 							<a href="<%= request.getContextPath() %>/rView.ch?rno=<%= r.getRno() %>">
 								<div class="restaurantList-list">
-									<img src="<%= request.getContextPath() %>/resources/images/<%=r.getRrimage()%>" alt="Restaurant">
+									<img src="<%= request.getContextPath() %>/resources/images/restaurant/<%=r.getRrimage()%>" alt="Restaurant">
 									<h4 style="margin-bottom: 0;"><%=r.getRname()%></h4>
 									<p class="infoText"><%=r.getRpromotion()%></p>
 									<p class="price">

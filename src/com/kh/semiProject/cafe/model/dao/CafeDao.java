@@ -115,6 +115,7 @@ public class CafeDao {
 			if(rset.next()) {
 				c = new Cafe();
 				c.setCrimage(rset.getString("C_R_IMAGE"));
+				c.setCno(rset.getInt("C_NO"));
 				c.setCimage(rset.getString("C_IMAGE"));
 				c.setCname(rset.getString("C_NAME"));
 				c.setCtel(rset.getString("C_TEL"));

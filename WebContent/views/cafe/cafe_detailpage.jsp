@@ -26,7 +26,7 @@
                 <p><%= c.getCaddress() %></p>
                 <p>★ 평점 <%= c.getCscore() %></p>
             </div>
-            <div class="review_btn"><a href="../review/review_write.jsp">리뷰 작성</a></div>
+            <div class="review_btn"><a href="<%= request.getContextPath() %>/views/review/review_write.jsp?type=cafe&cno=<%= c.getCno() %>">리뷰 작성</a></div>
             <div class="like_btn"><button onclick="like();" id="like_btn">찜하기</button></div>
         </div>
         <div class="wrapper cafe-cont clearfix">
@@ -98,8 +98,8 @@
                     <div class="title">
                         <img src="<%= request.getContextPath() %>/resources/images/icons/document.png" alt="">
                         <h3>리뷰</h3>
-                        <div class="write_btn"><a href="../review/review_write.jsp">리뷰 작성</a></div>
-                        <div class="list_btn" onclick="list();"><a href="../review/review_list.jsp">더보기</a></div>
+                        <div class="write_btn"><a href="<%= request.getContextPath() %>/views/review/review_write.jsp?type=cafe&cno=<%= c.getCno() %>">리뷰 작성</a></div>
+                        <div class="list_btn"><a href="<%= request.getContextPath() %>/rvList2.th?type=cafe&ctno=<%=c.getCno() %>">더보기</a></div>
                     </div>
                     <div class="content">
                         <ul class="list">
