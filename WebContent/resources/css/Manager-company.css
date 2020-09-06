@@ -44,11 +44,6 @@ table{
     font-size: medium;
     border-bottom: 1px solid black;
 }
-#listArea{
-	/* overflow-x:scroll;
-	white-space:nowrap; */
-	margin-left: 20px;
-}
 #listArea #address{
 	width: 500px;
 }
