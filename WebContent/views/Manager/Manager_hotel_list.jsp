@@ -1,29 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.kh.common.PageInfo, com.kh.semiProject.mCompany.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.common.PageInfo, com.kh.semiProject.Hotel.model.vo.*"%>
+
 
 <% 
-ArrayList<Company> list = (ArrayList<Company>)request.getAttribute("list"); 
-/* PageInfo pi = (PageInfo)request.getAttribute("pi");
+@SuppressWarnings("unchecked")
+ArrayList<Hotel> list = (ArrayList<Hotel>)request.getAttribute("list");
+%>
+<% 
+PageInfo pi = (PageInfo)request.getAttribute("pi");
 int listCount = pi.getListCount();
 int currentPage = pi.getCurrentPage();
 int maxPage = pi.getMaxPage();
 int startPage = pi.getStartPage();
-int endPage = pi.getEndPage(); */
+int endPage = pi.getEndPage();
 %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>관리자 메인 화면</title>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/pagination.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/Manager-DefaultCSS.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/Manager-company.css">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/pagination.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <style>
     	.searchCompany{
     	width: 800px;
     	}
-    	
     	.btns{
     	width: 70px;
     	margin-right: 270px;
@@ -38,6 +41,19 @@ int endPage = pi.getEndPage(); */
     	#keyword{
     	height: 22px;
     	margin-right: 5px;
+    	}
+    	#listArea{
+    	font-size:larger;
+    	width:1200px;
+    	}
+    	.btns{
+    	width: 70px;
+    	margin-right:450px;
+    	}
+    	.next{
+    	width:300px;
+    	margin-left:410px;
+    	margin-top:100px;
     	}
     </style>
 </head>
@@ -66,43 +82,42 @@ int endPage = pi.getEndPage(); */
                     <div class="searchCompany">
 						<select id="searchCondition" name="searchCondition">
 							<option value="total">전체</option>
-							<option value="cName">업체명</option>
-							<option value="category">업체분류</option>
-							<option value="comNum">업체번호</option>
-							<option value="address">주소</option>
-							<option value="state">등록상태</option>
-							<option value="enrollDate">등록일</option>
-							<option value="phone">연락처</option>
-							<option value="email">이메일</option>
+							<option value="hNo">업체번호</option>
+							<option value="hName">업체명</option>
+							<option value="hTel">연락처</option>
+							<option value="hPrice">가격</option>
+							<option value="hGrade">등급</option>
+							<option value="hAddress">주소</option>
+							<option value="hRegisterData">등록일</option>
+							<option value="hRegistration">등록상태</option>
 						</select>
 						<input type="search" id="keyword" placeholder="키워드를 입력하세요">
 						<button type="button" onclick="search();">검색</button>
 					</div>
                     <div class="btns">
                         <input type="button" value="업체 등록" class="enrollBtn" onclick="location.href='views/Manager/Manager_hotel_enrollForm.jsp'">
-                        <!-- <input type="button" value="업체 삭제" class="deleteBtn" onclick="alert('해당 업체 삭제가 완료되었습니다. ')"> -->
                     </div> 
        			<table id="listArea">
                     <tr>
-                        <th id="comNum">업체번호</th>
-                        <th id="category">업체분류</th>
-                        <th id="cName">업체명</th>
-                        <th id="address">주소</th>
-                        <th id="enrollDate">등록일</th>
-                        <th id="phone">연락처</th>
-                        <th id="email">이메일</th>
-                        <th id="state">등록상태</th>
+                        <th id="hNo" style="width:70px;">업체번호</th>
+                        <th id="hName" style="width:200px;">업체명</th>
+                        <th id="hTel" style="width:120px;">연락처</th>
+                        <th id="hPrice" style="width:80px;">가격</th>
+                        <th id="hGrade" style="width:50px;">등급</th>
+                        <th id="hAddress" style="width:400px;">주소</th>
+                        <th id="hRegisterData" style="width:100px;">등록일</th>
+                        <th id="hRegistration" style="width:50px;">등록상태</th>
 					</tr>
-					<% for(Company c : list){ %>
+					<% for(Hotel h : list){ %>
 					<tr>
-						<td><%= c.getComNum() %></td>
-						<td><%= c.getCategory() %></td>
-						<td><%= c.getcName() %></td>
-						<td><%= c.getAddress() %></td>
-						<td><%= c.getEnrollDate() %></td>
-						<td><%= c.getPhone() %></td>
-						<td><%= c.getEmail() %></td>
-						<td><%= c.getState() %></td>
+						<td><%= h.gethNo() %></td>
+						<td><%= h.gethName() %></td>
+						<td><%= h.gethTel() %></td>
+						<td><%= h.gethPrice() %></td>
+						<td><%= h.gethGrade() %></td>
+						<td><%= h.gethAddress() %></td>
+						<td><%= h.gethRegisterData() %></td>
+						<td><%= h.gethRegistration() %></td>
 					</tr>
 					<% } %>
 				</table>
@@ -110,47 +125,36 @@ int endPage = pi.getEndPage(); */
                     <br><br><br>
                 </div>
                 <!-- 페이징 처리 시작 -->
-				<%-- <div class="next" align="center">
-				<button onclick="location.href='<%= request.getContextPath() %>/cList.co?currentPage=1'">◀◀</button>
+				<div class="next" align="center">
+				<button onclick="location.href='<%= request.getContextPath() %>/hList.hj?currentPage=1'">◀◀</button>
 				<%  if(currentPage <= 1) {  %>
 				<button disabled>◀</button>
 				<%  }else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/cList.co?currentPage=<%= currentPage - 1 %>'">◀</button>
+				<button onclick="location.href='<%= request.getContextPath() %>/hList.hj?currentPage=<%= currentPage - 1 %>'">◀</button>
 				<%  } %>
 				
 				<% for(int p = startPage; p <= endPage; p++) {
 						if(p == currentPage) {	
 				%>
-					<button disabled style="border: 1px solid #ffb600; color: #ffb600;"><%= p %></button>
+					<button disabled style="border: 2px solid #7A9BAD; color: #7A9BAD;"><%= p %></button>
 				<%      }else { %>
-					<button onclick="location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= p %>'"><%= p %></button>
+					<button onclick="location.href='<%= request.getContextPath() %>/hList.hj?currentPage=<%= p %>'"><%= p %></button>
 				<%      } %>
 				<% } %>
 					
 				<%  if(currentPage >= maxPage) {  %>
 				<button disabled>▶</button>
 				<%  }else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= currentPage + 1 %>'">▶</button>
+				<button onclick="location.href='<%= request.getContextPath() %>/hList.hj?currentPage=<%= currentPage + 1 %>'">▶</button>
 				<%  } %>
-				<button onclick="location.href='<%= request.getContextPath() %>/cList.ch?currentPage=<%= maxPage %>'">▶▶</button>
-				</div> --%>
+				<button onclick="location.href='<%= request.getContextPath() %>/hList.hj?currentPage=<%= maxPage %>'">▶▶</button>
+				</div> 
 				<!-- 페이징 처리 끝 -->
-                      <div id="next">
-                            <ul>
-                                <a href=""><li><</li></a>
-                                <a href=""><li>1</li></a>
-                                <a href=""><li>2</li></a>
-                                <a href=""><li>3</li></a>
-                                <a href=""><li>4</li></a>
-                                <a href=""><li>5</li></a>
-                                <a href=""><li>></li></a>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script>  
+         <script>  
 		$(function(){
 			$("#listArea td").mouseenter(function(){
 				$(this).parent().css({"background":"#7A9BAD", "color":"white", "cursor":"pointer"});
@@ -158,13 +162,13 @@ int endPage = pi.getEndPage(); */
 				$(this).parent().css({"background":"white", "color":"black"});
 			}).click(function(){
 				//console.log($(this).parent().children().eq(0).text());
-				var comNum = $(this).parent().children().eq(0).text();
-				location.href="<%=request.getContextPath()%>/hDetail.hj?hno=" + hno;
+				var hNo = $(this).parent().children().eq(0).text();
+				location.href="<%=request.getContextPath()%>/hSelectOne.hj?hNo=" + hNo;
 			});
 		});
 		
 		function search(){
-			location.href="<%=request.getContextPath()%>/searchHotel.hj?con="+$('#searchCondition').val()+"&keyword="+$('#keyword').val();
+			location.href="<%=request.getContextPath()%>//hSearch.hj?con="+$('#searchCondition').val()+"&keyword="+$('#keyword').val();
 		}
 		
 		</script>
