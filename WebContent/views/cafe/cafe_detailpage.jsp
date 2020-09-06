@@ -98,7 +98,9 @@
                     <div class="title">
                         <img src="<%= request.getContextPath() %>/resources/images/icons/document.png" alt="">
                         <h3>리뷰</h3>
+                        <% if(m != null){ %>
                         <div class="write_btn"><a href="<%= request.getContextPath() %>/views/review/review_write.jsp?type=cafe&cno=<%= c.getCno() %>">리뷰 작성</a></div>
+                        <% } %>
                         <div class="list_btn"><a href="<%= request.getContextPath() %>/rvList2.th?type=cafe&ctno=<%=c.getCno() %>">더보기</a></div>
                     </div>
                     <div class="content">
