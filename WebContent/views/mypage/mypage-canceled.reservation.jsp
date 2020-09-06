@@ -52,114 +52,54 @@
             <div id="showbox">
                 <div id="innerNav">
                     <th>
-                        <td><a href="./mypage-scheduled.reservation.jsp">투숙예정 예약</a></td>
+                        <td><a href="<%=request.getContextPath() %>/scheduledReser.ys?userid=<%=m.getMuserId()%>">투숙예정 예약</a></td>
                     </th>
                     <th>
-                        <td><a href="./mypage-finished.reservation.jsp">투숙완료 예약</a></td>
+                        <td><a href="<%=request.getContextPath() %>/finishedReser.ys?userid=<%=m.getMuserId()%>" >투숙완료 예약</a></td>
                     </th>
                     <th>
-                        <td><a href="./mypage-canceled.reservation.jsp" style="border-bottom: 3px solid #ffb600;">취소된 예약</a></td>
+                        <td><a href="<%= request.getContextPath()%>/canceledReser.ys?userid=<%=m.getMuserId()%>" style="border-bottom: 3px solid #ffb600;">취소된 예약</a></td>
                     </th>
                 </div>
 
                 <!-- 1번예약 -->
+                <% if(reserList !=null){ %>
+                <% for(ReservationMana rvm : reserList){ %>
+              	<% String[] himg = rvm.getReserHotelimg().split(","); %>
                 <div class="hotelList">
                     <table>
-                       <tr style="display: flex; padding: 10px;">
-                            <td class="guestRecode">
-                                <div id="showList">
-                                    
-                                    <ul>
-                                        <li>예약번호</li>
-                                        <li>예약자명</li>
-                                        <li>연락처</li>
-                                        <li>비상연락처</li>
-                                        <li>호텔명</li>
-                                        <li>체크인</li>
-                                        <li>체크아웃</li>
-                                        <li>결제금액</li>
-                                    </ul>
-                                    
-                                </div>
-                            </td>
-                            
-                            <td class="guestRecode">
+                       <tr style="display: flex; padding: 10px;">                           
+                            <td class="guestRecode" style="width:70%">
                                 <div id="showRecode">
                                     <ul>
-                                        <li>0102222222</li>
-                                        <li>한윤수</li>
-                                        <li>01020425685</li>
-                                        <li>01020425685</li>
-                                        <li>반얀트리 호텔</li>
-                                        <li>2020.8.8. 15:00 </li>
-                                        <li>2020.8.9. 12:00</li>
-                                        <li>3,800,000</li>
+                                    	
+                                        <li>예약번호 : H-<%=rvm.getReserDate()%>.<%=rvm.getReserNo() %></li>
+                                        <li>예약자명 : <%=rvm.getReserGuestid() %></li>
+                                        <li>연 락 처  : <%=rvm.getReserGuestemail() %></li>
+                                        <li>호 텔 명  :<%=rvm.getReserhotelname() %></li>
+                                        <li>체 크 인  :<%=rvm.getReserCheckin() %></li>
+                                        <li>체크아웃 :<%=rvm.getReserCheckout() %></li>
+                                        <li>결제금액 :<%=rvm.getReserTotalprice() %></li>
     
                                     </ul>
                                 </div>
                             </td>
     
                             <td>
-                                <div id="showImg">
-                                    <img src="../../resources/images/hotel4.jpg" alt="">
+                                <div id="showImg" >
+                                    <img src="<%=request.getContextPath()%>/resources/images/<%=himg[0] %>" alt="" >
                                 </div>
                             </td>
                        </tr>
                     </table>
                     <div id="viewDetail">
-                        <a href="./mypage-reservation.payment.jsp">> 상세 예약 보기</a>
+                        <a href="<%=request.getContextPath() %>/detailReser.ys?reserno=<%=rvm.getReserNo() %>">> 상세 예약 보기</a>
                     </div>
                 </div>
+                <%} %>
+                <%} %>
                 <!-- 1번예약 끝 -->
-                <!-- 2번예약 -->
-                <div class="hotelList">
-                    <table>
-                       <tr style="display: flex; padding: 10px;">
-                            <td class="guestRecode">
-                                <div id="showList">
-                                    
-                                    <ul>
-                                        <li>예약번호</li>
-                                        <li>예약자명</li>
-                                        <li>연락처</li>
-                                        <li>비상연락처</li>
-                                        <li>호텔명</li>
-                                        <li>체크인</li>
-                                        <li>체크아웃</li>
-                                        <li>결제금액</li>
-                                    </ul>
-                                    
-                                </div>
-                            </td>
-                            
-                            <td class="guestRecode">
-                                <div id="showRecode">
-                                    <ul>
-                                        <li>0102222222</li>
-                                        <li>한윤수</li>
-                                        <li>01020425685</li>
-                                        <li>01020425685</li>
-                                        <li>반얀트리 호텔</li>
-                                        <li>2020.8.8. 15:00 </li>
-                                        <li>2020.8.9. 12:00</li>
-                                        <li>3,800,000</li>
-    
-                                    </ul>
-                                </div>
-                            </td>
-    
-                            <td>
-                                <div id="showImg">
-                                    <img src="../../resources/images/hotel4.jpg" alt="">
-                                </div>
-                            </td>
-                       </tr>
-                    </table>
-                    <div id="viewDetail">
-                        <a href="./mypage-reservation.payment.jsp">> 상세 예약 보기</a>
-                    </div>
-                </div>
-                <!-- 2번예약 끝 -->
+                
             </div>
             <div id="emptyPlace">
                 <img src="" alt="">

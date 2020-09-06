@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.kh.semiProject.cafe.model.dao.CafeDao;
 import com.kh.semiProject.cafe.model.vo.Cafe;
+import com.kh.semiProject.review.model.vo.Review;
 
 public class CafeService {
 	
@@ -45,6 +46,7 @@ public class CafeService {
 	}
 	
 	public ArrayList<Cafe> searchCafe(String local, String size, String keyword, int currentPage, int limit) {
+
 		Connection con = getConnection();
 		
 		ArrayList<Cafe> list = null;
@@ -57,6 +59,7 @@ public class CafeService {
 	}
 
 	public int getSearchListCount(String local, String size, String keyword) {
+
 		Connection con = getConnection();
 		int listCount = cDao.getSearchListCount(con, local, size, keyword);
 		
@@ -64,6 +67,16 @@ public class CafeService {
 		
 		return listCount;
 		
+	}
+
+	public ArrayList<Review> cafeReview(int cno) {
+
+		Connection con = getConnection();
+		ArrayList<Review> list = cDao.cafeReview(con, cno);
+		
+		close(con);
+		
+		return list;
 	}
 
 }

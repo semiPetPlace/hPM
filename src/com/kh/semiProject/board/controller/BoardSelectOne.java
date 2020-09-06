@@ -1,6 +1,8 @@
 package com.kh.semiProject.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semiProject.board.model.service.BoardService;
 import com.kh.semiProject.board.model.vo.Board;
+import com.kh.semiProject.comment.model.service.CommentService;
+import com.kh.semiProject.comment.model.vo.Comment;
 
 /**
  * Servlet implementation class BoardSelectOne
@@ -32,11 +36,13 @@ public class BoardSelectOne extends HttpServlet {
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		
 		Board b = new BoardService().selectOne(bno);
-		
+		ArrayList<Comment> clist =
+				new CommentService().selectList(bno);
 		String page = "";
 		if(b != null) {
 			page="views/freeboard/freeboard_detail.jsp";
 			request.setAttribute("board", b);
+			request.setAttribute("clist", clist);
 		}else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 상세보기 실패!");

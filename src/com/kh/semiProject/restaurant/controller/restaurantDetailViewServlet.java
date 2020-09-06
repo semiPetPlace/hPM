@@ -1,6 +1,7 @@
 package com.kh.semiProject.restaurant.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semiProject.restaurant.model.service.RestaurantService;
 import com.kh.semiProject.restaurant.model.vo.Restaurant;
+import com.kh.semiProject.review.model.vo.Review;
 
 /**
  * Servlet implementation class restaurantDetailViewServlet
@@ -31,7 +33,7 @@ public class restaurantDetailViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int rno = Integer.parseInt(request.getParameter("rno"));
-		
+		ArrayList<Review> rv = new RestaurantService().restaurantReview(rno);
 		Restaurant r = new RestaurantService().selectOne(rno);
 		
 		String page = "";
@@ -39,6 +41,7 @@ public class restaurantDetailViewServlet extends HttpServlet {
 		if(r != null) {
 			page = "views/restaurant/restaurant_detailpage.jsp";
 			request.setAttribute("restaurant", r);
+			request.setAttribute("review", rv);
 		}else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 상세 보기 실패!");

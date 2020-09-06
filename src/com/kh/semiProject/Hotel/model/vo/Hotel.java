@@ -1,8 +1,7 @@
 package com.kh.semiProject.Hotel.model.vo;
 
 import java.io.Serializable;
-
-import javax.xml.crypto.Data;
+import java.sql.Date;
 
 public class Hotel implements Serializable{
 	/**
@@ -20,14 +19,31 @@ public class Hotel implements Serializable{
 	private String hImg;
 	private String hPromotion;
 	private String hRequests;
-	private Data hRegisterData;
+	private Date hRegisterData;
 	private String hRegistration;
 	private float lat;
 	private float lng;
+	private String filter;
+	
 	public Hotel() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
+	public Hotel(int hNo, String hName, String hTel, int hPrice, int hGrade, String hAddress, Date hRegisterData,
+			String hRegistration) {
+		super();
+		this.hNo = hNo;
+		this.hName = hName;
+		this.hTel = hTel;
+		this.hPrice = hPrice;
+		this.hGrade = hGrade;
+		this.hAddress = hAddress;
+		this.hRegisterData = hRegisterData;
+		this.hRegistration = hRegistration;
+	}
+
 	public Hotel(int hNo, String hName, int hPrice, int hGrade, int hScore, String hAddress, String hImg,
 			String hPromotion) {
 		super();
@@ -41,7 +57,7 @@ public class Hotel implements Serializable{
 		this.hPromotion = hPromotion;
 	}
 	public Hotel(int hNo, String hName, String hTel, int hPrice, int hGrade, int hScore, String hAddress, String hImg,
-			String hPromotion, String hRequests, Data hRegisterData, String hRegistration) {
+			String hPromotion, String hRequests, Date hRegisterData, String hRegistration) {
 		super();
 		this.hNo = hNo;
 		this.hName = hName;
@@ -56,9 +72,9 @@ public class Hotel implements Serializable{
 		this.hRegisterData = hRegisterData;
 		this.hRegistration = hRegistration;
 	}
-	
 	public Hotel(int hNo, String hName, String hTel, int hPrice, int hGrade, int hScore, String hAddress, String hImg,
-			String hPromotion, String hRequests, Data hRegisterData, String hRegistration, float lat, float lng) {
+			String hPromotion, String hRequests, Date hRegisterData, String hRegistration, float lat, float lng,
+			String filter) {
 		super();
 		this.hNo = hNo;
 		this.hName = hName;
@@ -74,19 +90,7 @@ public class Hotel implements Serializable{
 		this.hRegistration = hRegistration;
 		this.lat = lat;
 		this.lng = lng;
-	}
-	
-	public float getLat() {
-		return lat;
-	}
-	public void setLat(float lat) {
-		this.lat = lat;
-	}
-	public float getLng() {
-		return lng;
-	}
-	public void setLng(float lng) {
-		this.lng = lng;
+		this.filter = filter;
 	}
 	public int gethNo() {
 		return hNo;
@@ -148,10 +152,10 @@ public class Hotel implements Serializable{
 	public void sethRequests(String hRequests) {
 		this.hRequests = hRequests;
 	}
-	public Data gethRegisterData() {
+	public Date gethRegisterData() {
 		return hRegisterData;
 	}
-	public void sethRegisterData(Data hRegisterData) {
+	public void sethRegisterData(Date hRegisterData) {
 		this.hRegisterData = hRegisterData;
 	}
 	public String gethRegistration() {
@@ -160,16 +164,31 @@ public class Hotel implements Serializable{
 	public void sethRegistration(String hRegistration) {
 		this.hRegistration = hRegistration;
 	}
+	public float getLat() {
+		return lat;
+	}
+	public void setLat(float lat) {
+		this.lat = lat;
+	}
+	public float getLng() {
+		return lng;
+	}
+	public void setLng(float lng) {
+		this.lng = lng;
+	}
+	public String getFilter() {
+		return filter;
+	}
+	public void setFilter(String filter) {
+		this.filter = filter;
+	}
 	@Override
 	public String toString() {
 		return "Hotel [hNo=" + hNo + ", hName=" + hName + ", hTel=" + hTel + ", hPrice=" + hPrice + ", hGrade=" + hGrade
 				+ ", hScore=" + hScore + ", hAddress=" + hAddress + ", hImg=" + hImg + ", hPromotion=" + hPromotion
 				+ ", hRequests=" + hRequests + ", hRegisterData=" + hRegisterData + ", hRegistration=" + hRegistration
-				+ "]";
+				+ ", lat=" + lat + ", lng=" + lng + ", filter=" + filter + "]";
 	}
-	
-	
-	
 	
 	
 

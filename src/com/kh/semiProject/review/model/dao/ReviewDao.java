@@ -191,5 +191,44 @@ public class ReviewDao {
 		
 		return result;
 	}
+	public ArrayList<Review> reviewList(Connection con, int currentPage, int limit, int ctno, String type) {
+		ArrayList<Review> rvlist = new ArrayList<Review>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("riviewlist2");
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			pstmt.setInt(1,ctno);
+			pstmt.setString(2, type);
+			pstmt.setInt(3, endRow);
+			pstmt.setInt(4, startRow);
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				Review rv = new Review();
+				rv.setRvno(rset.getInt("RV_NO"));
+				rv.setCtno(rset.getInt("CT_NO"));
+				rv.setRvtitle(rset.getString("RV_TITLE"));
+				rv.setRvimage(rset.getString("RV_IMAGE"));
+				rv.setRvdate(rset.getDate("RV_DATE"));
+				rv.setRvScore(rset.getInt("RV_SCORE"));
+				rv.setRvtype(rset.getString("RV_TYPE"));
+				rv.setRvcontent(rset.getString("RV_CONTENT"));
+				rv.setRvwriter(rset.getString("USERNAME"));
+				rv.setRvstatus(rset.getString("RV_STATUS"));
+
+				rvlist.add(rv);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return rvlist;
+	}
 
 }

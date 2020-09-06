@@ -23,25 +23,27 @@
        				<%
 					if (m == null) {
 				%>
-				<a href="/semi/views/login/login.jsp">로그인</a> 
-				<a href="<%= request.getContextPath() %>/sing-up1.jsp">회원가입</a>
-
-				
-
+				<a href="<%=request.getContextPath() %>/views/login/login.jsp">로그인</a> <a
+					href="<%=request.getContextPath() %>/views/login/sing-up1.jsp">회원가입</a>
 
 				<%
-					} else if (m.getMuserId().equals("admin")) {
+					} else if (m.getMuserId() == "admin") {
 				%>
+<<<<<<< HEAD
 
 				<a href="#" onclick="goManager()">관리자페이지</a>
 
 
+=======
+				<a>*관리자*</a> 
+				<a href="<%=request.getContextPath() %>/views/mypage/mypage-basic.jsp">관리자페이지</a>
+>>>>>>> branch 'master' of https://github.com/semiPetPlace/hPM.git
 				<a href="#" onclick='logout()'>로그아웃</a>
 				<%
 					} else {
 				%>
 				<a> <%=m.getMuserName()%>
-				</a> <a href="/semi/views/mypage/mypage-basic.jsp">마이페이지</a> <a href="#"
+				</a> <a href="<%=request.getContextPath() %>/views/mypage/mypage-basic.jsp">마이페이지</a> <a href="#"
 					onclick='logout()'>로그아웃</a>
 				<%
 					}
@@ -76,7 +78,7 @@
                             <a href="<%= request.getContextPath() %>/blist.th" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/community.png" alt="community"></a>
                             <ul class="subnav">
                                 <li><a href="<%= request.getContextPath() %>/blist.th"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_lab.png" alt="반려견 연구소"></a></li>
-                                <li><a href="<%= request.getContextPath() %>/rvList.th"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_review.png" alt="플레이스 리뷰"></a></li>
+                                <li><a href="<%= request.getContextPath() %>/views/review/review_list.jsp"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_review.png" alt="플레이스 리뷰"></a></li>
                             </ul>
                         </li>
                         <li class="navi_set">
@@ -94,10 +96,6 @@
 	<script>
 		function logout() {
 			location.href = "<%=request.getContextPath()%>/logout.th";
-		}
-
-		function goManager() {
-			location.href = "<%=request.getContextPath()%>/chart.ma";
 		}
 	</script>
 
