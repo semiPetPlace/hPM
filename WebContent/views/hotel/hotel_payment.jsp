@@ -111,10 +111,10 @@
                     </p>
                 </div>
             </div>    
-
+			<% String[] himg = h.gethImg().split(","); %>
             <div class="main-block">
                 <div id="hotel-info">
-                    <div id="hotelimg"><img src="<%= h.gethImg() %>" alt=""></div>
+                    <div id="hotelimg"><img src="<%=request.getContextPath()%>/resources/images/<%=himg[0] %>" alt=""></div>
                     <div id="hoteltext">
                         <div class="hotelname"><%=h.gethName() %></div>
                         <div style="float: right;background:navy;width: 70px; height:50px;">
@@ -130,7 +130,7 @@
                     </div>
                 </div>
                 <div id="textblock">상세 정보를 입력해 주십시오.</div>
-                <div id="client-input">
+                <div id="client-input" style="height:650px;">
                     
                     <div class="personaldata">
                         <div class="name">
@@ -148,10 +148,7 @@
                                 <p>이메일 주소</p>  
                                 <input type="email" name="email" id="email">
                             </div>
-                            <div class="input-email">
-                                <p>이메일 주소 확인</p>  
-                                <input type="email" name="emailcheck" id="emailchk">
-                            </div>
+                            
                         </div>
                         <div class="forwho">
                                 <span>본인을 위한 예약인가요?</span><br>

@@ -292,6 +292,8 @@ public class HotelDao {
 				ph.setDimg(rset.getString("ph_dimg"));
 				ph.setPhpromotion(rset.getString("ph_promotion"));
 				ph.setPhrequests(rset.getString("ph_requests"));
+				ph.setLat(rset.getString("ph_lat"));
+				ph.setLng(rset.getString("ph_lng"));
 				
 				phlist.add(ph);
 			}
@@ -331,6 +333,8 @@ public class HotelDao {
 				ph.setDimg(rset.getString("ph_dimg"));
 				ph.setPhpromotion(rset.getString("ph_promotion"));
 				ph.setPhrequests(rset.getString("ph_requests"));
+				ph.setLat(rset.getString("ph_lat"));
+				ph.setLng(rset.getString("ph_lng"));
 				
 			}
 			
@@ -370,6 +374,8 @@ public class HotelDao {
 				ph.setDimg(rset.getString("ph_dimg"));
 				ph.setPhpromotion(rset.getString("ph_promotion"));
 				ph.setPhrequests(rset.getString("ph_requests"));
+				ph.setLat(rset.getString("ph_lat"));
+				ph.setLng(rset.getString("ph_lng"));
 				
 				phlist.add(ph);
 			}
