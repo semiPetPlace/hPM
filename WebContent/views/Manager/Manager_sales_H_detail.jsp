@@ -22,8 +22,8 @@
                 <div class="sub-list">
                     <p>예약.결제관리</p>
                     <ul>
-                        <li><a href="">· 호텔별 매출 상세</a></li>
-                        <li><a href="">· 고객별 매출 상세</a></li>
+                        <li><a href="#" >· 호텔별 매출 상세</a></li>
+                        <li><a href="#" onclick="goCDetail()">· 고객별 매출 상세</a></li>
                     </ul>
                 </div>
             </div>
@@ -81,5 +81,10 @@
         <p style="color: rgb(131, 131, 131);">Copyright © 1998-2020 KH Information Educational Institute All Right Reserved</p>
     </div>
 </footer>
+<script>
+	function goCDetail(){
+		location.href="/semi/cDetail.cl";
+	}
+</script>
 </body>
 </html>

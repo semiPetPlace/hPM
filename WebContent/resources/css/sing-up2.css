@@ -41,21 +41,19 @@
     font-size: 18px;
     text-align: center;
 }
-.footBtwrap>li{
-    margin-top: 50px; 
-}
+
 .footBtwrap .fpmgBt1{
     background-color: rgb(197, 196, 196);
     border: 0;
     outline: 0;
     float: left;
-    margin-left: 220px;
+    margin-left: 50px;
 }
 .footBtwrap .fpmgBt2{
     background-color: #ffb600;
     border: 0;
     outline: 0;
-    margin-right: 330px;
+    margin-left-50px;
     float: right;
 }
 

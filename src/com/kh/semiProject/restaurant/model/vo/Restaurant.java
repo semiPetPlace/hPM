@@ -14,9 +14,11 @@ public class Restaurant implements Serializable {
 	private int rno;
 	private String rrimage;
 	private String rimage;
+	private String[] rimage2;
 	private String rname;
 	private String rtel;
 	private String rtime;
+	private String[] rtime2;
 	private double rscore;
 	private String raddress;
 	private String rdogCompInfo;
@@ -26,6 +28,8 @@ public class Restaurant implements Serializable {
 	private Date rregisterDate;
 	private String rregistration;
 	private String rpetSize;
+	private float lat;
+	private float lng;
 	
 	public Restaurant() {
 		super();
@@ -59,13 +63,15 @@ public class Restaurant implements Serializable {
 		this.rregistration = rregistration;
 	}
 
-	public Restaurant(int rno, String rrimage, String rimage, String rname, String rtel, String rtime, double rscore,
-			String raddress, String rdogCompInfo, String rpromotion, String rreview, String rrequest,
+
+	public Restaurant(int rno, String rrimage, String rimage, String[] rimage2, String rname, String rtel, String rtime,
+			double rscore, String raddress, String rdogCompInfo, String rpromotion, String rreview, String rrequest,
 			Date rregisterDate, String rregistration, String rpetSize) {
 		super();
 		this.rno = rno;
 		this.rrimage = rrimage;
 		this.rimage = rimage;
+		this.rimage2 = rimage2;
 		this.rname = rname;
 		this.rtel = rtel;
 		this.rtime = rtime;
@@ -84,6 +90,7 @@ public class Restaurant implements Serializable {
 	public int getRno() {
 		return rno;
 	}
+
 
 	public String getRrimage() {
 		return rrimage;
@@ -200,6 +207,38 @@ public class Restaurant implements Serializable {
 	public void setRpetSize(String rpetSize) {
 		this.rpetSize = rpetSize;
 	}
+	
+	public String[] getRimage2() {
+		return rimage2;
+	}
+
+	public void setRimage2(String[] rimage2) {
+		this.rimage2 = rimage2;
+	}
+
+	public float getLat() {
+		return lat;
+	}
+
+	public float getLng() {
+		return lng;
+	}
+
+	public void setLat(float lat) {
+		this.lat = lat;
+	}
+
+	public void setLng(float lng) {
+		this.lng = lng;
+	}
+	
+	public String[] getRtime2() {
+		return rtime2;
+	}
+
+	public void setRtime2(String[] rtime2) {
+		this.rtime2 = rtime2;
+	}
 
 	@Override
 	public String toString() {
@@ -208,5 +247,6 @@ public class Restaurant implements Serializable {
 				+ rdogCompInfo + ", rpromotion=" + rpromotion + ", rreview=" + rreview + ", rrequest=" + rrequest
 				+ ", rregisterDate=" + rregisterDate + ", rregistration=" + rregistration + ", rpetSize=" + rpetSize;
 	}
+
 
 }

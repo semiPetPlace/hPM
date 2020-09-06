@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="com.kh.semiProject.restaurant.model.vo.*, com.kh.common.PageInfo, java.util.*" %>
 <% 
 	ArrayList<Restaurant> list = (ArrayList<Restaurant>)request.getAttribute("list");
+	Restaurant r = (Restaurant)request.getAttribute("restaurant");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	
 	String local = (String)request.getAttribute("local");
@@ -75,8 +76,9 @@
 						<input type="hidden" value="<%= rm.getRno() %>" />
 							<div class="cafeList-list"
 							onclick="location.href='<%= request.getContextPath() %>/rView.ch?rno=<%= rm.getRno() %>'"
-							style="cursor: pointer; width: 433px;">
-								<a><img src="<%= request.getContextPath() %>/resources/images/cafe1.jpg" alt="restaurant"></a>
+							style="cursor: pointer; margin: 50px 5% 0 0;">
+								<a><img src="<%= request.getContextPath() %>/resources/images/restaurant/<%= rm.getRrimage() %>"
+									style="width: 433px; height: 433px;" alt="restaurant"></a>
 								<h4 style="margin-bottom: 0;"><%= rm.getRname() %></h4>
 								<p class="infoText"><%= rm.getRpromotion() %></p>
 								<p class="price">★ 평점 <%= rm.getRscore() %></p>

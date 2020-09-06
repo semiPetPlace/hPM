@@ -184,7 +184,10 @@
                                 <div id="reviewwriter">g**lttuck님</div>
                                 </div>
                                 <hr>
-                                <div><a href="../review/review_list.jsp" style="float:right;">더보기</a></div>
+                                 <% if(m !=null){ %>
+                                <div><a href="<%= request.getContextPath() %>/views/review/review_write.jsp?type=pethotel&cno=<%= ph.getPhno() %>" style="float:right;">>리뷰 작성하기</a></div>
+                                <%} %>
+                                <div><a href="<%= request.getContextPath() %>/rvList2.th?type=pethotel&ctno=<%= ph.getPhno() %>" style="float:left;">>더보기</a></div>
                             </div>    
                             <!-- 구글지도 -->
                             <div class="map-img">

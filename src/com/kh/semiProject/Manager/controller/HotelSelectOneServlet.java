@@ -33,23 +33,27 @@ public class HotelSelectOneServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		int hNo = Integer.parseInt(request.getParameter("hNo"));
-		ArrayList<HotelRoom> hrlist = new ArrayList<>();
 
 		ManagerService ms = new ManagerService();
 		
 		Hotel h = ms.selectOneHotel(hNo);
 		
-		hrlist = ms.roomlist(hNo);
+		HotelRoom hr = ms.selectOneRoom(hNo);
 		
-		HotelConvenience hc = ms.Convenience(hNo);
+		HotelRoom hr2 = ms.selectOneRoom2(hNo);
+		
+		HotelConvenience hc = ms.selectOneConvenience(hNo);
 		
 		String page ="";
+		
 		if(h != null) {
 			page = "views/hotel/hotel_detail.jsp";
 			request.setAttribute("h", h);
-			request.setAttribute("hrlist", hrlist);
 			request.setAttribute("hc", hc);
+			request.setAttribute("hr", hr);
+			request.setAttribute("hr2", hr2);
 		
 		} else {
 			page = "views/common/errorPage.jsp";

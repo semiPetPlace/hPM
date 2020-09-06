@@ -80,8 +80,9 @@ public class RestaurantDao {
 			while(rset.next()) {
 				Restaurant r = new Restaurant();
 				r.setRno(rset.getInt("R_NO"));
-				r.setRimage(rset.getString("R_IMAGE"));
+				r.setRrimage(rset.getString("R_R_IMAGE"));
 				r.setRname(rset.getString("R_NAME"));
+				r.setRpromotion(rset.getString("R_PROMOTION"));
 				r.setRscore(rset.getDouble("R_SCORE"));
 
 				list.add(r);
@@ -113,6 +114,7 @@ public class RestaurantDao {
 
 			if(rset.next()) {
 				r = new Restaurant();
+				r.setRno(rset.getInt("R_NO"));
 				r.setRrimage(rset.getString("R_R_IMAGE"));
 				r.setRimage(rset.getString("R_IMAGE"));
 				r.setRname(rset.getString("R_NAME"));
@@ -126,6 +128,8 @@ public class RestaurantDao {
 				r.setRrequest(rset.getString("R_REQUEST"));
 				r.setRregisterDate(rset.getDate("R_REGISTERDATE"));
 				r.setRregistration(rset.getString("R_REGISTRATION"));
+				r.setLat(rset.getFloat("LAT"));
+				r.setLng(rset.getFloat("LNG"));
 			}
 
 		}catch(SQLException e) {
@@ -158,7 +162,7 @@ public class RestaurantDao {
 			while(rset.next()) {
 				Restaurant r = new Restaurant();
 				r.setRno(rset.getInt("R_NO"));
-				r.setRimage(rset.getString("R_IMAGE"));
+				r.setRrimage(rset.getString("R_R_IMAGE"));
 				r.setRname(rset.getString("R_NAME"));
 				r.setRscore(rset.getDouble("R_SCORE"));
 

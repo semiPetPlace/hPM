@@ -13,7 +13,6 @@ public class MtMListService {
 
 	public ArrayList<QnA> viewList(String type) {
 		Connection con = getConnection();
-		System.out.println("service check: ");
 		ArrayList<QnA> qList  = mDao.viewList(con,type);
 		
 		if(qList != null) commit(con);

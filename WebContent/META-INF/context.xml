@@ -47,9 +47,8 @@
      		  maxWaitMillis="10000"
      		  driverClassName="oracle.jdbc.driver.OracleDriver"
      		  url="jdbc:oracle:thin:@javachip.iptime.org:1521:XE"
-     		  username="YS211"
-     		  password="12321"/>
-
+              username="YS211"
+              password="12321"/>
 </Context>
 
 

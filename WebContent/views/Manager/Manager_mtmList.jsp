@@ -1,8 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" import= "java.text.*,com.kh.semiProject.mQnA.model.vo.*, java.util.*"%>
+<%@ page import="java.util.*" import= "com.kh.common.*,java.text.*,com.kh.semiProject.mQnA.model.vo.*, java.util.*"%>
 <%
 	ArrayList<QnA> qList = (ArrayList<QnA>)request.getAttribute("qList");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+
 %>    
 <!DOCTYPE html>
 <html lang="ko">
@@ -53,7 +60,7 @@
                             <tr class="listCal" id="trh">
                                 <td><%= q.getQno() %></td>
                                 <td><%= q.getClientId() %></td>
-                                <td><%= q.getClientName() %></td>
+                                <td><a href="<%=request.getContextPath() %>/mDetail.ma?userName=<%=q.getClientName()%>"><%= q.getClientName() %></a></td>
                                 <td><a href="<%=request.getContextPath() %>/requst.re?qno=<%=q.getQno()%>"><%= q.getQnaTitle() %></a></td>
                                 <td><%= q.getQnaCategory() %></td>
                                 <td><%= q.getQnaDate() %></td>
@@ -66,17 +73,31 @@
                        <input type="text" name="search" id="search">
                        <input type="button" value="검색">
                      </div>
-                    <div id="next">
-                        <ul>
-                           <a href=""><li><</li></a>
-                           <a href=""><li>1</li></a>
-                           <a href=""><li>2</li></a>
-                           <a href=""><li>3</li></a>
-                           <a href=""><li>4</li></a>
-                           <a href=""><li>5</li></a>
-                           <a href=""><li>></li></a>
-                        </ul>
-                    </div>
+                   <div class="pagingArea" align="center">
+			<button onclick="location.href='<%= request.getContextPath() %>/listView.mt?currentPage=1'"><<</button>
+			<%  if(currentPage <= 1){  %>
+			<button disabled><</button>
+			<%  }else{ %>
+			<button onclick="location.href='<%= request.getContextPath() %>/listView.mt?currentPage=<%=currentPage - 1 %>'"><</button>
+			<%  } %>
+			
+			<% for(int p = startPage; p <= endPage; p++){
+					if(p == currentPage){	
+			%>
+				<button disabled><%= p %></button>
+			<%      }else{ %>
+				<button onclick="location.href='<%= request.getContextPath() %>/listView.mt?currentPage=<%= p %>'"><%= p %></button>
+			<%      } %>
+			<% } %>
+				
+			<%  if(currentPage >= maxPage){  %>
+			<button disabled>></button>
+			<%  }else{ %>
+			<button onclick="location.href='<%= request.getContextPath() %>/listView.mt?currentPage=<%=currentPage + 1 %>'">></button>
+			<%  } %>
+			<button onclick="location.href='<%= request.getContextPath() %>/listView.mt?currentPage=<%=maxPage %>'">>></button>
+			
+		</div>
                   </div>
                 </div>
                 <div class="empty">
@@ -84,6 +105,8 @@
                 </div>
             </div>
         </div>
+        
+       
     </div>
 </main>
 <footer id="footer">

@@ -92,5 +92,4 @@
     <div style="height: 20px;"><a href="#header" id="top">▲ TOP</a></div>
     	<%@ include file = "../common/footer.jsp" %>
 </body>
-
 </html>

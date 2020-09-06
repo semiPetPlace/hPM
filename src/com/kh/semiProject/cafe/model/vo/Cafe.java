@@ -14,9 +14,11 @@ public class Cafe implements Serializable {
 	private int cno;
 	private String crimage;
 	private String cimage;
+	private String[] cimage2;
 	private String cname;
 	private String ctel;
 	private String ctime;
+	private String[] ctime2;
 	private double cscore;
 	private String caddress;
 	private String cdogCompInfo;
@@ -26,6 +28,8 @@ public class Cafe implements Serializable {
 	private Date cregisterDate;
 	private String cregistration;
 	private String cpetSize;
+	private float lat;
+	private float lng;
 	
 	
 	public Cafe() {
@@ -232,6 +236,45 @@ public class Cafe implements Serializable {
 
 	public void setCpetSize(String cpetSize) {
 		this.cpetSize = cpetSize;
+	}
+	
+
+	public String[] getCimage2() {
+		return cimage2;
+	}
+
+
+	public void setCimage2(String[] cimage2) {
+		this.cimage2 = cimage2;
+	}
+
+	
+	public float getLat() {
+		return lat;
+	}
+
+
+	public float getLng() {
+		return lng;
+	}
+
+
+	public void setLat(float lat) {
+		this.lat = lat;
+	}
+
+
+	public void setLng(float lng) {
+		this.lng = lng;
+	}
+	
+	public String[] getCtime2() {
+		return ctime2;
+	}
+
+
+	public void setCtime2(String[] ctime2) {
+		this.ctime2 = ctime2;
 	}
 
 

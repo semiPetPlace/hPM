@@ -69,12 +69,12 @@ public class HotelListServlet extends HttpServlet {
 		}
 		
 		list = ms.listHotel(currentPage, limit);
-//		list = ms.listHotel();
+		
 		
 		String page = "";
 		
 		if(list != null) {
-			page = "views/Manager/Manager_company_list.jsp";
+			page = "views/Manager/Manager_hotel_list.jsp";
 			request.setAttribute("list", list);
 			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 			request.setAttribute("pi", pi);

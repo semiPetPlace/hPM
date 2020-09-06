@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.semiProject.Hotel.model.vo.*"%>
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, com.kh.semiProject.Hotel.model.vo.*" %>
 <%
-	Hotel h = (Hotel)request.getAttribute("hotel");
-	HotelConvenience hc = (HotelConvenience)request.getAttribute("hotelConvenience");
-	HotelFacility hf = (HotelFacility)request.getAttribute("hotelFacility");
-	HotelRoom hr = (HotelRoom)request.getAttribute("hotelRoom");
+	Hotel h = (Hotel)request.getAttribute("h");
+	HotelConvenience hc = (HotelConvenience)request.getAttribute("hc");
+	HotelRoom hr = (HotelRoom)request.getAttribute("hr");
+	HotelRoom hr2 = (HotelRoom)request.getAttribute("hr2");
 %>
 <!DOCTYPE html>
 <html>
@@ -40,125 +41,245 @@
                     <div class="detailCom">
                         <table border="1">
                         	<tr>
-                        		<th></th>
-                        	</tr>
-                        	<tr>
-                        		<th></th>
-                        	</tr>
-                            <tr>
-                                <th>업체 번호</th>
-                                <td>
-                                    <%= c.getComNum() %>
-                               	</td>
-                            </tr>
-                            <tr>
-                                <th>업체 분류</th>
-                                <td>
-                                    <%= c.getCategory() %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>사업자번호</th>
-                                <td>
-                                    <%= c.getcNum() %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>기업 형태</th>
-                                <td>
-                                    <%= c.getCorp() %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>업체 명</th>
-                                <td>
-                                    <%= c.getcName() %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>업체 등록 일</th>
-                                <td>
-                                    <%= c.getEnrollDate() %>
-                                </td>
-                            </tr>
-                            <tr>
-								<th>업체 주소</th>
-								<td>
-                                    <%= c.getAddress() %>
-                               </td>
-							</tr>
-                            <tr>
-								<th>업체 연락처</th>
-								<td>
-                                    <%= c.getTel() %>
-                               </td>
-							</tr>
-                            <tr>
-                                <th>대표자</th>
-                                <td>
-                                    <%= c.getrName1() %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>담당자</th>
-                                <td>
-                                	<%= c.getrName1() %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>담당자 연락처</th>
-                                <td>
-                                    <%= c.getPhone() %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>담당자 이메일</th>
-                                <td>
-                                    <%= c.getEmail() %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>은행명</th>
-                                <td>
-                                    <%= c.getBankName() %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>예금주</th>
-                                <td>
-                                    <%= c.getHolder() %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>계좌번호</th>
-                                <td>
-                                    <%= c.getAccount() %>
-                                </td>
-                            </tr>
-                            <tr>
-								<th>등록 상태</th>
-								<td>
-									<%= c.getState() %>
-								</td>
-							</tr>
-							<tr>
-                        		<th></th>
-                        	</tr>
-                        	<tr>
-                        		<th></th>
-                        	</tr>
-                        </table>
-                    </div>
-                    <div class="empty">
-                        <br>
-                    </div>
-                    <div class="btns">
+	                                <th></th>
+	                            </tr>
+	                            <tr>
+	                                <th>업체 번호</th>
+	                                 <td>
+                                    	<%= h.gethNo() %>
+                               		</td>
+                            	</tr>
+	                            <tr>
+	                                <th>호텔 명</th>
+	                                <td>
+	                                	<%= h.gethName() %>
+	                                </td>
+	                            </tr>
+								<tr>
+									<th>주소지</th>
+									<td>
+                                        <%= h.gethAddress() %>
+                                    </td>
+								</tr>
+								<tr>
+	                                <th>연락처</th>
+	                                <td>
+	                                    <%= h.gethTel() %> 
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <th>등급 (1~5)</th>
+	                                <td>
+	                                    <%= h.gethGrade() %>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <th style="vertical-align:top;">홍보글</th>
+	                                <td>
+	                                	<%= h.gethPromotion() %>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <th style="vertical-align:top;">요청사항</th>
+	                                <td>
+	                                    <%= h.gethRequests() %>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <th>호텔 최저가</th>
+	                                <td>
+	                                    <%= h.gethPrice() %>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <th>호텔 이미지</th>
+	                                 <td style="padding:10px 0;">
+										<%= h.gethImg() %>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <th>위도</th>
+	                                <td>
+	                                    <%= h.getLat() %>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <th>경도</th>
+	                                <td>
+	                                    <%= h.getLng() %>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <th>부가시설</th>
+	                                <td>
+	                                	<%= h.getFilter() %>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <th>등록 일</th>
+	                                <td>
+	                                    <%= h.gethRegisterData() %>
+	                                </td>
+	                            </tr>
+	                            <tr>
+									<th>등록 여부</th>
+									<td>
+										<%= h.gethRegistration() %>
+									</td>
+								</tr>
+								<tr>
+									<th>편의성</th>
+									<td><span style="margin-right:80px; font-weight:400;font-size:smaller;">대중교통으로 거리</span>
+										<%= hc.getTansport() %>
+									</td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><span style="margin-right:20px; font-weight:400;font-size:smaller;">공항 이동 교통편 서비스 여부</span>
+										<%= hc.getAirport() %>
+									</td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><span style="margin-right:157px; font-weight:400;font-size:smaller;">위치</span>
+										<%= hc.getLocation() %>
+									</td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><span style="margin-right:97px; font-weight:400;font-size:smaller;">무료 Wi-fi 여부</span>
+										<%= hc.getWifi() %>
+									</td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><span style="margin-right:100px; font-weight:400;font-size:smaller;">온수 욕조 여부</span>
+										<%= hc.getTub() %>
+									</td>
+								</tr>
+								<tr></tr>
+								<tr></tr>
+								<tr>
+									<th style="border-top: 2px solid #7A9BAD; margin: 20px;"></th>
+								</tr>
+								<tr>
+									<th>* 객실 - 1</th>
+								</tr>
+								<tr></tr>
+								<tr>
+									<th>객실 명</th>
+									<td>
+										<%= hr.getRname() %>
+									</td>
+								</tr>
+								<tr>
+									<th>객실 금액</th>
+									<td>
+										<%= hr.getRprice() %>
+									</td>
+								</tr>
+								<tr>
+									<th>객실 욕조 여부</th>
+									<td>
+										<%= hr.getRtub() %>
+									</td>
+								</tr>
+								<tr>
+									<th>침대 타입</th>
+									<td>
+										<%= hr.getRbadtype() %>
+									</td>
+								</tr>
+								<tr>
+									<th>전망</th>
+									<td>
+										<%= hr.getRview() %>
+									</td>
+								</tr>
+								<tr>
+									<th>객실 사이즈(m2)</th>
+									<td>
+										<%= hr.getRsize() %>
+									</td>
+								</tr>
+								<tr>
+									<th>객실 이미지</th>
+									<td>
+										<%= hr.getRimg() %>
+									</td>
+								</tr>
+								<tr>
+									<th>조식 여부</th>
+									<td>
+										<%= hr.getRbreakfast() %>
+									</td>
+								</tr>
+								<tr></tr>
+								<tr></tr>
+								<tr>
+									<th>* 객실 - 2</th>
+								</tr>
+								<tr></tr>
+								<tr>
+									<th>객실 명</th>
+									<td>
+										<%= hr2.getRname() %>
+									</td>
+								</tr>
+								<tr>
+									<th>객실 금액</th>
+									<td>
+										<%= hr2.getRprice() %>
+									</td>
+								</tr>
+								<tr>
+									<th>객실 욕조 여부</th>
+									<td>
+										<%= hr2.getRtub() %>
+									</td>
+								</tr>
+								<tr>
+									<th>침대 타입</th>
+									<td>
+										<%= hr2.getRbadtype() %>
+									</td>
+								</tr>
+								<tr>
+									<th>전망</th>
+									<td>
+										<%= hr2.getRview() %>
+									</td>
+								</tr>
+								<tr>
+									<th>객실 사이즈(m2)</th>
+									<td>
+										<%= hr2.getRsize() %>
+									</td>
+								</tr>
+								<tr>
+									<th>객실 이미지</th>
+									<td>
+										<%= hr2.getRimg() %>
+									</td>
+								</tr>
+								<tr>
+									<th>조식 여부</th>
+									<td>
+										<%= hr2.getRbreakfast() %>
+									</td>
+								</tr>
+	                        </table>
+		                    <div class="empty">
+		                        <br><br><br>
+		                    </div>
+		                    <div class="btns">
                         <input type="button" value="목록으로" class="preBtn" onclick="location.href='hList.hj'">
-                        <input type="submit" value="내용 수정" class="subBtn" onclick="location.href='hEditView.hj?hNo=<%=c.getHno()%>'">
+                        <input type="submit" value="내용 수정" class="subBtn" onclick="location.href='hEditView.hj?hNo=<%=h.gethNo()%>'">
                     </div>
                     </div>
                 </div>
             </div>
+        	</div>
         </div>
 	</main>
 	<%@ include file = "./Manager_footer.jsp" %>

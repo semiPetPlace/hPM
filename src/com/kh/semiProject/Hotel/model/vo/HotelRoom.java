@@ -8,7 +8,6 @@ public class HotelRoom implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1277443183984026159L;
-
 	
 	private int hno;
 	private String hname;
@@ -23,13 +22,45 @@ public class HotelRoom implements Serializable{
 	private String rsize;
 	private String rview;
 	private String rstatus;
-	@Override
-	public String toString() {
-		return "HotelRoom [hno=" + hno + ", hname=" + hname + ", rname=" + rname + ", rprice=" + rprice + ", rcheckin="
-				+ rcheckin + ", rcheckout=" + rcheckout + ", rimg=" + rimg + ", rtub=" + rtub + ", rbreakfast="
-				+ rbreakfast + ", rbadtype=" + rbadtype + ", rsize=" + rsize + ", rview=" + rview + ", rstatus="
-				+ rstatus + "]";
+	
+	public HotelRoom() {
+		super();
 	}
+	
+	public HotelRoom(int hno, String hname, String rname, int rprice, String rcheckin, String rcheckout, String rimg,
+			String rtub, String rbreakfast, String rbadtype, String rsize, String rview, String rstatus) {
+		super();
+		this.hno = hno;
+		this.hname = hname;
+		this.rname = rname;
+		this.rprice = rprice;
+		this.rcheckin = rcheckin;
+		this.rcheckout = rcheckout;
+		this.rimg = rimg;
+		this.rtub = rtub;
+		this.rbreakfast = rbreakfast;
+		this.rbadtype = rbadtype;
+		this.rsize = rsize;
+		this.rview = rview;
+		this.rstatus = rstatus;
+	}
+	public HotelRoom(int hno, String hname, String rname, int rprice, String rcheckin, String rcheckout, String rimg,
+			String rtub, String rbreakfast, String rbadtype, String rsize, String rview) {
+		super();
+		this.hno = hno;
+		this.hname = hname;
+		this.rname = rname;
+		this.rprice = rprice;
+		this.rcheckin = rcheckin;
+		this.rcheckout = rcheckout;
+		this.rimg = rimg;
+		this.rtub = rtub;
+		this.rbreakfast = rbreakfast;
+		this.rbadtype = rbadtype;
+		this.rsize = rsize;
+		this.rview = rview;
+	}
+	
 	public int getHno() {
 		return hno;
 	}
@@ -108,42 +139,13 @@ public class HotelRoom implements Serializable{
 	public void setRstatus(String rstatus) {
 		this.rstatus = rstatus;
 	}
-	public HotelRoom(int hno, String hname, String rname, int rprice, String rcheckin, String rcheckout, String rimg,
-			String rtub, String rbreakfast, String rbadtype, String rsize, String rview, String rstatus) {
-		super();
-		this.hno = hno;
-		this.hname = hname;
-		this.rname = rname;
-		this.rprice = rprice;
-		this.rcheckin = rcheckin;
-		this.rcheckout = rcheckout;
-		this.rimg = rimg;
-		this.rtub = rtub;
-		this.rbreakfast = rbreakfast;
-		this.rbadtype = rbadtype;
-		this.rsize = rsize;
-		this.rview = rview;
-		this.rstatus = rstatus;
-	}
-	public HotelRoom(int hno, String hname, String rname, int rprice, String rcheckin, String rcheckout, String rimg,
-			String rtub, String rbreakfast, String rbadtype, String rsize, String rview) {
-		super();
-		this.hno = hno;
-		this.hname = hname;
-		this.rname = rname;
-		this.rprice = rprice;
-		this.rcheckin = rcheckin;
-		this.rcheckout = rcheckout;
-		this.rimg = rimg;
-		this.rtub = rtub;
-		this.rbreakfast = rbreakfast;
-		this.rbadtype = rbadtype;
-		this.rsize = rsize;
-		this.rview = rview;
-	}
-	public HotelRoom() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
+	@Override
+	public String toString() {
+		return "HotelRoom [hno=" + hno + ", hname=" + hname + ", rname=" + rname + ", rprice=" + rprice + ", rcheckin="
+				+ rcheckin + ", rcheckout=" + rcheckout + ", rimg=" + rimg + ", rtub=" + rtub + ", rbreakfast="
+				+ rbreakfast + ", rbadtype=" + rbadtype + ", rsize=" + rsize + ", rview=" + rview + ", rstatus="
+				+ rstatus + "]";
+	}
+	
 }
