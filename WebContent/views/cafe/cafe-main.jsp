@@ -93,7 +93,7 @@
             <!-- 카페/레스토랑 리스트 끝 -->
             
 	<!-- 페이징 처리 시작 -->
-	<div class="list_number" align="center">
+	<div class="list_number" align="center" style="padding-top: 100px;">
 		<% if(keyword != null) { %>
 			<button onclick="location.href='<%= request.getContextPath() %>/cSearch.ch?local=<%= local %>&size=<%= size %>&keyword=<%= keyword %>&currentPage=1'">◀◀</button>
 			<%  if(currentPage <= 1) {  %>

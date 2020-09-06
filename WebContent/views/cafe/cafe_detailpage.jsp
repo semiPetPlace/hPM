@@ -27,7 +27,7 @@
                 <p>★ 평점 <%= c.getCscore() %></p>
             </div>
             <% if(m != null){ %>
-            <div class="review_btn"><a href="<%= request.getContextPath() %>/views/review/review_write.jsp?type=cafe&cno=<%= c.getCno() %>">리뷰 작성</a></div>
+            <div class="review_btn"><a href="../review/review_write.jsp">리뷰 작성</a></div>
             <div class="like_btn"><button onclick="like();" id="like_btn">찜하기</button></div>
             <% } %>
         </div>
@@ -192,20 +192,12 @@
         </div>
         </main>
 	<script>
-		// 리뷰 작성하기 페이지 이동 시작
-			$('.write_btn').click(function(){
-				location.href='<%= request.getContextPath() %>/리뷰서블릿.dd?';
-			});
-		// 리뷰 작성하기 페이지 이동 끝
-		
 		// 찜하기 버튼 시작
 			function like() {
-				if()
 				alert('찜한 플레이스에 저장되었습니다.');
 			}
 		// 찜하기 버튼 끝
 	</script>
-	</div>
     <!-- TOP버튼 -->
     <div style="height: 20px; margin-right: 2%;"><a href="#header" id="top">▲ TOP</a></div>
     	<%@ include file = "../common/footer.jsp" %>
