@@ -101,7 +101,7 @@
                         <img src="<%= request.getContextPath() %>/resources/images/icons/document.png" alt="">
                         <h3>리뷰</h3>
                         <% if(m != null){ %>
-                        <div class="write_btn"><a href="<%= request.getContextPath() %>/views/review/review_write.jsp?type=restaurant&rno=<%= r.getRno() %>">리뷰 작성</a></div>
+                        <div class="write_btn"><a href="<%= request.getContextPath() %>/views/review/review_write.jsp?type=restaurant&cno=<%= r.getRno() %>">리뷰 작성</a></div>
                         <% } %>
                         <div class="list_btn"><a href="<%= request.getContextPath() %>/rvList2.th?type=cafe&ctno=<%=r.getRno() %>">더보기</a></div>
                     </div>
