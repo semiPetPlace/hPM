@@ -1,12 +1,16 @@
 package com.kh.semiProject.notice.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.semiProject.comment.model.service.CommentService;
+import com.kh.semiProject.comment.model.vo.Comment;
 import com.kh.semiProject.notice.model.service.NoticeService;
 import com.kh.semiProject.notice.model.vo.Notice;
 
@@ -32,11 +36,13 @@ public class NoticeSelectOneServlet extends HttpServlet {
 		int nno = Integer.parseInt(request.getParameter("nno"));
 		
 		Notice n = new NoticeService().selectOne(nno);
-		
+		ArrayList<Comment> clist =
+				new CommentService().nselectList(nno);
 		String page = "";
 		if(n != null) {
 			page="views/freeboard/freeboard_detail_notice.jsp";
 			request.setAttribute("notice", n);
+			request.setAttribute("clist", clist);
 		}else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 상세보기 실패!");

@@ -73,8 +73,13 @@ ArrayList<Comment> clist
                         <div id="name">
                             <img src="<%=request.getContextPath()%>/resources/images/review_detail/img1.jpg" id="miniImg">
                             <label class="writer"><%= bco.getCmwriter() %></label>
-                              <% if(m != null && m.getMuserName().equals(bco.getCmwriter())){ %>
+                             <% if(m != null && m.getMuserName().equals(bco.getCmwriter())){ %>
                             <input type="button" value="삭제" class="comentbtn" onclick="location.href='<%=request.getContextPath()%>/commentDelete.th?cmno=<%=bco.getCmno() %>&bno=<%=n.getnNo() %>&type=notice'" id="review_delete">
+                           	<%} %>
+                           	<% if(m != null && m.getMuserId().equals("admin")){ %>
+                           	<input type="button" value="삭제" class="comentbtn" onclick="location.href='<%=request.getContextPath()%>/commentDelete.th?cmno=<%=bco.getCmno() %>&bno=<%=n.getnNo() %>&type=notice'" id="review_delete">
+                           	<%} %>
+                           	 <% if(m != null && m.getMuserName().equals(bco.getCmwriter())){ %>
                             <input type="button" value="수정" class="comentbtn" onclick="update(this)" id="comment_update" style="display: block ;">
 							<input type="button" value="수정완료" class="comentbtn" onclick="update2(this)" id="comment_update2" style="display: none;">
 		                	<input type="hidden" id="cmno2" value="<%=bco.getCmno()%>">
