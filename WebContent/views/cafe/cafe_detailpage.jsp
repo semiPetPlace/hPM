@@ -26,8 +26,10 @@
                 <p><%= c.getCaddress() %></p>
                 <p>★ 평점 <%= c.getCscore() %></p>
             </div>
+            <% if(m != null){ %>
             <div class="review_btn"><a href="<%= request.getContextPath() %>/views/review/review_write.jsp?type=cafe&cno=<%= c.getCno() %>">리뷰 작성</a></div>
             <div class="like_btn"><button onclick="like();" id="like_btn">찜하기</button></div>
+            <% } %>
         </div>
         <div class="wrapper cafe-cont clearfix">
             <div class="left">
