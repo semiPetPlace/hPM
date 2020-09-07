@@ -114,17 +114,15 @@ public class MemberDao {
 		
 		try {
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, m.getMno());
-			pstmt.setString(2, m.getMimg());
-			pstmt.setString(3, m.getMuserPwd());
-			pstmt.setString(4, m.getMbirth());
-			pstmt.setString(5, m.getMemail());
-			pstmt.setString(6, m.getMphone());
-			pstmt.setString(7, m.getMaddress());
-			pstmt.setString(8, m.getMuserId());
+			pstmt.setString(1, m.getMuserPwd());
+			pstmt.setString(2, m.getMemail());
+			pstmt.setString(3, m.getMphone());
+			pstmt.setString(4, m.getMaddress());
+			pstmt.setString(5, m.getMuserId());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new MemberException();
 		}finally {
 			close(pstmt);
@@ -365,6 +363,5 @@ public ArrayList<Member> memberList(Connection con, int currentPage, int limit) 
 		
 		return mList;
 	}
-
-
+	
 }
