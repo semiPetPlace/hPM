@@ -32,16 +32,16 @@
                 </div>
                 <div id="mypage_nav">
                     <ul id="mypage_nav_main" class="page_nav">
-                       <li><a href="<%=request.getContextPath() %>/basic.ys?">마이페이지</a></li>
+                        <li><a href="./mypage-basic.jsp">마이페이지</a></li>
                     </ul>
                     <ul id="mypage_nav_sub">
-                         <li class="page_nav"><a href="<%=request.getContextPath() %>/scheduledReser.ys?userid=<%=m.getMuserId()%>">예약·결제 관리</a></li>
-                        <li class="page_nav"><a href="<%=request.getContextPath() %>/myplace.ys">찜한 플레이스</a></li>
-                        <li class="page_nav"><a href="<%=request.getContextPath() %>/review.ys">내가 쓴 게시글</a></li>
+                        <li class="page_nav"><a href="./mypage-scheduled.reservation.jsp">예약·결제 관리</a></li>
+                        <li class="page_nav"><a href="./mypage-myplace.jsp">찜한 플레이스</a></li>
+                        <li class="page_nav"><a href="./mypage-review.jsp">내가 쓴 게시글</a></li>
                         <br><br><br>
-                        <li class="page_nav"><a href="<%=request.getContextPath() %>/membermodification.ys">회원 정보 수정</a></li>
+                        <li class="page_nav"><a href="./mypage-Member.Modification.jsp">회원 정보 수정</a></li>
                         
-                        <li class="page_nav"><a href="<%=request.getContextPath() %>/withdrawal.ys">회원 탈퇴</a></li>
+                        <li class="page_nav"><a href="./mypage-withdrawal.jsp">회원 탈퇴</a></li>
                     </ul>
                 </div>
                 
@@ -52,7 +52,8 @@
 
             <div id="tag"><label id="tagTitle">회원 정보 수정</label> <label class="caution">*</label><label id="tagNotice">필수정보입력</label></div>
 
-            
+            <form id="updateForm" action="<%= request.getContextPath() %>/upMember.th" 
+			      method="post">
             <div id="showbox">
                 <div>
                     <table>
@@ -73,15 +74,17 @@
                             <td>
                                 <div class="showRecode">
                                     <ul class="list2">
-                                        <li><input type="text" name="" id="id" readonly value="<%=m.getMuserId()%>"></li>
-                                        <li><input type="text" name="" id="password"></li>
-                                        <li><input type="text" name="" id="passwordCheck"></li>
-                                        <li><input type="text" name="" id="name" readonly value="<%=m.getMuserName()%>"></li>
-                                        <li><input type="text" name="" id="brith" class="ssn" value="<%=m.getMbirth()%>" readonly> 
+                                    	<input type="hidden" value="<%=m.getMno()%>">
+                                        <li><input type="text" name="id" id="id"  value="<%=m.getMuserId()%>" disabled></li>
+                                        <li><input type="password" name="password" id="password"></li>
+                                        <li><input type="password" name="passwordCheck" id="passwordCheck"></li>
+                                        <li><input type="text" name="name" id="name"  value="<%=m.getMuserName()%>" disabled></li>
+                                        <li><input type="text" name="brith" id="brith" class="ssn" value="<%=m.getMbirth()%>" disabled> 
                                         </li>
-                                        <li style="margin-bottom: 20px;"><input type="text" name="" id="phone1" class="pNum" readonly value="010"> - 
-                                            <input type="text" name="" id="phone2" class="pNum"> - 
-                                            <input type="text" name="" id="phone3" class="pNum"></li>
+                                        <li style="margin-bottom: 20px;">
+                                        	<input type="text" name="phone1" id="phone1"  maxlength="3" class="pNum" readonly value="010"> - 
+                                            <input type="text" name="phone2" id="phone2"  maxlength="4" id="phone2" class="pNum"> - 
+                                            <input type="text" name="phone3" id="phone3"  maxlength="4" id="phone3" class="pNum"></li>
                                     </ul>
                                 </div>
                             </td>
@@ -100,13 +103,13 @@
                             <td>
                                 <div class="showRecode">
                                     <ul class="list2">
-                                        <li><input type="text" name="zib" id="address1" class="adr"> - 
-                                            <input type="text" name="addr1" id="address2" class="adr" style="width:200px"> 
+                                        <li><input type="text" name="zip" id="zip" class="adr"> - 
+                                            <input type="text" name="address1" id="address1" class="adr" style="width:200px"> 
                                             <input type="button" class="postbtn" value="우편주소 검색" onclick="openZipSearch()">
                                         </li>
-                                        <li><input type="text" name="addr2" id="address3" class="detailAdr"></li>
-                                        <li><input type="text" name="" id="email1" class="email"> @
-                                            <input type="text" name="" id="email2" class="email" >
+                                        <li><input type="text" name="address2" id="address2" class="detailAdr"></li>
+                                        <li><input type="text" name="email1" id="email1" class="email"> @
+                                            <input type="text" name="email2" id="email2" class="email" >
                                         </li>
                                     </ul>
                                 </div>
@@ -120,15 +123,11 @@
                 </div>
 
                 <div id="decisionButton">
-                    <a href="#ex1"><input type="button" value="수정하기" id="btn1"> </a>
-                    <a href="../views/mypage-basic.jsp"><input type="button" value="취소" id="btn2" > </a>
-                </div>
-                
-                
-            </div>
-            <div id="emptyPlace">
-                <img src="" alt="">
-            </div>
+                    <input type="submit" value="수정하기" id="btn1"> </a>
+                    <a href="../views/mypage-basic.jsp"><input type="button" value="취소" id="btn2" ></a>
+                </div>  
+
+		</form>
         </main>
         
         <!-- TOP -->
@@ -137,8 +136,9 @@
         <%@ include file = "../common/footer.jsp" %>
         
         
-						<!-- modal -->
-        <div id="ex1" class="modal" style="height: 150px;">
+
+					<!-- modal -->
+       <!--  			<div id="ex1" class="modal" style="height: 150px;">
             <p>
                 <div id="Notice-modal">
                     <label class="caution">**</label>
@@ -149,41 +149,42 @@
                     </ul>
         
                 </div>
-                <div style="text-align: center; margin-top: 30px;" >
-                    <a href="#"><input type="button" value="회원정보 수정" id="btn3"></a>
-                    <a href="#"><input type="button" value="취소" id="btn4"></a>
+                <div style="text-align: center; margin-top: 30px;">
+                    <input type="submit" value="회원정보 수정" id="btn3">
+                   <input type="button" value="취소" id="btn4" onclick="close()" >
                 </div>
                 
             </p>
-        </div>
+        </div> -->
+
         <script>
 	        $('a[href="#ex1"]').click(function(event) {
 	        	var password = $('#password').val();
-	        	var passwordcheck = $('#passwordcheck').val();
+	        	var passwordcheck = $('#passwordCheck').val();
+	        	console.log( passwordcheck);
+	        	console.log(password);
+	        	
 	    		event.preventDefault();
-	            if($('#password').val() == "" || $('#passwordcheck').val() == "" || $('#phone2').val() == ""|| $('#phone3').val() == ""){
-	            	alert("필수값을 입력해주세요.");
-	            }else if(password == passwordcheck){
-	            	alert("변경할 비밀번호를 확인하세요.")
+	            if($('#password').val() == "" || $('#passwordcheck').val() == "" || $('#phone2').val() == ""|| $('#phone3').val() == "" ||$('#email1').val() == ""){
+	            	alert("필수값을 입력해주세요.")
+	            }else if(password != passwordcheck){
+	            		 alert("변경할 비밀번호를 확인하세요.")
 	            }else{
 	            	$(this).modal({
 	              		fadeDuration: 250
 	            	});
 	            }
-	    	
 	      
 	   		});
-	       
-	        
-	        
-            
-
+	        function close() {
+	        	$('#modal').modal("hide"); 
+			}
             function openZipSearch() {
 	            new daum.Postcode({
 		            oncomplete: function(data) {
-                    $('[name=zip]').val(data.postcode); // 우편번호 (5자리)
+                    $('#zip').val(data.zonecode);
                     $('[name=addr1]').val(data.address);
-                    $('[name=addr2]').val(data.buildingName);
+                    $('#address2').focus();
                     }
                 }).open();
             }
