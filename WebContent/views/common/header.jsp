@@ -43,7 +43,7 @@
 					} else {
 				%>
 				<a> <%=m.getMuserName()%>
-				</a> <a href="<%=request.getContextPath() %>/views/mypage/mypage-basic.jsp">마이페이지</a> <a href="#"
+				</a> <a href="<%=request.getContextPath() %>/basic.ys?">마이페이지</a> <a href="#"
 					onclick='logout()'>로그아웃</a>
 				<%
 					}

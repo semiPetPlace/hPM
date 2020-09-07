@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, com.kh.semiProject.mypage.model.vo.*" %>
+<% ArrayList<ReservationMana> reserList = (ArrayList<ReservationMana>)request.getAttribute("reserList");%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -25,7 +27,7 @@
                 </div>
                 <div id="mypage_nav">
                     <ul id="mypage_nav_main" class="page_nav">
-                        <li><a href="./mypage-basic.jsp">마이페이지</a></li>
+                        <li><a href="<%=request.getContextPath() %>/basic.ys?">마이페이지</a></li>
                     </ul>
                     <ul id="mypage_nav_sub">
                         <li class="page_nav"><a href="<%=request.getContextPath() %>/scheduledReser.ys?userid=<%=m.getMuserId()%>">예약·결제 관리</a></li>
@@ -44,9 +46,9 @@
                             <div id="userInfo">
                                 <tr>
                                     <td>
-                                        <li><label id="userName" style="font-size: large; font-weight: 500;">Name</label></li>     
-                                        <li><label id="userId" style="font-size: 14px; color: gray;">Id</label></li>
-                                        <li><label id="phoneNum" style="font-size: 14px;">010-2222-3333</label></li>                           
+                                        <li><label id="userName" style="font-size: large; font-weight: 500;">Name : <%=m.getMuserName() %></label></li>     
+                                        <li><label id="userId" style="font-size: 14px; color: gray;">Id : <%=m.getMuserId() %></label></li>
+                                        <li><label id="phoneNum" style="font-size: 14px;"><%=m.getTel() %></label></li>                           
                                     </td>
                                 </tr>
                                 
@@ -56,105 +58,39 @@
 
                     <table id="TBottom">
                         <tr>
-                            <p class="looked_around_place">내가 본 플레이스</p>
+                            <p class="looked_around_place">최근예약된 플레이스</p>
                         </tr>
-                            <tr id="placeList1">
-                                <tr class="place">
-                                    <td>
-                                        <div class="list">
-                                            <a href="#"><img src="../../resources/images/hotel1.jpg" alt="" width="200px"></a>
-                                            <ul>
-                                                <li>종류</li>
-                                                <li>상호명</li>
-                                                <li>평점</li>
-                                            </ul>
-                                        </div>
-                                        
-                                    </td>
-                                    <td>
-                                        <div class="list">
-                                            <a href="#"><img src="../../resources/images/hotel1.jpg" alt="" width="200px"></a>
-                                            <ul>
-                                                <li>종류</li>
-                                                <li>상호명</li>
-                                                <li>평점</li>
-                                            </ul>
-                                        </div>
-                                        
-                                    </td>
-                                    <td>
-                                        <div class="list">
-                                            <a href="#"><img src="../../resources/images/hotel1.jpg" alt="" width="200px"></a>
-                                            <ul>
-                                                <li>종류</li>
-                                                <li>상호명</li>
-                                                <li>평점</li>
-                                            </ul>
-                                        </div>
-                                        
-                                    </td>
-                                    <td>
-                                        <div class="list">
-                                            <a href="#"><img src="../../resources/images/hotel1.jpg" alt="" width="200px"></a>
-                                            <ul>
-                                                <li>종류</li>
-                                                <li>상호명</li>
-                                                <li>평점</li>
-                                            </ul>
-                                        </div>
-                                        
-                                    </td>
-                                </tr>
-                            </div>
-                        </tr>
-                        <tr class="place2">
-                            <td>
-                                <div class="list">
-                                    <a href="#"><img src="../../resources/images/hotel1.jpg" alt="" width="200px"></a>
-                                    <ul>
-                                        <li>종류</li>
-                                        <li>상호명</li>
-                                        <li>평점</li>
-                                    </ul>
-                                </div>
-                                
-                            </td>
-                            <td>
-                                <div class="list">
-                                    <a href="#"><img src="../../resources/images/hotel1.jpg" alt="" width="200px"></a>
-                                    <ul>
-                                        <li>종류</li>
-                                        <li>상호명</li>
-                                        <li>평점</li>
-                                    </ul>
-                                </div>
-                                
-                            </td>
-                            <td>
-                                <div class="list">
-                                    <a href="#"><img src="../../resources/images/hotel1.jpg" alt="" width="200px"></a>
-                                    <ul>
-                                        <li>종류</li>
-                                        <li>상호명</li>
-                                        <li>평점</li>
-                                    </ul>
-                                </div>
-                                
-                            </td>
-                            <td>
-                                <div class="list">
-                                    <a href="#"><img src="../../resources/images/hotel1.jpg" alt="" width="200px"></a>
-                                    <ul>
-                                        <li>종류</li>
-                                        <li>상호명</li>
-                                        <li>평점</li>
-                                    </ul>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                    </div>
-                </tr>
+                        <tr id="placeList1">
+                        
+                        
+                          <tr class="place">
+                          <% int i=0;
+                        	for(ReservationMana rvm : reserList) {
+                        	%>
+                        	<% String[] himg = rvm.getReserHotelimg().split(","); %>
+                          		<%if(i == 4){
+                            		break;
+                            	} %>
+                              <td>
+                                  <div class="list">
+                                      <a href="#"><img src="<%=request.getContextPath()%>/resources/images/<%=himg[0] %>" alt="" width="200px"></a>
+                                      <ul>
+                                          <li>동반호텔</li>
+                                          <li><%=rvm.getReserhotelname() %></li>
+                                          <li><%=rvm.getReserDate() %></li>
+                                      </ul>
+                                  </div>
+                                  
+                              </td>
+                              <%i++;
+	                      	} %>
+                          </tr>
+	                      <tr class="place2">
+	                         
+	                          
+	                      </tr>
+	                      
+                      	</tr>
                     </table>
                 </div>
                 
