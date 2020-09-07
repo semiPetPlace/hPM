@@ -304,7 +304,7 @@
 			                                <hr>
 			                                <div class="roomfacility">
 			                                    <li class="font-16 green"><img class="mini-icon" src="" alt="">무료 Wi-Fi</li>
-			                                    <li class="font-16"><img class="mini-icon" src="" alt="">객실 크기<%=hr.getRsize() %></li>
+			                                    <li class="font-16"><img class="mini-icon" src="" alt="">객실 크기<%=hr.getRsize() %>m2</li>
 			                                    <li class="font-16"><img class="mini-icon" src="" alt="">전망:<%=hr.getRview() %></li>
 			                                  	<% if(hr.getRtub().equals("Y")){ %>
 			                                    <li class="font-16"><img class="mini-icon" src="" alt="">샤워실 & 욕조</li>

@@ -29,11 +29,7 @@
 				<%
 					} else if (m.getMuserId().equals("admin")) {
 				%>
-<<<<<<< HEAD
 
-
-=======
->>>>>>> refs/remotes/origin/master
 				
 				<a> <%=m.getMuserName()%></a>
 				<a href="#" onclick="goManager()">관리자페이지</a>
@@ -79,23 +75,15 @@
                             <ul class="subnav">
                                 <li><a href="<%= request.getContextPath() %>/blist.th"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_lab.png" alt="반려견 연구소"></a></li>
                                 <li><a href="<%= request.getContextPath() %>/rvList.th"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_review.png" alt="플레이스 리뷰"></a></li>
-<<<<<<< HEAD
-         </ul>
-=======
-                            </ul>
->>>>>>> refs/remotes/origin/master
+
                         </li>
                         <li class="navi_set">
                             <a href="<%= request.getContextPath() %>/nList.th" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/service.png" alt="service"></a>
                             <ul class="subnav">
                                 <li><a href="<%= request.getContextPath() %>/nList.th"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_notice.png" alt="공지사항"></a></li>
-<<<<<<< HEAD
-                                                                   <%--    <li><a href="<%= request.getContextPath() %>/views/service/Q&A.jsp"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_QnA.png" alt="Q & A"></a></li> --%>
- href="<%= request.getContextPath() %>/views/service/Question.jsp"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_contactmtm.png" alt="1:1 문의"></a></li>
-=======
+
                              <%--    <li><a href="<%= request.getContextPath() %>/views/service/Q&A.jsp"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_QnA.png" alt="Q & A"></a></li> --%>
                                 <li><a href="<%= request.getContextPath() %>/views/service/Question.jsp"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_contactmtm.png" alt="1:1 문의"></a></li>
->>>>>>> refs/remotes/origin/master
                             </ul>
                         </li>
                     </div>
@@ -107,13 +95,9 @@
 			location.href = "<%=request.getContextPath()%>/logout.th";
 		}
 		function goManager(){
-<<<<<<< HEAD
-			location.href = "<%=request.getContextPath()%>/chart.ma";
-		}
-=======
 	         location.href = "<%=request.getContextPath()%>/chart.ma";
 	      }
->>>>>>> refs/remotes/origin/master
+
 	</script>
 
 </body>
