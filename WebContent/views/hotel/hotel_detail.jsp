@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, com.kh.semiProject.Hotel.model.vo.*" %>
+<%@ page import="java.util.*, com.kh.semiProject.Hotel.model.vo.*,com.kh.semiProject.review.model.vo.*" %>
 <% Hotel h = (Hotel)request.getAttribute("hd"); %>
 <% ArrayList<HotelRoom> hrlist = (ArrayList<HotelRoom>)request.getAttribute("hrlist"); %>
 <% HotelConvenience hc = (HotelConvenience)request.getAttribute("hc"); %>
 <% String Cin = (String)request.getAttribute("Cin"); %>
 <% String Cout = (String)request.getAttribute("Cout"); %>
+<% ArrayList<Review> hre = (ArrayList<Review>)request.getAttribute("hreview"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -212,29 +213,25 @@
                             </div>
                         </div>
                         <div class="right-text">
-                            <h1>이숙소의 리뷰</h1>
+                            <h1>이업체의 리뷰</h1>
                             <hr>
                             <div class="reveiws">
+                            	<% int i=0;
+                               	for(Review r : hre){
+                                  if(i==5){
+                                     break;
+                                  }
+                           		 %>
+                            	
                                 <div class="reveiw">
-                                <div id="reviewtext">“아이들을 믿고 맡길 수 있어요!”</div>
-                                <div id="reviewwriter">h**woo12님</div>
+                                <div id="reviewtext">“<%=r.getRvcontent() %>”</div>
+                                <div id="reviewwriter"><%=r.getRvwriter() %>님</div>
+                                <div id="reviewscore">별점 <%=r.getRvScore()%></div>
                                 </div>
                                 <hr>
-                                <div class="reveiw">
-                                <div id="reviewtext">“일 때문에 어쩔 수 없이 믿고 맡길 곳이 없어서 수소문하여 찾은 곳인데 최고입...”</div>
-                                <div id="reviewwriter">g**x848님</div>
-                                </div>
-                                <hr>
-                                <div class="reveiw">
-                                <div id="reviewtext">“일 때문에 어쩔 수 없이 믿고 맡길 곳이 없어서 수소문하여 찾은 곳인데 최고입...”</div>
-                                <div id="reviewwriter">g**x848님</div>
-                                </div>
-                                <hr>
-                                <div class="reveiw">
-                                <div id="reviewtext">“개팔자가 상팔자네요.. 우리 꿀떡이가 여기 호텔 한번 맡겨지더니 너무 좋았는지...”</div>
-                                <div id="reviewwriter">g**lttuck님</div>
-                                </div>
-                                <hr>
+                                <% i++;
+                                } %>
+                                
                                 <% if(m !=null){ %>
                                 <div><a href="<%= request.getContextPath() %>/views/review/review_write.jsp?type=hotel&cno=<%= h.gethNo() %>" style="float:right;">>리뷰 작성하기</a></div>
                                 <%} %>

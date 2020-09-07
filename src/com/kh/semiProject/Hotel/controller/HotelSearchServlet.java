@@ -42,6 +42,9 @@ public class HotelSearchServlet extends HttpServlet {
 			String[] checkArr = request.getParameterValues("filter");
 			System.out.println(checkArr.length);
 			HotelService hs = new HotelService();
+			
+			
+			
 
 			hlist = hs.filteredHotel(in,out,area,checkArr);
 			

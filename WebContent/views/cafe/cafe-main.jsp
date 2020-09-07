@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/pagination.css">
     <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src ="<%= request.getContextPath() %>/resources/js/script.js"></script>
+
 </head>
 <body>
     	<%@ include file = "../common/header.jsp" %>
