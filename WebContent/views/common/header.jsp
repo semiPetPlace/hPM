@@ -22,7 +22,7 @@
                 <div class="wrapper">
        				<%
 					if (m == null) {
-				%>
+				%> 
 				<a href="<%=request.getContextPath() %>/views/login/login.jsp">로그인</a> <a
 					href="<%=request.getContextPath() %>/views/login/sing-up1.jsp">회원가입</a>
 
