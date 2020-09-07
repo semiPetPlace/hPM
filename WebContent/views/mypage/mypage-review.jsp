@@ -7,10 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>내가 쓴 게시글</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../resources/css/mainpage.css">
-        <link rel="stylesheet" href="../../resources/css/mypage-review.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mainpage.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mypage-review.css">
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src ="../../resources/js/script.js"></script>
+        <script src ="<%=request.getContextPath()%>/resources/js/script.js"></script>
     </head>
     <body>
         	<%@ include file = "../common/header.jsp" %>
@@ -25,12 +25,12 @@
                     </ul>
                     <ul id="mypage_nav_sub">
                         <li class="page_nav"><a href="<%=request.getContextPath() %>/scheduledReser.ys?userid=<%=m.getMuserId()%>">예약·결제 관리</a></li>
-                        <li class="page_nav"><a href="./mypage-myplace.jsp">찜한 플레이스</a></li>
-                        <li class="page_nav"><a href="./mypage-review.jsp">내가 쓴 게시글</a></li>
+                        <li class="page_nav"><a href="<%=request.getContextPath() %>/myplace.ys">찜한 플레이스</a></li>
+                        <li class="page_nav"><a href="<%=request.getContextPath() %>/review.ys">내가 쓴 게시글</a></li>
                         <br><br><br>
-                        <li class="page_nav"><a href="./mypage-Member.Modification.jsp">회원 정보 수정</a></li>
+                        <li class="page_nav"><a href="<%=request.getContextPath() %>/membermodification.ys">회원 정보 수정</a></li>
                         
-                        <li class="page_nav"><a href="./mypage-withdrawal.jsp">회원 탈퇴</a></li>
+                        <li class="page_nav"><a href="<%=request.getContextPath() %>/withdrawal.ys">회원 탈퇴</a></li>
                     </ul>
             </div>
             
@@ -39,8 +39,8 @@
                 <table id="review_list">
                         <tr class="review_row">
                             <td>
-                                <div class="review1" onclick="location.href='../../views/review/review_detail.jsp'">
-                                    <img src="../../resources/images/review_list/back1.jpg" class="reviewImg">
+                                <div class="review1" onclick="location.href='<%=request.getContextPath()%>/views/review/review_detail.jsp'">
+                                    <img src="<%=request.getContextPath()%>/resources/images/review_list/back1.jpg" class="reviewImg">
                                     <div class="review_content">
                                         <label>글 제목</label>
                                         <div>게시글 내용</div>
@@ -48,8 +48,8 @@
                                 </div>     
                             </td>
                             <td>
-                                <div class="review2" onclick="location.href='../../views/review/review_detail.jsp'">
-                                    <img src="../../resources/images/review_list/back1.jpg" class="reviewImg">
+                                <div class="review2" onclick="location.href='<%=request.getContextPath()%>/views/review/review_detail.jsp'">
+                                    <img src="<%=request.getContextPath()%>/resources/images/review_list/back1.jpg" class="reviewImg">
                                     <div class="review_content">
                                         <label>글 제목</label>
                                         <div>게시글 내용</div>
@@ -57,8 +57,8 @@
                                 </div>     
                             </td>
                             <td>
-                                <div class="review2" onclick="location.href='../../views/review/review_detail.jsp'">
-                                    <img src="../../resources/images/review_list/back1.jpg" class="reviewImg">
+                                <div class="review2" onclick="location.href='<%=request.getContextPath()%>/views/review/review_detail.jsp'">
+                                    <img src="<%=request.getContextPath()%>/resources/images/review_list/back1.jpg" class="reviewImg">
                                     <div class="review_content">
                                         <label>글 제목</label>
                                         <div>게시글 내용</div>
@@ -66,47 +66,8 @@
                                 </div>     
                             </td>
                             <td>
-                                <div class="review3" onclick="location.href='../../views/review/review_detail.jsp'">
-                                    <img src="../../resources/images/review_list/back1.jpg" class="reviewImg">
-                                    <div class="review_content">
-                                        <label>글 제목</label>
-                                        <div>게시글 내용</div>
-                                    </div>
-                                </div>     
-                            </td>
-                        </tr>
-   
-                        <tr class="review_row">
-                            <td>
-                                <div class="review1" onclick="location.href='../../views/review/review_detail.jsp'">
-                                    <img src="../../resources/images/review_list/back1.jpg" class="reviewImg">
-                                    <div class="review_content">
-                                        <label>글 제목</label>
-                                        <div>게시글 내용</div>
-                                    </div>
-                                </div>     
-                            </td>
-                            <td>
-                                <div class="review2" onclick="location.href='../../views/review/review_detail.jsp'">
-                                    <img src="../../resources/images/review_list/back1.jpg" class="reviewImg">
-                                    <div class="review_content">
-                                        <label>글 제목</label>
-                                        <div>게시글 내용</div>
-                                    </div>
-                                </div>     
-                            </td>
-                            <td>
-                                <div class="review2" onclick="location.href='../../views/review/review_detail.jsp'">
-                                    <img src="../../resources/images/review_list/back1.jpg" class="reviewImg">
-                                    <div class="review_content">
-                                        <label>글 제목</label>
-                                        <div>게시글 내용</div>
-                                    </div>
-                                </div>     
-                            </td>
-                            <td>
-                                <div class="review3" onclick="location.href='../../views/review/review_detail.jsp'">
-                                    <img src="../../resources/images/review_list/back1.jpg" class="reviewImg">
+                                <div class="review3" onclick="location.href='<%=request.getContextPath()%>/views/review/review_detail.jsp'">
+                                    <img src="<%=request.getContextPath()%>/resources/images/review_list/back1.jpg" class="reviewImg">
                                     <div class="review_content">
                                         <label>글 제목</label>
                                         <div>게시글 내용</div>
@@ -117,8 +78,8 @@
    
                         <tr class="review_row">
                             <td>
-                                <div class="review1" onclick="location.href='../../views/review/review_detail.jsp'">
-                                    <img src="../../resources/images/review_list/back1.jpg" class="reviewImg">
+                                <div class="review1" onclick="location.href='<%=request.getContextPath()%>/views/review/review_detail.jsp'">
+                                    <img src="<%=request.getContextPath()%>/resources/images/review_list/back1.jpg" class="reviewImg">
                                     <div class="review_content">
                                         <label>글 제목</label>
                                         <div>게시글 내용</div>
@@ -126,8 +87,8 @@
                                 </div>     
                             </td>
                             <td>
-                                <div class="review2" onclick="location.href='../../views/review/review_detail.jsp'">
-                                    <img src="../../resources/images/review_list/back1.jpg" class="reviewImg">
+                                <div class="review2" onclick="location.href='<%=request.getContextPath()%>/views/review/review_detail.jsp'">
+                                    <img src="<%=request.getContextPath()%>/resources/images/review_list/back1.jpg" class="reviewImg">
                                     <div class="review_content">
                                         <label>글 제목</label>
                                         <div>게시글 내용</div>
@@ -135,8 +96,8 @@
                                 </div>     
                             </td>
                             <td>
-                                <div class="review2" onclick="location.href='../../views/review/review_detail.jsp'">
-                                    <img src="../../resources/images/review_list/back1.jpg" class="reviewImg">
+                                <div class="review2" onclick="location.href='<%=request.getContextPath()%>/views/review/review_detail.jsp'">
+                                    <img src="<%=request.getContextPath()%>/resources/images/review_list/back1.jpg" class="reviewImg">
                                     <div class="review_content">
                                         <label>글 제목</label>
                                         <div>게시글 내용</div>
@@ -144,8 +105,47 @@
                                 </div>     
                             </td>
                             <td>
-                                <div class="review3" onclick="location.href='../../views/review/review_detail.jsp'">
-                                    <img src="../../resources/images/review_list/back1.jpg" class="reviewImg">
+                                <div class="review3" onclick="location.href='<%=request.getContextPath()%>/views/review/review_detail.jsp'">
+                                    <img src="<%=request.getContextPath()%>/resources/images/review_list/back1.jpg" class="reviewImg">
+                                    <div class="review_content">
+                                        <label>글 제목</label>
+                                        <div>게시글 내용</div>
+                                    </div>
+                                </div>     
+                            </td>
+                        </tr>
+   
+                        <tr class="review_row">
+                            <td>
+                                <div class="review1" onclick="location.href='<%=request.getContextPath()%>/views/review/review_detail.jsp'">
+                                    <img src="<%=request.getContextPath()%>/resources/images/review_list/back1.jpg" class="reviewImg">
+                                    <div class="review_content">
+                                        <label>글 제목</label>
+                                        <div>게시글 내용</div>
+                                    </div>
+                                </div>     
+                            </td>
+                            <td>
+                                <div class="review2" onclick="location.href='<%=request.getContextPath()%>/views/review/review_detail.jsp'">
+                                    <img src="<%=request.getContextPath()%>/resources/images/review_list/back1.jpg" class="reviewImg">
+                                    <div class="review_content">
+                                        <label>글 제목</label>
+                                        <div>게시글 내용</div>
+                                    </div>
+                                </div>     
+                            </td>
+                            <td>
+                                <div class="review2" onclick="location.href='<%=request.getContextPath()%>/views/review/review_detail.jsp'">
+                                    <img src="<%=request.getContextPath()%>/resources/images/review_list/back1.jpg" class="reviewImg">
+                                    <div class="review_content">
+                                        <label>글 제목</label>
+                                        <div>게시글 내용</div>
+                                    </div>
+                                </div>     
+                            </td>
+                            <td>
+                                <div class="review3" onclick="location.href='<%=request.getContextPath()%>/views/review/review_detail.jsp'">
+                                    <img src="<%=request.getContextPath()%>/resources/images/review_list/back1.jpg" class="reviewImg">
                                     <div class="review_content">
                                         <label>글 제목</label>
                                         <div>게시글 내용</div>

@@ -1,28 +1,23 @@
 package com.kh.semiProject.mypage.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semiProject.mypage.model.service.ReservationManaService;
-import com.kh.semiProject.mypage.model.vo.ReservationMana;
-
 /**
- * Servlet implementation class basicServlet
+ * Servlet implementation class reviewServlet
  */
-@WebServlet("/basic.ys")
-public class basicServlet extends HttpServlet {
+@WebServlet("/review.ys")
+public class reviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public basicServlet() {
+    public reviewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,25 +26,12 @@ public class basicServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<ReservationMana> reserList = new ArrayList<>();
+		String page ="";
+		page = "views/mypage/mypage-review.jsp";
 		
 		
-		ReservationManaService srs = new ReservationManaService();
-		
-		reserList = srs.recentReser();
-		
-		System.out.println(reserList);
-		String page = "";
-		if(!reserList.isEmpty()) {
-			page = "views/mypage/mypage-basic.jsp";
-			request.setAttribute("reserList",reserList);
-			
-		}else {
-			page = "views/mypage/mypage-basic.jsp";
-			request.setAttribute("reserList",reserList);
 
-		}
-		request.getRequestDispatcher(page).forward(request, response);
+	request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

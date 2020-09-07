@@ -37,12 +37,12 @@
                     </ul>
                     <ul id="mypage_nav_sub">
                         <li class="page_nav"><a href="<%=request.getContextPath() %>/scheduledReser.ys?userid=<%=m.getMuserId()%>">예약·결제 관리</a></li>
-                        <li class="page_nav"><a href="./mypage-myplace.jsp">찜한 플레이스</a></li>
-                        <li class="page_nav"><a href="./mypage-review.jsp">내가 쓴 게시글</a></li>
+                        <li class="page_nav"><a href="<%=request.getContextPath() %>/myplace.ys">찜한 플레이스</a></li>
+                        <li class="page_nav"><a href="<%=request.getContextPath() %>/review.ys">내가 쓴 게시글</a></li>
                         <br><br><br>
-                        <li class="page_nav"><a href="./mypage-Member.Modification.jsp">회원 정보 수정</a></li>
+                        <li class="page_nav"><a href="<%=request.getContextPath() %>/membermodification.ys">회원 정보 수정</a></li>
                         
-                        <li class="page_nav"><a href="./mypage-withdrawal.jsp">회원 탈퇴</a></li>
+                        <li class="page_nav"><a href="<%=request.getContextPath() %>/withdrawal.ys">회원 탈퇴</a></li>
                     </ul>
                 </div>
                 
