@@ -14,9 +14,11 @@ import java.util.Properties;
 import com.kh.semiProject.Hotel.model.vo.Hotel;
 import com.kh.semiProject.Hotel.model.vo.HotelConvenience;
 import com.kh.semiProject.Hotel.model.vo.HotelRoom;
+import com.kh.semiProject.Hotel.model.vo.PetHotel;
 import com.kh.semiProject.Manager.model.vo.Manager;
+import com.kh.semiProject.cafe.model.vo.Cafe;
 import com.kh.semiProject.member.model.vo.Member;
-
+import com.kh.semiProject.restaurant.model.vo.Restaurant;
 
 import static com.kh.common.JDBCTemplate.*;
 public class ManagerDao {
@@ -246,6 +248,7 @@ public class ManagerDao {
 		return listCount;
 	}
 	
+	
 	public ArrayList<Hotel> listHotel(Connection con, int currentPage, int limit) {
 		ArrayList<Hotel> list = null;
 		PreparedStatement pstmt = null;
@@ -302,7 +305,7 @@ public class ManagerDao {
 			
 			rset = pstmt.executeQuery();
 			
-			if(rset.next()) {	
+			if(rset.next()) {
 				h = new Hotel();
 				h.sethNo(hNo);
 				h.sethName(rset.getString("h_Name"));
@@ -313,11 +316,12 @@ public class ManagerDao {
 				h.sethImg(rset.getString("h_Img"));
 				h.sethPromotion(rset.getString("h_Promotion"));
 				h.sethRequests(rset.getString("h_Requests"));
-				h.sethRegisterData(rset.getDate("h_RegisterData"));
+				h.sethRegisterData(rset.getDate("h_RegisterDate"));
 				h.sethRegistration(rset.getString("h_Registration"));
-				h.setLat(rset.getFloat("h_lat"));
-				h.setLng(rset.getFloat("h_lng"));
-				h.setFilter(rset.getString("h_filter"));
+				h.setLat(rset.getFloat("h_Lat"));
+				h.setLng(rset.getFloat("h_Lng"));
+				h.setFilter(rset.getString("h_Filter"));
+				
 			}
 			
 		}catch(SQLException e) {
@@ -344,11 +348,11 @@ public class ManagerDao {
 			
 			if(rset.next()) {	
 				hc = new HotelConvenience();
-				hc.setTansport(rset.getString("tansport"));
-				hc.setAirport(rset.getString("airport"));
-				hc.setLocation(rset.getString("location"));
-				hc.setWifi(rset.getString("wifi"));
-				hc.setTub(rset.getString("tub"));
+				hc.setTansport(rset.getString("hc_transport"));
+				hc.setAirport(rset.getString("hc_airport"));
+				hc.setLocation(rset.getString("hc_location"));
+				hc.setWifi(rset.getString("hc_wifi"));
+				hc.setTub(rset.getString("hc_tub"));
 			}
 			
 		}catch(SQLException e) {
@@ -360,11 +364,17 @@ public class ManagerDao {
 		
 		return hc;
 	}
-	public HotelRoom selectOneRoom(Connection con, int hNo) {
-		HotelRoom hr = null;
+
+	public ArrayList<Hotel> searchHotel(Connection con) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public ArrayList<HotelRoom> selectOneHotelRoom(Connection con, int hNo) {
+		ArrayList<HotelRoom> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectOneRoom");
+		
+		String sql = prop.getProperty("selectOneHotelRoom");
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -373,16 +383,21 @@ public class ManagerDao {
 			
 			rset = pstmt.executeQuery();
 			
-			if(rset.next()) {	
-				hr = new HotelRoom();
-				hr.setRname(rset.getString("r_Name1"));
-				hr.setRprice(rset.getInt("r_Price1"));
-				hr.setRimg(rset.getString("r_Img1"));
-				hr.setRtub(rset.getString("r_Tub1"));
-				hr.setRbreakfast(rset.getString("r_Breakfast1"));
-				hr.setRbadtype(rset.getString("r_Badtype1"));
-				hr.setRsize(rset.getString("r_Size1"));
-				hr.setRview(rset.getString("r_View1"));
+			list = new ArrayList<>();
+				
+				while(rset.next()) {
+
+					HotelRoom hr = new HotelRoom();
+					hr.setRname(rset.getString("hr_roomName"));
+					hr.setRprice(rset.getInt("hr_Price"));
+					hr.setRimg(rset.getString("hr_Img"));
+					hr.setRtub(rset.getString("HR_CONVENIENCE_TUB"));
+					hr.setRbreakfast(rset.getString("hr_Breakfast"));
+					hr.setRbadtype(rset.getString("hr_Bedtype"));
+					hr.setRsize(rset.getString("hr_roomSize"));
+					hr.setRview(rset.getString("hr_View"));
+					
+					list.add(hr);
 			}
 			
 		}catch(SQLException e) {
@@ -391,44 +406,10 @@ public class ManagerDao {
 			close(rset);
 			close(pstmt);
 		}
-		
-		return hr;
+		return list;
 	}
-	public HotelRoom selectOneRoom2(Connection con, int hNo) {
-		HotelRoom hr2 = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("selectOneRoom");
-		
-		try {
-			pstmt = con.prepareStatement(sql);
-			
-			pstmt.setInt(1, hNo);
-			
-			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {	
-				hr2 = new HotelRoom();
-				hr2.setRname(rset.getString("r_Name2"));
-				hr2.setRprice(rset.getInt("r_Price2"));
-				hr2.setRimg(rset.getString("r_Img2"));
-				hr2.setRtub(rset.getString("r_Tub2"));
-				hr2.setRbreakfast(rset.getString("r_Breakfast2"));
-				hr2.setRbadtype(rset.getString("r_Badtype2"));
-				hr2.setRsize(rset.getString("r_Size2"));
-				hr2.setRview(rset.getString("r_View2"));
-			}
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return hr2;
-	}
-	public ArrayList<Hotel> searchHotel(Connection con, String categorySearch, String keyword) {
+	public ArrayList<Hotel> searchHotel(Connection con, int currentPage, int limit, String categorySearch,
+			String keyword) {
 		ArrayList<Hotel> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -465,7 +446,11 @@ public class ManagerDao {
 		try {
 			pstmt = con.prepareStatement(sql);
 			
+			int startRow = (currentPage-1)*limit+1;
+			int endRow = startRow+limit-1;
 			pstmt.setString(1, keyword);
+			pstmt.setInt(2, endRow);
+			pstmt.setInt(3, startRow);
 			
 			rset = pstmt.executeQuery();
 			list = new ArrayList<>();
@@ -490,64 +475,809 @@ public class ManagerDao {
 		}
 		return list;
 	}
-	public ArrayList<Hotel> searchHotel(Connection con) {
+	public Hotel editViewHotel(Connection con, int hNo) {
+		Hotel h = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("editViewHotel");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, hNo);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			if(rset.next()) {
+				System.out.println("h_lat"+rset.getFloat("h_lat"));
+				h = new Hotel();
+				h.sethNo(hNo);
+				h.sethName(rset.getString("h_Name"));
+				h.sethTel(rset.getString("h_Tel"));
+				h.sethPrice(rset.getInt("h_Price"));
+				h.sethGrade(rset.getInt("h_Grade"));
+				h.sethAddress(rset.getString("h_Address"));
+				h.sethImg(rset.getString("h_Img"));
+				h.sethPromotion(rset.getString("h_Promotion"));
+				h.sethRequests(rset.getString("h_Requests"));
+				h.sethRegisterData(rset.getDate("h_RegisterDate"));
+				h.sethRegistration(rset.getString("h_Registration"));
+				h.setLat(rset.getFloat("h_Lat"));
+				h.setLng(rset.getFloat("h_Lng"));
+				h.setFilter(rset.getString("h_Filter"));
+				
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return h;
+	}
+
+	public HotelConvenience editViewConvenience(Connection con, int hNo) {
+		HotelConvenience hc = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOneConvenience");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, hNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {	
+				hc = new HotelConvenience();
+				hc.setTansport(rset.getString("hc_transport"));
+				hc.setAirport(rset.getString("hc_airport"));
+				hc.setLocation(rset.getString("hc_location"));
+				hc.setWifi(rset.getString("hc_wifi"));
+				hc.setTub(rset.getString("hc_tub"));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return hc;
+	}
+	
+	public ArrayList<HotelRoom> editViewHotelRoom(Connection con, int hNo) {
+		ArrayList<HotelRoom> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectOneHotelRoom");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, hNo);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<>();
+				
+				while(rset.next()) {
+
+					HotelRoom hr = new HotelRoom();
+					hr.setRname(rset.getString("hr_roomName"));
+					hr.setRprice(rset.getInt("hr_Price"));
+					hr.setRimg(rset.getString("hr_Img"));
+					hr.setRtub(rset.getString("HR_CONVENIENCE_TUB"));
+					hr.setRbreakfast(rset.getString("hr_Breakfast"));
+					hr.setRbadtype(rset.getString("hr_Bedtype"));
+					hr.setRsize(rset.getString("hr_roomSize"));
+					hr.setRview(rset.getString("hr_View"));
+					
+					list.add(hr);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	public int editHotel(Connection con, Hotel h, HotelConvenience hc, HotelRoom hr) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("editHotel");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1,h.gethName());
+			pstmt.setString(2,h.gethTel());
+			pstmt.setInt(3,h.gethPrice());
+			pstmt.setInt(4,h.gethGrade());
+			pstmt.setString(5,h.gethAddress());
+			pstmt.setString(6,h.gethImg());
+			pstmt.setString(7,h.gethPromotion());
+			pstmt.setString(8,h.gethRequests());
+			pstmt.setDate(9,h.gethRegisterData());
+			pstmt.setString(10,h.gethRegistration());
+			pstmt.setFloat(11,h.getLat());
+			pstmt.setFloat(12,h.getLng());
+			pstmt.setString(13,h.getFilter());
+			
+			pstmt.setString(14,hc.getTansport());
+			pstmt.setString(15,hc.getAirport());
+			pstmt.setString(16,hc.getLocation());
+			pstmt.setString(17,hc.getWifi());
+			pstmt.setString(18,hc.getTub());
+
+			pstmt.setString(19,hr.getRname());
+			pstmt.setInt(20,hr.getRprice());
+			pstmt.setString(21,hr.getRimg());
+			pstmt.setString(22,hr.getRtub());
+			pstmt.setString(23,hr.getRbreakfast());
+			pstmt.setString(24,hr.getRbadtype());
+			pstmt.setString(25,hr.getRsize());
+			pstmt.setString(26,hr.getRview());
+			pstmt.setInt(27,h.gethNo());
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int editRoom2(Connection con, Hotel h, HotelRoom hr2) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("editRoom2");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1,h.gethNo());
+			pstmt.setString(2,hr2.getRname());
+			pstmt.setInt(3,hr2.getRprice());
+			pstmt.setString(4,hr2.getRimg());
+			pstmt.setString(5,hr2.getRtub());
+			pstmt.setString(6,hr2.getRbreakfast());
+			pstmt.setString(7,hr2.getRbadtype());
+			pstmt.setString(8,hr2.getRsize());
+			pstmt.setString(9,hr2.getRview());
+			pstmt.setInt(10,h.gethNo());
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int enrollpetHotel(Connection con, PetHotel ph) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("enrollpetHotel");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1,ph.getPhname());
+			pstmt.setString(2,ph.getPhtel());
+			pstmt.setInt(3,ph.getPhprice());
+			pstmt.setString(4,ph.getPhaddress());
+			pstmt.setString(5,ph.getImg());
+			pstmt.setString(6,ph.getDimg());
+			pstmt.setString(7,ph.getPhpromotion());
+			pstmt.setString(8,ph.getPhrequests());
+			pstmt.setDate(9,ph.getPhregisterdate());
+			pstmt.setString(10,ph.getRegistration());
+			pstmt.setString(11,ph.getLat());
+			pstmt.setString(12,ph.getLng());
+
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public PetHotel selectOnepetHotel(Connection con, int phno) {
+		PetHotel ph = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOnepetHotel");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, phno);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			if(rset.next()) {
+				ph = new PetHotel();
+				ph.setPhno(phno);
+				ph.setPhname(rset.getString("ph_Name"));
+				ph.setPhtel(rset.getString("ph_Tel"));
+				ph.setPhprice(rset.getInt("ph_Price"));
+				ph.setPhaddress(rset.getString("ph_Address"));
+				ph.setImg(rset.getString("ph_Img"));
+				ph.setDimg(rset.getString("ph_Img"));
+				ph.setPhpromotion(rset.getString("ph_Promotion"));
+				ph.setPhrequests(rset.getString("ph_Requests"));
+				ph.setPhregisterdate(rset.getDate("PH_REGISTERDATE"));
+				ph.setRegistration(rset.getString("PH_REGISTRATION"));
+				ph.setLat(rset.getString("ph_Lat"));
+				ph.setLng(rset.getString("ph_Lng"));
+				
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return ph;
+	}
+	public ArrayList<PetHotel> listpetHotel(Connection con, int currentPage, int limit) {
+		ArrayList<PetHotel> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("listpetHotel");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<PetHotel>();
+			
+			while(rset.next()) {
+				PetHotel ph = new PetHotel();
+				ph = new PetHotel();
+				ph.setPhno(rset.getInt("ph_No"));
+				ph.setPhname(rset.getString("ph_Name"));
+				ph.setPhtel(rset.getString("ph_Tel"));
+				ph.setPhprice(rset.getInt("ph_Price"));
+				ph.setPhaddress(rset.getString("ph_Address"));
+				ph.setPhregisterdate(rset.getDate("PH_REGISTERDATE"));
+				ph.setRegistration(rset.getString("PH_REGISTRATION"));
+				
+				list.add(ph);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	public ArrayList<PetHotel> searchpetHotel(Connection con) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public ArrayList<PetHotel> searchpetHotel(Connection con, int currentPage, int limit, String categorySearch,
+			String keyword) {
+		ArrayList<PetHotel> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = null;
+		
+		switch(categorySearch) {
+		case "phno":
+			sql = prop.getProperty("searchNumpetHotel");
+			break;
+		case "phname":
+			sql = prop.getProperty("searchNamepetHotel");
+			break;
+		case "phtel":
+			sql = prop.getProperty("searchTelpetHotel");
+			break;
+		case "phaddress":
+			sql = prop.getProperty("searchAddresspetHotel");
+			break;
+		case "phprice":
+			sql = prop.getProperty("searchPricepetHotel");
+			break;
+		case "phregisterdate":
+			sql = prop.getProperty("searchRegisterDatapetHotel");
+			break;
+		case "registration":
+			sql = prop.getProperty("searchRegistrationpetHotel");
+			break;
+		}
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage-1)*limit+1;
+			int endRow = startRow+limit-1;
+			pstmt.setString(1, keyword);
+			pstmt.setInt(2, endRow);
+			pstmt.setInt(3, startRow);
+			
+			rset = pstmt.executeQuery();
+			list = new ArrayList<>();
+			
+			while(rset.next()) {
+				PetHotel ph = new PetHotel();
+				ph.setPhno(rset.getInt("ph_No"));
+				ph.setPhname(rset.getString("ph_Name"));
+				ph.setPhtel(rset.getString("ph_Tel"));
+				ph.setPhprice(rset.getInt("ph_Price"));
+				ph.setPhaddress(rset.getString("ph_Address"));
+				ph.setPhregisterdate(rset.getDate("PH_REGISTERDATE"));
+				ph.setRegistration(rset.getString("PH_REGISTRATION"));
+				
+				list.add(ph);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return list;
+	}
+	public int deletePetHotel(Connection con, PetHotel ph) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deletepetHotel");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, ph.getPhno());
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int editpetHotel(Connection con, PetHotel ph) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("editpetHotel");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1,ph.getPhname());
+			pstmt.setString(2,ph.getPhtel());
+			pstmt.setInt(3,ph.getPhprice());
+			pstmt.setString(4,ph.getPhaddress());
+			pstmt.setString(5,ph.getImg());
+			pstmt.setString(6,ph.getDimg());
+			pstmt.setString(7,ph.getPhpromotion());
+			pstmt.setString(8,ph.getPhrequests());
+			pstmt.setDate(9,ph.getPhregisterdate());
+			pstmt.setString(10,ph.getRegistration());
+			pstmt.setString(11,ph.getLat());
+			pstmt.setString(12,ph.getLng());
+			pstmt.setInt(13,ph.getPhno());
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int enrollCafe(Connection con, Cafe c) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("enrollCafe");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1,c.getCname());
+			pstmt.setString(2,c.getCtel());
+			pstmt.setString(3,c.getCtime());
+			pstmt.setString(4,c.getCaddress());
+			pstmt.setString(5,c.getCimage());
+			pstmt.setString(6,c.getCrimage());
+			pstmt.setString(7,c.getCdogCompInfo());
+			pstmt.setString(8,c.getCpromotion());
+			pstmt.setString(9,c.getCrequest());
+			pstmt.setDate(10,c.getCregisterDate());
+			pstmt.setString(11,c.getCregistration());
+			pstmt.setString(12,c.getCpetSize());
+			pstmt.setFloat(13,c.getLat());
+			pstmt.setFloat(14,c.getLng());
 
-	
-//	public ArrayList<HotelRoom> selectOneRoom(Connection con, int hNo) {
-//		ArrayList<HotelRoom> hrlist = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		
-//		String sql = prop.getProperty("selectOneRoom");
-//		
-//		try {
-//			pstmt = con.prepareStatement(sql);
-//			
-//			pstmt.setInt(1, hNo);
-//			
-//			rset = pstmt.executeQuery();
-//			
-//			hrlist = new ArrayList<>();
-//				
-//				while(rset.next()) {
-//					HotelRoom hr = new HotelRoom();
-//					HotelRoom hr2 = new HotelRoom();
-//					hr.setRname(rset.getString("rName1"));
-//					hr.setRprice(rset.getInt("rPrice1"));
-//					hr.setRimg(rset.getString("rImg1"));
-//					hr.setRtub(rset.getString("rTub1"));
-//					hr.setRbreakfast(rset.getString("rBreakfast1"));
-//					hr.setRbadtype(rset.getString("rBadtype1"));
-//					hr.setRsize(rset.getString("rSize1"));
-//					hr.setRview(rset.getString("rView1"));
-//					
-//					hr2.setRname(rset.getString("rName2"));
-//					hr2.setRprice(rset.getInt("rPrice2"));
-//					hr2.setRimg(rset.getString("rImg2"));
-//					hr2.setRtub(rset.getString("rTub2"));
-//					hr2.setRbreakfast(rset.getString("rBreakfast2"));
-//					hr2.setRbadtype(rset.getString("rBadtype2"));
-//					hr2.setRsize(rset.getString("rSize2"));
-//					hr2.setRview(rset.getString("rView2"));
-//					
-//					hrlist.add(hr);
-//					hrlist.add(hr2);
-//			}
-//			
-//		}catch(SQLException e) {
-//			e.printStackTrace();
-//		}finally {
-//			close(rset);
-//			close(pstmt);
-//		}
-//		return hrlist;
-//	}
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int enrollRest(Connection con, Restaurant r) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("enrollRest");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1,r.getRname());
+			pstmt.setString(2,r.getRtel());
+			pstmt.setString(3,r.getRtime());
+			pstmt.setString(4,r.getRaddress());
+			pstmt.setString(5,r.getRimage());
+			pstmt.setString(6,r.getRrimage());
+			pstmt.setString(7,r.getRdogCompInfo());
+			pstmt.setString(8,r.getRpromotion());
+			pstmt.setString(9,r.getRrequest());
+			pstmt.setDate(10,r.getRregisterDate());
+			pstmt.setString(11,r.getRregistration());
+			pstmt.setString(12,r.getRpetSize());
+			pstmt.setFloat(13,r.getLat());
+			pstmt.setFloat(14,r.getLng());
 
-
-	
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public ArrayList<Cafe> listcafe(Connection con, int currentPage, int limit) {
+		ArrayList<Cafe> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("listcafe");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Cafe>();
+			
+			while(rset.next()) {
+				Cafe c = new Cafe();
+				c = new Cafe();
+				c.setCno(rset.getInt("c_No"));
+				c.setCname(rset.getString("c_Name"));
+				c.setCtel(rset.getString("c_Tel"));
+				c.setCaddress(rset.getString("c_Address"));
+				c.setCregisterDate(rset.getDate("C_REGISTERDATE"));
+				c.setCregistration(rset.getString("C_REGISTRATION"));
+				c.setCpetSize(rset.getString("C_PETSIZE"));
+				
+				list.add(c);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	public ArrayList<Restaurant> listrest(Connection con, int currentPage, int limit) {
+		ArrayList<Restaurant> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("listrest");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Restaurant>();
+			
+			while(rset.next()) {
+				Restaurant r = new Restaurant();
+				r.setRno(rset.getInt("r_No"));
+				r.setRname(rset.getString("r_Name"));
+				r.setRtel(rset.getString("r_Tel"));
+				r.setRaddress(rset.getString("r_Address"));
+				r.setRregisterDate(rset.getDate("R_REGISTERDATE"));
+				r.setRregistration(rset.getString("R_REGISTRATION"));
+				r.setRpetSize(rset.getString("R_PETSIZE"));
+				
+				list.add(r);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	public ArrayList<Cafe> searchcafe(Connection con) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public ArrayList<Restaurant> searchrest(Connection con) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public ArrayList<Cafe> searchcafe(Connection con, int currentPage, int limit, String categorySearch,
+			String keyword) {
+		ArrayList<Cafe> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = null;
+		
+		switch(categorySearch) {
+		case "cno":
+			sql = prop.getProperty("searchNumCafe");
+			break;
+		case "cname":
+			sql = prop.getProperty("searchNameCafe");
+			break;
+		case "ctel":
+			sql = prop.getProperty("searchTelCafe");
+			break;
+		case "caddress":
+			sql = prop.getProperty("searchAddressCafe");
+			break;
+		case "cpetSize":
+			sql = prop.getProperty("searchCpetSizeCafe");
+			break;
+		case "cregisterDate":
+			sql = prop.getProperty("searchRegisterDataCafe");
+			break;
+		case "cregistration":
+			sql = prop.getProperty("searchRegistrationCafe");
+			break;
+		}
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage-1)*limit+1;
+			int endRow = startRow+limit-1;
+			pstmt.setString(1, keyword);
+			pstmt.setInt(2, endRow);
+			pstmt.setInt(3, startRow);
+			
+			rset = pstmt.executeQuery();
+			list = new ArrayList<>();
+			
+			while(rset.next()) {
+				Cafe c = new Cafe();
+				c = new Cafe();
+				c.setCno(rset.getInt("c_No"));
+				c.setCname(rset.getString("c_Name"));
+				c.setCtel(rset.getString("c_Tel"));
+				c.setCaddress(rset.getString("c_Address"));
+				c.setCregisterDate(rset.getDate("C_REGISTERDATE"));
+				c.setCregistration(rset.getString("C_REGISTRATION"));
+				c.setCpetSize(rset.getString("C_PETSIZE"));
+				
+				
+				list.add(c);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return list;
+	}
+	public ArrayList<Restaurant> searchrest(Connection con, int currentPage, int limit, String categorySearch,
+			String keyword) {
+		ArrayList<Restaurant> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = null;
+		
+		switch(categorySearch) {
+		case "rno":
+			sql = prop.getProperty("searchNumRest");
+			break;
+		case "rname":
+			sql = prop.getProperty("searchNameRest");
+			break;
+		case "rtel":
+			sql = prop.getProperty("searchTelRest");
+			break;
+		case "raddress":
+			sql = prop.getProperty("searchAddressRest");
+			break;
+		case "rpetSize":
+			sql = prop.getProperty("searchCpetSizeRest");
+			break;
+		case "rregisterDate":
+			sql = prop.getProperty("searchRegisterDataRest");
+			break;
+		case "rregistration":
+			sql = prop.getProperty("searchRegistrationRest");
+			break;
+		}
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage-1)*limit+1;
+			int endRow = startRow+limit-1;
+			pstmt.setString(1, keyword);
+			pstmt.setInt(2, endRow);
+			pstmt.setInt(3, startRow);
+			
+			rset = pstmt.executeQuery();
+			list = new ArrayList<>();
+			
+			while(rset.next()) {
+				Restaurant r = new Restaurant();
+				r.setRno(rset.getInt("r_No"));
+				r.setRname(rset.getString("r_Name"));
+				r.setRtel(rset.getString("r_Tel"));
+				r.setRaddress(rset.getString("r_Address"));
+				r.setRregisterDate(rset.getDate("R_REGISTERDATE"));
+				r.setRregistration(rset.getString("R_REGISTRATION"));
+				r.setRpetSize(rset.getString("R_PETSIZE"));
+				
+				list.add(r);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return list;
+	}
+	public Cafe selectOnecafe(Connection con, int cno) {
+		Cafe c = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOnecafe");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, cno);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			if(rset.next()) {
+				c = new Cafe();
+				c.setCno(cno);
+				c.setCname(rset.getString("c_Name"));
+				c.setCtel(rset.getString("c_Tel"));
+				c.setCaddress(rset.getString("c_Address"));
+				c.setCtime(rset.getString("c_time"));
+				c.setCimage(rset.getString("c_image"));
+				c.setCrimage(rset.getString("c_r_image"));
+				c.setCdogCompInfo(rset.getString("C_DOG_COMPINFO"));
+				c.setCpromotion(rset.getString("C_PROMOTION"));
+				c.setCrequest(rset.getString("C_REQUEST"));
+				c.setCregisterDate(rset.getDate("C_REGISTERDATE"));
+				c.setCregistration(rset.getString("C_REGISTRATION"));
+				c.setCpetSize(rset.getString("C_PETSIZE"));
+				c.setLat(rset.getFloat("LAT"));
+				c.setLng(rset.getFloat("LNG"));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return c;
+	}
+	public Restaurant selectOnerest(Connection con, int rno) {
+		Restaurant r = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOnerest");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, rno);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			if(rset.next()) {
+				r = new Restaurant();
+				r.setRno(rno);
+				r.setRname(rset.getString("r_Name"));
+				r.setRtel(rset.getString("r_Tel"));
+				r.setRaddress(rset.getString("r_Address"));
+				r.setRtime(rset.getString("r_time"));
+				r.setRimage(rset.getString("r_image"));
+				r.setRrimage(rset.getString("r_r_image"));
+				r.setRdogCompInfo(rset.getString("R_DOG_COMPINFO"));
+				r.setRpromotion(rset.getString("R_PROMOTION"));
+				r.setRrequest(rset.getString("R_REQUEST"));
+				r.setRregisterDate(rset.getDate("R_REGISTERDATE"));
+				r.setRregistration(rset.getString("R_REGISTRATION"));
+				r.setRpetSize(rset.getString("R_PETSIZE"));
+				r.setLat(rset.getFloat("LAT"));
+				r.setLng(rset.getFloat("LNG"));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return r;
+	}
+	public int getListCount(Connection con) {
+		int listCount = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("listCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+				System.out.println(listCount);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return listCount;
+	}
 	
 
 }

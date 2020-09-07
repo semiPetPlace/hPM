@@ -70,7 +70,6 @@ public class HotelListServlet extends HttpServlet {
 		
 		list = ms.listHotel(currentPage, limit);
 		
-		
 		String page = "";
 		
 		if(list != null) {
