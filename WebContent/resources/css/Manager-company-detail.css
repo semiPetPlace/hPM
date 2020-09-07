@@ -39,11 +39,7 @@
 }
 .detailCom table, .detailCom th, .detailCom tr{
     font-size: large;
-    border-left: 5px inset rgb(136, 151, 163);
     padding: 0 10%;
-}
-.detailCom th{
-	width: 200px;
 }
 .detailCom table{
 	margin: 5% 0;
@@ -58,7 +54,6 @@
 .searchCompany{
     width: 100%;
     margin-left: 300px;
-    /* border: 1px solid black; */
     font-weight: 500;
     margin-top: 80px;
 }

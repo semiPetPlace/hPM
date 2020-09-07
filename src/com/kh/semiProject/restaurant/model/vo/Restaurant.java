@@ -14,9 +14,11 @@ public class Restaurant implements Serializable {
 	private int rno;
 	private String rrimage;
 	private String rimage;
+	private String[] rimage2;
 	private String rname;
 	private String rtel;
 	private String rtime;
+	private String[] rtime2;
 	private double rscore;
 	private String raddress;
 	private String rdogCompInfo;
@@ -26,6 +28,8 @@ public class Restaurant implements Serializable {
 	private Date rregisterDate;
 	private String rregistration;
 	private String rpetSize;
+	private float lat;
+	private float lng;
 	
 	public Restaurant() {
 		super();
@@ -59,9 +63,12 @@ public class Restaurant implements Serializable {
 		this.rregistration = rregistration;
 	}
 
+
+
+
 	public Restaurant(int rno, String rrimage, String rimage, String rname, String rtel, String rtime, double rscore,
 			String raddress, String rdogCompInfo, String rpromotion, String rreview, String rrequest,
-			Date rregisterDate, String rregistration, String rpetSize) {
+			Date rregisterDate, String rregistration, String rpetSize, Float lat, Float lng) {
 		super();
 		this.rno = rno;
 		this.rrimage = rrimage;
@@ -78,8 +85,26 @@ public class Restaurant implements Serializable {
 		this.rregisterDate = rregisterDate;
 		this.rregistration = rregistration;
 		this.rpetSize = rpetSize;
+		this.lat = lat;
+		this.lng = lng;
 	}
 
+	
+	public Float getLat() {
+		return lat;
+	}
+
+	public void setLat(Float lat) {
+		this.lat = lat;
+	}
+
+	public Float getLng() {
+		return lng;
+	}
+
+	public void setLng(Float lng) {
+		this.lng = lng;
+	}
 
 	public int getRno() {
 		return rno;
@@ -201,12 +226,27 @@ public class Restaurant implements Serializable {
 		this.rpetSize = rpetSize;
 	}
 
+	public void setRtime2(String[] rtime2) {
+		this.rtime2 = rtime2;
+	}
+	public String[] getRtime2() {
+		return rtime2;
+	}
+	public String[] getRimage2() {
+		return rimage2;
+	}
+
+	public void setRimage2(String[] rimage2) {
+		this.rimage2 = rimage2;
+	}
+
 	@Override
 	public String toString() {
-		return "rno=" + rno + ", rrimage=" + rrimage + ", rimage=" + rimage + ", rname=" + rname + ", rtel="
+		return "Restaurant [rno=" + rno + ", rrimage=" + rrimage + ", rimage=" + rimage + ", rname=" + rname + ", rtel="
 				+ rtel + ", rtime=" + rtime + ", rscore=" + rscore + ", raddress=" + raddress + ", rdogCompInfo="
 				+ rdogCompInfo + ", rpromotion=" + rpromotion + ", rreview=" + rreview + ", rrequest=" + rrequest
-				+ ", rregisterDate=" + rregisterDate + ", rregistration=" + rregistration + ", rpetSize=" + rpetSize;
+				+ ", rregisterDate=" + rregisterDate + ", rregistration=" + rregistration + ", rpetSize=" + rpetSize
+				+ ", lat=" + lat + ", lng=" + lng + "]";
 	}
 
 }

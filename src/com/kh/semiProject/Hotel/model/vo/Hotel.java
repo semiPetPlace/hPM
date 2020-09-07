@@ -28,9 +28,10 @@ public class Hotel implements Serializable{
 	public Hotel() {
 		super();
 	}
-	
-	
-	
+
+
+
+
 	public Hotel(int hNo, String hName, String hTel, int hPrice, int hGrade, String hAddress, Date hRegisterData,
 			String hRegistration) {
 		super();
@@ -72,6 +73,29 @@ public class Hotel implements Serializable{
 		this.hRegisterData = hRegisterData;
 		this.hRegistration = hRegistration;
 	}
+	
+	public Hotel(int hNo, String hName, String hTel, int hPrice, int hGrade, String hAddress, String hImg,
+			String hPromotion, String hRequests, Date hRegisterData, String hRegistration, float lat, float lng,
+			String filter) {
+		super();
+		this.hNo = hNo;
+		this.hName = hName;
+		this.hTel = hTel;
+		this.hPrice = hPrice;
+		this.hGrade = hGrade;
+		this.hAddress = hAddress;
+		this.hImg = hImg;
+		this.hPromotion = hPromotion;
+		this.hRequests = hRequests;
+		this.hRegisterData = hRegisterData;
+		this.hRegistration = hRegistration;
+		this.lat = lat;
+		this.lng = lng;
+		this.filter = filter;
+	}
+
+
+
 	public Hotel(int hNo, String hName, String hTel, int hPrice, int hGrade, int hScore, String hAddress, String hImg,
 			String hPromotion, String hRequests, Date hRegisterData, String hRegistration, float lat, float lng,
 			String filter) {

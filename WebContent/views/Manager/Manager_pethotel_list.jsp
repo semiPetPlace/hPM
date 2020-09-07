@@ -4,7 +4,7 @@
 
 <% 
 @SuppressWarnings("unchecked")
-ArrayList<Hotel> list = (ArrayList<Hotel>)request.getAttribute("list");
+ArrayList<PetHotel> list = (ArrayList<PetHotel>)request.getAttribute("list");
 %>
 <% 
 PageInfo pi = (PageInfo)request.getAttribute("pi");
@@ -76,48 +76,45 @@ int endPage = pi.getEndPage();
              <!-- 여기에 메인 컨텐츠 넣으면 됩니다. -->    
             <div class="content">
                 <div class="reservationTable">
-                    <p style="font-size: 30px; font-weight: 500px; margin-bottom: 10px;">동반 호텔 리스트</p>
+                    <p style="font-size: 30px; font-weight: 500px; margin-bottom: 10px;">위탁 호텔 리스트</p>
                     <div class="searchPot"></div>
                     
                     <div class="searchCompany">
 						<select id="searchCondition" name="searchCondition">
 							<option value="total">전체</option>
-							<option value="hNo">업체번호</option>
-							<option value="hName">업체명</option>
-							<option value="hTel">연락처</option>
-							<option value="hPrice">가격</option>
-							<option value="hGrade">등급</option>
-							<option value="hAddress">주소</option>
-							<option value="hRegisterData">등록일</option>
-							<option value="hRegistration">등록상태</option>
+							<option value="phno">업체번호</option>
+							<option value="phname">업체명</option>
+							<option value="phtel">연락처</option>
+							<option value="phprice">가격</option>
+							<option value="phaddress">주소</option>
+							<option value="phregisterdate">등록일</option>
+							<option value="registration">등록상태</option>
 						</select>
 						<input type="search" id="keyword" placeholder="키워드를 입력하세요">
 						<button type="button" onclick="search();">검색</button>
 					</div>
                     <div class="btns">
-                        <input type="button" value="업체 등록" class="enrollBtn" onclick="location.href='views/Manager/Manager_hotel_enrollForm.jsp'">
+                        <input type="button" value="업체 등록" class="enrollBtn" onclick="location.href='views/Manager/Manager_pethotel_enrollForm.jsp'">
                     </div> 
        			<table id="listArea">
                     <tr>
-                        <th id="hNo" style="width:70px;">업체번호</th>
-                        <th id="hName" style="width:200px;">업체명</th>
-                        <th id="hTel" style="width:120px;">연락처</th>
-                        <th id="hPrice" style="width:80px;">가격</th>
-                        <th id="hGrade" style="width:50px;">등급</th>
-                        <th id="hAddress" style="width:400px;">주소</th>
-                        <th id="hRegisterData" style="width:100px;">등록일</th>
-                        <th id="hRegistration" style="width:50px;">등록상태</th>
+                        <th id="phno" style="width:70px;">업체번호</th>
+                        <th id="phname" style="width:200px;">업체명</th>
+                        <th id="phtel" style="width:120px;">연락처</th>
+                        <th id="phprice" style="width:80px;">가격</th>
+                        <th id="phaddress" style="width:400px;">주소</th>
+                        <th id="phregisterdate" style="width:100px;">등록일</th>
+                        <th id="registration" style="width:50px;">등록상태</th>
 					</tr>
-					<% for(Hotel h : list){ %>
+					<% for(PetHotel ph : list){ %>
 					<tr>
-						<td><%= h.gethNo() %></td>
-						<td><%= h.gethName() %></td>
-						<td><%= h.gethTel() %></td>
-						<td><%= h.gethPrice() %></td>
-						<td><%= h.gethGrade() %></td>
-						<td><%= h.gethAddress() %></td>
-						<td><%= h.gethRegisterData() %></td>
-						<td><%= h.gethRegistration() %></td>
+						<td><%= ph.getPhno() %></td>
+						<td><%= ph.getPhname() %></td>
+						<td><%= ph.getPhtel() %></td>
+						<td><%= ph.getPhprice() %></td>
+						<td><%= ph.getPhaddress() %></td>
+						<td><%= ph.getPhregisterdate() %></td>
+						<td><%= ph.getRegistration() %></td>
 					</tr>
 					<% } %>
 				</table>
@@ -126,11 +123,11 @@ int endPage = pi.getEndPage();
                 </div>
                 <!-- 페이징 처리 시작 -->
 				<div class="next" align="center">
-				<button onclick="location.href='<%= request.getContextPath() %>/hList.hj?currentPage=1'">◀◀</button>
+				<button onclick="location.href='<%= request.getContextPath() %>/phList.hj?currentPage=1'">◀◀</button>
 				<%  if(currentPage <= 1) {  %>
 				<button disabled>◀</button>
 				<%  }else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/hList.hj?currentPage=<%= currentPage - 1 %>'">◀</button>
+				<button onclick="location.href='<%= request.getContextPath() %>/phList.hj?currentPage=<%= currentPage - 1 %>'">◀</button>
 				<%  } %>
 				
 				<% for(int p = startPage; p <= endPage; p++) {
@@ -138,16 +135,16 @@ int endPage = pi.getEndPage();
 				%>
 					<button disabled style="border: 2px solid #7A9BAD; color: #7A9BAD;"><%= p %></button>
 				<%      }else { %>
-					<button onclick="location.href='<%= request.getContextPath() %>/hList.hj?currentPage=<%= p %>'"><%= p %></button>
+					<button onclick="location.href='<%= request.getContextPath() %>/phList.hj?currentPage=<%= p %>'"><%= p %></button>
 				<%      } %>
 				<% } %>
 					
 				<%  if(currentPage >= maxPage) {  %>
 				<button disabled>▶</button>
 				<%  }else { %>
-				<button onclick="location.href='<%= request.getContextPath() %>/hList.hj?currentPage=<%= currentPage + 1 %>'">▶</button>
+				<button onclick="location.href='<%= request.getContextPath() %>/phList.hj?currentPage=<%= currentPage + 1 %>'">▶</button>
 				<%  } %>
-				<button onclick="location.href='<%= request.getContextPath() %>/hList.hj?currentPage=<%= maxPage %>'">▶▶</button>
+				<button onclick="location.href='<%= request.getContextPath() %>/phList.hj?currentPage=<%= maxPage %>'">▶▶</button>
 				</div> 
 				<!-- 페이징 처리 끝 -->
                     </div>
@@ -155,6 +152,7 @@ int endPage = pi.getEndPage();
             </div>
         </div>
          <script>  
+     	
 		$(function(){
 			$("#listArea td").mouseenter(function(){
 				$(this).parent().css({"background":"#7A9BAD", "color":"white", "cursor":"pointer"});
@@ -162,13 +160,13 @@ int endPage = pi.getEndPage();
 				$(this).parent().css({"background":"white", "color":"black"});
 			}).click(function(){
 				//console.log($(this).parent().children().eq(0).text());
-				var hNo = $(this).parent().children().eq(0).text();
-				location.href="<%=request.getContextPath()%>/hSelectOne.hj?hNo=" + hNo;
+				var phno = $(this).parent().children().eq(0).text();
+				location.href="<%=request.getContextPath()%>/phSelectOne.hj?phno=" + phno;
 			});
 		});
 		
 		function search(){
-			location.href="<%=request.getContextPath()%>/hSearch.hj?con="+$('#searchCondition').val()+"&keyword="+$('#keyword').val();
+			location.href="<%=request.getContextPath()%>/phSearchList.hj?con="+$('#searchCondition').val()+"&keyword="+$('#keyword').val();
 		}
 		
 		</script>

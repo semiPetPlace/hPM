@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.semiProject.mCompany.model.vo.*"%>
-<% Company c = (Company)request.getAttribute("company"); %>
+    pageEncoding="UTF-8" import="com.kh.semiProject.Hotel.model.vo.*"%>
+<%
+Hotel h = (Hotel)request.getAttribute("hotel");
+HotelConvenience hc = (HotelConvenience)request.getAttribute("hotelConvenience");
+HotelRoom hr = (HotelRoom)request.getAttribute("hotelRoom");
+HotelRoom hr2 = (HotelRoom)request.getAttribute("hotelRoom");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -20,8 +25,8 @@
                 <div class="sub-list">
                     <p>업체 관리</p>
                     <ul>
-                        <li><a href="/semi/hList.hj">· 위탁 호텔 리스트</a></li>
-                        <li><a href="/semi/phList.hj">· 동반 호텔 리스트</a></li>
+                        <li><a href="/semi/hList.hj">· 동반 호텔 리스트</a></li>
+                        <li><a href="/semi/phList.hj">· 위탁 호텔 리스트</a></li>
                         <li><a href="/semi/cList.hj">· 동반 카페 리스트</a></li>
                         <li><a href="/semi/rList.hj">· 동반 식당 리스트</a></li>
                     </ul>
@@ -33,7 +38,7 @@
                     <p style="font-size: 30px; font-weight: 500px; margin-bottom: 10px;">업체 상세 정보 수정</p>
                     <div class="searchPot"></div>
                     <div class="enrollCom">
-                   		<form id="editForm" action="${pageContext.request.contextPath}/cEdit.co" method="post">
+                   		<form id="editForm" action="${pageContext.request.contextPath}/hEdit.hj" method="post">
 	                        <table border="1">
 		                        <tr>
 	                        		<th></th>
@@ -41,56 +46,14 @@
 	                        	<tr>
 	                        		<th></th>
 	                        	</tr>
-	                            <tr>
-	                            	<th></th>
-	                            	<td>
-	                            		<input type="hidden" name="comNum" value="<%= c.getComNum() %>">
-	                            	</td>
-	                            </tr>
-	                            <tr>
-	                                <th>업체 분류</th>
+	                        	<tr>
+	                                <th>호텔 명</th>
 	                                <td>
-	                                    <select name="category" id="category">
-                                            <option value="<%= c.getCategory() %>" selected><%= c.getCategory() %></option>
-                                            <option value="위탁호텔">위탁호텔</option>
-                                            <option value="동반호텔">동반호텔</option>
-                                            <option value="동반카페">동반카페</option>
-                                            <option value="동반식당">동반식당</option>
-                                        </select>
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th>사업자번호</th>
-	                                <td>
-	                                    <input type="text" maxlength="3" name="num1" id="num1" required="required">-
-	                                    <input type="text" maxlength="2" name="num2" id="num2" required="required">-
-	                                    <input type="text" maxlength="5" name="num3" id="num3" required="required">
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th>기업 형태</th>
-	                                <td>
-	                                    <select name="corp" id="corp" value="<%= c.getCorp() %>">
-                                            <option value="<%= c.getCorp() %>" selected><%= c.getCorp() %></option>
-                                            <option value="법인">법인</option>
-                                            <option value="개인">개인</option>
-                                        </select>
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th>업체 명</th>
-	                                <td>
-	                                    <input type="text" name="cName" id="cName" required="required" value="<%= c.getcName() %>">
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th>업체 등록 일</th>
-	                                <td>
-	                                    <input type="date" name="enrollDate" id="enrollDate" value="<%= c.getEnrollDate() %>">
+	                                    <input type="text" name="hName" id="hName" required="required" value="<%= h.gethName() %>">
 	                                </td>
 	                            </tr>
 								<tr>
-									<th>업체 주소</th>
+									<th>주소지</th>
 									<td>
                                         <input type="text" id="zipCode" name="zipCode" placeholder="우편번호">
                                         <input type="button" id="ckZip" onclick="addrSearch();" value="검색">
@@ -99,76 +62,332 @@
 								<tr>
                                     <th></th>
 									<td>
-                                        <input type="text" id="address1" name="address1" placeholder="주소">
+                                        <input type="text" id="address1" name="address1" placeholder="주소" required="required">
                                     </td>
 								</tr>
 								<tr>
                                     <th></th>
                                     <td>
-                                        <input type="text" id="address2" name="address2" placeholder="상세주소">
+                                        <input type="text" id="address2" name="address2" placeholder="상세주소" required="required">
                                     </td>
 								</tr>
 								<tr>
-	                                <th>업체 연락처</th>
+	                                <th>연락처</th>
 	                                <td>
-	                                    <input type="text" maxlength="4" name="pNum1" id="pNum1">-
-	                                    <input type="text" maxlength="4" name="pNum2" id="pNum2">-
-	                                    <input type="text" maxlength="4" name="pNum3" id="pNum3">
+	                                    <input type="text" maxlength="4" name="num1" id="num1" required="required">-
+	                                    <input type="text" maxlength="4" name="num2" id="num2" required="required">-
+	                                    <input type="text" maxlength="4" name="num3" id="num3" required="required">
 	                                </td>
 	                            </tr>
 	                            <tr>
-	                                <th>대표자</th>
+	                                <th>등급 (1~5)</th>
 	                                <td>
-	                                    <input type="text" maxlength="5" name="rName1" id="rName1" value="<%= c.getrName1() %>">
+	                                    <input type="text" name="hGrade" id="hGrade" min="1" max="5" maxlength="1" required="required"  value="<%= h.gethGrade() %>" style="width: 50px;">
 	                                </td>
 	                            </tr>
 	                            <tr>
-	                                <th>담당자</th>
+	                                <th style="vertical-align:top;">홍보글</th>
 	                                <td>
-	                                    <input type="text" maxlength="5" name="rName2" id="rName2" value="<%= c.getrName2() %>">
+	                                    <textarea name="hPromotion" id="hPromotion" <%-- value="<%= h.gethPromotion() %>" --%>></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
-	                                <th>담당자 연락처</th>
+	                                <th style="vertical-align:top;">요청사항</th>
 	                                <td>
-	                                    <input type="text" maxlength="3" name="conNum1" id="conNum1">-
-	                                    <input type="text" maxlength="4" name="conNum2" id="conNum2">-
-	                                    <input type="text" maxlength="4" name="conNum3" id="conNum3">
+	                                    <textarea name="hRequests" id="hRequests" <%-- value="<%= h.gethRequests() %>" --%>></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
-	                                <th>담당자 이메일</th>
+	                                <th>호텔 최저가</th>
 	                                <td>
-	                                    <input type="email" name="email" id="email" value="<%= c.getEmail() %>">
+	                                    <input type="text" maxlength="10" name="hPrice" id="hPrice" value="<%= h.gethPrice() %>" required="required">
 	                                </td>
 	                            </tr>
 	                            <tr>
-	                                <th>은행명</th>
-	                                <td>
-	                                    <input type="text" name="bankName" id="bankName" value="<%= c.getBankName() %>">
+	                                <th>호텔 이미지</th>
+	                                 <td style="padding:10px 0;">
+										<input type="file" name="hImg"/><br>
+										<input type="file" name="hImg1"/><br>
+										<input type="file" name="hImg2"/><br>
+										<input type="file" name="hImg3"/><br>
+										<input type="file" name="hImg4"/><br>
+										<input type="file" name="hImg5"/><br>
 	                                </td>
 	                            </tr>
 	                            <tr>
-	                                <th>예금주</th>
+	                                <th>위도</th>
 	                                <td>
-	                                    <input type="text" name="holder" id="holder" value="<%= c.getHolder() %>">
+	                                    <input type="text" maxlength="20" name="lat" id="lat" value="<%= h.getLat() %>">
 	                                </td>
 	                            </tr>
 	                            <tr>
-	                                <th>계좌번호</th>
+	                                <th>경도</th>
 	                                <td>
-	                                    <input type="text" maxlength="14" name="account" id="account" value="<%= c.getAccount() %>">
+	                                    <input type="text" maxlength="20" name="lng" id="lng" value="<%= h.getLng() %>">
 	                                </td>
 	                            </tr>
 	                            <tr>
-									<th>등록 상태</th>
+	                                <th>부가시설</th>
+	                                <td>
+	                                <div class="facility" style="border: 1px solid black; padding:3px; margin-top:10px; margin-bottom:10px; width:650px; font-weight: 200; font-size: small;">
+		                                <div class="filter1"><input type="checkbox" id='1' name="filter" value="24시프론트"/> 24시 프론트 
+					                    <input type="checkbox" id='2' name="filter" value="주차장"/> 주차장
+					                    <input type="checkbox" id='3' name="filter" value="레스토랑"/> 레스토랑
+					                    <input type="checkbox" id='4' name="filter" value="룸서비스"/> 룸 서비스
+					                    <input type="checkbox" id='5' name="filter" value="피트니스센터"/> 피트니스 센터
+					                    <input type="checkbox" id='6' name="filter" value="금연실"/> 금연실 
+					                    <input type="checkbox" id='7' name="filter" value="공항셔틀버스"/> 공항 셔틀버스</div>
+					                    <div class="filter2"><input type="checkbox" id='8' name="filter" value="장애인편의시설"/> 장애인 편의시설
+					                    <input type="checkbox" id='9' name="filter" value="방음"/> 방음 
+					                    <input type="checkbox" id='10' name="filter" value="가족실"/> 가족실
+					                    <input type="checkbox" id='11' name="filter" value="스파"/> 스파 
+					                    <input type="checkbox" id='12' name="filter" value="사우나"/> 사우나
+					                    <input type="checkbox" id='13' name="filter" value="와이파이"/> 와이파이
+					                    <input type="checkbox" id='14' name="filter" value="전기차충전소"/> 전기차 충전소 
+					                    <input type="checkbox" id='15' name="filter" value="수영장"/> 수영장</div> 
+					                    <div class="filter3"><input type="checkbox" id='16' name="filter" value="간이주방"/> 간이 주방
+					                    <input type="checkbox" id='17' name="filter" value="욕실"/> 욕실  
+					                    <input type="checkbox" id='18' name="filter" value="TV"/> TV 
+					                    <input type="checkbox" id='19' name="filter" value="세탁"/> 세탁 
+					                    <input type="checkbox" id='20' name="filter" value="전기포트"/> 전기포트 
+					                    <input type="checkbox" id='21' name="filter" value="커피머신"/> 커피머신 
+					                    <input type="checkbox" id='22' name="filter" value="루프탑"/> 루프탑 
+					                    <input type="checkbox" id='23' name="filter" value="에어컨"/> 에어컨 
+					                    <input type="checkbox" id='24' name="filter" value="테라스"/> 테라스
+					                    <input type="checkbox" id='25' name="filter" value="발코니"/> 발코니</div>
+					                </div>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <th>등록 일</th>
+	                                <td>
+	                                    <input type="date" name="hRegisterData" id="hRegisterData" value="<%= h.gethRegisterData() %>" style="margin:5px auto;">
+	                                </td>
+	                            </tr>
+	                            <tr>
+									<th>등록 여부</th>
 									<td>
-										<select name="state" id="state" value="<%= c.getState() %>">
-											<option value="Y" selected>Y</option>
+										<select name="hRegistration" id="hRegistration">
+											<option value="<%= h.gethRegistration() %>" selected><%= h.gethRegistration() %></option>
+											<option value="Y">Y</option>
 											<option value="N">N</option>
 										</select>
 									</td>
 								</tr>
+								<tr>
+									<th>편의성</th>
+									<td><span style="margin-right:80px; font-weight:400;font-size:smaller;">대중교통으로 거리</span>
+										<select name="tansport" id="tansport">
+											<option value="<%= hc.getTansport() %>" selected><%= hc.getTansport() %></option>
+											<option value="대중교통(100미터이내)">100미터이내</option>
+											<option value="대중교통(300미터이내)">300미터이내</option>
+											<option value="대중교통(500미터이내)">500미터이내</option>
+											<option value="대중교통(1000미터이내)">1000미터이내</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><span style="margin-right:20px; font-weight:400;font-size:smaller;">공항 이동 교통편 서비스 여부</span>
+										<select name="airport" id="airport">
+											<option value="<%= hc.getAirport() %>" selected><%= hc.getAirport() %></option>
+											<option value="Y">Y</option>
+											<option value="N">N</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><span style="margin-right:157px; font-weight:400;font-size:smaller;">위치</span>
+										<select name="location" id="location" required="required">
+											<option value="<%= hc.getLocation() %>" selected><%= hc.getLocation() %></option>
+											<option value="수도권 중심에 위치">수도권 중심에 위치</option>
+											<option value="공항 주변에 위치">공항 주변에 위치</option>
+											<option value="관광지 주변에 위치">관광지 주변에 위치</option>
+											<option value="바닷가 주변에 위치">바닷가 주변에 위치</option>
+											<option value="산 주변에 위치">산 주변에 위치</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><span style="margin-right:97px; font-weight:400;font-size:smaller;">무료 Wi-fi 여부</span>
+										<select name="wifi" id="wifi">
+											<option value="<%= hc.getWifi() %>" selected><%= hc.getWifi() %></option>
+											<option value="Y">Y</option>
+											<option value="N">N</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><span style="margin-right:100px; font-weight:400;font-size:smaller;">온수 욕조 여부</span>
+										<select name="tub" id="tub">
+											<option value="<%= hc.getTub() %>" selected><%= hc.getTub() %></option>
+											<option value="Y">Y</option>
+											<option value="N">N</option>
+										</select>
+									</td>
+								</tr>
+								<tr></tr>
+								<tr></tr>
+								<tr>
+									<th style="border-top: 2px solid #7A9BAD; margin: 20px;"></th>
+								</tr>
+        						<tr></tr>
+								<tr></tr>
+								<tr>
+									<th>* 객실 - 1</th>
+								</tr>
+								<tr></tr>
+								<tr>
+									<th>객실 명</th>
+									<td>
+										<select name="rname1" id="rname1" required="required">
+											<option value="<%= hr.getRname() %>" selected><%= hr.getRname() %></option>
+											<option value="슈페리어">슈페리어룸</option>
+											<option value="스위트">스위트룸</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>객실 금액</th>
+									<td>
+										<input type="text" name="rprice1" id="rprice1" maxlength="10" min="10000" value="<%= hr.getRprice() %>" required="required">
+									</td>
+								</tr>
+								<tr>
+									<th>객실 욕조 여부</th>
+									<td>
+										<select name="rtub1" id="rtub1">
+											<option value="<%= hr.getRtub() %>" selected><%= hr.getRtub() %></option>
+											<option value="Y">Y</option>
+											<option value="N" selected>N</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>침대 타입</th>
+									<td>
+										<select name="rbadtype1" id="rbadtype1">
+											<option value="<%= hr.getRbadtype() %>" selected><%= hr.getRbadtype() %></option>
+											<option value="1" >1</option>
+											<option value="2" >2</option>
+											<option value="3" >3</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>전망</th>
+									<td>
+										<select name="rview1" id="rview1">
+											<option value="<%= hr.getRview() %>" selected><%= hr.getRview() %></option>
+											<option value="시티뷰">시티뷰</option>
+											<option value="오션뷰">오션뷰</option>
+											<option value="마운틴뷰">마운틴뷰</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>객실 사이즈(m2)</th>
+									<td>
+										<input type="text" name="rsize1" id="rsize1" maxlength="4" style="width: 50px;" value="<%= hr.getRsize() %>">
+									</td>
+								</tr>
+								<tr>
+									<th>객실 이미지</th>
+									<td>
+										<input type="file" name="rimg1" id="rimg1" value="<%= hr.getRimg() %>">
+									</td>
+								</tr>
+								<tr>
+									<th>조식 여부</th>
+									<td>
+										<select name="rbreakfast1" id="rbreakfast1">
+											<option value="<%= hr.getRbreakfast() %>" selected><%= hr.getRbreakfast() %></option>
+											<option value="Y">Y</option>
+											<option value="N">N</option>
+										</select>
+									</td>
+								</tr>
+								<tr></tr>
+								<tr></tr>
+								<tr>
+									<th>* 객실 - 2</th>
+								</tr>
+								<tr></tr>
+									<tr>
+									<th>객실 명</th>
+									<td>
+										<select name="rname2" id="rname2" required="required">
+											<option value="<%= hr2.getRname() %>" selected><%= hr2.getRname() %></option>
+											<option value="슈페리어">슈페리어룸</option>
+											<option value="스위트">스위트룸</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>객실 금액</th>
+									<td>
+										<input type="text" name="rprice2" id="rprice2" maxlength="10" min="10000" value="<%= hr2.getRprice() %>" required="required">
+									</td>
+								</tr>
+								<tr>
+									<th>객실 욕조 여부</th>
+									<td>
+										<select name="rtub2" id="rtub2">
+											<option value="<%= hr.getRtub() %>" selected><%= hr2.getRtub() %></option>
+											<option value="Y">Y</option>
+											<option value="N" selected>N</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>침대 타입</th>
+									<td>
+										<select name="rbadtype2" id="rbadtype2">
+											<option value="<%= hr.getRbadtype() %>" selected><%= hr2.getRbadtype() %></option>
+											<option value="1" >1</option>
+											<option value="2" >2</option>
+											<option value="3" >3</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>전망</th>
+									<td>
+										<select name="rview2" id="rview2">
+											<option value="<%= hr.getRview() %>" selected><%= hr2.getRview() %></option>
+											<option value="시티뷰">시티뷰</option>
+											<option value="오션뷰">오션뷰</option>
+											<option value="마운틴뷰">마운틴뷰</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>객실 사이즈(m2)</th>
+									<td>
+										<input type="text" name="rsize2" id="rsize2" maxlength="4" style="width: 50px;" value="<%= hr2.getRsize() %>">
+									</td>
+								</tr>
+								<tr>
+									<th>객실 이미지</th>
+									<td>
+										<input type="file" name="rimg2" id="rimg2" value="<%= hr2.getRimg() %>">
+									</td>
+								</tr>
+								<tr>
+									<th>조식 여부</th>
+									<td>
+										<select name="rbreakfast2" id="rbreakfast2">
+											<option value="<%= hr2.getRbreakfast() %>" selected><%= hr2.getRbreakfast() %></option>
+											<option value="Y">Y</option>
+											<option value="N">N</option>
+										</select>
+									</td>
+								</tr>
+								<tr></tr>
+								<tr></tr>
 								<tr>
 	                        		<th></th>
 	                        	</tr>
@@ -180,7 +399,7 @@
 		                        <br><br><br>
 		                    </div>
 		                    <div class="btns">
-		                    	<input type="button" value="이전" class="preBtn" onclick="location.href='cDetail.co?comNum=<%=c.getComNum()%>'">
+		                    	<input type="button" value="이전" class="preBtn" onclick="location.href='hDetail.hj?hNo=<%=h.gethNo()%>'">
 		                        <input type="submit" value="수정 완료" class="editBtn" onclick="editCompany();">
 		                        <input type="submit" value="업체 삭제" class="deleteBtn" onclick="deleteCompany();">
 		                    </div>
@@ -191,26 +410,27 @@
         </div>
     </div>
     <script>
+    
 	    $(function(){
-			var phoneArr = '<%= c.getPhone() %>'.split('-');
-			$('input[name*="conNum"]').each(function(index){
+	    	$('#hPromotion').val('<%= h.gethPromotion() %>');
+	    	$('#hRequests').val('<%= h.gethRequests() %>');
+	    	
+			var phoneArr = '<%= h.gethTel() %>'.split('-');
+			$('input[name*="num"]').each(function(index){
 				$(this).val(phoneArr[index]);
 			});
 			
-			var telArr = '<%= c.getTel() %>'.split('-');
-			$('input[name*="pNum"]').each(function(index){
-				$(this).val(telArr[index]);
-			});
-			
-			var cNumArr = '<%= c.getcNum() %>'.split('-');
-			$('input[name*="num"]').each(function(index){
-				$(this).val(cNumArr[index]);
-			});
-			
-			var addressArr = '<%= c.getAddress() %>'.split(', ');
+			var addressArr = '<%= h.gethAddress() %>'.split(', ');
 			$('#address1').val(addressArr[0]);
 			$('#address2').val(addressArr[1]);
 			$('#zipCode').val(addressArr[2]);
+			
+			var filterArr = '<%= h.getFilter() %>'.split(', ');
+			// console.log(hobbyArr);
+			$('input:checkbox').each(function(){
+				if($.inArray($(this).val(),filterArr) > -1)
+					$(this).prop('checked', true);
+			});
 			
 		});
 	    
@@ -221,7 +441,7 @@
 		
 		function deleteCompany() {
 			alert('업체 상태가 변경되었습니다. ');
-			$("#editForm").attr("action","<%= request.getContextPath()%>/cDelete.co");
+			$("#editForm").attr("action","<%= request.getContextPath()%>/hDelete.hj");
 		}
     
 	    function addrSearch() {

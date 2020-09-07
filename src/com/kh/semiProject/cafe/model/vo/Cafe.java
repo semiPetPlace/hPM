@@ -14,9 +14,11 @@ public class Cafe implements Serializable {
 	private int cno;
 	private String crimage;
 	private String cimage;
+	private String[] cimage2;
 	private String cname;
 	private String ctel;
 	private String ctime;
+	private String[] ctime2;
 	private double cscore;
 	private String caddress;
 	private String cdogCompInfo;
@@ -26,6 +28,9 @@ public class Cafe implements Serializable {
 	private Date cregisterDate;
 	private String cregistration;
 	private String cpetSize;
+	private Float lat;
+	private Float lng;
+
 	
 	
 	public Cafe() {
@@ -63,9 +68,12 @@ public class Cafe implements Serializable {
 	}
 
 
+
+
+
 	public Cafe(int cno, String crimage, String cimage, String cname, String ctel, String ctime, double cscore,
 			String caddress, String cdogCompInfo, String cpromotion, String creview, String crequest,
-			Date cregisterDate, String cregistration, String cpetSize) {
+			Date cregisterDate, String cregistration, String cpetSize, Float lat, Float lng) {
 		super();
 		this.cno = cno;
 		this.crimage = crimage;
@@ -82,6 +90,20 @@ public class Cafe implements Serializable {
 		this.cregisterDate = cregisterDate;
 		this.cregistration = cregistration;
 		this.cpetSize = cpetSize;
+		this.lat = lat;
+		this.lng = lng;
+	}
+
+	
+
+
+	public void setLat(Float lat) {
+		this.lat = lat;
+	}
+
+
+	public void setLng(Float lng) {
+		this.lng = lng;
 	}
 
 
@@ -153,6 +175,11 @@ public class Cafe implements Serializable {
 	public String getCregistration() {
 		return cregistration;
 	}
+	
+	public String getCpetSize() {
+		return cpetSize;
+	}
+
 
 
 	public void setCno(int cno) {
@@ -223,25 +250,63 @@ public class Cafe implements Serializable {
 	public void setCregistration(String cregistration) {
 		this.cregistration = cregistration;
 	}
-	
-
-	public String getCpetSize() {
-		return cpetSize;
-	}
 
 
 	public void setCpetSize(String cpetSize) {
 		this.cpetSize = cpetSize;
 	}
+	
+
+	public String[] getCimage2() {
+		return cimage2;
+	}
+
+
+	public void setCimage2(String[] cimage2) {
+		this.cimage2 = cimage2;
+	}
+
+	
+	public float getLat() {
+		return lat;
+	}
+
+
+	public float getLng() {
+		return lng;
+	}
+
+
+	public void setLat(float lat) {
+		this.lat = lat;
+	}
+
+
+	public void setLng(float lng) {
+		this.lng = lng;
+	}
+	
+	public String[] getCtime2() {
+		return ctime2;
+	}
+
+
+	public void setCtime2(String[] ctime2) {
+		this.ctime2 = ctime2;
+	}
 
 
 	@Override
 	public String toString() {
-		return "cno=" + cno + ", crimage=" + crimage + ", cimage=" + cimage + ", cname=" + cname + ", ctel="
+		return "Cafe [cno=" + cno + ", crimage=" + crimage + ", cimage=" + cimage + ", cname=" + cname + ", ctel="
 				+ ctel + ", ctime=" + ctime + ", cscore=" + cscore + ", caddress=" + caddress + ", cdogCompInfo="
 				+ cdogCompInfo + ", cpromotion=" + cpromotion + ", creview=" + creview + ", crequest=" + crequest
-				+ ", cregisterDate=" + cregisterDate + ", cregistration=" + cregistration + ", cpetSize=" + cpetSize;
+				+ ", cregisterDate=" + cregisterDate + ", cregistration=" + cregistration + ", cpetSize=" + cpetSize
+				+ ", lat=" + lat + ", lng=" + lng + "]";
 	}
+
+
+	
 
 
 }

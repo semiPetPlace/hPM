@@ -4,6 +4,7 @@
 	Hotel h = (Hotel)request.getAttribute("hotel");
 	HotelConvenience hc = (HotelConvenience)request.getAttribute("hotelConvenience");
 	HotelRoom hr = (HotelRoom)request.getAttribute("hotelRoom");
+	HotelRoom hr2 = (HotelRoom)request.getAttribute("hotelRoom");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -35,8 +36,8 @@
                 <div class="sub-list">
                     <p>업체 관리</p>
                     <ul>
-                        <li><a href="/semi/hList.hj">· 위탁 호텔 리스트</a></li>
-                        <li><a href="/semi/phList.hj">· 동반 호텔 리스트</a></li>
+                        <li><a href="/semi/hList.hj">· 동반 호텔 리스트</a></li>
+                        <li><a href="/semi/phList.hj">· 위탁 호텔 리스트</a></li>
                         <li><a href="/semi/cList.hj">· 동반 카페 리스트</a></li>
                         <li><a href="/semi/rList.hj">· 동반 식당 리스트</a></li>
                     </ul>

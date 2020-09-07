@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.PageInfo;
 import com.kh.semiProject.Hotel.model.vo.Hotel;
 import com.kh.semiProject.Manager.model.service.ManagerService;
 
@@ -71,13 +72,15 @@ public class HotelSearchListServlet extends HttpServlet {
 		if(categorySearch.equals("total")) {
 			list = ms.listHotel(currentPage, limit);
 		} else {
-			list = ms.searchHotel(categorySearch,keyword);
+			list = ms.searchHotel(currentPage, limit,categorySearch,keyword);
 		}
 		
 		System.out.println(list);
 		if(list != null) {	// 조회 성공 시
 			page = "views/Manager/Manager_hotel_list.jsp";
 			request.setAttribute("list", list);
+			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
+			request.setAttribute("pi", pi);
 		} else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 검색 실패!");

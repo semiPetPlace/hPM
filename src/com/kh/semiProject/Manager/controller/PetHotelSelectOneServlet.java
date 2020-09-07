@@ -1,7 +1,6 @@
 package com.kh.semiProject.Manager.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,22 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semiProject.Hotel.model.vo.*;
+import com.kh.semiProject.Hotel.model.vo.PetHotel;
 import com.kh.semiProject.Manager.model.service.ManagerService;
 
-
-
 /**
- * Servlet implementation class HotelSelectOneServlet
+ * Servlet implementation class PetHotelSelectOneServlet
  */
-@WebServlet("/hSelectOne.hj")
-public class HotelSelectOneServlet extends HttpServlet {
+@WebServlet("/phSelectOne.hj")
+public class PetHotelSelectOneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HotelSelectOneServlet() {
+    public PetHotelSelectOneServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,35 +30,25 @@ public class HotelSelectOneServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int hNo = Integer.parseInt(request.getParameter("hNo"));
-		ArrayList<HotelRoom> list = new ArrayList<>();
+		int phno = Integer.parseInt(request.getParameter("phno"));
 
 		ManagerService ms = new ManagerService();
 		
-		Hotel h = ms.selectOneHotel(hNo);
-		
-		list = ms.selectOneHotelRoom(hNo);
-		
-		HotelConvenience hc = ms.selectOneConvenience(hNo);
-		
+		PetHotel ph = ms.selectOnepetHotel(phno);
 		
 		String page ="";
 		
-		if(h != null) {
-			page = "views/Manager/Manager_hotel_detail.jsp";
-			request.setAttribute("h", h);
-			request.setAttribute("hc", hc);
-			request.setAttribute("list", list);
+		if(ph != null) {
+			page = "views/Manager/Manager_pethotel_detail.jsp";
+			request.setAttribute("ph", ph);
 		
 		} else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "업체 상세 보기 실패");
 		}
 		request.getRequestDispatcher(page).forward(request, response);
-		
 	}
-	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -10,25 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.common.PageInfo;
-import com.kh.semiProject.Hotel.model.vo.Hotel;
-import com.kh.semiProject.Hotel.model.vo.HotelConvenience;
-import com.kh.semiProject.Hotel.model.vo.HotelRoom;
+import com.kh.semiProject.Hotel.model.vo.PetHotel;
 import com.kh.semiProject.Manager.model.service.ManagerService;
-
-import com.kh.semiProject.mCompany.model.service.CompanyService;
-import com.kh.semiProject.mCompany.model.vo.Company;
+import com.kh.semiProject.cafe.model.vo.Cafe;
 
 /**
- * Servlet implementation class HotelListServlet
+ * Servlet implementation class CafeSearchListServlet
  */
-@WebServlet("/hList.hj")
-public class HotelListServlet extends HttpServlet {
+@WebServlet("/cSearchList.hj")
+public class CafeSearchListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HotelListServlet() {
+    public CafeSearchListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,7 +33,13 @@ public class HotelListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Hotel> list = new ArrayList<>();
+		// 검색 카데고리
+		String categorySearch = request.getParameter("con");
+		// 검색 키워드
+		String keyword = request.getParameter("keyword");
+		
+		String page = "";
+		ArrayList<Cafe> list = new ArrayList<>();
 		ManagerService ms = new ManagerService();
 		
 		int startPage;
@@ -68,18 +70,21 @@ public class HotelListServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		list = ms.listHotel(currentPage, limit);
+		if(categorySearch.equals("total")) {
+			list = ms.listcafe(currentPage, limit);
+		} else {
+			list = ms.searchcafe(currentPage, limit,categorySearch,keyword);
+		}
 		
-		String page = "";
-		
-		if(list != null) {
-			page = "views/Manager/Manager_hotel_list.jsp";
+		System.out.println(list);
+		if(list != null) {	// 조회 성공 시
+			page = "views/Manager/Manager_cafe_list.jsp";
 			request.setAttribute("list", list);
 			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 			request.setAttribute("pi", pi);
 		} else {
 			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg","업체 리스트 불러오기 에러");
+			request.setAttribute("msg", "공지사항 검색 실패!");
 		}
 		request.getRequestDispatcher(page).forward(request, response);
 	}
