@@ -175,8 +175,12 @@ select{
                         </div>
                         <table id="hlist">
                         	
-                           <% for(Hotel h : hlist){ %>
+                           <% int i =0;
+                           		for(Hotel h : hlist)
+                           		{  if( i ==5){
+                           		break;}%>
                            <% String[] himg = h.gethImg().split(","); %>
+                           
                             <tr>
                                 <td style="padding-bottom: 20px; "> 
                                 <input type="hidden" value="<%=h.gethNo()%>" id="ch1"> 

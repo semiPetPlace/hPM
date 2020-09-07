@@ -33,10 +33,10 @@
                 </div>
                 <div id="mypage_nav">
                     <ul id="mypage_nav_main" class="page_nav">
-                        <li><a href="./mypage-basic.jsp">마이페이지</a></li>
+                        <li><a href="<%=request.getContextPath() %>/basic.ys?">마이페이지</a></li>
                     </ul>
                     <ul id="mypage_nav_sub">
-                        <li class="page_nav"><a href="./mypage-scheduled.reservation.jsp">예약·결제 관리</a></li>
+                        <li class="page_nav"><a href="<%=request.getContextPath() %>/scheduledReser.ys?userid=<%=m.getMuserId()%>">예약·결제 관리</a></li>
                         <li class="page_nav"><a href="./mypage-myplace.jsp">찜한 플레이스</a></li>
                         <li class="page_nav"><a href="./mypage-review.jsp">내가 쓴 게시글</a></li>
                         <br><br><br>
