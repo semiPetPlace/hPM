@@ -16,36 +16,36 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+   margin: 0;
+   padding: 0;
+   border: 0;
+   font-size: 100%;
+   font: inherit;
+   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
-	display: block;
+   display: block;
 }
 body {
     line-height: 1;
     font-family: 'Noto Sans KR', sans-serif;
 }
 ol, ul, li{
-	list-style: none;
+   list-style: none;
 }
 blockquote, q {
-	quotes: none;
+   quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+   content: '';
+   content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+   border-collapse: collapse;
+   border-spacing: 0;
 }
 
 html,body {
@@ -196,12 +196,15 @@ html,body {
         <div class="m-menu-nav">
             <div class="list">
                 <ul>
+<<<<<<< HEAD
                     <li><a href="#" onclick="goManager()">관리자 메인</a></li>
-                    <li><a href="./Manager_reservation.html">예약 관리</a></li>
-                    <li><a href="./Manager_reviewBoard.html">게시판 관리</a></li>
-                    <li><a href="./">업체 관리</a></li>
+=======
+                    <li><a href="#" onclick="goManager()">관리자 메인</a></li>
+>>>>>>> branch 'master' of https://github.com/semiPetPlace/hPM.git
+                    <li><a href="<%= request.getContextPath() %>/blist.th">게시판 관리</a></li>
+                    <li><a href="#" onclick="goCompany()">업체 관리</a></li>
                     <li><a href="#" onclick="goListView()" >문의 처리</a></li>
-                    <li><a href="#" onclick="">회원 관리</a></li>
+                    <li><a href="#" onclick="goMlist()">회원 관리</a></li>
                     <li><a href="#" onclick="goViewChart()">매출 관리</a></li>
                 </ul>
             </div>
@@ -213,18 +216,43 @@ html,body {
     </div>
 </header>
 <script>
+<<<<<<< HEAD
+   function gocList(){
+      location.href="<%=request.getContextPath()%>/cList.co";
+   }
+   function goMlist(){
+      location.href="<%=request.getContextPath()%>/mlist.me";
+   }
+   function goManager() {
+      location.href = "<%=request.getContextPath()%>/chart.ma";
+   }
+   function goViewChart(){
+      location.href="<%=request.getContextPath()%>/viewChart.hs";
+   }   
+   function goCompany(){
+      location.href="<%=request.getContextPath()%>/hList.hj";
+   }   
+   function goListView(){
+      location.href="<%=request.getContextPath()%>/listView.mt";
+   }      
+=======
 	function gocList(){
-		location.href="/semi/cList.co";
+		location.href="<%=request.getContextPath()%>/cList.co";
 	}
-
+	function goMlist(){
+		location.href="<%=request.getContextPath()%>/mlist.me";
+	}
 	function goManager() {
 		location.href = "<%=request.getContextPath()%>/chart.ma";
 	}
-
 	function goViewChart(){
-		location.href="/semi/viewChart.hs";
+		location.href="<%=request.getContextPath()%>/viewChart.hs";
+	}	
+	function goCompany(){
+		location.href="<%=request.getContextPath()%>/hList.hj";
 	}	
 	function goListView(){
-		location.href="/semi/listView.mt";
+		location.href="<%=request.getContextPath()%>/listView.mt";
 	}		
+>>>>>>> branch 'master' of https://github.com/semiPetPlace/hPM.git
 </script>

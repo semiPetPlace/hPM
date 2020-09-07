@@ -25,6 +25,7 @@
     </head>
     <body>
         <%@ include file = "../common/header.jsp" %>
+        <% String[] himg = h.gethImg().split(","); %>
         <main id="H_main">
             <div class="titleblock">
                 <p style="font-size: 35px;padding-top: 100px;">예약 완료 </p>
@@ -33,7 +34,7 @@
             <div class="maincontent">
                 <div class="reservationcheck">
                     <div class="hotelimg">
-                        <img src="<%=request.getContextPath() %>/resources/images/hotel1.jpg" alt="">
+                        <img src="<%=request.getContextPath()%>/resources/images/<%=himg[0] %>" alt="">
                     </div>
                     <div class="details">
                         <div class="details-category">
@@ -59,7 +60,7 @@
 
                         </div>
                         <div class="btn-block">
-                            <div onclick="location.href='../mypage/mypage-reservation.payment.jsp'">내 예약 확인하기</div>
+                            <div onclick="location.href='<%=request.getContextPath() %>/scheduledReser.ys?userid=<%=m.getMuserId()%>'">내 예약 확인하기</div>
                         </div>
                     </div>
                 </div>

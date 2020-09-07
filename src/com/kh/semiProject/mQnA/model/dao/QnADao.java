@@ -142,9 +142,7 @@ public class QnADao {
 			pstmt.setString(1,type);
 			rset = pstmt.executeQuery();
 			
-			System.out.println("rset.getint(1)  : " + rset.getInt(1));
 			if(rset.next()) {
-				System.out.println("rset.getint(1)  : " + rset.getInt(1));
 				listCount = rset.getInt(1);
 			}
 			

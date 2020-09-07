@@ -18,6 +18,7 @@ import com.kh.semiProject.Hotel.model.vo.HotelFacility;
 import com.kh.semiProject.Hotel.model.vo.HotelRoom;
 
 import com.kh.semiProject.Hotel.model.vo.PetHotel;
+import com.kh.semiProject.review.model.vo.Review;
 
 public class HotelDao {
 	private Properties prop;
@@ -35,14 +36,15 @@ public class HotelDao {
 
 	public ArrayList<Hotel> hotelList(Connection con) {
 		ArrayList<Hotel> hlist = new ArrayList<>();
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectList");
 		
 		try {
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(sql);
+			pstmt = con.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				Hotel h = new Hotel();
@@ -64,7 +66,7 @@ public class HotelDao {
 			e.printStackTrace();
 		}finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 		return hlist;
 	}
@@ -292,6 +294,8 @@ public class HotelDao {
 				ph.setDimg(rset.getString("ph_dimg"));
 				ph.setPhpromotion(rset.getString("ph_promotion"));
 				ph.setPhrequests(rset.getString("ph_requests"));
+				ph.setLat(rset.getString("ph_lat"));
+				ph.setLng(rset.getString("ph_lng"));
 				
 				phlist.add(ph);
 			}
@@ -331,6 +335,8 @@ public class HotelDao {
 				ph.setDimg(rset.getString("ph_dimg"));
 				ph.setPhpromotion(rset.getString("ph_promotion"));
 				ph.setPhrequests(rset.getString("ph_requests"));
+				ph.setLat(rset.getString("ph_lat"));
+				ph.setLng(rset.getString("ph_lng"));
 				
 			}
 			
@@ -370,6 +376,8 @@ public class HotelDao {
 				ph.setDimg(rset.getString("ph_dimg"));
 				ph.setPhpromotion(rset.getString("ph_promotion"));
 				ph.setPhrequests(rset.getString("ph_requests"));
+				ph.setLat(rset.getString("ph_lat"));
+				ph.setLng(rset.getString("ph_lng"));
 				
 				phlist.add(ph);
 			}
@@ -461,6 +469,8 @@ public class HotelDao {
 
 		try {
 			pstmt = con.prepareStatement(filtercheck);
+			
+			
 			pstmt.setString(1, area); 
 			pstmt.setString(2, in);
 			pstmt.setString(3, in);
@@ -492,6 +502,103 @@ public class HotelDao {
 			close(pstmt);
 		}
 		return hlist;
+	}
+
+	public ArrayList<Review> hreview(Connection con, int h_no) {
+		ArrayList<Review> hreview = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("hotelReview");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, h_no);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Review r = new Review();
+				
+				r.setCtno(rset.getInt("CT_NO"));
+				r.setRvtype(rset.getString("rv_type"));
+				r.setRvwriter(rset.getString("rv_writer"));
+				r.setRvtitle(rset.getString("rv_title"));
+				r.setRvcontent(rset.getString("rv_content"));
+				r.setRvScore(rset.getInt("rv_score"));
+				r.setRvdate(rset.getDate("rv_date"));
+				r.setRvstatus(rset.getString("rv_status"));
+				
+				hreview.add(r);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return hreview;
+	}
+
+	public ArrayList<Review> phreview(Connection con, int ph_no) {
+		ArrayList<Review> phreview = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("pethotelReview");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, ph_no);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Review r = new Review();
+				
+				r.setCtno(rset.getInt("CT_NO"));
+				r.setRvtype(rset.getString("rv_type"));
+				r.setRvwriter(rset.getString("rv_writer"));
+				r.setRvtitle(rset.getString("rv_title"));
+				r.setRvcontent(rset.getString("rv_content"));
+				r.setRvScore(rset.getInt("rv_score"));
+				r.setRvdate(rset.getDate("rv_date"));
+				r.setRvstatus(rset.getString("rv_status"));
+				
+				phreview.add(r);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return phreview;
+	}
+
+	public int getListCount(Connection con) {
+		int listCount = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("listCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return listCount;
 	}
 
 	

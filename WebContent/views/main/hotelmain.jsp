@@ -22,6 +22,9 @@
        
     </head>
 <style>
+#H_main{
+    height: AUTO;
+}
 #search-box{
     /* width: 70%; */
     min-width: fit-content;
@@ -175,8 +178,12 @@ select{
                         </div>
                         <table id="hlist">
                         	
-                           <% for(Hotel h : hlist){ %>
+                           <% int i =0;
+                           		for(Hotel h : hlist)
+                           		{  if( i ==5){
+                           		break;}%>
                            <% String[] himg = h.gethImg().split(","); %>
+                           
                             <tr>
                                 <td style="padding-bottom: 20px; "> 
                                 <input type="hidden" value="<%=h.gethNo()%>" id="ch1"> 
@@ -203,16 +210,7 @@ select{
                       
             <!------------ hotel-list 끝----------->
         </main>
-        <!--페이징-->
-        <div class="list_number">
-            <div>
-                <p><div class="list_n_menu"><span class="disabled"><  이전</span><span class="current">1</span><a href="#?page=2">2</a><a href="#?page=3">3</a><a href="#?page=4">4</a><a href="#?page=5">5</a><a href="#?page=6">6</a><a href="#?page=7">7</a>...<a href="#?page=199">199</a><a href="#?page=200">200</a><a href="#?page=2">다음  ></a></div></p>
-            </div>
-        </div>
-        
         <%} %>
-        <div id="imgunder"><img src="" style="height:200px;"></div>
-        <!--페이징 끝-->   
          <!------------------------ 메인 끝------------------------->
 
          <%@ include file = "../common/footer.jsp" %>

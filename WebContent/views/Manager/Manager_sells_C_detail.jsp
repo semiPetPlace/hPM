@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
-<%@ page import="java.util.*" import= "java.text.*,com.kh.semiProject.Manager.model.vo.*,com.kh.semiProject.mClient.model.vo.*, java.util.*"%>
+<%@ page import="java.util.*" import= "com.kh.common.*,java.text.*,com.kh.semiProject.Manager.model.vo.*,com.kh.semiProject.mClient.model.vo.*, java.util.*"%>
 <%	
 	ArrayList<Client> cList = (ArrayList<Client>)request.getAttribute("cList");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -54,7 +60,7 @@
 						<%for(Client c : cList){ %>
                             <tr class="listCal" id="trh">
                                 <td><%= c.getUserNo() %></td>
-                                <td><%= c.getUserId() %></td>
+                                <td><a onclik="<%=request.getContextPath()%>/mDetail.ma?userid=<%= c.getUserId() %>"><%= c.getUserId() %></a></td>
                                 <td><%= c.getUserName() %></td>
                                 <td><%= c.getReserCount() %></td>
                                 <td><%= c.getReserCountByY() %></td>
@@ -67,6 +73,31 @@
                          <%} %>
                      
                         </table>
+                        <div class="pagingArea" align="center">
+			<button onclick="location.href='<%= request.getContextPath() %>/cDetail.cl?currentPage=1'"><<</button>
+			<%  if(currentPage <= 1){  %>
+			<button disabled><</button>
+			<%  }else{ %>
+			<button onclick="location.href='<%= request.getContextPath() %>/cDetail.cl?currentPage=<%=currentPage - 1 %>'"><</button>
+			<%  } %>
+			
+			<% for(int p = startPage; p <= endPage; p++){
+					if(p == currentPage){	
+			%>
+				<button disabled><%= p %></button>
+			<%      }else{ %>
+				<button onclick="location.href='<%= request.getContextPath() %>/cDetail.cl?currentPage=<%= p %>'"><%= p %></button>
+			<%      } %>
+			<% } %>
+				
+			<%  if(currentPage >= maxPage){  %>
+			<button disabled>></button>
+			<%  }else{ %>
+			<button onclick="location.href='<%= request.getContextPath() %>/cDetail.cl?currentPage=<%=currentPage + 1 %>'">></button>
+			<%  } %>
+			<button onclick="location.href='<%= request.getContextPath() %>/cDetail.cl?currentPage=<%=maxPage %>'">>></button>
+			
+		</div>
                     </div>
                 </div>
 

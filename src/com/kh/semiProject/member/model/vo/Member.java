@@ -63,6 +63,22 @@ public class Member implements Serializable {
 		this.mbirth = mbirth;
 	}
 
+	public Member(String mno, String mName, String mId, String mAddress, String mPhone,String email, String gender, String birth,
+			String status, Date registerDate) {
+		super();
+		this.mno = mno;
+		this.muserName = mName;
+		this.muserId = mId;
+		this.maddress = mAddress;
+		this.mphone = mPhone;
+		this.memail = email;
+		this.mgender = gender;
+		this.mbirth = birth;
+		this.mStatus = status;
+		this.mRegisterdate = registerDate;
+		
+	}
+
 	public String getMno() {
 		return mno;
 	}

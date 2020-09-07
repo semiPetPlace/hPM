@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -32,7 +33,7 @@ public class ClientDao {
 	}
 	
 	
-	public ArrayList<Client> clientDetail(Connection con) {
+	public ArrayList<Client> clientDetail(Connection con, int currentPage, int limit) {
 		ArrayList<Client> cList = new ArrayList();
 		
 		PreparedStatement pstmt = null;
@@ -43,6 +44,11 @@ public class ClientDao {
 		
 		try {
 			pstmt = con.prepareStatement(sql);
+			int startRow = (currentPage-1)*limit+1;
+			int endRow = startRow+limit-1;
+			
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				Client c = new Client();
@@ -67,6 +73,31 @@ public class ClientDao {
 		}
 		
 		return cList;
+	}
+
+
+	public int getListCount(Connection con) {
+		int listCount = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("clientlistCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+				System.out.println(listCount);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return listCount;
 	}
 
 	

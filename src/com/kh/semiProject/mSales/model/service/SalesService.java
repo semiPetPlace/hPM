@@ -13,9 +13,9 @@ public class SalesService {
 
 	private SalesDao sDao = new SalesDao(); 
 	
-	public ArrayList<Hsales> hSalesChart() {
+	public ArrayList<Hsales> hSalesChart(int currentPage, int limit) {
 		Connection con = getConnection();
-		ArrayList<Hsales> hList = sDao.hSalesChart(con);
+		ArrayList<Hsales> hList = sDao.hSalesChart(con,currentPage,limit);
 		
 		if(hList != null) commit(con);
 		else rollback(con);

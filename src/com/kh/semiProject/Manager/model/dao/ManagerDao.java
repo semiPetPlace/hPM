@@ -224,29 +224,6 @@ public class ManagerDao {
 		return result;
 	}
 	
-	public int getListCount(Connection con) {
-		int listCount = 0;
-		Statement stmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("listCount");
-		
-		try {
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(sql);
-			
-			if(rset.next()) {
-				listCount = rset.getInt(1);
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(stmt);
-		}
-		
-		return listCount;
-	}
-	
 	public int getListCount1(Connection con) {
 		int listCount = 0;
 		Statement stmt = null;
@@ -270,6 +247,7 @@ public class ManagerDao {
 		
 		return listCount;
 	}
+	
 	
 	public ArrayList<Hotel> listHotel(Connection con, int currentPage, int limit) {
 		ArrayList<Hotel> list = null;
@@ -1276,6 +1254,29 @@ public class ManagerDao {
 		}
 		
 		return r;
+	}
+	public int getListCount(Connection con) {
+		int listCount = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("listCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+				System.out.println(listCount);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return listCount;
 	}
 	
 

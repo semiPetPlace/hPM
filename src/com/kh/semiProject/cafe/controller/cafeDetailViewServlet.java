@@ -1,6 +1,7 @@
 package com.kh.semiProject.cafe.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semiProject.cafe.model.service.CafeService;
 import com.kh.semiProject.cafe.model.vo.Cafe;
+import com.kh.semiProject.restaurant.model.service.RestaurantService;
+import com.kh.semiProject.review.model.vo.Review;
 
 /**
  * Servlet implementation class cafeDetailView
@@ -31,7 +34,7 @@ public class cafeDetailViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int cno = Integer.parseInt(request.getParameter("cno"));
-		
+		ArrayList<Review> rv = new CafeService().cafeReview(cno);		
 		Cafe c = new CafeService().selectOne(cno);
 		
 		String page = "";
@@ -39,6 +42,7 @@ public class cafeDetailViewServlet extends HttpServlet {
 		if(c != null) {
 			page = "views/cafe/cafe_detailpage.jsp";
 			request.setAttribute("cafe", c);
+			request.setAttribute("review", rv);
 		}else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 상세 보기 실패!");

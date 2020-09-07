@@ -2,250 +2,256 @@ package com.kh.semiProject.restaurant.model.vo;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Arrays;
 
 public class Restaurant implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -825186780960579523L;
-	
-	
-	private int rno;
-	private String rrimage;
-	private String rimage;
-	private String[] rimage2;
-	private String rname;
-	private String rtel;
-	private String rtime;
-	private String[] rtime2;
-	private double rscore;
-	private String raddress;
-	private String rdogCompInfo;
-	private String rpromotion;
-	private String rreview;
-	private String rrequest;
-	private Date rregisterDate;
-	private String rregistration;
-	private String rpetSize;
-	private float lat;
-	private float lng;
-	
-	public Restaurant() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	public Restaurant(int rno, String rimage, String rname, double rscore) {
-		super();
-		this.rno = rno;
-		this.rimage = rimage;
-		this.rname = rname;
-		this.rscore = rscore;
-	}
+   
+   /**
+    * 
+    */
+   private static final long serialVersionUID = -825186780960579523L;
+   
+   
+   private int rno;
+   private String rrimage;
+   private String rimage;
+   private String[] rimage2;
+   private String rname;
+   private String rtel;
+   private String rtime;
+   private String[] rtime2;
+   private double rscore;
+   private String raddress;
+   private String rdogCompInfo;
+   private String rpromotion;
+   private String rreview;
+   private String rrequest;
+   private Date rregisterDate;
+   private String rregistration;
+   private String rpetSize;
+   private float lat;
+   private float lng;
+   
+   public Restaurant() {
+      super();
+      // TODO Auto-generated constructor stub
+   }
+   
+   public Restaurant(int rno, String rimage, String rname, double rscore) {
+      super();
+      this.rno = rno;
+      this.rimage = rimage;
+      this.rname = rname;
+      this.rscore = rscore;
+   }
 
-	public Restaurant(String rrimage, String rimage, String rname, String rtel, String rtime, double rscore,
-			String raddress, String rdogCompInfo, String rpromotion, String rreview, String rrequest,
-			Date rregisterDate, String rregistration) {
-		super();
-		this.rrimage = rrimage;
-		this.rimage = rimage;
-		this.rname = rname;
-		this.rtel = rtel;
-		this.rtime = rtime;
-		this.rscore = rscore;
-		this.raddress = raddress;
-		this.rdogCompInfo = rdogCompInfo;
-		this.rpromotion = rpromotion;
-		this.rreview = rreview;
-		this.rrequest = rrequest;
-		this.rregisterDate = rregisterDate;
-		this.rregistration = rregistration;
-	}
+   public Restaurant(String rrimage, String rimage, String rname, String rtel, String rtime, double rscore,
+         String raddress, String rdogCompInfo, String rpromotion, String rreview, String rrequest,
+         Date rregisterDate, String rregistration) {
+      super();
+      this.rrimage = rrimage;
+      this.rimage = rimage;
+      this.rname = rname;
+      this.rtel = rtel;
+      this.rtime = rtime;
+      this.rscore = rscore;
+      this.raddress = raddress;
+      this.rdogCompInfo = rdogCompInfo;
+      this.rpromotion = rpromotion;
+      this.rreview = rreview;
+      this.rrequest = rrequest;
+      this.rregisterDate = rregisterDate;
+      this.rregistration = rregistration;
+   }
 
 
-	public Restaurant(int rno, String rrimage, String rimage, String[] rimage2, String rname, String rtel, String rtime,
-			double rscore, String raddress, String rdogCompInfo, String rpromotion, String rreview, String rrequest,
-			Date rregisterDate, String rregistration, String rpetSize, float lat, float lng) {
-		super();
-		this.rno = rno;
-		this.rrimage = rrimage;
-		this.rimage = rimage;
-		this.rimage2 = rimage2;
-		this.rname = rname;
-		this.rtel = rtel;
-		this.rtime = rtime;
-		this.rscore = rscore;
-		this.raddress = raddress;
-		this.rdogCompInfo = rdogCompInfo;
-		this.rpromotion = rpromotion;
-		this.rreview = rreview;
-		this.rrequest = rrequest;
-		this.rregisterDate = rregisterDate;
-		this.rregistration = rregistration;
-		this.rpetSize = rpetSize;
-		this.lat = lat;
-		this.lng = lng;
-	}
+   public Restaurant(int rno, String rrimage, String rimage, String[] rimage2, String rname, String rtel, String rtime,
+         double rscore, String raddress, String rdogCompInfo, String rpromotion, String rreview, String rrequest,
+         Date rregisterDate, String rregistration, String rpetSize) {
+      super();
+      this.rno = rno;
+      this.rrimage = rrimage;
+      this.rimage = rimage;
+      this.rimage2 = rimage2;
+      this.rname = rname;
+      this.rtel = rtel;
+      this.rtime = rtime;
+      this.rscore = rscore;
+      this.raddress = raddress;
+      this.rdogCompInfo = rdogCompInfo;
+      this.rpromotion = rpromotion;
+      this.rreview = rreview;
+      this.rrequest = rrequest;
+      this.rregisterDate = rregisterDate;
+      this.rregistration = rregistration;
+      this.rpetSize = rpetSize;
+   }
 
-	
-	public Float getLat() {
-		return lat;
-	}
 
-	public void setLat(Float lat) {
-		this.lat = lat;
-	}
+   public int getRno() {
+      return rno;
+   }
 
-	public Float getLng() {
-		return lng;
-	}
 
-	public void setLng(Float lng) {
-		this.lng = lng;
-	}
+   public String getRrimage() {
+      return rrimage;
+   }
 
-	public int getRno() {
-		return rno;
-	}
+   public String getRimage() {
+      return rimage;
+   }
 
-	public String getRrimage() {
-		return rrimage;
-	}
+   public String getRname() {
+      return rname;
+   }
 
-	public String getRimage() {
-		return rimage;
-	}
+   public String getRtel() {
+      return rtel;
+   }
 
-	public String getRname() {
-		return rname;
-	}
+   public String getRtime() {
+      return rtime;
+   }
 
-	public String getRtel() {
-		return rtel;
-	}
+   public double getRscore() {
+      return rscore;
+   }
 
-	public String getRtime() {
-		return rtime;
-	}
+   public String getRaddress() {
+      return raddress;
+   }
 
-	public double getRscore() {
-		return rscore;
-	}
+   public String getRdogCompInfo() {
+      return rdogCompInfo;
+   }
 
-	public String getRaddress() {
-		return raddress;
-	}
+   public String getRpromotion() {
+      return rpromotion;
+   }
 
-	public String getRdogCompInfo() {
-		return rdogCompInfo;
-	}
+   public String getRreview() {
+      return rreview;
+   }
 
-	public String getRpromotion() {
-		return rpromotion;
-	}
+   public String getRrequest() {
+      return rrequest;
+   }
 
-	public String getRreview() {
-		return rreview;
-	}
+   public Date getRregisterDate() {
+      return rregisterDate;
+   }
 
-	public String getRrequest() {
-		return rrequest;
-	}
+   public String getRregistration() {
+      return rregistration;
+   }
 
-	public Date getRregisterDate() {
-		return rregisterDate;
-	}
+   public void setRno(int rno) {
+      this.rno = rno;
+   }
 
-	public String getRregistration() {
-		return rregistration;
-	}
+   public void setRrimage(String rrimage) {
+      this.rrimage = rrimage;
+   }
 
-	public void setRno(int rno) {
-		this.rno = rno;
-	}
+   public void setRimage(String rimage) {
+      this.rimage = rimage;
+   }
 
-	public void setRrimage(String rrimage) {
-		this.rrimage = rrimage;
-	}
+   public void setRname(String rname) {
+      this.rname = rname;
+   }
 
-	public void setRimage(String rimage) {
-		this.rimage = rimage;
-	}
+   public void setRtel(String rtel) {
+      this.rtel = rtel;
+   }
 
-	public void setRname(String rname) {
-		this.rname = rname;
-	}
+   public void setRtime(String rtime) {
+      this.rtime = rtime;
+   }
 
-	public void setRtel(String rtel) {
-		this.rtel = rtel;
-	}
+   public void setRscore(double rscore) {
+      this.rscore = rscore;
+   }
 
-	public void setRtime(String rtime) {
-		this.rtime = rtime;
-	}
+   public void setRaddress(String raddress) {
+      this.raddress = raddress;
+   }
 
-	public void setRscore(double rscore) {
-		this.rscore = rscore;
-	}
+   public void setRdogCompInfo(String rdogCompInfo) {
+      this.rdogCompInfo = rdogCompInfo;
+   }
 
-	public void setRaddress(String raddress) {
-		this.raddress = raddress;
-	}
+   public void setRpromotion(String rpromotion) {
+      this.rpromotion = rpromotion;
+   }
 
-	public void setRdogCompInfo(String rdogCompInfo) {
-		this.rdogCompInfo = rdogCompInfo;
-	}
+   public void setRreview(String rreview) {
+      this.rreview = rreview;
+   }
 
-	public void setRpromotion(String rpromotion) {
-		this.rpromotion = rpromotion;
-	}
+   public void setRrequest(String rrequest) {
+      this.rrequest = rrequest;
+   }
 
-	public void setRreview(String rreview) {
-		this.rreview = rreview;
-	}
+   public void setRregisterDate(Date rregisterDate) {
+      this.rregisterDate = rregisterDate;
+   }
 
-	public void setRrequest(String rrequest) {
-		this.rrequest = rrequest;
-	}
+   public void setRregistration(String rregistration) {
+      this.rregistration = rregistration;
+   }
+   
+   public String getRpetSize() {
+      return rpetSize;
+   }
 
-	public void setRregisterDate(Date rregisterDate) {
-		this.rregisterDate = rregisterDate;
-	}
+   public void setRpetSize(String rpetSize) {
+      this.rpetSize = rpetSize;
+   }
+   
+   public String[] getRimage2() {
+      return rimage2;
+   }
 
-	public void setRregistration(String rregistration) {
-		this.rregistration = rregistration;
-	}
-	
-	public String getRpetSize() {
-		return rpetSize;
-	}
+   public void setRimage2(String[] rimage2) {
+      this.rimage2 = rimage2;
+   }
 
-	public void setRpetSize(String rpetSize) {
-		this.rpetSize = rpetSize;
-	}
+   public float getLat() {
+      return lat;
+   }
 
-	public void setRtime2(String[] rtime2) {
-		this.rtime2 = rtime2;
-	}
-	public String[] getRtime2() {
-		return rtime2;
-	}
-	public String[] getRimage2() {
-		return rimage2;
-	}
+   public float getLng() {
+      return lng;
+   }
 
-	public void setRimage2(String[] rimage2) {
-		this.rimage2 = rimage2;
-	}
+   public void setLat(float lat) {
+      this.lat = lat;
+   }
 
-	@Override
-	public String toString() {
-		return "Restaurant [rno=" + rno + ", rrimage=" + rrimage + ", rimage=" + rimage + ", rname=" + rname + ", rtel="
-				+ rtel + ", rtime=" + rtime + ", rscore=" + rscore + ", raddress=" + raddress + ", rdogCompInfo="
-				+ rdogCompInfo + ", rpromotion=" + rpromotion + ", rreview=" + rreview + ", rrequest=" + rrequest
-				+ ", rregisterDate=" + rregisterDate + ", rregistration=" + rregistration + ", rpetSize=" + rpetSize
-				+ ", lat=" + lat + ", lng=" + lng + "]";
-	}
+   public void setLng(float lng) {
+      this.lng = lng;
+   }
+   
+   public String[] getRtime2() {
+      return rtime2;
+   }
+
+   public void setRtime2(String[] rtime2) {
+      this.rtime2 = rtime2;
+   }
+
+@Override
+public String toString() {
+	return "Restaurant [rno=" + rno + ", rrimage=" + rrimage + ", rimage=" + rimage + ", rimage2="
+			+ Arrays.toString(rimage2) + ", rname=" + rname + ", rtel=" + rtel + ", rtime=" + rtime + ", rtime2="
+			+ Arrays.toString(rtime2) + ", rscore=" + rscore + ", raddress=" + raddress + ", rdogCompInfo="
+			+ rdogCompInfo + ", rpromotion=" + rpromotion + ", rreview=" + rreview + ", rrequest=" + rrequest
+			+ ", rregisterDate=" + rregisterDate + ", rregistration=" + rregistration + ", rpetSize=" + rpetSize
+			+ ", lat=" + lat + ", lng=" + lng + "]";
+}
+
+   
+
 
 }

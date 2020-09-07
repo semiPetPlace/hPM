@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.semiProject.mQnA.model.vo.QnA;
+import com.kh.semiProject.member.model.vo.Member;
 public class MtMListDao {
 
 	private Properties prop;
@@ -29,7 +30,7 @@ public class MtMListDao {
 		}
 
 	}
-	public ArrayList<QnA> viewList(Connection con, String type) {
+	public ArrayList<QnA> viewList(Connection con, String type, int currentPage, int limit) {
 		ArrayList<QnA> qList = new ArrayList();
 		
 		PreparedStatement pstmt = null;
@@ -43,6 +44,10 @@ public class MtMListDao {
 		}
 		try {
 			pstmt = con.prepareStatement(sql);
+			int startRow = (currentPage-1)*limit+1;
+			int endRow = startRow+limit-1;
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
 			rset = pstmt.executeQuery();
 			
 			
@@ -69,5 +74,6 @@ public class MtMListDao {
 		
 		return qList;
 	}
+	
 
 }

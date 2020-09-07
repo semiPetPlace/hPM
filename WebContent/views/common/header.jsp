@@ -23,17 +23,15 @@
        				<%
 					if (m == null) {
 				%>
-				<a href="/semi/views/login/login.jsp">로그인</a> 
-				<a href="<%= request.getContextPath() %>/sing-up1.jsp">회원가입</a>
-
-				
-
+				<a href="<%=request.getContextPath() %>/views/login/login.jsp">로그인</a> <a
+					href="<%=request.getContextPath() %>/views/login/sing-up1.jsp">회원가입</a>
 
 				<%
 					} else if (m.getMuserId().equals("admin")) {
 				%>
 
-				<a>*관리자*</a> 
+				
+				<a> <%=m.getMuserName()%></a>
 				<a href="#" onclick="goManager()">관리자페이지</a>
 
 				<a href="#" onclick='logout()'>로그아웃</a>
@@ -41,7 +39,7 @@
 					} else {
 				%>
 				<a> <%=m.getMuserName()%>
-				</a> <a href="/semi/views/mypage/mypage-basic.jsp">마이페이지</a> <a href="#"
+				</a> <a href="<%=request.getContextPath() %>/basic.ys?">마이페이지</a> <a href="#"
 					onclick='logout()'>로그아웃</a>
 				<%
 					}
@@ -83,7 +81,8 @@
                             <a href="<%= request.getContextPath() %>/nList.th" class="topnav"><img src="<%= request.getContextPath() %>/resources/images/icons/service.png" alt="service"></a>
                             <ul class="subnav">
                                 <li><a href="<%= request.getContextPath() %>/nList.th"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_notice.png" alt="공지사항"></a></li>
-                                <li><a href="<%= request.getContextPath() %>/views/service/Q&A.jsp"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_QnA.png" alt="Q & A"></a></li>
+
+                             <%--    <li><a href="<%= request.getContextPath() %>/views/service/Q&A.jsp"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_QnA.png" alt="Q & A"></a></li> --%>
                                 <li><a href="<%= request.getContextPath() %>/views/service/Question.jsp"><img src="<%= request.getContextPath() %>/resources/images/icons/sub_contactmtm.png" alt="1:1 문의"></a></li>
                             </ul>
                         </li>
@@ -95,10 +94,10 @@
 		function logout() {
 			location.href = "<%=request.getContextPath()%>/logout.th";
 		}
+		function goManager(){
+	         location.href = "<%=request.getContextPath()%>/chart.ma";
+	      }
 
-		function goManager() {
-			location.href = "<%=request.getContextPath()%>/chart.ma";
-		}
 	</script>
 
 </body>

@@ -65,9 +65,6 @@ public class ListReview2Servlet extends HttpServlet {
 		if(rvlist != null) {
 			page="views/review/review_list.jsp";
 			request.setAttribute("rvlist", rvlist);
-			System.out.println(startPage);
-			System.out.println(endPage);
-			System.out.println(maxPage);
 			PageInfo pi = new PageInfo(currentPage,listCount,limit,maxPage,startPage,endPage);
 			request.setAttribute("pi", pi);
 			

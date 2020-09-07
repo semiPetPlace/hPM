@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/pagination.css">
     <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src ="<%= request.getContextPath() %>/resources/js/script.js"></script>
+
 </head>
 <body>
     	<%@ include file = "../common/header.jsp" %>
@@ -76,8 +77,9 @@
                         <input type="hidden" value="<%= cm.getCno() %>"/>
 							<div class="cafeList-list"
 							onclick="location.href='<%= request.getContextPath() %>/cView.ch?cno=<%= cm.getCno() %>'"
-							style="cursor: pointer; width: 433px;">
-								<a><img src="<%= request.getContextPath() %>/resources/images/cafe1.jpg" alt="cafe"></a>
+							style="cursor: pointer; margin: 50px 5% 0 0;">
+								<a><img src="<%= request.getContextPath() %>/resources/images/cafe/<%= cm.getCrimage() %>"
+									style="width: 433px; height: 433px;" alt="cafe"></a>
 								<h4 style="margin-bottom: 0;"> <%= cm.getCname() %></h4>
 								<p class="infoText"><%= cm.getCpromotion() %></p>
 								<p class="price">★ 평점 <%= cm.getCscore() %></p>
@@ -92,7 +94,7 @@
             <!-- 카페/레스토랑 리스트 끝 -->
             
 	<!-- 페이징 처리 시작 -->
-	<div class="list_number" align="center">
+	<div class="list_number" align="center" style="padding-top: 100px;">
 		<% if(keyword != null) { %>
 			<button onclick="location.href='<%= request.getContextPath() %>/cSearch.ch?local=<%= local %>&size=<%= size %>&keyword=<%= keyword %>&currentPage=1'">◀◀</button>
 			<%  if(currentPage <= 1) {  %>

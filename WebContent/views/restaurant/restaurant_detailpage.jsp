@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.semiProject.restaurant.model.vo.*, java.util.*" %>
+    pageEncoding="UTF-8"
+    import="com.kh.semiProject.restaurant.model.vo.*, com.kh.semiProject.review.model.vo.*, java.util.*"%>
 <%
 	Restaurant r = (Restaurant)request.getAttribute("restaurant");
+	ArrayList<Review> rv = (ArrayList<Review>)request.getAttribute("review");
  %>
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -26,88 +28,51 @@
                 <p><%= r.getRaddress() %></p>
                 <p>★평점 <%= r.getRscore() %></p>
             </div>
-            <div class="review_btn"><a href="../review/review_write.jsp">리뷰 작성</a></div>
+            <% if(m != null){ %>
+            <div class="review_btn"><a href="<%= request.getContextPath() %>/views/review/review_write.jsp?type=restaurant&cno=<%= r.getRno() %>">리뷰 작성</a></div>
             <div class="like_btn"><button onclick="like();" id="like_btn">찜하기</button></div>
+            <% } %>
         </div>
         <div class="wrapper cafe-cont clearfix">
             <div class="left">
                 <!--식당이미지-->
-                <div class="cafe-image">
+				<% String img = r.getRimage(); %>
+				<% String[] split = img.split(", "); %>
+				
+				<% r.setRimage2(split); %>
+				
+				<div class="cafe-image">
                     <div class="small-box">
                         <ul class="slides">
-                            <input type="radio" name="radio-btn" id="img-1" checked />
+                        <% int num = 0; %>
+                        <% int num2 = 0; %>
+                        <% int num3 = split.length - 1; %>
+                        <% for(int i = 0; i < split.length; i++) { %>
+                        <% if(i == 0) { %>
+                       	<% num = split.length; %>
+                        <% }else { %>
+                        <% num = i; %>
+                        <% } %>
+                            <input type="radio" name="radio-btn" id="img-<%= i + 1 %>" checked />
                             <li class="slide-container">
                                 <div class="nav">
-                                    <label for="img-6" class="prev">&#x2039;</label>
-                                    <label for="img-2" class="next">&#x203a;</label>
+                                    <label for="img-<%= num %>" class="prev">&#x2039;</label>
+                        <% num2 = i + 2; %>
+                        <% if(i == num3) { %>
+                        <% num2 = 1; %>
+                        <% } %>
+                                    <label for="img-<%= num2 %>" class="next">&#x203a;</label>
                                 </div>
                                 <div class="slide">
-                                    <img src=<%= r.getRimage() %> />
+                                    <img src="<%= request.getContextPath() %>/resources/images/restaurant/<%= r.getRimage2()[i] %>" />
                                 </div>
                             </li>
-                            
-                            <input type="radio" name="radio-btn" id="img-2" />
-                            <li class="slide-container">
-                                <div class="slide">
-                                    <img src=<%= r.getRimage() %> />
-                                </div>
-                                <div class="nav">
-                                    <label for="img-1" class="prev">&#x2039;</label>
-                                    <label for="img-3" class="next">&#x203a;</label>
-                                </div>
-                            </li>
-                        
-                            <input type="radio" name="radio-btn" id="img-3" />
-                            <li class="slide-container">
-                                <div class="slide">
-                                    <img src=<%= r.getRimage() %> />
-                                </div>
-                                <div class="nav">
-                                    <label for="img-2" class="prev">&#x2039;</label>
-                                    <label for="img-4" class="next">&#x203a;</label>
-                                </div>
-                            </li>
-                        
-                            <input type="radio" name="radio-btn" id="img-4" />
-                            <li class="slide-container">
-                                <div class="slide">
-                                    <img src=<%= r.getRimage() %> />
-                                </div>
-                                <div class="nav">
-                                    <label for="img-3" class="prev">&#x2039;</label>
-                                    <label for="img-5" class="next">&#x203a;</label>
-                                </div>
-                            </li>
-                        
-                            <input type="radio" name="radio-btn" id="img-5" />
-                            <li class="slide-container">
-                                <div class="slide">
-                                    <img src=<%= r.getRimage() %> />
-                                </div>
-                                <div class="nav">
-                                    <label for="img-4" class="prev">&#x2039;</label>
-                                    <label for="img-6" class="next">&#x203a;</label>
-                                </div>
-                            </li>
-                        
-                            <input type="radio" name="radio-btn" id="img-6" />
-                            <li class="slide-container">
-                                <div class="slide">
-                                    <img src=<%= r.getRimage() %> />
-                                </div>
-                                <div class="nav">
-                                    <label for="img-5" class="prev">&#x2039;</label>
-                                    <label for="img-1" class="next">&#x203a;</label>
-                                </div>
-                            </li>
-                        
+                        <% } %>
+                        	
                             <li class="nav-dots">
-                              <label for="img-1" class="nav-dot" id="img-dot-1"></label>
-                              <label for="img-2" class="nav-dot" id="img-dot-2"></label>
-                              <label for="img-3" class="nav-dot" id="img-dot-3"></label>
-                              <label for="img-4" class="nav-dot" id="img-dot-4"></label>
-                              <label for="img-5" class="nav-dot" id="img-dot-5"></label>
-                              <label for="img-6" class="nav-dot" id="img-dot-6"></label>
+                        <% for(int i = 0; i < split.length; i++) { %>
+                              <label for="img-<%= i + 1 %>" class="nav-dot" id="img-dot-<%= i + 1 %>"></label>
+                        <% } %>
                             </li>
                         </ul>
                     </div>
@@ -139,15 +104,21 @@
                     <div class="title">
                         <img src="<%= request.getContextPath() %>/resources/images/icons/document.png" alt="">
                         <h3>리뷰</h3>
-                        <div class="write_btn"><a href="../review/review_write.jsp">리뷰 작성</a></div>
-                        <div class="list_btn"><a href="../review/review_list.jsp">더보기</a></div>
+                        <% if(m != null){ %>
+                        <div class="write_btn"><a href="<%= request.getContextPath() %>/views/review/review_write.jsp?type=restaurant&cno=<%= r.getRno() %>">리뷰 작성</a></div>
+                        <% } %>
+                        <div class="list_btn"><a href="<%= request.getContextPath() %>/rvList2.th?type=cafe&ctno=<%=r.getRno() %>">더보기</a></div>
                     </div>
                     <div class="content">
                         <ul class="list">
-                            <li>“ <%= r.getRreview() %> ”</li>
-                            <li>“ <%= r.getRreview() %> ”</li>
-                            <li>“ <%= r.getRreview() %> ”</li>
-                            <li>“ <%= r.getRreview() %> ”</li>
+                        <% int j = 0; %>
+                        <% for(Review rve : rv) { %>
+                        	<% if(j == 4) { break; } %>
+                            <li>“ <%= rve.getRvcontent() %> ”</li>
+                        <% j++; } %>
+                        <% if(rv.isEmpty()) { %>
+                        <li>등록된 리뷰가 없습니다.</li>
+                        <% } %>
                         </ul>
                     </div>
                 </div>
@@ -178,7 +149,7 @@
                         
                         function initMap() {
                         map = new google.maps.Map(document.getElementById('map'), {
-                        center: {lat: 37.538537, lng:  127.074660}, //위도 경도
+                        center: {lat: <%= r.getLat() %>, lng: <%= r.getLng() %>}, //위도 경도
                         zoom: 16 //숫자클수록 지도가 자세히보임
                         });
                         
@@ -189,7 +160,7 @@
                                                     new google.maps.Size(60, 60));
                         
                         marker = new google.maps.Marker({
-                                    position: {lat: 37.538537, lng:  127.074660}, // 마커가 위치할 위도와 경도(변수)
+                                    position: {lat: <%= r.getLat() %>, lng: <%= r.getLng() %>}, // 마커가 위치할 위도와 경도(변수)
                                     map: map,
                                     icon: image, // 마커로 사용할 이미지(변수)
                                     title: '동문회관' // 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
@@ -214,18 +185,16 @@
                 <div class="time">
                     <div class="t_title">
                         <img src="<%= request.getContextPath() %>/resources/images/icons/clock.png" alt="">
-                        <h3>영업시간</h3>
-                        <p>Now Open!</p>
+                        <h3>영업 시간</h3>
                     </div>
-                    <div class="t_cont">
+                    <div class="t_cont">                    
+                    <% String time = r.getRtime(); %>
+                    <% String[] arr = time.split(";"); %>
+                    <% r.setRtime2(arr); %>
                         <ul>
-                            <li><%= r.getRtime() %></li>
-                            <li><%= r.getRtime() %></li>
-                            <li><%= r.getRtime() %></li>
-                            <li><%= r.getRtime() %></li>
-                            <li><%= r.getRtime() %></li>
-                            <li><%= r.getRtime() %></li>
-                            <li><%= r.getRtime() %></li>
+                        <% for(int i = 0; i < arr.length; i++) { %>
+                            <li><%= r.getRtime2()[i] %></li>
+                        <% } %>
                         </ul>
                         <p>* 휴무의 경우 명시된 날짜와 상이할 수 있으니 전화 문의 후 확인하시어 방문 부탁드립니다. (공휴일 포함)</p>
                     </div>
@@ -234,9 +203,11 @@
         </div>
         </main>
 	<script>
+	
 		function like() {
 			alert('찜한 플레이스에 저장되었습니다.');
 		}
+
 	</script>
 	<!-- TOP버튼 -->
     <div style="height: 20px;"><a href="#header" id="top">▲ TOP</a></div>

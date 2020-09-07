@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.semiProject.restaurant.model.vo.Restaurant;
+import com.kh.semiProject.review.model.vo.Review;
 
 public class RestaurantDao {
 
@@ -80,8 +81,9 @@ public class RestaurantDao {
 			while(rset.next()) {
 				Restaurant r = new Restaurant();
 				r.setRno(rset.getInt("R_NO"));
-				r.setRimage(rset.getString("R_IMAGE"));
+				r.setRrimage(rset.getString("R_R_IMAGE"));
 				r.setRname(rset.getString("R_NAME"));
+				r.setRpromotion(rset.getString("R_PROMOTION"));
 				r.setRscore(rset.getDouble("R_SCORE"));
 
 				list.add(r);
@@ -101,6 +103,7 @@ public class RestaurantDao {
 	public Restaurant selectOne(Connection con, int rno) {
 
 		Restaurant r = null;
+		Review rv = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectOne");
@@ -113,6 +116,8 @@ public class RestaurantDao {
 
 			if(rset.next()) {
 				r = new Restaurant();
+				rv = new Review();
+				r.setRno(rset.getInt("R_NO"));
 				r.setRrimage(rset.getString("R_R_IMAGE"));
 				r.setRimage(rset.getString("R_IMAGE"));
 				r.setRname(rset.getString("R_NAME"));
@@ -122,10 +127,11 @@ public class RestaurantDao {
 				r.setRaddress(rset.getString("R_ADDRESS"));
 				r.setRdogCompInfo(rset.getString("R_DOG_COMPINFO"));
 				r.setRpromotion(rset.getString("R_PROMOTION"));
-				r.setRreview(rset.getString("R_REVIEW"));
 				r.setRrequest(rset.getString("R_REQUEST"));
 				r.setRregisterDate(rset.getDate("R_REGISTERDATE"));
 				r.setRregistration(rset.getString("R_REGISTRATION"));
+				r.setLat(rset.getFloat("LAT"));
+				r.setLng(rset.getFloat("LNG"));
 			}
 
 		}catch(SQLException e) {
@@ -158,7 +164,7 @@ public class RestaurantDao {
 			while(rset.next()) {
 				Restaurant r = new Restaurant();
 				r.setRno(rset.getInt("R_NO"));
-				r.setRimage(rset.getString("R_IMAGE"));
+				r.setRrimage(rset.getString("R_R_IMAGE"));
 				r.setRname(rset.getString("R_NAME"));
 				r.setRscore(rset.getDouble("R_SCORE"));
 
@@ -200,6 +206,42 @@ public class RestaurantDao {
 		}
 
 		return listCount;
+	}
+
+
+	public ArrayList<Review> restaurantReview(Connection con, int rno) {
+
+		ArrayList<Review> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String sql = prop.getProperty("restaurantReview");
+
+		try {
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, rno);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<Review>();
+
+			while(rset.next()) {
+				
+				Review rv = new Review();
+				rv.setRvcontent(rset.getString("RV_CONTENT"));
+
+				list.add(rv);
+
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
 	}
 	
 }

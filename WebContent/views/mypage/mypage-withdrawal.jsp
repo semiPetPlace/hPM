@@ -8,12 +8,12 @@
         <title>회원탈퇴</title>
         
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../resources/css/mainpage.css">
-        <link rel="stylesheet" href="../../resources/css/cafe-main.css">
-        <link rel="stylesheet" href="../../resources/css/mypage_Member.Modification.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mainpage.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/cafe-main.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mypage_Member.Modification.css">
 
         <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src ="../../resources/js/script.js"></script>
+        <script src ="<%=request.getContextPath()%>/resources/js/script.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
@@ -28,16 +28,16 @@
                 </div>
                 <div id="mypage_nav">
                     <ul id="mypage_nav_main" class="page_nav">
-                        <li><a href="./mypage-basic.jsp">마이페이지</a></li>
+                        <li><a href="<%=request.getContextPath() %>/basic.ys?">마이페이지</a></li>
                     </ul>
                     <ul id="mypage_nav_sub">
-                        <li class="page_nav"><a href="./mypage-scheduled.reservation.jsp">예약·결제 관리</a></li>
-                        <li class="page_nav"><a href="./mypage-myplace.jsp">찜한 플레이스</a></li>
-                        <li class="page_nav"><a href="./mypage-review.jsp">내가 쓴 게시글</a></li>
+                         <li class="page_nav"><a href="<%=request.getContextPath() %>/scheduledReser.ys?userid=<%=m.getMuserId()%>">예약·결제 관리</a></li>
+                        <li class="page_nav"><a href="<%=request.getContextPath() %>/myplace.ys">찜한 플레이스</a></li>
+                        <li class="page_nav"><a href="<%=request.getContextPath() %>/review.ys">내가 쓴 게시글</a></li>
                         <br><br><br>
-                        <li class="page_nav"><a href="./mypage-Member.Modification.jsp">회원 정보 수정</a></li>
+                        <li class="page_nav"><a href="<%=request.getContextPath() %>/membermodification.ys">회원 정보 수정</a></li>
                         
-                        <li class="page_nav"><a href="./mypage-withdrawal.jsp">회원 탈퇴</a></li>
+                        <li class="page_nav"><a href="<%=request.getContextPath() %>/withdrawal.ys">회원 탈퇴</a></li>
                     </ul>
                 </div>
                 

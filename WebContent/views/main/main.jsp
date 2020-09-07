@@ -57,35 +57,33 @@
 
 		<div class="wrapper2">
 			<!-- 검색창 부분 -->
+			<form id="searchform" method="post">
 			<div id="search-box">
-				<select name="플레이스" id=""
+				<label name="플레이스" id="" value="hotel"
 					style="font-size: 1.4rem; width: 200px; text-align: center; margin-right: 90px; margin-left: 70px; border: none;">
-					<option value="place" class="nonselect">플레이스 선택</option>
-					<option value="hotel">반려견 동반 호텔</option>
-					<option value="patHotel">반려견 위탁 호텔</option>
-					<option value="cafe">반려견 카페</option>
-					<option value="restaurant">반려견 레스토랑</option>
-				</select> <input type="date" class="check" name="체크인"
-					style="font-size: 1.4rem; width: 180px; border: none;"> <input
-					type="date" class="check" name="체크아웃"
+					반려견 동반 호텔</label>
+				<input type="date" class="check" name="checkin" id="checkin"
+					style="font-size: 1.4rem; width: 180px; border: none;"> 
+					<input type="date" class="check" name="checkout" id="checkout"
 					style="font-size: 1.4rem; width: 180px; margin-right: 95px; border: none;">
-				<select name="지역" id=""
+				<select name="area" id="area"
 					style="font-size: 1.4rem; width: 180px; text-align: center; margin-right: 150px; border: none;">
 					<option value="x" class="nonselect">지역</option>
-					<option value="seoul">서울</option>
-					<option value="gyeonggi">경기</option>
-					<option value="incheon">인천</option>
-					<option value="daegu">대구</option>
-					<option value="busan">부산</option>
-					<option value="jeju">제주</option>
+					<option value="서울">서울</option>
+					<option value="경기">경기</option>
+					<option value="인천">인천</option>
+					<option value="대구">대구</option>
+					<option value="부산">부산</option>
+					<option value="제주">제주</option>
 				</select>
 
 				<!-- 검색 버튼 -->
-				<div class="button-5">
+				<div class="button-5" id="searchBtn">
 					<div class="eff-5"></div>
-					<a href="#" onclick="searching();">검색</a>
+					<a >검색</a>
 				</div>
 			</div>
+			</form>
 			<!-- 검색창 부분 끝 -->
 
 			<!-- 이미지 슬라이드 -->
@@ -169,11 +167,14 @@
 								break;
 							}
 					%>
+					<% String[] Image =  h.gethImg().split(",");  %>
+					
+					
 					<td>
 						<div id="con_hotelList" style="float: none;">
 							<a href="<%=request.getContextPath() %>/hotelDetail.ys?h_no=<%= h.gethNo() %>">
 								<div class="con_hotelList-list">
-									<img src="<%=h.gethImg()%>" alt="con_hotel1">
+									<img src="<%= request.getContextPath() %>/resources/images/<%=Image[0]%>" alt="con_hotel1">
 									<h4 style="margin-bottom: 0;"><%=h.gethName()%></h4>
 									<p class="infoText"><%=h.gethPromotion()%></p>
 									<p class="price">₩<%=h.gethPrice()%>/1박
@@ -205,7 +206,7 @@
 						<div id="hotelList" style="float: none;">
 							<a href="<%=request.getContextPath() %>/pethoteldetail.ys?ph_no=<%= p.gethNo() %>">
 								<div class="hotelList-list">
-									<img src="<%=p.gethImg()%>" alt="hotel1">
+									<img src="<%= request.getContextPath() %>/resources/images/<%=p.gethImg()%>" alt="hotel1">
 									<h4 style="margin-bottom: 0;"><%=p.gethName()%></h4>
 									<p class="infoText"><%=p.gethPromotion()%></p>
 									<p class="price">₩<%=p.gethPrice()%>/1박</p>
@@ -242,7 +243,7 @@
 						<div id="restaurantList">
 							<a href="<%= request.getContextPath() %>/rView.ch?rno=<%= r.getRno() %>">
 								<div class="restaurantList-list">
-									<img src="<%=r.getRimage()%>" alt="Restaurant">
+									<img src="<%= request.getContextPath() %>/resources/images/restaurant/<%=r.getRrimage()%>" alt="Restaurant">
 									<h4 style="margin-bottom: 0;"><%=r.getRname()%></h4>
 									<p class="infoText"><%=r.getRpromotion()%></p>
 									<p class="price">
@@ -271,7 +272,6 @@
 			<table>
 				<tr>
 					<%
-
 						for (Cafe c : clist) {
 							if (num == 4) {
 								num = 0;
@@ -282,7 +282,7 @@
 						<div id="cafeList">
 							<a href="<%= request.getContextPath() %>/cView.ch?cno=<%= c.getCno() %>">
 								<div class="cafeList-list">
-									<img src="<%=c.getCimage()%>" alt="cafe">
+									<img src="<%= request.getContextPath() %>/resources/images/cafe/<%=c.getCrimage()%>" alt="cafe">
 									<h4 style="margin-bottom: 0;"><%=c.getCname()%></h4>
 									<p class="infoText"><%=c.getCpromotion()%></p>
 									<p class="price">
@@ -308,22 +308,32 @@
 		</div>
 	</main>
 
-	<script>
-    		function searching(){
-			location.href="<%=request.getContextPath()%>
-		/searchMain.th?place="
-					+ $('#place').val()
-					+ "&checkin="
-					+ $('#checkin').val()
-					+ "&checkout="
-					+ $('#checkout').val()
-					+ "&area="
-					+ $('#area').val();
-
-		}
-	</script>
 	<!-- 메인 끝 -->
 	<%@ include file="../common/footer.jsp"%>
+	
+	
+	<script>
+		$(function(){
+			var entime = $('#checkin').val();
+			var extime = $('#checkout').val();
+			var location = $('#area').val(); 
+		
+			
+			$('#searchBtn').click(function(){
+				
+			
+				if($('#checkin').val()!="" && $('#checkout').val() !="" && $('#area').val() !="x"){
+					
+					$('#searchform').attr('action','<%=request.getContextPath() %>/hotelsearch.ys?checkin='+$('#checkin').val()+'&checkout='+$('#checkout').val()+'&area='+$('#area').val()).submit();
+					
+				}else{
+					alert("체크인/체크아웃/지역 값을 모두선택해주세요");
+				} 
+				
+				
+			});
+		});
+	</script>
 
 </body>
 </html>

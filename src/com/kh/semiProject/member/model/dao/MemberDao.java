@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -292,6 +293,78 @@ public class MemberDao {
 		return pwd;
 	}
 
+	public int getListCount(Connection con) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("memberCount");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+			
+			
+		}catch(SQLException e) {
+			e.getStackTrace(); 
+		}finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return listCount;
+	}
+
+	
+public ArrayList<Member> memberList(Connection con, int currentPage, int limit) {
+		
+		ArrayList<Member> mList = new ArrayList();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		String sql="";
+		
+			sql = prop.getProperty("viewList");
+	
+		try {
+			pstmt = con.prepareStatement(sql);
+			int startRow = (currentPage-1)*limit+1;
+			int endRow = startRow+limit-1;
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			rset = pstmt.executeQuery();
+			
+			
+			while(rset.next()) {
+				Member m;
+	
+				String mno = rset.getString("M_NO");
+				String mName = rset.getString("M_USERNAME");
+				String mId = rset.getString("M_USERID");
+				String mAddress = rset.getString("M_ADDRESS");
+				String mPhone = rset.getString("M_PHONE");
+				String gender = rset.getString("M_GENDER");
+				String email = rset.getString("M_EMAIL");
+				String birth = rset.getString("M_BIRTH");
+				String status = rset.getString("M_STATUS");
+				Date registerDate = rset.getDate("M_REGISTERDATE");
+				
+				m = new Member(mno,mName,mId,mAddress,mPhone,email,gender,birth,status,registerDate) ;
+				mList.add(m);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return mList;
+	}
 
 
 }

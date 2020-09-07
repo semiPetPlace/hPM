@@ -44,10 +44,10 @@ public class ManagerService {
 		return mac;
 	}
 	
-	public Member MemberDetail(String userName) {
+	public Member MemberDetail(String userid) {
 		Connection con = getConnection();
 
-		Member m = mDao.MemberDetail(con,userName);
+		Member m = mDao.MemberDetail(con,userid);
 
 		if(m != null) commit(con);
 		else rollback(con);
@@ -98,16 +98,6 @@ public class ManagerService {
 		
 		close(con);
 		return list;
-	}
-
-
-	public int getListCount() {
-		Connection con = getConnection();
-		int listCount = mDao.getListCount(con);
-		
-		close(con);
-		
-		return listCount;
 	}
 
 	public ArrayList<Hotel> listHotel(int currentPage, int limit) {
@@ -262,6 +252,14 @@ public class ManagerService {
 		close(con);
 		
 		return result;
+	}
+	public int getListCount() {
+		Connection con = getConnection();
+		int listCount = mDao.getListCount(con);
+		
+		close(con);
+		
+		return listCount;
 	}
 	public int getListCount1() {
 		Connection con = getConnection();

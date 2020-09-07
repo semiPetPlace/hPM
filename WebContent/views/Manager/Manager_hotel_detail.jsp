@@ -102,7 +102,7 @@
 	                            </tr>
 	                            <tr>
 	                                <th>호텔 이미지</th>
-	                                 <td style="padding:10px 0;">
+	                                <td style="padding:10px 0;">
 										<%= h.gethImg() %>
 	                                </td>
 	                            </tr>

@@ -131,7 +131,7 @@ select{
                                 <input type="hidden" value="<%= ph.getPhno()%>" id="ch1">
           							<a  id="nextpage" href="<%=request.getContextPath() %>/pethoteldetail.ys?ph_no=<%= ph.getPhno()%>">
 	                                    <div class="hotel-info-list">
-	                                        <div class="hotelimg"><img src="<%=ph.getImg()%>" alt=""></div>
+	                                        <div class="hotelimg"><img src="<%=request.getContextPath() %>/resources/images/<%=ph.getImg() %>" alt=""></div>
 	                                        <div class="hotelinfo">
 	                                            <strong><%=ph.getPhname() %></strong>
 	                                            <span>  평점 <label><%= ph.getPhscore()%></label></span> 
