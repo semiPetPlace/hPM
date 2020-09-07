@@ -201,4 +201,49 @@ public class ReservationManaDao {
 		return reserList;
 	}
 
+	public ArrayList<ReservationMana> recentReser(Connection con) {
+		ArrayList<ReservationMana> reserList = new ArrayList<>();
+		
+		Statement stmt =null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("recentReser");
+		
+		try {
+			stmt = con.createStatement();
+			rset =stmt.executeQuery(sql);
+			
+			while(rset.next()) {
+				ReservationMana  rm = new ReservationMana();
+				
+				rm.setReserDate(rset.getString("ma_reser_date"));
+				rm.setReserHotelno(rset.getInt("ma_reser_hotel"));
+				rm.setReserCheckin(rset.getString("ma_reser_checkin"));
+				rm.setReserCheckout(rset.getString("ma_reser_checkout"));
+				rm.setReserCheckintime(rset.getString("ma_reser_checkintime"));
+				rm.setReserTotalprice(rset.getString("ma_reser_totalprice"));
+				rm.setReserGuestid(rset.getString("ma_reser_guestid"));
+				rm.setReserGuestemail(rset.getString("ma_reser_guestemail"));
+				rm.setReserGuestrequest(rset.getString("ma_reser_guestrequest"));
+				rm.setReserBreakfast(rset.getString("ma_reser_breakfast"));
+				rm.setReserUserid(rset.getString("ma_reser_userid"));
+				rm.setReserhotelname(rset.getString("H_NAME"));
+				rm.setReserHotelimg(rset.getString("h_img"));
+				rm.setReserNo(rset.getInt("ma_reser_no"));
+				rm.setReserPetnumber(rset.getInt("ma_reser_petnumber"));
+				rm.setReserRoom(rset.getString("ma_reser_room"));
+				
+				reserList.add(rm);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		return reserList;
+	}
+
 }

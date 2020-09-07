@@ -45,9 +45,18 @@ public class ReservationManaService {
 	}
 
 	public ArrayList<ReservationMana> detailReser(String reserno) {
-Connection con = getConnection();
+		Connection con = getConnection();
 		
 		ArrayList<ReservationMana> reserList = rDao.detailReser(con,reserno);
+		
+		close(con);
+		return reserList;
+	}
+
+	public ArrayList<ReservationMana> recentReser() {
+		Connection con = getConnection();
+		
+		ArrayList<ReservationMana> reserList = rDao.recentReser(con);
 		
 		close(con);
 		return reserList;
