@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
-<%@ page import="java.util.*" import= "java.text.*,com.kh.semiProject.mSales.model.vo.*, java.util.*"%>
+<%@ page import="java.util.*" import= "com.kh.common.*,java.text.*,com.kh.semiProject.mSales.model.vo.*, java.util.*"%>
 <%	
 	ArrayList<Hsales> hList = (ArrayList<Hsales>)request.getAttribute("hList");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -64,9 +70,35 @@
                             </tr> 
                          <%} %>
                        
-                            
                         </table>
+       	<div class="pagingArea" align="center">
+			<button onclick="location.href='<%= request.getContextPath() %>/viewChart.hs?currentPage=1'"><<</button>
+			<%  if(currentPage <= 1){  %>
+			<button disabled><</button>
+			<%  }else{ %>
+			<button onclick="location.href='<%= request.getContextPath() %>/viewChart.hs?currentPage=<%=currentPage - 1 %>'"><</button>
+			<%  } %>
+			
+			<% for(int p = startPage; p <= endPage; p++){
+					if(p == currentPage){	
+			%>
+				<button disabled><%= p %></button>
+			<%      }else{ %>
+				<button onclick="location.href='<%= request.getContextPath() %>/viewChart.hs?currentPage=<%= p %>'"><%= p %></button>
+			<%      } %>
+			<% } %>
+				
+			<%  if(currentPage >= maxPage){  %>
+			<button disabled>></button>
+			<%  }else{ %>
+			<button onclick="location.href='<%= request.getContextPath() %>/viewChart.hs?currentPage=<%=currentPage + 1 %>'">></button>
+			<%  } %>
+			<button onclick="location.href='<%= request.getContextPath() %>/viewChart.hs?currentPage=<%=maxPage %>'">>></button>
+			
+		</div>
+                        
                     </div>
+                    
                 </div>
 
                 <div class="empty">

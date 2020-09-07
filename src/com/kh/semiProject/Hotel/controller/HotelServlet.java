@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.PageInfo;
 import com.kh.semiProject.Hotel.model.service.HotelService;
 import com.kh.semiProject.Hotel.model.vo.Hotel;
 
@@ -36,12 +37,16 @@ public class HotelServlet extends HttpServlet {
 		
 		HotelService hs = new HotelService();
 		
+		
+		
 		hlist = hs.hotelList();
 		
 		String page = "";
 		if(!hlist.isEmpty()) {
 			page = "views/main/hotelmain.jsp";
 			request.setAttribute("hlist", hlist);
+			
+			
 		}else {
 			page = "views/main/main.jsp";
 			System.out.println("되겠냐?");

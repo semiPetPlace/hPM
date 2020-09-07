@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/pagination.css">
     <script src ="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src ="<%= request.getContextPath() %>/resources/js/script.js"></script>
+
 </head>
 <body>
     	<%@ include file = "../common/header.jsp" %>
@@ -72,11 +73,11 @@
 					<% if(cnt % 3 == 1) { %>
 					<tr>
 					<% } %>	
-                    	<td style="margin: 50px 0 0 5%; padding: 10px;">
+                    	<td>
                         <input type="hidden" value="<%= cm.getCno() %>"/>
 							<div class="cafeList-list"
 							onclick="location.href='<%= request.getContextPath() %>/cView.ch?cno=<%= cm.getCno() %>'"
-							style="cursor: pointer; width: 433px;">
+							style="cursor: pointer; margin: 50px 5% 0 0;">
 								<a><img src="<%= request.getContextPath() %>/resources/images/cafe/<%= cm.getCrimage() %>"
 									style="width: 433px; height: 433px;" alt="cafe"></a>
 								<h4 style="margin-bottom: 0;"> <%= cm.getCname() %></h4>

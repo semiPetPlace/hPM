@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.semiProject.restaurant.model.vo.*, java.util.*" %>
+    pageEncoding="UTF-8"
+    import="com.kh.semiProject.restaurant.model.vo.*, com.kh.semiProject.review.model.vo.*, java.util.*"%>
 <%
 	Restaurant r = (Restaurant)request.getAttribute("restaurant");
+	ArrayList<Review> rv = (ArrayList<Review>)request.getAttribute("review");
  %>
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -109,7 +111,14 @@
                     </div>
                     <div class="content">
                         <ul class="list">
-                            <li>“ <%= r.getRreview() %> ”</li>
+                        <% int j = 0; %>
+                        <% for(Review rve : rv) { %>
+                        	<% if(j == 4) { break; } %>
+                            <li>“ <%= rve.getRvcontent() %> ”</li>
+                        <% j++; } %>
+                        <% if(rv.isEmpty()) { %>
+                        <li>등록된 리뷰가 없습니다.</li>
+                        <% } %>
                         </ul>
                     </div>
                 </div>

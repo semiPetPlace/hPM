@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.kh.semiProject.restaurant.model.dao.RestaurantDao;
 import com.kh.semiProject.restaurant.model.vo.Restaurant;
+import com.kh.semiProject.review.model.vo.Review;
 
 public class RestaurantService {
 	
@@ -69,4 +70,13 @@ public class RestaurantService {
 		
 	}
 	
+	public ArrayList<Review> restaurantReview(int rno) {
+		
+		Connection con = getConnection();
+		ArrayList<Review> list = rDao.restaurantReview(con, rno);
+		
+		close(con);
+		
+		return list;
+	}
 }

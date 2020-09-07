@@ -14,12 +14,13 @@ import com.kh.semiProject.Hotel.model.vo.HotelFacility;
 import com.kh.semiProject.Hotel.model.vo.HotelRoom;
 import com.kh.semiProject.Hotel.model.vo.PetHotel;
 import com.kh.semiProject.Manager.model.vo.ReservationManager;
+import com.kh.semiProject.review.model.vo.Review;
 
 public class HotelService {
 	
 	private HotelDao hDao = new HotelDao();
 
-	public ArrayList<Hotel> hotelList() {
+	public ArrayList<Hotel> hotelList () {
 		Connection con = getConnection();
 		
 		ArrayList<Hotel> hlist = hDao.hotelList(con);
@@ -27,6 +28,8 @@ public class HotelService {
 		close(con);
 		return hlist;
 	}
+
+
 
 	public Hotel selectHotel(int h_no) {
 		Connection con = getConnection();
@@ -137,6 +140,34 @@ public class HotelService {
 		return hlist;
 	}
 
+	public ArrayList<Review> hreview(int h_no) {
+		Connection con = getConnection();
+		ArrayList<Review> hreview =hDao.hreview(con,h_no);
+		
+		close(con);
+		
+		return hreview;
+	}
+
+	public ArrayList<Review> phreview(int ph_no) {
+		Connection con = getConnection();
+		ArrayList<Review> phreview =hDao.phreview(con,ph_no);
+		
+		close(con);
+		
+		return phreview;
+	}
+
+	public int getListCount() {
+		Connection con = getConnection();
+		int listCount = hDao.getListCount(con);
+		
+		close(con);
+		
+		return listCount;
+	}
+
+	
 	
 
 }

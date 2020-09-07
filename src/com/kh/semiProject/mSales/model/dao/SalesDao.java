@@ -31,7 +31,7 @@ public class SalesDao {
 
 	}
 
-	public ArrayList<Hsales> hSalesChart(Connection con) {
+	public ArrayList<Hsales> hSalesChart(Connection con, int currentPage, int limit) {
 		ArrayList<Hsales> hList = new ArrayList();
 
 		PreparedStatement pstmt = null;
@@ -42,6 +42,13 @@ public class SalesDao {
 
 		try {
 			pstmt = con.prepareStatement(sql);
+			int startRow = (currentPage-1)*limit+1;
+			int endRow = startRow+limit-1;
+			
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			System.out.println("endRow:"+endRow);
+			System.out.println("startRow:"+startRow);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				Hsales h = new Hsales();
