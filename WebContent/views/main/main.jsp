@@ -282,7 +282,7 @@
 						<div id="cafeList">
 							<a href="<%= request.getContextPath() %>/cView.ch?cno=<%= c.getCno() %>">
 								<div class="cafeList-list">
-									<img src="<%= request.getContextPath() %>/resources/images/<%=c.getCrimage()%>" alt="cafe">
+									<img src="<%= request.getContextPath() %>/resources/images/cafe/<%=c.getCrimage()%>" alt="cafe">
 									<h4 style="margin-bottom: 0;"><%=c.getCname()%></h4>
 									<p class="infoText"><%=c.getCpromotion()%></p>
 									<p class="price">
