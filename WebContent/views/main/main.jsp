@@ -57,35 +57,33 @@
 
 		<div class="wrapper2">
 			<!-- 검색창 부분 -->
+			<form id="searchform" method="post">
 			<div id="search-box">
-				<select name="플레이스" id=""
+				<label name="플레이스" id="" value="hotel"
 					style="font-size: 1.4rem; width: 200px; text-align: center; margin-right: 90px; margin-left: 70px; border: none;">
-					<option value="place" class="nonselect">플레이스 선택</option>
-					<option value="hotel">반려견 동반 호텔</option>
-					<option value="patHotel">반려견 위탁 호텔</option>
-					<option value="cafe">반려견 카페</option>
-					<option value="restaurant">반려견 레스토랑</option>
-				</select> <input type="date" class="check" name="체크인"
-					style="font-size: 1.4rem; width: 180px; border: none;"> <input
-					type="date" class="check" name="체크아웃"
+					반려견 동반 호텔</label>
+				<input type="date" class="check" name="checkin" id="checkin"
+					style="font-size: 1.4rem; width: 180px; border: none;"> 
+					<input type="date" class="check" name="checkout" id="checkout"
 					style="font-size: 1.4rem; width: 180px; margin-right: 95px; border: none;">
-				<select name="지역" id=""
+				<select name="area" id="area"
 					style="font-size: 1.4rem; width: 180px; text-align: center; margin-right: 150px; border: none;">
 					<option value="x" class="nonselect">지역</option>
-					<option value="seoul">서울</option>
-					<option value="gyeonggi">경기</option>
-					<option value="incheon">인천</option>
-					<option value="daegu">대구</option>
-					<option value="busan">부산</option>
-					<option value="jeju">제주</option>
+					<option value="서울">서울</option>
+					<option value="경기">경기</option>
+					<option value="인천">인천</option>
+					<option value="대구">대구</option>
+					<option value="부산">부산</option>
+					<option value="제주">제주</option>
 				</select>
 
 				<!-- 검색 버튼 -->
-				<div class="button-5">
+				<div class="button-5" id="searchBtn">
 					<div class="eff-5"></div>
-					<a href="#" onclick="searching();">검색</a>
+					<a >검색</a>
 				</div>
 			</div>
+			</form>
 			<!-- 검색창 부분 끝 -->
 
 			<!-- 이미지 슬라이드 -->
@@ -274,7 +272,6 @@
 			<table>
 				<tr>
 					<%
-
 						for (Cafe c : clist) {
 							if (num == 4) {
 								num = 0;
@@ -311,22 +308,32 @@
 		</div>
 	</main>
 
-	<script>
-    		function searching(){
-			location.href="<%=request.getContextPath()%>
-		/searchMain.th?place="
-					+ $('#place').val()
-					+ "&checkin="
-					+ $('#checkin').val()
-					+ "&checkout="
-					+ $('#checkout').val()
-					+ "&area="
-					+ $('#area').val();
-
-		}
-	</script>
 	<!-- 메인 끝 -->
 	<%@ include file="../common/footer.jsp"%>
+	
+	
+	<script>
+		$(function(){
+			var entime = $('#checkin').val();
+			var extime = $('#checkout').val();
+			var location = $('#area').val(); 
+		
+			
+			$('#searchBtn').click(function(){
+				
+			
+				if($('#checkin').val()!="" && $('#checkout').val() !="" && $('#area').val() !="x"){
+					
+					$('#searchform').attr('action','<%=request.getContextPath() %>/hotelsearch.ys?checkin='+$('#checkin').val()+'&checkout='+$('#checkout').val()+'&area='+$('#area').val()).submit();
+					
+				}else{
+					alert("체크인/체크아웃/지역 값을 모두선택해주세요");
+				} 
+				
+				
+			});
+		});
+	</script>
 
 </body>
 </html>
