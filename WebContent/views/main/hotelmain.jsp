@@ -23,7 +23,7 @@
     </head>
 <style>
 #H_main{
-    height: AUTO;
+    height: 1800px;
 }
 #search-box{
     /* width: 70%; */

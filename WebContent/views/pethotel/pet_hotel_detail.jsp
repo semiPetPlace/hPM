@@ -35,7 +35,9 @@
 	  font-family: Arial;
 	  margin: 0;
 	}
-	
+	.main-content{
+	   height:1500px;
+	}
 	* {
 	  box-sizing: border-box;
 	}
