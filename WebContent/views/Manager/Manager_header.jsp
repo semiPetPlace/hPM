@@ -196,7 +196,11 @@ html,body {
         <div class="m-menu-nav">
             <div class="list">
                 <ul>
+<<<<<<< HEAD
                     <li><a href="#" onclick="goManager()">관리자 메인</a></li>
+=======
+                    <li><a href="#" onclick="goManager()">관리자 메인</a></li>
+>>>>>>> branch 'master' of https://github.com/semiPetPlace/hPM.git
                     <li><a href="<%= request.getContextPath() %>/blist.th">게시판 관리</a></li>
                     <li><a href="#" onclick="goCompany()">업체 관리</a></li>
                     <li><a href="#" onclick="goListView()" >문의 처리</a></li>
@@ -212,6 +216,7 @@ html,body {
     </div>
 </header>
 <script>
+<<<<<<< HEAD
    function gocList(){
       location.href="<%=request.getContextPath()%>/cList.co";
    }
@@ -230,4 +235,24 @@ html,body {
    function goListView(){
       location.href="<%=request.getContextPath()%>/listView.mt";
    }      
+=======
+	function gocList(){
+		location.href="<%=request.getContextPath()%>/cList.co";
+	}
+	function goMlist(){
+		location.href="<%=request.getContextPath()%>/mlist.me";
+	}
+	function goManager() {
+		location.href = "<%=request.getContextPath()%>/chart.ma";
+	}
+	function goViewChart(){
+		location.href="<%=request.getContextPath()%>/viewChart.hs";
+	}	
+	function goCompany(){
+		location.href="<%=request.getContextPath()%>/hList.hj";
+	}	
+	function goListView(){
+		location.href="<%=request.getContextPath()%>/listView.mt";
+	}		
+>>>>>>> branch 'master' of https://github.com/semiPetPlace/hPM.git
 </script>

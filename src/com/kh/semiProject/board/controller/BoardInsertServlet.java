@@ -49,7 +49,6 @@ public class BoardInsertServlet extends HttpServlet {
 			
 				String savePath  = root + "resources/images";
 				
-		
 				MultipartRequest mrequest = new MultipartRequest(
 													request, 
 													savePath,
