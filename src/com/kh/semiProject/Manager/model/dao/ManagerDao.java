@@ -116,7 +116,7 @@ public class ManagerDao {
 		return mac;
 	}
 
-	public Member MemberDetail(Connection con, String userName) {
+	public Member MemberDetail(Connection con, String userid) {
 		Member m = new Member();
 		
 		PreparedStatement pstmt = null;
@@ -126,7 +126,7 @@ public class ManagerDao {
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, userName);
+			pstmt.setString(1, userid);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -326,7 +326,6 @@ public class ManagerDao {
 			pstmt.setInt(1, hNo);
 			
 			rset = pstmt.executeQuery();
-			
 			
 			if(rset.next()) {
 				h = new Hotel();

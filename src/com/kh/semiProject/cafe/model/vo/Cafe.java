@@ -30,7 +30,6 @@ public class Cafe implements Serializable {
 	private String cpetSize;
 	private Float lat;
 	private Float lng;
-
 	
 	
 	public Cafe() {
@@ -68,9 +67,27 @@ public class Cafe implements Serializable {
 	}
 
 
-
-
-
+	public Cafe(int cno, String crimage, String cimage, String cname, String ctel, String ctime, double cscore,
+			String caddress, String cdogCompInfo, String cpromotion, String creview, String crequest,
+			Date cregisterDate, String cregistration, String cpetSize) {
+		super();
+		this.cno = cno;
+		this.crimage = crimage;
+		this.cimage = cimage;
+		this.cname = cname;
+		this.ctel = ctel;
+		this.ctime = ctime;
+		this.cscore = cscore;
+		this.caddress = caddress;
+		this.cdogCompInfo = cdogCompInfo;
+		this.cpromotion = cpromotion;
+		this.creview = creview;
+		this.crequest = crequest;
+		this.cregisterDate = cregisterDate;
+		this.cregistration = cregistration;
+		this.cpetSize = cpetSize;
+	}
+	
 	public Cafe(int cno, String crimage, String cimage, String cname, String ctel, String ctime, double cscore,
 			String caddress, String cdogCompInfo, String cpromotion, String creview, String crequest,
 			Date cregisterDate, String cregistration, String cpetSize, Float lat, Float lng) {
@@ -94,9 +111,6 @@ public class Cafe implements Serializable {
 		this.lng = lng;
 	}
 
-	
-
-
 	public void setLat(Float lat) {
 		this.lat = lat;
 	}
@@ -105,7 +119,6 @@ public class Cafe implements Serializable {
 	public void setLng(Float lng) {
 		this.lng = lng;
 	}
-
 
 	public int getCno() {
 		return cno;
@@ -250,8 +263,6 @@ public class Cafe implements Serializable {
 	public void setCregistration(String cregistration) {
 		this.cregistration = cregistration;
 	}
-
-
 	public void setCpetSize(String cpetSize) {
 		this.cpetSize = cpetSize;
 	}
@@ -304,9 +315,5 @@ public class Cafe implements Serializable {
 				+ ", cregisterDate=" + cregisterDate + ", cregistration=" + cregistration + ", cpetSize=" + cpetSize
 				+ ", lat=" + lat + ", lng=" + lng + "]";
 	}
-
-
-	
-
 
 }

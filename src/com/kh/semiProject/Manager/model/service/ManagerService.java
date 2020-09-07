@@ -12,7 +12,6 @@ import com.kh.semiProject.Hotel.model.vo.PetHotel;
 import com.kh.semiProject.Manager.model.dao.ManagerDao;
 import com.kh.semiProject.Manager.model.vo.Manager;
 import com.kh.semiProject.cafe.model.vo.Cafe;
-import com.kh.semiProject.mCompany.model.vo.Company;
 import com.kh.semiProject.member.model.vo.Member;
 import com.kh.semiProject.restaurant.model.vo.Restaurant;
 
@@ -264,6 +263,14 @@ public class ManagerService {
 		
 		return result;
 	}
+	public int getListCount1() {
+		Connection con = getConnection();
+		int listCount = mDao.getListCount1(con);
+		
+		close(con);
+		
+		return listCount;
+	}
 
 	public int enrollRest(Restaurant r) {
 		Connection con = getConnection();
@@ -334,6 +341,11 @@ public class ManagerService {
 		
 		close(con);
 		return r;
+	}
+
+	public Cafe editView(int cno) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
