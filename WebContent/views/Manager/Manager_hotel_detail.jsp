@@ -4,8 +4,8 @@
 <%
 	Hotel h = (Hotel)request.getAttribute("h");
 	HotelConvenience hc = (HotelConvenience)request.getAttribute("hc");
-	HotelRoom hr = (HotelRoom)request.getAttribute("hr");
-	HotelRoom hr2 = (HotelRoom)request.getAttribute("hr2");
+	@SuppressWarnings("unchecked")
+	ArrayList<HotelRoom> list = (ArrayList<HotelRoom>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -16,6 +16,15 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/Manager-company-detail.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <style>
+    .detailCom table, .detailCom th, .detailCom tr{
+    font-size: initial;
+    padding: 0px;
+	}
+	#main{
+	height:1700px;
+	}
+    </style>
 </head>
 <body>
 	<%@ include file = "./Manager_header.jsp" %>
@@ -26,8 +35,8 @@
                 <div class="sub-list">
                     <p>업체 관리</p>
                     <ul>
-                        <li><a href="/semi/hList.hj">· 위탁 호텔 리스트</a></li>
-                        <li><a href="/semi/phList.hj">· 동반 호텔 리스트</a></li>
+                        <li><a href="/semi/hList.hj">· 동반 호텔 리스트</a></li>
+                        <li><a href="/semi/phList.hj">· 위탁 호텔 리스트</a></li>
                         <li><a href="/semi/cList.hj">· 동반 카페 리스트</a></li>
                         <li><a href="/semi/rList.hj">· 동반 식당 리스트</a></li>
                     </ul>
@@ -36,12 +45,12 @@
             <!-- 여기에 메인 컨텐츠 넣으면 됩니다. -->    
             <div class="content">
                 <div class="reservationTable">
-                    <p style="font-size: 30px; font-weight: 500px; margin-bottom: 10px;">위탁 호텔 상세</p>
+                    <p style="font-size: 30px; font-weight: 500px; margin-bottom: 10px;">동반 호텔 상세</p>
                     <div class="searchPot"></div>
-                    <div class="detailCom">
+                    <div class="detailCom" style="border: none;">
                         <table border="1">
                         	<tr>
-	                                <th></th>
+	                            <th></th>
 	                            </tr>
 	                            <tr>
 	                                <th>업체 번호</th>
@@ -129,31 +138,31 @@
 								</tr>
 								<tr>
 									<th>편의성</th>
-									<td><span style="margin-right:80px; font-weight:400;font-size:smaller;">대중교통으로 거리</span>
+									<td style="font-weight:400;font-size:smaller;"><span style="margin-right:80px; font-weight:400;font-size:inherit;">대중교통으로 거리</span>
 										<%= hc.getTansport() %>
 									</td>
 								</tr>
 								<tr>
 									<th></th>
-									<td><span style="margin-right:20px; font-weight:400;font-size:smaller;">공항 이동 교통편 서비스 여부</span>
+									<td style="font-weight:400;font-size:smaller;"><span style="margin-right:20px; font-weight:400;font-size:inherit;">공항 이동 교통편 서비스 여부</span>
 										<%= hc.getAirport() %>
 									</td>
 								</tr>
 								<tr>
 									<th></th>
-									<td><span style="margin-right:157px; font-weight:400;font-size:smaller;">위치</span>
+									<td style="font-weight:400;font-size:smaller;"><span style="margin-right:157px; font-weight:400;font-size:inherit;">위치</span>
 										<%= hc.getLocation() %>
 									</td>
 								</tr>
 								<tr>
 									<th></th>
-									<td><span style="margin-right:97px; font-weight:400;font-size:smaller;">무료 Wi-fi 여부</span>
+									<td style="font-weight:400;font-size:smaller;"><span style="margin-right:97px; font-weight:400;font-size:inherit;">무료 Wi-fi 여부</span>
 										<%= hc.getWifi() %>
 									</td>
 								</tr>
 								<tr>
 									<th></th>
-									<td><span style="margin-right:100px; font-weight:400;font-size:smaller;">온수 욕조 여부</span>
+									<td style="font-weight:400;font-size:smaller;"><span style="margin-right:100px; font-weight:400;font-size:inherit;">온수 욕조 여부</span>
 										<%= hc.getTub() %>
 									</td>
 								</tr>
@@ -162,8 +171,12 @@
 								<tr>
 									<th style="border-top: 2px solid #7A9BAD; margin: 20px;"></th>
 								</tr>
+								
+								<% for(HotelRoom hr : list){ %>
+								<tr></tr>
+								<tr></tr>
 								<tr>
-									<th>* 객실 - 1</th>
+									<th>* 객실</th>
 								</tr>
 								<tr></tr>
 								<tr>
@@ -214,60 +227,11 @@
 										<%= hr.getRbreakfast() %>
 									</td>
 								</tr>
+								<% } %>
 								<tr></tr>
 								<tr></tr>
-								<tr>
-									<th>* 객실 - 2</th>
-								</tr>
 								<tr></tr>
-								<tr>
-									<th>객실 명</th>
-									<td>
-										<%= hr2.getRname() %>
-									</td>
-								</tr>
-								<tr>
-									<th>객실 금액</th>
-									<td>
-										<%= hr2.getRprice() %>
-									</td>
-								</tr>
-								<tr>
-									<th>객실 욕조 여부</th>
-									<td>
-										<%= hr2.getRtub() %>
-									</td>
-								</tr>
-								<tr>
-									<th>침대 타입</th>
-									<td>
-										<%= hr2.getRbadtype() %>
-									</td>
-								</tr>
-								<tr>
-									<th>전망</th>
-									<td>
-										<%= hr2.getRview() %>
-									</td>
-								</tr>
-								<tr>
-									<th>객실 사이즈(m2)</th>
-									<td>
-										<%= hr2.getRsize() %>
-									</td>
-								</tr>
-								<tr>
-									<th>객실 이미지</th>
-									<td>
-										<%= hr2.getRimg() %>
-									</td>
-								</tr>
-								<tr>
-									<th>조식 여부</th>
-									<td>
-										<%= hr2.getRbreakfast() %>
-									</td>
-								</tr>
+
 	                        </table>
 		                    <div class="empty">
 		                        <br><br><br>

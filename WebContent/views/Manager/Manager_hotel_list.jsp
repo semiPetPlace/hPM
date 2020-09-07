@@ -66,8 +66,8 @@ int endPage = pi.getEndPage();
                 <div class="sub-list">
                     <p>업체 관리</p>
                     <ul>
-                        <li><a href="/semi/hList.hj">· 위탁 호텔 리스트</a></li>
-                        <li><a href="/semi/phList.hj">· 동반 호텔 리스트</a></li>
+                        <li><a href="/semi/hList.hj">· 동반 호텔 리스트</a></li>
+                        <li><a href="/semi/phList.hj">· 위탁 호텔 리스트</a></li>
                         <li><a href="/semi/cList.hj">· 동반 카페 리스트</a></li>
                         <li><a href="/semi/rList.hj">· 동반 식당 리스트</a></li>
                     </ul>
@@ -76,7 +76,7 @@ int endPage = pi.getEndPage();
              <!-- 여기에 메인 컨텐츠 넣으면 됩니다. -->    
             <div class="content">
                 <div class="reservationTable">
-                    <p style="font-size: 30px; font-weight: 500px; margin-bottom: 10px;">위탁 호텔 리스트</p>
+                    <p style="font-size: 30px; font-weight: 500px; margin-bottom: 10px;">동반 호텔 리스트</p>
                     <div class="searchPot"></div>
                     
                     <div class="searchCompany">
@@ -168,7 +168,7 @@ int endPage = pi.getEndPage();
 		});
 		
 		function search(){
-			location.href="<%=request.getContextPath()%>//hSearch.hj?con="+$('#searchCondition').val()+"&keyword="+$('#keyword').val();
+			location.href="<%=request.getContextPath()%>/hSearch.hj?con="+$('#searchCondition').val()+"&keyword="+$('#keyword').val();
 		}
 		
 		</script>

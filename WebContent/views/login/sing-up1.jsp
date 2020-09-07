@@ -32,7 +32,6 @@
             function next(){
             	if($("input[id=necessary1]").prop("checked")){
             		if( $("input[id=necessary2]").prop("checked")){
-            			alert("넘어가");
             			location.href="<%=request.getContextPath()%>/idchk.me";            			
             		}
                 	}else{
