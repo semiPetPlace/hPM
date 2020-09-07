@@ -61,6 +61,7 @@
                         <td><a href="<%= request.getContextPath()%>/canceledReser.ys?userid=<%=m.getMuserId()%>" style="border-bottom: 3px solid #ffb600;">취소된 예약</a></td>
                     </th>
                 </div>
+
                 <!-- 1번예약 -->
                 <% if(reserList !=null){ %>
                 <% for(ReservationMana rvm : reserList){ %>

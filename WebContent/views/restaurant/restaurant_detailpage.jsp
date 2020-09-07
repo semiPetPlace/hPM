@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.semiProject.restaurant.model.vo.*, java.util.*" %>
+    pageEncoding="UTF-8"
+    import="com.kh.semiProject.restaurant.model.vo.*, com.kh.semiProject.review.model.vo.*, java.util.*"%>
 <%
 	Restaurant r = (Restaurant)request.getAttribute("restaurant");
+	ArrayList<Review> rv = (ArrayList<Review>)request.getAttribute("review");
  %>
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -26,8 +28,10 @@
                 <p><%= r.getRaddress() %></p>
                 <p>★평점 <%= r.getRscore() %></p>
             </div>
+            <% if(m != null){ %>
             <div class="review_btn"><a href="<%= request.getContextPath() %>/views/review/review_write.jsp?type=restaurant&cno=<%= r.getRno() %>">리뷰 작성</a></div>
             <div class="like_btn"><button onclick="like();" id="like_btn">찜하기</button></div>
+            <% } %>
         </div>
         <div class="wrapper cafe-cont clearfix">
             <div class="left">
@@ -100,12 +104,21 @@
                     <div class="title">
                         <img src="<%= request.getContextPath() %>/resources/images/icons/document.png" alt="">
                         <h3>리뷰</h3>
+                        <% if(m != null){ %>
                         <div class="write_btn"><a href="<%= request.getContextPath() %>/views/review/review_write.jsp?type=restaurant&cno=<%= r.getRno() %>">리뷰 작성</a></div>
-                        <div class="list_btn"><a href="<%= request.getContextPath() %>/rvList2.th?type=restaurant&ctno=<%= r.getRno() %>">더보기</a></div>
+                        <% } %>
+                        <div class="list_btn"><a href="<%= request.getContextPath() %>/rvList2.th?type=cafe&ctno=<%=r.getRno() %>">더보기</a></div>
                     </div>
                     <div class="content">
                         <ul class="list">
-                            <li>“ <%= r.getRreview() %> ”</li>
+                        <% int j = 0; %>
+                        <% for(Review rve : rv) { %>
+                        	<% if(j == 4) { break; } %>
+                            <li>“ <%= rve.getRvcontent() %> ”</li>
+                        <% j++; } %>
+                        <% if(rv.isEmpty()) { %>
+                        <li>등록된 리뷰가 없습니다.</li>
+                        <% } %>
                         </ul>
                     </div>
                 </div>

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.semiProject.cafe.model.vo.Cafe;
+import com.kh.semiProject.review.model.vo.Review;
 
 public class CafeDao {
 	
@@ -80,7 +81,7 @@ public class CafeDao {
 			while(rset.next()) {
 				Cafe c = new Cafe();
 				c.setCno(rset.getInt("C_NO"));
-				c.setCimage(rset.getString("C_IMAGE"));
+				c.setCrimage(rset.getString("C_R_IMAGE"));
 				c.setCname(rset.getString("C_NAME"));
 				c.setCpromotion(rset.getString("C_PROMOTION"));
 				c.setCscore(rset.getDouble("C_SCORE"));
@@ -115,7 +116,6 @@ public class CafeDao {
 			if(rset.next()) {
 				c = new Cafe();
 				c.setCrimage(rset.getString("C_R_IMAGE"));
-				c.setCno(rset.getInt("C_NO"));
 				c.setCimage(rset.getString("C_IMAGE"));
 				c.setCname(rset.getString("C_NAME"));
 				c.setCtel(rset.getString("C_TEL"));
@@ -124,7 +124,6 @@ public class CafeDao {
 				c.setCaddress(rset.getString("C_ADDRESS"));
 				c.setCdogCompInfo(rset.getString("C_DOG_COMPINFO"));
 				c.setCpromotion(rset.getString("C_PROMOTION"));
-				c.setCreview(rset.getString("C_REVIEW"));
 				c.setCrequest(rset.getString("C_REQUEST"));
 				c.setCregisterDate(rset.getDate("C_REGISTERDATE"));
 				c.setCregistration(rset.getString("C_REGISTRATION"));
@@ -204,6 +203,42 @@ public class CafeDao {
 		}
 		
 		return listCount;
+	}
+
+
+	public ArrayList<Review> cafeReview(Connection con, int cno) {
+
+		ArrayList<Review> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String sql = prop.getProperty("cafeReview");
+
+		try {
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, cno);
+
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<Review>();
+
+			while(rset.next()) {
+				
+				Review rv = new Review();
+				rv.setRvcontent(rset.getString("RV_CONTENT"));
+
+				list.add(rv);
+
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
 	}
 
 }

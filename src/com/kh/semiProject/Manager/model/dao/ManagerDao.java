@@ -226,7 +226,7 @@ public class ManagerDao {
 		int listCount = 0;
 		Statement stmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("listCount");
+		String sql = prop.getProperty("hsaleslistCount");
 		
 		try {
 			stmt = con.createStatement();
@@ -234,6 +234,7 @@ public class ManagerDao {
 			
 			if(rset.next()) {
 				listCount = rset.getInt(1);
+				System.out.println(listCount);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -257,6 +258,8 @@ public class ManagerDao {
 			
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
+			System.out.println("endRow : "+endRow);
+			System.out.println("startRow : "+startRow);
 			pstmt.setInt(1, endRow);
 			pstmt.setInt(2, startRow);
 			
