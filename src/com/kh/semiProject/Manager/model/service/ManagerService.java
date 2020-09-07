@@ -317,6 +317,26 @@ public class ManagerService {
 		close(con);
 		return list;
 	}
+
+	public Cafe selectOnecafe(int cno) {
+		Connection con = getConnection();
+		
+		Cafe c = mDao.selectOnecafe(con,cno);
+		
+		close(con);
+		return c;
+	}
+
+	public Restaurant selectOnerest(int rno) {
+		Connection con = getConnection();
+		
+		Restaurant r = mDao.selectOnerest(con,rno);
+		
+		close(con);
+		return r;
+	}
+
+	
 	
 
 

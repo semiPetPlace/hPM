@@ -64,15 +64,14 @@ public class Restaurant implements Serializable {
 	}
 
 
-
-
-	public Restaurant(int rno, String rrimage, String rimage, String rname, String rtel, String rtime, double rscore,
-			String raddress, String rdogCompInfo, String rpromotion, String rreview, String rrequest,
-			Date rregisterDate, String rregistration, String rpetSize, Float lat, Float lng) {
+	public Restaurant(int rno, String rrimage, String rimage, String[] rimage2, String rname, String rtel, String rtime,
+			double rscore, String raddress, String rdogCompInfo, String rpromotion, String rreview, String rrequest,
+			Date rregisterDate, String rregistration, String rpetSize, float lat, float lng) {
 		super();
 		this.rno = rno;
 		this.rrimage = rrimage;
 		this.rimage = rimage;
+		this.rimage2 = rimage2;
 		this.rname = rname;
 		this.rtel = rtel;
 		this.rtime = rtime;

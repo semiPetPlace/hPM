@@ -247,6 +247,30 @@ public class ManagerDao {
 		return listCount;
 	}
 	
+	public int getListCount1(Connection con) {
+		int listCount = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("hsaleslistCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+				System.out.println(listCount);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return listCount;
+	}
+	
 	public ArrayList<Hotel> listHotel(Connection con, int currentPage, int limit) {
 		ArrayList<Hotel> list = null;
 		PreparedStatement pstmt = null;
@@ -1097,6 +1121,7 @@ public class ManagerDao {
 				c.setCregistration(rset.getString("C_REGISTRATION"));
 				c.setCpetSize(rset.getString("C_PETSIZE"));
 				
+				
 				list.add(c);
 			}
 		} catch(SQLException e) {
@@ -1168,6 +1193,90 @@ public class ManagerDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	public Cafe selectOnecafe(Connection con, int cno) {
+		Cafe c = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOnecafe");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, cno);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			if(rset.next()) {
+				c = new Cafe();
+				c.setCno(cno);
+				c.setCname(rset.getString("c_Name"));
+				c.setCtel(rset.getString("c_Tel"));
+				c.setCaddress(rset.getString("c_Address"));
+				c.setCtime(rset.getString("c_time"));
+				c.setCimage(rset.getString("c_image"));
+				c.setCrimage(rset.getString("c_r_image"));
+				c.setCdogCompInfo(rset.getString("C_DOG_COMPINFO"));
+				c.setCpromotion(rset.getString("C_PROMOTION"));
+				c.setCrequest(rset.getString("C_REQUEST"));
+				c.setCregisterDate(rset.getDate("C_REGISTERDATE"));
+				c.setCregistration(rset.getString("C_REGISTRATION"));
+				c.setCpetSize(rset.getString("C_PETSIZE"));
+				c.setLat(rset.getFloat("LAT"));
+				c.setLng(rset.getFloat("LNG"));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return c;
+	}
+	public Restaurant selectOnerest(Connection con, int rno) {
+		Restaurant r = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOnerest");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, rno);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			if(rset.next()) {
+				r = new Restaurant();
+				r.setRno(rno);
+				r.setRname(rset.getString("r_Name"));
+				r.setRtel(rset.getString("r_Tel"));
+				r.setRaddress(rset.getString("r_Address"));
+				r.setRtime(rset.getString("r_time"));
+				r.setRimage(rset.getString("r_image"));
+				r.setRrimage(rset.getString("r_r_image"));
+				r.setRdogCompInfo(rset.getString("R_DOG_COMPINFO"));
+				r.setRpromotion(rset.getString("R_PROMOTION"));
+				r.setRrequest(rset.getString("R_REQUEST"));
+				r.setRregisterDate(rset.getDate("R_REGISTERDATE"));
+				r.setRregistration(rset.getString("R_REGISTRATION"));
+				r.setRpetSize(rset.getString("R_PETSIZE"));
+				r.setLat(rset.getFloat("LAT"));
+				r.setLng(rset.getFloat("LNG"));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return r;
 	}
 	
 

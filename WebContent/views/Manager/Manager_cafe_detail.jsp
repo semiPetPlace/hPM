@@ -44,7 +44,7 @@
                 <div class="reservationTable">
                     <p style="font-size: 30px; font-weight: 500px; margin-bottom: 10px;">동반 카페 상세</p>
                     <div class="searchPot"></div>
-                    <div class="detailCom" style="border: none;">
+                    <div class="detailCom" style="border: none; margin-left:100px; width:1000px;">
                         <table border="1">
                         	<tr>
 	                            <th></th>
@@ -56,7 +56,7 @@
                                		</td>
                             	</tr>
 	                            <tr>
-	                                <th>호텔 명</th>
+	                                <th>카페 명</th>
 	                                <td>
 	                                	<%= c.getCname() %>
 	                                </td>
@@ -86,7 +86,7 @@
 	                                </td>
 	                            </tr>
 	                            <tr>
-	                                <th style="vertical-align:top;">영업시간</th>
+	                                <th style="vertical-align:top; width:150px;">영업시간</th>
 	                                <td>
 	                                    <%= c.getCtime() %>
 	                                </td>

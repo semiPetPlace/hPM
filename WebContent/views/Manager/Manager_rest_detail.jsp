@@ -44,103 +44,105 @@ Restaurant r = (Restaurant)request.getAttribute("r");
                 <div class="reservationTable">
                     <p style="font-size: 30px; font-weight: 500px; margin-bottom: 10px;">동반 식당 상세</p>
                     <div class="searchPot"></div>
-                    <div class="detailCom" style="border: none;">
+                    <div class="detailCom" style="border: none; margin-left:100px; width:1000px;">
                         <table border="1">
                         	<tr>
-	                            <th></th>
-	                            </tr>
-	                            <tr>
-	                                <th>업체 번호</th>
-	                                 <td>
-                                    	<%= r.getRno() %>
-                               		</td>
-                            	</tr>
-	                            <tr>
-	                                <th>호텔 명</th>
-	                                <td>
-	                                	<%= r.getRname() %>
-	                                </td>
-	                            </tr>
-								<tr>
-									<th>주소지</th>
-									<td>
-                                        <%= r.getRaddress() %>
-                                    </td>
-								</tr>
-								<tr>
-	                                <th>연락처</th>
-	                                <td>
-	                                    <%= r.getRtel() %> 
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th style="vertical-align:top;">홍보글</th>
-	                                <td>
-	                                	<%= r.getRpromotion() %>
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th style="vertical-align:top;">요청사항</th>
-	                                <td>
-	                                    <%= r.getRrequest() %>
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th style="vertical-align:top;">영업시간</th>
-	                                <td>
-	                                    <%= r.getRtime() %>
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th style="vertical-align:top;">반려견 동반 정보</th>
-	                                <td>
-	                                    <%= r.getRdogCompInfo() %>
-	                                </td>
-	                            </tr>
-	                            <tr>
-									<th>반려견 사이즈</th>
-									<td>
-										<%= r.getRpetSize() %>
-									</td>
-								</tr>
-	                            <tr>
-	                                <th>카페 대표 이미지</th>
-	                                <%= r.getRrimage() %>
-	                            </tr>
-	                            <tr>
-	                                <th>상세 이미지</th>
-	                                 <td style="padding:10px 0;">
-										<%= r.getRimage() %>
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th>위도</th>
-	                                <td>
-	                                    <%= r.getLat() %>
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th>경도</th>
-	                                <td>
-	                                    <%= r.getLng() %>
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th>등록 일</th>
-	                                <td>
-	                                    <%= r.getRregisterDate() %>
-	                                </td>
-	                            </tr>
-	                            <tr>
-									<th>등록 여부</th>
-									<td>
-										<%= r.getRregistration() %>
-									</td>
-								</tr>
-								<tr></tr>
-								<tr></tr>
-								<tr></tr>
-	                        </table>
+                            <th></th>
+                            </tr>
+                            <tr>
+                                <th>업체 번호</th>
+                                 <td>
+                                   	<%= r.getRno() %>
+                              	</td>
+                           	</tr>
+                            <tr>
+                                <th>식당 명</th>
+                                <td>
+                                	<%= r.getRname() %>
+                                </td>
+                            </tr>
+							<tr>
+								<th>주소지</th>
+								<td>
+                                       <%= r.getRaddress() %>
+                                </td>
+							</tr>
+							<tr>
+                                <th>연락처</th>
+                                <td>
+                                    <%= r.getRtel() %> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="vertical-align:top;">홍보글</th>
+                                <td>
+                                	<%= r.getRpromotion() %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="vertical-align:top;">요청사항</th>
+                                <td>
+                                    <%= r.getRrequest() %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="vertical-align:top;">영업시간</th>
+                                <td>
+                                    <%= r.getRtime() %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="vertical-align:top;  width:150px;">반려견 동반 정보</th>
+                                <td>
+                                    <%= r.getRdogCompInfo() %>
+                                </td>
+                            </tr>
+                            <tr>
+								<th>반려견 사이즈</th>
+								<td>
+									<%= r.getRpetSize() %>
+								</td>
+							</tr>
+                            <tr>
+                            	<th>식당 대표 이미지</th>
+								<td>
+									<%= r.getRrimage() %>
+								</td>
+                            </tr>
+                            <tr>
+                                <th>상세 이미지</th>
+                                 <td style="padding:10px 0;" >
+									<%= r.getRimage() %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>위도</th>
+                                <td>
+                                    <%= r.getLat() %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>경도</th>
+                                <td>
+                                    <%= r.getLng() %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>등록 일</th>
+                                <td>
+                                    <%= r.getRregisterDate() %>
+                                </td>
+                            </tr>
+                            <tr>
+								<th>등록 여부</th>
+								<td>
+									<%= r.getRregistration() %>
+								</td>
+							</tr>
+							<tr></tr>
+							<tr></tr>
+							<tr></tr>
+                        </table>
 		                    <div class="empty">
 		                        <br><br><br>
 		                    </div>
