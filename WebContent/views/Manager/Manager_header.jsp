@@ -197,11 +197,10 @@ html,body {
             <div class="list">
                 <ul>
                     <li><a href="#" onclick="goManager()">관리자 메인</a></li>
-                    <li><a href="./Manager_reservation.html">예약 관리</a></li>
                     <li><a href="<%= request.getContextPath() %>/blist.th">게시판 관리</a></li>
-                    <li><a href="./">업체 관리</a></li>
+                    <li><a href="#" onclick="goCompany()">업체 관리</a></li>
                     <li><a href="#" onclick="goListView()" >문의 처리</a></li>
-                    <li><a href="#" onclick="">회원 관리</a></li>
+                    <li><a href="#" onclick="goMlist()">회원 관리</a></li>
                     <li><a href="#" onclick="goViewChart()">매출 관리</a></li>
                 </ul>
             </div>
@@ -214,17 +213,21 @@ html,body {
 </header>
 <script>
 	function gocList(){
-		location.href="/semi/cList.co";
+		location.href="<%=request.getContextPath()%>/cList.co";
 	}
-
+	function goMlist(){
+		location.href="<%=request.getContextPath()%>/mlist.me";
+	}
 	function goManager() {
 		location.href = "<%=request.getContextPath()%>/chart.ma";
 	}
-
 	function goViewChart(){
-		location.href="/semi/viewChart.hs";
+		location.href="<%=request.getContextPath()%>/viewChart.hs";
+	}	
+	function goCompany(){
+		location.href="<%=request.getContextPath()%>/hList.hj";
 	}	
 	function goListView(){
-		location.href="/semi/listView.mt";
+		location.href="<%=request.getContextPath()%>/listView.mt";
 	}		
 </script>

@@ -120,7 +120,22 @@ public class MemberService {
 		return pwd;
 	}
 
+	public int getListCount() {
+		Connection con = getConnection();
+		int listCount = mDao.getListCount(con);
+		close(con);
+		return listCount;
+	}
+
+	public ArrayList<Member> memberList(int currentPage, int limit) {
+		Connection con = getConnection();
+		ArrayList<Member> mList  = mDao.memberList(con,currentPage,limit);
+		
+		if(mList != null) commit(con);
+		else rollback(con);
+		return mList;
+	}
 
 
-
+	
 }

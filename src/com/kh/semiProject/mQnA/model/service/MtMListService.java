@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import com.kh.semiProject.mQnA.model.dao.MtMListDao;
 import com.kh.semiProject.mQnA.model.vo.QnA;
+import com.kh.semiProject.member.model.vo.Member;
 
 public class MtMListService {
 
@@ -19,6 +20,8 @@ public class MtMListService {
 		else rollback(con);
 		return qList;
 	}
+
+
 	
 
 	

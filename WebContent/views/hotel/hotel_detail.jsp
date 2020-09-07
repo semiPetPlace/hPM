@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, com.kh.semiProject.Hotel.model.vo.*" %>
+<%@ page import="java.util.*, com.kh.semiProject.Hotel.model.vo.*,com.kh.semiProject.review.model.vo.*" %>
 <% Hotel h = (Hotel)request.getAttribute("hd"); %>
 <% ArrayList<HotelRoom> hrlist = (ArrayList<HotelRoom>)request.getAttribute("hrlist"); %>
 <% HotelConvenience hc = (HotelConvenience)request.getAttribute("hc"); %>
 <% String Cin = (String)request.getAttribute("Cin"); %>
 <% String Cout = (String)request.getAttribute("Cout"); %>
+<% ArrayList<Review> hre = (ArrayList<Review>)request.getAttribute("hreview"); %>
 
 <!DOCTYPE html>
 <html lang="en">

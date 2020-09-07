@@ -15,9 +15,9 @@
             <div class="footerMenu" id="move">
                 <p>간편 이동</p>
                 <ul>
-                    <li><a href="<%= request.getContextPath() %>/mList.th">개편한 세상</a></li>
-                    <li><a href="/semi/views/main/pet_hotelmain.jsp">반려견 위탁 호텔</a></li>
-                    <li><a href="<%= request.getContextPath() %>/hotel.ys">반려견 동반 호텔</a></li>
+                    <li><a href="<%= request.getContextPath() %>/mlist.th">개편한 세상</a></li>
+                    <li><a href="<%= request.getContextPath() %>/hotel.ys">반려견 위탁 호텔</a></li>
+                    <li><a href="<%= request.getContextPath() %>/pethotel.ys">반려견 동반 호텔</a></li>
                     <li><a href="<%= request.getContextPath() %>/rList.ch">반려견 동반 음식점</a></li>
                     <li><a href="<%= request.getContextPath() %>/cList.ch">반려견 동반 카페</a></li>
                 </ul>
@@ -25,9 +25,9 @@
             <div class="footerMenu">
                 <p>도움말</p>
                 <ul>
-                    <li><a href="/semi/views/main/freeboard_list_notice.jsp">공지사항</a></li>
-                    <li><a href="/semi/views/service/Q&A.jsp">Q & A</a></li>
-                    <li><a href="/semi/views/service/Question.jsp">1:1 문의</a></li>
+                    <li><a href="<%= request.getContextPath() %>/nList.th">공지사항</a></li>
+                    <!-- <li><a href="/semi/views/service/Q&A.jsp">Q & A</a></li> -->
+                    <li><a href="<%= request.getContextPath() %>/views/service/Question.jsp">1:1 문의</a></li>
                 </ul>
             </div>
             <div class="footerMenu"> 

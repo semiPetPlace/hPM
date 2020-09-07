@@ -30,8 +30,8 @@ public class memberDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userName = request.getParameter("userName");
-		Member m = new ManagerService().MemberDetail(userName);
+		String userid = request.getParameter("userid");
+		Member m = new ManagerService().MemberDetail(userid);
 		
 		String page = "";
 

@@ -41,10 +41,10 @@ public class ManagerService {
 		return mac;
 	}
 	
-	public Member MemberDetail(String userName) {
+	public Member MemberDetail(String userid) {
 		Connection con = getConnection();
 
-		Member m = mDao.MemberDetail(con,userName);
+		Member m = mDao.MemberDetail(con,userid);
 
 		if(m != null) commit(con);
 		else rollback(con);
@@ -107,9 +107,9 @@ public class ManagerService {
 	}
 
 
-	public int getListCount() {
+	public int getListCount1() {
 		Connection con = getConnection();
-		int listCount = mDao.getListCount(con);
+		int listCount = mDao.getListCount1(con);
 		
 		close(con);
 		

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.semiProject.mQnA.model.vo.QnA;
+import com.kh.semiProject.member.model.vo.Member;
 public class MtMListDao {
 
 	private Properties prop;
@@ -73,5 +74,6 @@ public class MtMListDao {
 		
 		return qList;
 	}
+	
 
 }

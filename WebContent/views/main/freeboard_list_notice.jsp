@@ -35,7 +35,7 @@ int endPage = pi.getEndPage();
 
 	<div class="post" >
 		<img
-			src="<%=request.getContextPath()%>/resources/images/freeboard_list/dog_lab.png"
+			src="<%=request.getContextPath()%>/resources/images/freeboard_list/notice.png"
 			alt="게시판" id="board-img">
 			<% if(m != null && m.getMuserId().equals("admin")){ %>
 			 <input type="button" value="글쓰기"
