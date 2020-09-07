@@ -31,7 +31,6 @@ public class Cafe implements Serializable {
 	private Float lat;
 	private Float lng;
 	
-	
 	public Cafe() {
 		super();
 		// TODO Auto-generated constructor stub
